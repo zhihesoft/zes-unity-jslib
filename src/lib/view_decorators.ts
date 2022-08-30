@@ -1,7 +1,7 @@
 import { TMPro, UnityEngine } from "csharp";
 import { $typeof } from "puerts";
-import { BindEventOption, BindOption, BindPropOption, BindViewMode, BindViewOption, META_BINDOPTION } from "./bind_metadata";
-import { ComponentMetaData, META_COMPONENT } from "./component_metadata";
+import { BindEventOption, BindOption, BindPropOption, BindViewMode, BindViewOption, META_BINDOPTION } from "./metadata_bind";
+import { ComponentMetaData, META_COMPONENT } from "./metadata_component";
 
 /**
  * component decorator
