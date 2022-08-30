@@ -1,1 +1,1 @@
-export { ViewRef } from "./lib/viewref";
+export { ViewRef } from "./lib/view_ref";
