@@ -210,6 +210,11 @@ declare module 'csharp' {
             {
                 protected [__keep_incompatibility]: never;
             }
+            interface Func$3<T1, T2, TResult>
+            { 
+            (arg1: T1, arg2: T2) : TResult; 
+            Invoke?: (arg1: T1, arg2: T2) => TResult;
+            }
             interface IAsyncResult
             {
             }
@@ -2277,6 +2282,16 @@ declare module 'csharp' {
             {
                 protected [__keep_incompatibility]: never;
             }
+            /** Representation of RGBA colors in 32 bit format. */
+            class Color32 extends System.ValueType implements System.IFormattable
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            /** A class that allows you to create or modify meshes. */
+            class Mesh extends UnityEngine.Object
+            {
+                protected [__keep_incompatibility]: never;
+            }
         }
         namespace Unity.Collections {
             class NativeArray$1<T> extends System.ValueType implements System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.IDisposable, System.IEquatable$1<Unity.Collections.NativeArray$1<T>>
@@ -3324,6 +3339,268 @@ declare module 'csharp' {
             enum ObstacleAvoidanceType
             { NoObstacleAvoidance = 0, LowQualityObstacleAvoidance = 1, MedQualityObstacleAvoidance = 2, GoodQualityObstacleAvoidance = 3, HighQualityObstacleAvoidance = 4 }
         }
+        namespace TMPro {
+            class TMP_Text extends UnityEngine.UI.MaskableGraphic implements UnityEngine.UI.IMaterialModifier, UnityEngine.UI.IMaskable, UnityEngine.UI.ICanvasElement, UnityEngine.UI.IClippable
+            {
+                protected [__keep_incompatibility]: never;
+                public get text(): string;
+                public set text(value: string);
+                public get textPreprocessor(): TMPro.ITextPreprocessor;
+                public set textPreprocessor(value: TMPro.ITextPreprocessor);
+                public get isRightToLeftText(): boolean;
+                public set isRightToLeftText(value: boolean);
+                public get font(): TMPro.TMP_FontAsset;
+                public set font(value: TMPro.TMP_FontAsset);
+                public get fontSharedMaterial(): UnityEngine.Material;
+                public set fontSharedMaterial(value: UnityEngine.Material);
+                public get fontSharedMaterials(): System.Array$1<UnityEngine.Material>;
+                public set fontSharedMaterials(value: System.Array$1<UnityEngine.Material>);
+                public get fontMaterial(): UnityEngine.Material;
+                public set fontMaterial(value: UnityEngine.Material);
+                public get fontMaterials(): System.Array$1<UnityEngine.Material>;
+                public set fontMaterials(value: System.Array$1<UnityEngine.Material>);
+                public get color(): UnityEngine.Color;
+                public set color(value: UnityEngine.Color);
+                public get alpha(): number;
+                public set alpha(value: number);
+                public get enableVertexGradient(): boolean;
+                public set enableVertexGradient(value: boolean);
+                public get colorGradient(): TMPro.VertexGradient;
+                public set colorGradient(value: TMPro.VertexGradient);
+                public get colorGradientPreset(): TMPro.TMP_ColorGradient;
+                public set colorGradientPreset(value: TMPro.TMP_ColorGradient);
+                public get spriteAsset(): TMPro.TMP_SpriteAsset;
+                public set spriteAsset(value: TMPro.TMP_SpriteAsset);
+                public get tintAllSprites(): boolean;
+                public set tintAllSprites(value: boolean);
+                public get styleSheet(): TMPro.TMP_StyleSheet;
+                public set styleSheet(value: TMPro.TMP_StyleSheet);
+                public get textStyle(): TMPro.TMP_Style;
+                public set textStyle(value: TMPro.TMP_Style);
+                public get overrideColorTags(): boolean;
+                public set overrideColorTags(value: boolean);
+                public get faceColor(): UnityEngine.Color32;
+                public set faceColor(value: UnityEngine.Color32);
+                public get outlineColor(): UnityEngine.Color32;
+                public set outlineColor(value: UnityEngine.Color32);
+                public get outlineWidth(): number;
+                public set outlineWidth(value: number);
+                public get fontSize(): number;
+                public set fontSize(value: number);
+                public get fontWeight(): TMPro.FontWeight;
+                public set fontWeight(value: TMPro.FontWeight);
+                public get pixelsPerUnit(): number;
+                public get enableAutoSizing(): boolean;
+                public set enableAutoSizing(value: boolean);
+                public get fontSizeMin(): number;
+                public set fontSizeMin(value: number);
+                public get fontSizeMax(): number;
+                public set fontSizeMax(value: number);
+                public get fontStyle(): TMPro.FontStyles;
+                public set fontStyle(value: TMPro.FontStyles);
+                public get isUsingBold(): boolean;
+                public get horizontalAlignment(): TMPro.HorizontalAlignmentOptions;
+                public set horizontalAlignment(value: TMPro.HorizontalAlignmentOptions);
+                public get verticalAlignment(): TMPro.VerticalAlignmentOptions;
+                public set verticalAlignment(value: TMPro.VerticalAlignmentOptions);
+                public get alignment(): TMPro.TextAlignmentOptions;
+                public set alignment(value: TMPro.TextAlignmentOptions);
+                public get characterSpacing(): number;
+                public set characterSpacing(value: number);
+                public get wordSpacing(): number;
+                public set wordSpacing(value: number);
+                public get lineSpacing(): number;
+                public set lineSpacing(value: number);
+                public get lineSpacingAdjustment(): number;
+                public set lineSpacingAdjustment(value: number);
+                public get paragraphSpacing(): number;
+                public set paragraphSpacing(value: number);
+                public get characterWidthAdjustment(): number;
+                public set characterWidthAdjustment(value: number);
+                public get enableWordWrapping(): boolean;
+                public set enableWordWrapping(value: boolean);
+                public get wordWrappingRatios(): number;
+                public set wordWrappingRatios(value: number);
+                public get overflowMode(): TMPro.TextOverflowModes;
+                public set overflowMode(value: TMPro.TextOverflowModes);
+                public get isTextOverflowing(): boolean;
+                public get firstOverflowCharacterIndex(): number;
+                public get linkedTextComponent(): TMPro.TMP_Text;
+                public set linkedTextComponent(value: TMPro.TMP_Text);
+                public get isTextTruncated(): boolean;
+                public get enableKerning(): boolean;
+                public set enableKerning(value: boolean);
+                public get extraPadding(): boolean;
+                public set extraPadding(value: boolean);
+                public get richText(): boolean;
+                public set richText(value: boolean);
+                public get parseCtrlCharacters(): boolean;
+                public set parseCtrlCharacters(value: boolean);
+                public get isOverlay(): boolean;
+                public set isOverlay(value: boolean);
+                public get isOrthographic(): boolean;
+                public set isOrthographic(value: boolean);
+                public get enableCulling(): boolean;
+                public set enableCulling(value: boolean);
+                public get ignoreVisibility(): boolean;
+                public set ignoreVisibility(value: boolean);
+                public get horizontalMapping(): TMPro.TextureMappingOptions;
+                public set horizontalMapping(value: TMPro.TextureMappingOptions);
+                public get verticalMapping(): TMPro.TextureMappingOptions;
+                public set verticalMapping(value: TMPro.TextureMappingOptions);
+                public get mappingUvLineOffset(): number;
+                public set mappingUvLineOffset(value: number);
+                public get renderMode(): TMPro.TextRenderFlags;
+                public set renderMode(value: TMPro.TextRenderFlags);
+                public get geometrySortingOrder(): TMPro.VertexSortingOrder;
+                public set geometrySortingOrder(value: TMPro.VertexSortingOrder);
+                public get isTextObjectScaleStatic(): boolean;
+                public set isTextObjectScaleStatic(value: boolean);
+                public get vertexBufferAutoSizeReduction(): boolean;
+                public set vertexBufferAutoSizeReduction(value: boolean);
+                public get firstVisibleCharacter(): number;
+                public set firstVisibleCharacter(value: number);
+                public get maxVisibleCharacters(): number;
+                public set maxVisibleCharacters(value: number);
+                public get maxVisibleWords(): number;
+                public set maxVisibleWords(value: number);
+                public get maxVisibleLines(): number;
+                public set maxVisibleLines(value: number);
+                public get useMaxVisibleDescender(): boolean;
+                public set useMaxVisibleDescender(value: boolean);
+                public get pageToDisplay(): number;
+                public set pageToDisplay(value: number);
+                public get margin(): UnityEngine.Vector4;
+                public set margin(value: UnityEngine.Vector4);
+                public get textInfo(): TMPro.TMP_TextInfo;
+                public get havePropertiesChanged(): boolean;
+                public set havePropertiesChanged(value: boolean);
+                public get isUsingLegacyAnimationComponent(): boolean;
+                public set isUsingLegacyAnimationComponent(value: boolean);
+                public get transform(): UnityEngine.Transform;
+                public get rectTransform(): UnityEngine.RectTransform;
+                public get autoSizeTextContainer(): boolean;
+                public set autoSizeTextContainer(value: boolean);
+                public get mesh(): UnityEngine.Mesh;
+                public get isVolumetricText(): boolean;
+                public set isVolumetricText(value: boolean);
+                public get bounds(): UnityEngine.Bounds;
+                public get textBounds(): UnityEngine.Bounds;
+                public get flexibleHeight(): number;
+                public get flexibleWidth(): number;
+                public get minWidth(): number;
+                public get minHeight(): number;
+                public get maxWidth(): number;
+                public get maxHeight(): number;
+                public get preferredWidth(): number;
+                public get preferredHeight(): number;
+                public get renderedWidth(): number;
+                public get renderedHeight(): number;
+                public get layoutPriority(): number;
+                public static add_OnFontAssetRequest ($value: System.Func$3<number, string, TMPro.TMP_FontAsset>) : void
+                public static remove_OnFontAssetRequest ($value: System.Func$3<number, string, TMPro.TMP_FontAsset>) : void
+                public static add_OnSpriteAssetRequest ($value: System.Func$3<number, string, TMPro.TMP_SpriteAsset>) : void
+                public static remove_OnSpriteAssetRequest ($value: System.Func$3<number, string, TMPro.TMP_SpriteAsset>) : void
+                public add_OnPreRenderText ($value: System.Action$1<TMPro.TMP_TextInfo>) : void
+                public remove_OnPreRenderText ($value: System.Action$1<TMPro.TMP_TextInfo>) : void
+                public ForceMeshUpdate ($ignoreActiveState?: boolean, $forceTextReparsing?: boolean) : void
+                public UpdateGeometry ($mesh: UnityEngine.Mesh, $index: number) : void
+                public UpdateVertexData ($flags: TMPro.TMP_VertexDataUpdateFlags) : void
+                public UpdateVertexData () : void
+                public SetVertices ($vertices: System.Array$1<UnityEngine.Vector3>) : void
+                public UpdateMeshPadding () : void
+                public SetText ($sourceText: string, $syncTextInputBox?: boolean) : void
+                public SetText ($sourceText: string, $arg0: number) : void
+                public SetText ($sourceText: string, $arg0: number, $arg1: number) : void
+                public SetText ($sourceText: string, $arg0: number, $arg1: number, $arg2: number) : void
+                public SetText ($sourceText: string, $arg0: number, $arg1: number, $arg2: number, $arg3: number) : void
+                public SetText ($sourceText: string, $arg0: number, $arg1: number, $arg2: number, $arg3: number, $arg4: number) : void
+                public SetText ($sourceText: string, $arg0: number, $arg1: number, $arg2: number, $arg3: number, $arg4: number, $arg5: number) : void
+                public SetText ($sourceText: string, $arg0: number, $arg1: number, $arg2: number, $arg3: number, $arg4: number, $arg5: number, $arg6: number) : void
+                public SetText ($sourceText: string, $arg0: number, $arg1: number, $arg2: number, $arg3: number, $arg4: number, $arg5: number, $arg6: number, $arg7: number) : void
+                public SetText ($sourceText: System.Text.StringBuilder) : void
+                public SetText ($sourceText: System.Array$1<number>) : void
+                public SetText ($sourceText: System.Array$1<number>, $start: number, $length: number) : void
+                public SetCharArray ($sourceText: System.Array$1<number>) : void
+                public SetCharArray ($sourceText: System.Array$1<number>, $start: number, $length: number) : void
+                public GetPreferredValues () : UnityEngine.Vector2
+                public GetPreferredValues ($width: number, $height: number) : UnityEngine.Vector2
+                public GetPreferredValues ($text: string) : UnityEngine.Vector2
+                public GetPreferredValues ($text: string, $width: number, $height: number) : UnityEngine.Vector2
+                public GetRenderedValues () : UnityEngine.Vector2
+                public GetRenderedValues ($onlyVisibleCharacters: boolean) : UnityEngine.Vector2
+                public GetTextInfo ($text: string) : TMPro.TMP_TextInfo
+                public ComputeMarginSize () : void
+                public ClearMesh () : void
+                public ClearMesh ($uploadGeometry: boolean) : void
+                public GetParsedText () : string
+            }
+            interface ITextPreprocessor
+            {
+            }
+            class TMP_FontAsset extends TMPro.TMP_Asset
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class TMP_Asset extends UnityEngine.ScriptableObject
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class VertexGradient extends System.ValueType
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class TMP_ColorGradient extends UnityEngine.ScriptableObject
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class TMP_SpriteAsset extends TMPro.TMP_Asset
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class TMP_StyleSheet extends UnityEngine.ScriptableObject
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class TMP_Style extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            enum FontWeight
+            { Thin = 100, ExtraLight = 200, Light = 300, Regular = 400, Medium = 500, SemiBold = 600, Bold = 700, Heavy = 800, Black = 900 }
+            enum FontStyles
+            { Normal = 0, Bold = 1, Italic = 2, Underline = 4, LowerCase = 8, UpperCase = 16, SmallCaps = 32, Strikethrough = 64, Superscript = 128, Subscript = 256, Highlight = 512 }
+            enum HorizontalAlignmentOptions
+            { Left = 1, Center = 2, Right = 4, Justified = 8, Flush = 16, Geometry = 32 }
+            enum VerticalAlignmentOptions
+            { Top = 256, Middle = 512, Bottom = 1024, Baseline = 2048, Geometry = 4096, Capline = 8192 }
+            enum TextAlignmentOptions
+            { TopLeft = 257, Top = 258, TopRight = 260, TopJustified = 264, TopFlush = 272, TopGeoAligned = 288, Left = 513, Center = 514, Right = 516, Justified = 520, Flush = 528, CenterGeoAligned = 544, BottomLeft = 1025, Bottom = 1026, BottomRight = 1028, BottomJustified = 1032, BottomFlush = 1040, BottomGeoAligned = 1056, BaselineLeft = 2049, Baseline = 2050, BaselineRight = 2052, BaselineJustified = 2056, BaselineFlush = 2064, BaselineGeoAligned = 2080, MidlineLeft = 4097, Midline = 4098, MidlineRight = 4100, MidlineJustified = 4104, MidlineFlush = 4112, MidlineGeoAligned = 4128, CaplineLeft = 8193, Capline = 8194, CaplineRight = 8196, CaplineJustified = 8200, CaplineFlush = 8208, CaplineGeoAligned = 8224, Converted = 65535 }
+            enum TextOverflowModes
+            { Overflow = 0, Ellipsis = 1, Masking = 2, Truncate = 3, ScrollRect = 4, Page = 5, Linked = 6 }
+            enum TextureMappingOptions
+            { Character = 0, Line = 1, Paragraph = 2, MatchAspect = 3 }
+            enum TextRenderFlags
+            { DontRender = 0, Render = 255 }
+            enum VertexSortingOrder
+            { Normal = 0, Reverse = 1 }
+            class TMP_TextInfo extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            enum TMP_VertexDataUpdateFlags
+            { None = 0, Vertices = 1, Uv0 = 2, Uv2 = 4, Uv4 = 8, Colors32 = 16, All = 255 }
+        }
+        namespace System.Text {
+            class StringBuilder extends System.Object implements System.Runtime.Serialization.ISerializable
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class Encoding extends System.Object implements System.ICloneable
+            {
+                protected [__keep_incompatibility]: never;
+            }
+        }
         namespace Zes {
             class App extends UnityEngine.MonoBehaviour
             {
@@ -3471,12 +3748,6 @@ declare module 'csharp' {
         namespace System.Threading {
             interface IThreadPoolWorkItem
             {
-            }
-        }
-        namespace System.Text {
-            class Encoding extends System.Object implements System.ICloneable
-            {
-                protected [__keep_incompatibility]: never;
             }
         }
     }
