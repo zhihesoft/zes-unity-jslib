@@ -16,15 +16,9 @@ export function isGameObject(obj: unknown): obj is UnityEngine.GameObject {
     return (<UnityEngine.GameObject>obj).activeSelf != undefined;
 }
 
-export function assertValue(value: unknown, message?: string): asserts value {
+export function assert(value: unknown, message?: string): asserts value {
     if (!value) {
-        throw new Error(message ?? "value cannot be undefined");
-    }
-}
-
-export function assert(condition: boolean, message: string) {
-    if (!condition) {
-        throw new Error(message);
+        throw new Error(message ?? "value assert failed");
     }
 }
 

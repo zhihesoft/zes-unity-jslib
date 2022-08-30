@@ -32,12 +32,8 @@ export class Logger {
         console.log(this.getMessage("[ERROR]", message));
     }
 
-    private getDate() {
-        return DateTime.now().toFormat("yyyy-MM-dd HH:mm:ss");
-    }
-
     private getMessage(type: string, message: string | object) {
-        return `[${type}] [${this.name}] ${this.getDate()} ${message}`;
+        return `[${type}] [${this.name}] ${message}`;
     }
 
 }

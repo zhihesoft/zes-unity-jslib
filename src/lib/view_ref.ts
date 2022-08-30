@@ -9,7 +9,7 @@ import { BindData, BindEventOption, BindPropOption, BindViewOption, META_BINDOPT
 import { ComponentMetaData, META_COMPONENT } from "./component_metadata";
 import { getLogger } from "./logger";
 import { loader } from "./resource_loader";
-import { assert, assertValue, isGameObject } from "./util";
+import { assert, isGameObject } from "./util";
 import { ViewHost } from "./view_host";
 import { isAfterViewInit, isOnActiveChanged, isOnInit } from "./view_interfaces";
 import { ViewOption } from "./view_option";
@@ -17,12 +17,12 @@ import { ViewOption } from "./view_option";
 import GameObject = UnityEngine.GameObject;
 import Transform = UnityEngine.Transform;
 
-export const VIEW_DATA_SYMBOL = Symbol("VIEW_DATA");
+export const VIEW_DATA_SYMBOL = Symbol("VIEW_DATA_SYMBOL");
 
 export class ViewRef<T = unknown> {
 
     public static async createRootView<T>(cls: constructor<T>, path: string): Promise<ViewRef<T>> {
-        const view = new ViewRef(cls, null as any);
+        const view = new ViewRef(cls, null as any); // trick, root view has no parent
         const rootGO = GameObject.Find(path);
         assert(rootGO != null, `cannot find root obj on ${path}`);
         await view.attach(rootGO);
@@ -125,7 +125,7 @@ export class ViewRef<T = unknown> {
             const newgo = <GameObject>GameObject.Instantiate(prefab, hostGO.transform);
             this._host = ViewHost.create(newgo);
         }
-        assertValue(this.host);
+        assert(this.host);
         await this.attach(this.host, option?.data);
 
     }

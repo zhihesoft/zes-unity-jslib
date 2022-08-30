@@ -10,6 +10,8 @@ output
 gulpfile.js
 tsconfig.json
 puerts_types
+.git
+.github
 
 # all tests and tgs
 dist/tests

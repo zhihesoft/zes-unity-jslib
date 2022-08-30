@@ -1,7 +1,7 @@
 import { System, UnityEngine, Zes } from "csharp";
 import { sum } from "lodash";
 import { $promise } from "puerts";
-import { assertValue, emptyFunc, waitUntil } from "./util";
+import { assert, emptyFunc, waitUntil } from "./util";
 
 class ResourceLoader {
 
@@ -56,26 +56,26 @@ class ResourceLoader {
         } else {
             item = new PendingItem<UnityEngine.Object>();
             const bundlename = this.assets2Bundle.get(path);
-            assertValue(bundlename, `cannot find bundle of ${path}`);
+            assert(bundlename, `cannot find bundle of ${path}`);
             const bundleitem = this.bundles.get(bundlename);
-            assertValue(bundleitem);
+            assert(bundleitem);
             await waitUntil(() => bundleitem.status != PendingStatus.pending);
             const bundle = bundleitem.data;
-            assertValue(bundle, `bundle is null: ${bundlename}`);
+            assert(bundle, `bundle is null: ${bundlename}`);
             const asset = await $promise(Zes.App.loader.LoadAsset(bundle, path, type));
-            assertValue(asset, `asset load failed: ${path}`)
+            assert(asset, `asset load failed: ${path}`)
             item.data = asset;
             item.status = PendingStatus.succ;
         }
         const ret = item?.data;
         item.time = Date.now();
-        assertValue(ret);
+        assert(ret);
         return ret;
     }
 
     async loadScene(path: string, additive: boolean, progress?: (p: number) => void): Promise<UnityEngine.SceneManagement.Scene> {
         progress = progress ?? emptyFunc;
-        assertValue(this.scenes2Bundle.get(path), "scene bundle is not loaded");
+        assert(this.scenes2Bundle.get(path), "scene bundle is not loaded");
         const ret = await $promise(Zes.App.loader.LoadScene(path, additive, progress));
         return ret;
     }

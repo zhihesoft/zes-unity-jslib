@@ -1,3 +1,4 @@
+import { UnityEngine } from "csharp";
 import "reflect-metadata";
 
 describe(`test suit`, () => {
@@ -5,3 +6,4 @@ describe(`test suit`, () => {
         return;
     });
 });
+
