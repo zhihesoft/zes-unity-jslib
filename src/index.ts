@@ -1,1 +1,1 @@
-console.log("hello world");
+export { ViewRef } from "./lib/viewref";
