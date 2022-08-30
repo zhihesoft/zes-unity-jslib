@@ -34,7 +34,7 @@ export abstract class ViewHost {
 }
 
 
-export class ViewHostGO extends ViewHost {
+class ViewHostGO extends ViewHost {
     constructor(
         public gameObject: UnityEngine.GameObject,
     ) { super(); }
@@ -73,7 +73,7 @@ export class ViewHostGO extends ViewHost {
 
 }
 
-export class ViewHostScene extends ViewHost {
+class ViewHostScene extends ViewHost {
     constructor(
         public scene: Scene,
     ) {
