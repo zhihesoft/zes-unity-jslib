@@ -149,10 +149,13 @@ export class ViewRef<T = unknown> {
         for (const pair of bindMap) {
             const { key, data } = { key: pair[0], data: pair[1] };
             const data_go = this.host.find(data.path);
+
             if (!data_go) {
                 logger.error(`cannot find (${data.path}) on gameobject (${this.componentClass.name}.${String(key)})`);
                 continue;
             }
+
+            logger.debug(`data is ${JSON.stringify(data)}`);
 
             if (data.option && !this.isViewOption(data.option)) {
                 const comp = data_go.GetComponent(data.option.type);
@@ -169,7 +172,6 @@ export class ViewRef<T = unknown> {
                 }
             } else {
                 const type = Reflect.getMetadata('design:type', <any>this.component, key);
-                logger.debug(`type is ${type}`);
                 if (data.option) {
                     const promise = this.attachChild(type, data_go, data.option.extra).then(v => (<any>this.component)[key] = v.component);
                     ps.push(promise);
