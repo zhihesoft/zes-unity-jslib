@@ -1,4 +1,4 @@
-import { System, UnityEngine } from "csharp";
+import { System } from "csharp";
 
 export const META_BINDOPTION = Symbol("view-meta-bindoption");
 

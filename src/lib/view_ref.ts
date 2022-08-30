@@ -1,21 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { UnityEngine } from "csharp";
+import { $typeof } from "puerts";
 import "reflect-metadata";
-import { System, UnityEngine, Zes } from "csharp";
+import { Observable, Subject, throttleTime } from "rxjs";
+import { container, DependencyContainer } from "tsyringe";
 import { constructor } from "tsyringe/dist/typings/types";
+import { BindData, BindEventOption, BindPropOption, BindViewOption, META_BINDOPTION } from "./bind_metadata";
+import { ComponentMetaData, META_COMPONENT } from "./component_metadata";
+import { getLogger } from "./logger";
+import { loader } from "./resource_loader";
+import { assert, assertValue, isGameObject } from "./util";
+import { ViewHost } from "./view_host";
+import { isAfterViewInit, isOnActiveChanged, isOnInit } from "./view_interfaces";
+import { ViewOption } from "./view_option";
 
 import GameObject = UnityEngine.GameObject;
 import Transform = UnityEngine.Transform;
-import { ComponentMetaData, META_COMPONENT } from "./component_metadata";
-import { container, DependencyContainer } from "tsyringe";
-import { ViewHost } from "./view_host";
-import { isAfterViewInit, isOnActiveChanged, isOnInit } from "./view_interfaces";
-import { BindData, BindEventOption, BindPropOption, BindViewOption, META_BINDOPTION } from "./bind_metadata";
-import { getLogger } from "./logger";
-import { $promise, $typeof } from "puerts";
-import { Observable, Subject, throttleTime } from "rxjs";
-import { ViewOption } from "./view_option";
-import { assert, assertValue, emptyFunc, isGameObject } from "./util";
-import { loader } from "./resource_loader";
 
 export const VIEW_DATA_SYMBOL = Symbol("VIEW_DATA");
 
