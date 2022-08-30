@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - release-*
+  pull_request:
+    branches:
+      - main
+      - release-*
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        # Test only on the latest LTS version of Node.js.
+        node-version:
+          - lts/*
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 5
+      - name: Use node version ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          check-latest: true
+      - run: npm ci
+      - run: npm run build
+      - run: npm test -- --no-lint
+      - run: npm run lint
