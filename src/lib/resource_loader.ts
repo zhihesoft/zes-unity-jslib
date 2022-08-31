@@ -10,6 +10,11 @@ class ResourceLoader {
     private scenes2Bundle = new Map<string, string>();
     private assets2Bundle = new Map<string, string>();
 
+    async loadText(path: string): Promise<string> {
+        const ret = await $promise(Zes.App.loader.LoadText(path));
+        return ret;
+    }
+
     async loadBundles(names: string[], progress: (p: number) => void): Promise<void> {
         const allprogress: number[] = [names.length];
         const ps = names.map((n, i) => this.loadBundle(n, (p) => {

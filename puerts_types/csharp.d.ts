@@ -13,315 +13,275 @@ declare module 'csharp' {
             }
         }
         type $Task<T> = System.Threading.Tasks.Task$1<T>
-        namespace System {
-            class Array extends System.Object implements System.Collections.IStructuralComparable, System.Collections.IStructuralEquatable, System.ICloneable, System.Collections.ICollection, System.Collections.IEnumerable, System.Collections.IList
-            {
-                protected [__keep_incompatibility]: never;
-                public get LongLength(): bigint;
-                public get IsFixedSize(): boolean;
-                public get IsReadOnly(): boolean;
-                public get IsSynchronized(): boolean;
-                public get SyncRoot(): any;
-                public get Length(): number;
-                public get Rank(): number;
-                public static CreateInstance ($elementType: System.Type, ...lengths: bigint[]) : System.Array
-                public CopyTo ($array: System.Array, $index: number) : void
-                public Clone () : any
-                public static BinarySearch ($array: System.Array, $value: any) : number
-                public static Copy ($sourceArray: System.Array, $destinationArray: System.Array, $length: bigint) : void
-                public static Copy ($sourceArray: System.Array, $sourceIndex: bigint, $destinationArray: System.Array, $destinationIndex: bigint, $length: bigint) : void
-                public CopyTo ($array: System.Array, $index: bigint) : void
-                public GetLongLength ($dimension: number) : bigint
-                public GetValue ($index: bigint) : any
-                public GetValue ($index1: bigint, $index2: bigint) : any
-                public GetValue ($index1: bigint, $index2: bigint, $index3: bigint) : any
-                public GetValue (...indices: bigint[]) : any
-                public static BinarySearch ($array: System.Array, $index: number, $length: number, $value: any) : number
-                public static BinarySearch ($array: System.Array, $value: any, $comparer: System.Collections.IComparer) : number
-                public static BinarySearch ($array: System.Array, $index: number, $length: number, $value: any, $comparer: System.Collections.IComparer) : number
-                public static IndexOf ($array: System.Array, $value: any) : number
-                public static IndexOf ($array: System.Array, $value: any, $startIndex: number) : number
-                public static IndexOf ($array: System.Array, $value: any, $startIndex: number, $count: number) : number
-                public static LastIndexOf ($array: System.Array, $value: any) : number
-                public static LastIndexOf ($array: System.Array, $value: any, $startIndex: number) : number
-                public static LastIndexOf ($array: System.Array, $value: any, $startIndex: number, $count: number) : number
-                public static Reverse ($array: System.Array) : void
-                public static Reverse ($array: System.Array, $index: number, $length: number) : void
-                public SetValue ($value: any, $index: bigint) : void
-                public SetValue ($value: any, $index1: bigint, $index2: bigint) : void
-                public SetValue ($value: any, $index1: bigint, $index2: bigint, $index3: bigint) : void
-                public SetValue ($value: any, ...indices: bigint[]) : void
-                public static Sort ($array: System.Array) : void
-                public static Sort ($array: System.Array, $index: number, $length: number) : void
-                public static Sort ($array: System.Array, $comparer: System.Collections.IComparer) : void
-                public static Sort ($array: System.Array, $index: number, $length: number, $comparer: System.Collections.IComparer) : void
-                public static Sort ($keys: System.Array, $items: System.Array) : void
-                public static Sort ($keys: System.Array, $items: System.Array, $comparer: System.Collections.IComparer) : void
-                public static Sort ($keys: System.Array, $items: System.Array, $index: number, $length: number) : void
-                public static Sort ($keys: System.Array, $items: System.Array, $index: number, $length: number, $comparer: System.Collections.IComparer) : void
-                public GetEnumerator () : System.Collections.IEnumerator
-                public GetLength ($dimension: number) : number
-                public GetLowerBound ($dimension: number) : number
-                public GetValue (...indices: number[]) : any
-                public SetValue ($value: any, ...indices: number[]) : void
-                public GetUpperBound ($dimension: number) : number
-                public GetValue ($index: number) : any
-                public GetValue ($index1: number, $index2: number) : any
-                public GetValue ($index1: number, $index2: number, $index3: number) : any
-                public SetValue ($value: any, $index: number) : void
-                public SetValue ($value: any, $index1: number, $index2: number) : void
-                public SetValue ($value: any, $index1: number, $index2: number, $index3: number) : void
-                public static CreateInstance ($elementType: System.Type, $length: number) : System.Array
-                public static CreateInstance ($elementType: System.Type, $length1: number, $length2: number) : System.Array
-                public static CreateInstance ($elementType: System.Type, $length1: number, $length2: number, $length3: number) : System.Array
-                public static CreateInstance ($elementType: System.Type, ...lengths: number[]) : System.Array
-                public static CreateInstance ($elementType: System.Type, $lengths: System.Array$1<number>, $lowerBounds: System.Array$1<number>) : System.Array
-                public static Clear ($array: System.Array, $index: number, $length: number) : void
-                public static Copy ($sourceArray: System.Array, $destinationArray: System.Array, $length: number) : void
-                public static Copy ($sourceArray: System.Array, $sourceIndex: number, $destinationArray: System.Array, $destinationIndex: number, $length: number) : void
-                public static ConstrainedCopy ($sourceArray: System.Array, $sourceIndex: number, $destinationArray: System.Array, $destinationIndex: number, $length: number) : void
-                public Initialize () : void
-            }
-            class Object
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            interface ICloneable
-            {
-            }
-            class Type extends System.Reflection.MemberInfo implements System.Runtime.InteropServices._MemberInfo, System.Runtime.InteropServices._Type, System.Reflection.ICustomAttributeProvider, System.Reflection.IReflect
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            class Int64 extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<bigint>, System.IConvertible, System.IEquatable$1<bigint>
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            class Void extends System.ValueType
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            class ValueType extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            class Int32 extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            interface IFormattable
-            {
-            }
-            interface ISpanFormattable
-            {
-            }
-            interface IComparable
-            {
-            }
-            interface IComparable$1<T>
-            {
-            }
-            interface IConvertible
-            {
-            }
-            interface IEquatable$1<T>
-            {
-            }
-            interface Converter$2<TInput, TOutput>
-            { 
-            (input: TInput) : TOutput; 
-            Invoke?: (input: TInput) => TOutput;
-            }
-            interface MulticastDelegate
-            { 
-            (...args:any[]) : any; 
-            Invoke?: (...args:any[]) => any;
-            }
-            var MulticastDelegate: { new (func: (...args:any[]) => any): MulticastDelegate; }
-            class Delegate extends System.Object implements System.Runtime.Serialization.ISerializable, System.ICloneable
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            interface Action$1<T>
-            { 
-            (obj: T) : void; 
-            Invoke?: (obj: T) => void;
-            }
-            class Boolean extends System.ValueType implements System.IComparable, System.IComparable$1<boolean>, System.IConvertible, System.IEquatable$1<boolean>
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            interface Comparison$1<T>
-            { 
-            (x: T, y: T) : number; 
-            Invoke?: (x: T, y: T) => number;
-            }
-            interface Predicate$1<T>
-            { 
-            (obj: T) : boolean; 
-            Invoke?: (obj: T) => boolean;
-            }
-            class Single extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            class String extends System.Object implements System.ICloneable, System.IComparable, System.IComparable$1<string>, System.IConvertible, System.Collections.Generic.IEnumerable$1<number>, System.Collections.IEnumerable, System.IEquatable$1<string>
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            class Char extends System.ValueType implements System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            interface IFormatProvider
-            {
-            }
-            interface IDisposable
-            {
-            }
-            class Byte extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            class Enum extends System.ValueType implements System.IFormattable, System.IComparable, System.IConvertible
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            class UInt64 extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<bigint>, System.IConvertible, System.IEquatable$1<bigint>
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            class UInt32 extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            class MarshalByRefObject extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            interface IAsyncDisposable
-            {
-            }
-            class UInt16 extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            class Double extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            interface Func$3<T1, T2, TResult>
-            { 
-            (arg1: T1, arg2: T2) : TResult; 
-            Invoke?: (arg1: T1, arg2: T2) => TResult;
-            }
-            interface IAsyncResult
-            {
-            }
-            interface Action$2<T1, T2>
-            { 
-            (arg1: T1, arg2: T2) : void; 
-            Invoke?: (arg1: T1, arg2: T2) => void;
-            }
-            interface Func$1<TResult>
-            { 
-            () : TResult; 
-            Invoke?: () => TResult;
-            }
-        }
-        namespace System.Collections {
-            interface IStructuralComparable
-            {
-            }
-            interface IStructuralEquatable
-            {
-            }
-            interface ICollection extends System.Collections.IEnumerable
-            {
-            }
-            interface IEnumerable
-            {
-            }
-            interface IList extends System.Collections.ICollection, System.Collections.IEnumerable
-            {
-            }
-            interface IComparer
-            {
-            }
-            interface IEnumerator
-            {
-            }
-        }
-        namespace System.Reflection {
-            class MemberInfo extends System.Object implements System.Runtime.InteropServices._MemberInfo, System.Reflection.ICustomAttributeProvider
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            interface ICustomAttributeProvider
-            {
-            }
-            interface IReflect
-            {
-            }
-            class MethodInfo extends System.Reflection.MethodBase implements System.Runtime.InteropServices._MemberInfo, System.Runtime.InteropServices._MethodBase, System.Runtime.InteropServices._MethodInfo, System.Reflection.ICustomAttributeProvider
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            class MethodBase extends System.Reflection.MemberInfo implements System.Runtime.InteropServices._MemberInfo, System.Runtime.InteropServices._MethodBase, System.Reflection.ICustomAttributeProvider
-            {
-                protected [__keep_incompatibility]: never;
-            }
-        }
-        namespace System.Runtime.InteropServices {
-            interface _MemberInfo
-            {
-            }
-            interface _Type
-            {
-            }
-            interface _MethodBase
-            {
-            }
-            interface _MethodInfo
-            {
-            }
-        }
-        namespace System.Collections.Generic {
-            interface IReadOnlyList$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.IReadOnlyCollection$1<T>
-            {
-            }
-            interface IEnumerable$1<T> extends System.Collections.IEnumerable
-            {
-            }
-            interface IReadOnlyCollection$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable
-            {
-            }
-            interface IList$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.ICollection$1<T>
-            {
-            }
-            interface ICollection$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable
-            {
-            }
-            interface IComparer$1<T>
-            {
-            }
-            class List$1<T> extends System.Object implements System.Collections.Generic.IReadOnlyList$1<T>, System.Collections.ICollection, System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.IList$1<T>, System.Collections.Generic.IReadOnlyCollection$1<T>, System.Collections.IList, System.Collections.Generic.ICollection$1<T>
-            {
-                protected [__keep_incompatibility]: never;
-            }
-        }
-        namespace System.Collections.ObjectModel {
-            class ReadOnlyCollection$1<T> extends System.Object implements System.Collections.Generic.IReadOnlyList$1<T>, System.Collections.ICollection, System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.IList$1<T>, System.Collections.Generic.IReadOnlyCollection$1<T>, System.Collections.IList, System.Collections.Generic.ICollection$1<T>
-            {
-                protected [__keep_incompatibility]: never;
-            }
-        }
-        namespace System.Runtime.Serialization {
-            interface ISerializable
-            {
-            }
-        }
         namespace UnityEngine {
+            /** Access to application run-time data. */
+            class Application extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                /** Returns true when called in any kind of built Player, or when called in the Editor in Play Mode (Read Only). */
+                public static get isPlaying(): boolean;
+                /** Whether the player currently has focus. Read-only. */
+                public static get isFocused(): boolean;
+                /** Returns a GUID for this build (Read Only). */
+                public static get buildGUID(): string;
+                /** Should the player be running when the application is in the background? */
+                public static get runInBackground(): boolean;
+                public static set runInBackground(value: boolean);
+                /** Returns true when Unity is launched with the -batchmode flag from the command line (Read Only). */
+                public static get isBatchMode(): boolean;
+                /** Contains the path to the game data folder on the target device (Read Only). */
+                public static get dataPath(): string;
+                /** The path to the StreamingAssets folder (Read Only). */
+                public static get streamingAssetsPath(): string;
+                /** (Read Only) Contains the path to a persistent data directory. */
+                public static get persistentDataPath(): string;
+                /** Contains the path to a temporary data / cache directory (Read Only). */
+                public static get temporaryCachePath(): string;
+                /** The URL of the document. For WebGL, this a web URL. For Android, iOS, or Universal Windows Platform (UWP) this is a deep link URL. (Read Only) */
+                public static get absoluteURL(): string;
+                /** The version of the Unity runtime used to play the content. */
+                public static get unityVersion(): string;
+                /** Returns application version number  (Read Only). */
+                public static get version(): string;
+                /** Returns the name of the store or package that installed the application (Read Only). */
+                public static get installerName(): string;
+                /** Returns application identifier at runtime. On Apple platforms this is the 'bundleIdentifier' saved in the info.plist file, on Android it's the 'package' from the AndroidManifest.xml.  */
+                public static get identifier(): string;
+                /** Returns application install mode (Read Only). */
+                public static get installMode(): UnityEngine.ApplicationInstallMode;
+                /** Returns application running in sandbox (Read Only). */
+                public static get sandboxType(): UnityEngine.ApplicationSandboxType;
+                /** Returns application product name (Read Only). */
+                public static get productName(): string;
+                /** Return application company name (Read Only). */
+                public static get companyName(): string;
+                /** A unique cloud project identifier. It is unique for every project (Read Only). */
+                public static get cloudProjectId(): string;
+                /** Specifies the frame rate at which Unity tries to render your game. */
+                public static get targetFrameRate(): number;
+                public static set targetFrameRate(value: number);
+                /** Returns the path to the console log file, or an empty string if the current platform does not support log files. */
+                public static get consoleLogPath(): string;
+                /** Priority of background loading thread. */
+                public static get backgroundLoadingPriority(): UnityEngine.ThreadPriority;
+                public static set backgroundLoadingPriority(value: UnityEngine.ThreadPriority);
+                /** Returns false if application is altered in any way after it was built. */
+                public static get genuine(): boolean;
+                /** Returns true if application integrity can be confirmed. */
+                public static get genuineCheckAvailable(): boolean;
+                /** Returns the platform the game is running on (Read Only). */
+                public static get platform(): UnityEngine.RuntimePlatform;
+                /** Is the current Runtime platform a known mobile platform. */
+                public static get isMobilePlatform(): boolean;
+                /** Is the current Runtime platform a known console platform. */
+                public static get isConsolePlatform(): boolean;
+                /** The language the user's operating system is running in. */
+                public static get systemLanguage(): UnityEngine.SystemLanguage;
+                /** Returns the type of Internet reachability currently possible on the device. */
+                public static get internetReachability(): UnityEngine.NetworkReachability;
+                /** Are we running inside the Unity editor? (Read Only) */
+                public static get isEditor(): boolean;
+                public static Quit ($exitCode: number) : void
+                public static Quit () : void
+                public static Unload () : void
+                /** Can the streamed level be loaded? */
+                public static CanStreamedLevelBeLoaded ($levelIndex: number) : boolean
+                /** Can the streamed level be loaded? */
+                public static CanStreamedLevelBeLoaded ($levelName: string) : boolean
+                /** Returns true if the given object is part of the playing world either in any kind of built Player or in Play Mode.
+                * @param obj The object to test.
+                * @returns True if the object is part of the playing world. 
+                */
+                public static IsPlaying ($obj: UnityEngine.Object) : boolean
+                public static GetBuildTags () : System.Array$1<string>
+                /** Set an array of feature tags for this build. */
+                public static SetBuildTags ($buildTags: System.Array$1<string>) : void
+                public static HasProLicense () : boolean
+                public static RequestAdvertisingIdentifierAsync ($delegateMethod: UnityEngine.Application.AdvertisingIdentifierCallback) : boolean
+                /** Opens the URL specified, subject to the permissions and limitations of your app’s current platform and environment. This is handled in different ways depending on the nature of the URL, and with different security restrictions, depending on the runtime platform. * @param url The URL to open.
+                */
+                public static OpenURL ($url: string) : void
+                /** Get stack trace logging options. The default value is StackTraceLogType.ScriptOnly. */
+                public static GetStackTraceLogType ($logType: UnityEngine.LogType) : UnityEngine.StackTraceLogType
+                /** Set stack trace logging options. The default value is StackTraceLogType.ScriptOnly. */
+                public static SetStackTraceLogType ($logType: UnityEngine.LogType, $stackTraceType: UnityEngine.StackTraceLogType) : void
+                /** Request authorization to use the webcam or microphone on iOS and WebGL. */
+                public static RequestUserAuthorization ($mode: UnityEngine.UserAuthorization) : UnityEngine.AsyncOperation
+                /** Check if the user has authorized use of the webcam or microphone in the Web Player. */
+                public static HasUserAuthorization ($mode: UnityEngine.UserAuthorization) : boolean
+                public static add_lowMemory ($value: UnityEngine.Application.LowMemoryCallback) : void
+                public static remove_lowMemory ($value: UnityEngine.Application.LowMemoryCallback) : void
+                public static add_logMessageReceived ($value: UnityEngine.Application.LogCallback) : void
+                public static remove_logMessageReceived ($value: UnityEngine.Application.LogCallback) : void
+                public static add_logMessageReceivedThreaded ($value: UnityEngine.Application.LogCallback) : void
+                public static remove_logMessageReceivedThreaded ($value: UnityEngine.Application.LogCallback) : void
+                public static add_onBeforeRender ($value: UnityEngine.Events.UnityAction) : void
+                public static remove_onBeforeRender ($value: UnityEngine.Events.UnityAction) : void
+                public static add_focusChanged ($value: System.Action$1<boolean>) : void
+                public static remove_focusChanged ($value: System.Action$1<boolean>) : void
+                public static add_deepLinkActivated ($value: System.Action$1<string>) : void
+                public static remove_deepLinkActivated ($value: System.Action$1<string>) : void
+                public static add_wantsToQuit ($value: System.Func$1<boolean>) : void
+                public static remove_wantsToQuit ($value: System.Func$1<boolean>) : void
+                public static add_quitting ($value: System.Action) : void
+                public static remove_quitting ($value: System.Action) : void
+                public static add_unloading ($value: System.Action) : void
+                public static remove_unloading ($value: System.Action) : void
+                public constructor ()
+            }
+            /** Base class for all objects Unity can reference. */
+            class Object extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                /** The name of the object. */
+                public get name(): string;
+                public set name(value: string);
+                /** Should the object be hidden, saved with the Scene or modifiable by the user? */
+                public get hideFlags(): UnityEngine.HideFlags;
+                public set hideFlags(value: UnityEngine.HideFlags);
+                public GetInstanceID () : number
+                public static op_Implicit ($exists: UnityEngine.Object) : boolean
+                /** Clones the object original and returns the clone.
+                * @param original An existing object that you want to make a copy of.
+                * @param position Position for the new object.
+                * @param rotation Orientation of the new object.
+                * @param parent Parent that will be assigned to the new object.
+                * @param instantiateInWorldSpace When you assign a parent Object, pass true to position the new object directly in world space. Pass false to set the Object’s position relative to its new parent.
+                * @returns The instantiated clone. 
+                */
+                public static Instantiate ($original: UnityEngine.Object, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion) : UnityEngine.Object
+                /** Clones the object original and returns the clone.
+                * @param original An existing object that you want to make a copy of.
+                * @param position Position for the new object.
+                * @param rotation Orientation of the new object.
+                * @param parent Parent that will be assigned to the new object.
+                * @param instantiateInWorldSpace When you assign a parent Object, pass true to position the new object directly in world space. Pass false to set the Object’s position relative to its new parent.
+                * @returns The instantiated clone. 
+                */
+                public static Instantiate ($original: UnityEngine.Object, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $parent: UnityEngine.Transform) : UnityEngine.Object
+                /** Clones the object original and returns the clone.
+                * @param original An existing object that you want to make a copy of.
+                * @param position Position for the new object.
+                * @param rotation Orientation of the new object.
+                * @param parent Parent that will be assigned to the new object.
+                * @param instantiateInWorldSpace When you assign a parent Object, pass true to position the new object directly in world space. Pass false to set the Object’s position relative to its new parent.
+                * @returns The instantiated clone. 
+                */
+                public static Instantiate ($original: UnityEngine.Object) : UnityEngine.Object
+                /** Clones the object original and returns the clone.
+                * @param original An existing object that you want to make a copy of.
+                * @param position Position for the new object.
+                * @param rotation Orientation of the new object.
+                * @param parent Parent that will be assigned to the new object.
+                * @param instantiateInWorldSpace When you assign a parent Object, pass true to position the new object directly in world space. Pass false to set the Object’s position relative to its new parent.
+                * @returns The instantiated clone. 
+                */
+                public static Instantiate ($original: UnityEngine.Object, $parent: UnityEngine.Transform) : UnityEngine.Object
+                /** Clones the object original and returns the clone.
+                * @param original An existing object that you want to make a copy of.
+                * @param position Position for the new object.
+                * @param rotation Orientation of the new object.
+                * @param parent Parent that will be assigned to the new object.
+                * @param instantiateInWorldSpace When you assign a parent Object, pass true to position the new object directly in world space. Pass false to set the Object’s position relative to its new parent.
+                * @returns The instantiated clone. 
+                */
+                public static Instantiate ($original: UnityEngine.Object, $parent: UnityEngine.Transform, $instantiateInWorldSpace: boolean) : UnityEngine.Object
+                public static Instantiate ($original: UnityEngine.Object, $parent: UnityEngine.Transform, $worldPositionStays: boolean) : UnityEngine.Object
+                /** Removes a GameObject, component or asset. * @param obj The object to destroy.
+                * @param t The optional amount of time to delay before destroying the object.
+                */
+                public static Destroy ($obj: UnityEngine.Object, $t: number) : void
+                /** Removes a GameObject, component or asset. * @param obj The object to destroy.
+                * @param t The optional amount of time to delay before destroying the object.
+                */
+                public static Destroy ($obj: UnityEngine.Object) : void
+                /** Destroys the object obj immediately. You are strongly recommended to use Destroy instead. * @param obj Object to be destroyed.
+                * @param allowDestroyingAssets Set to true to allow assets to be destroyed.
+                */
+                public static DestroyImmediate ($obj: UnityEngine.Object, $allowDestroyingAssets: boolean) : void
+                /** Destroys the object obj immediately. You are strongly recommended to use Destroy instead. * @param obj Object to be destroyed.
+                * @param allowDestroyingAssets Set to true to allow assets to be destroyed.
+                */
+                public static DestroyImmediate ($obj: UnityEngine.Object) : void
+                /** Gets a list of all loaded objects of Type type.
+                * @param type The type of object to find.
+                * @param includeInactive If true, components attached to inactive GameObjects are also included.
+                * @returns The array of objects found matching the type specified. 
+                */
+                public static FindObjectsOfType ($type: System.Type) : System.Array$1<UnityEngine.Object>
+                /** Gets a list of all loaded objects of Type type.
+                * @param type The type of object to find.
+                * @param includeInactive If true, components attached to inactive GameObjects are also included.
+                * @returns The array of objects found matching the type specified. 
+                */
+                public static FindObjectsOfType ($type: System.Type, $includeInactive: boolean) : System.Array$1<UnityEngine.Object>
+                /** Do not destroy the target Object when loading a new Scene. * @param target An Object not destroyed on Scene change.
+                */
+                public static DontDestroyOnLoad ($target: UnityEngine.Object) : void
+                /** Returns the first active loaded object of Type type.
+                * @param type The type of object to find.
+                * @returns Object The first active loaded object that matches the specified type. It returns null if no Object matches the type. 
+                */
+                public static FindObjectOfType ($type: System.Type) : UnityEngine.Object
+                /** Returns the first active loaded object of Type type.
+                * @param type The type of object to find.
+                * @returns Object The first active loaded object that matches the specified type. It returns null if no Object matches the type. 
+                */
+                public static FindObjectOfType ($type: System.Type, $includeInactive: boolean) : UnityEngine.Object
+                public static op_Equality ($x: UnityEngine.Object, $y: UnityEngine.Object) : boolean
+                public static op_Inequality ($x: UnityEngine.Object, $y: UnityEngine.Object) : boolean
+                public constructor ()
+            }
+            /** Application installation mode (Read Only). */
+            enum ApplicationInstallMode
+            { Unknown = 0, Store = 1, DeveloperBuild = 2, Adhoc = 3, Enterprise = 4, Editor = 5 }
+            /** Application sandbox type. */
+            enum ApplicationSandboxType
+            { Unknown = 0, NotSandboxed = 1, Sandboxed = 2, SandboxBroken = 3 }
+            /** Stack trace logging options. */
+            enum StackTraceLogType
+            { None = 0, ScriptOnly = 1, Full = 2 }
+            /** The type of the log message in Debug.unityLogger.Log or delegate registered with Application.RegisterLogCallback. */
+            enum LogType
+            { Error = 0, Assert = 1, Warning = 2, Log = 3, Exception = 4 }
+            /** Priority of a thread. */
+            enum ThreadPriority
+            { Low = 0, BelowNormal = 1, Normal = 2, High = 4 }
+            /** Asynchronous operation coroutine. */
+            class AsyncOperation extends UnityEngine.YieldInstruction
+            {
+                protected [__keep_incompatibility]: never;
+                /** Has the operation finished? (Read Only) */
+                public get isDone(): boolean;
+                /** What's the operation's progress. (Read Only) */
+                public get progress(): number;
+                /** Priority lets you tweak in which order async operation calls will be performed. */
+                public get priority(): number;
+                public set priority(value: number);
+                /** Allow Scenes to be activated as soon as it is ready. */
+                public get allowSceneActivation(): boolean;
+                public set allowSceneActivation(value: boolean);
+                public add_completed ($value: System.Action$1<UnityEngine.AsyncOperation>) : void
+                public remove_completed ($value: System.Action$1<UnityEngine.AsyncOperation>) : void
+                public constructor ()
+            }
+            /** Base class for all yield instructions. */
+            class YieldInstruction extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            /** Constants to pass to Application.RequestUserAuthorization. */
+            enum UserAuthorization
+            { WebCam = 1, Microphone = 2 }
+            /** The platform application is running. Returned by Application.platform. */
+            enum RuntimePlatform
+            { OSXEditor = 0, OSXPlayer = 1, WindowsPlayer = 2, OSXWebPlayer = 3, OSXDashboardPlayer = 4, WindowsWebPlayer = 5, WindowsEditor = 7, IPhonePlayer = 8, XBOX360 = 10, PS3 = 9, Android = 11, NaCl = 12, FlashPlayer = 15, LinuxPlayer = 13, LinuxEditor = 16, WebGLPlayer = 17, MetroPlayerX86 = 18, WSAPlayerX86 = 18, MetroPlayerX64 = 19, WSAPlayerX64 = 19, MetroPlayerARM = 20, WSAPlayerARM = 20, WP8Player = 21, BB10Player = 22, BlackBerryPlayer = 22, TizenPlayer = 23, PSP2 = 24, PS4 = 25, PSM = 26, XboxOne = 27, SamsungTVPlayer = 28, WiiU = 30, tvOS = 31, Switch = 32, Lumin = 33, Stadia = 34, CloudRendering = 35, GameCoreScarlett = -1, GameCoreXboxSeries = 36, GameCoreXboxOne = 37, PS5 = 38, EmbeddedLinuxArm64 = 39, EmbeddedLinuxArm32 = 40, EmbeddedLinuxX64 = 41, EmbeddedLinuxX86 = 42, LinuxServer = 43, WindowsServer = 44, OSXServer = 45 }
+            /** The language the user's operating system is running in. Returned by Application.systemLanguage. */
+            enum SystemLanguage
+            { Afrikaans = 0, Arabic = 1, Basque = 2, Belarusian = 3, Bulgarian = 4, Catalan = 5, Chinese = 6, Czech = 7, Danish = 8, Dutch = 9, English = 10, Estonian = 11, Faroese = 12, Finnish = 13, French = 14, German = 15, Greek = 16, Hebrew = 17, Hugarian = 18, Icelandic = 19, Indonesian = 20, Italian = 21, Japanese = 22, Korean = 23, Latvian = 24, Lithuanian = 25, Norwegian = 26, Polish = 27, Portuguese = 28, Romanian = 29, Russian = 30, SerboCroatian = 31, Slovak = 32, Slovenian = 33, Spanish = 34, Swedish = 35, Thai = 36, Turkish = 37, Ukrainian = 38, Vietnamese = 39, ChineseSimplified = 40, ChineseTraditional = 41, Unknown = 42, Hungarian = 18 }
+            /** Describes network reachability options. */
+            enum NetworkReachability
+            { NotReachable = 0, ReachableViaCarrierDataNetwork = 1, ReachableViaLocalAreaNetwork = 2 }
             /** Representation of 2D vectors and points. */
             class Vector2 extends System.ValueType implements System.IFormattable, System.IEquatable$1<UnityEngine.Vector2>
             {
@@ -609,29 +569,6 @@ declare module 'csharp' {
                 public constructor ($x: number, $y: number, $z: number)
                 public constructor ($x: number, $y: number)
             }
-            /** Asynchronous operation coroutine. */
-            class AsyncOperation extends UnityEngine.YieldInstruction
-            {
-                protected [__keep_incompatibility]: never;
-                /** Has the operation finished? (Read Only) */
-                public get isDone(): boolean;
-                /** What's the operation's progress. (Read Only) */
-                public get progress(): number;
-                /** Priority lets you tweak in which order async operation calls will be performed. */
-                public get priority(): number;
-                public set priority(value: number);
-                /** Allow Scenes to be activated as soon as it is ready. */
-                public get allowSceneActivation(): boolean;
-                public set allowSceneActivation(value: boolean);
-                public add_completed ($value: System.Action$1<UnityEngine.AsyncOperation>) : void
-                public remove_completed ($value: System.Action$1<UnityEngine.AsyncOperation>) : void
-                public constructor ()
-            }
-            /** Base class for all yield instructions. */
-            class YieldInstruction extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-            }
             /** The Resources class allows you to find and access Objects including assets. */
             class Resources extends System.Object
             {
@@ -674,109 +611,6 @@ declare module 'csharp' {
                 */
                 public static InstanceIDToObject ($instanceID: number) : UnityEngine.Object
                 public static InstanceIDToObjectList ($instanceIDs: Unity.Collections.NativeArray$1<number>, $objects: System.Collections.Generic.List$1<UnityEngine.Object>) : void
-                public constructor ()
-            }
-            /** Base class for all objects Unity can reference. */
-            class Object extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                /** The name of the object. */
-                public get name(): string;
-                public set name(value: string);
-                /** Should the object be hidden, saved with the Scene or modifiable by the user? */
-                public get hideFlags(): UnityEngine.HideFlags;
-                public set hideFlags(value: UnityEngine.HideFlags);
-                public GetInstanceID () : number
-                public static op_Implicit ($exists: UnityEngine.Object) : boolean
-                /** Clones the object original and returns the clone.
-                * @param original An existing object that you want to make a copy of.
-                * @param position Position for the new object.
-                * @param rotation Orientation of the new object.
-                * @param parent Parent that will be assigned to the new object.
-                * @param instantiateInWorldSpace When you assign a parent Object, pass true to position the new object directly in world space. Pass false to set the Object’s position relative to its new parent.
-                * @returns The instantiated clone. 
-                */
-                public static Instantiate ($original: UnityEngine.Object, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion) : UnityEngine.Object
-                /** Clones the object original and returns the clone.
-                * @param original An existing object that you want to make a copy of.
-                * @param position Position for the new object.
-                * @param rotation Orientation of the new object.
-                * @param parent Parent that will be assigned to the new object.
-                * @param instantiateInWorldSpace When you assign a parent Object, pass true to position the new object directly in world space. Pass false to set the Object’s position relative to its new parent.
-                * @returns The instantiated clone. 
-                */
-                public static Instantiate ($original: UnityEngine.Object, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $parent: UnityEngine.Transform) : UnityEngine.Object
-                /** Clones the object original and returns the clone.
-                * @param original An existing object that you want to make a copy of.
-                * @param position Position for the new object.
-                * @param rotation Orientation of the new object.
-                * @param parent Parent that will be assigned to the new object.
-                * @param instantiateInWorldSpace When you assign a parent Object, pass true to position the new object directly in world space. Pass false to set the Object’s position relative to its new parent.
-                * @returns The instantiated clone. 
-                */
-                public static Instantiate ($original: UnityEngine.Object) : UnityEngine.Object
-                /** Clones the object original and returns the clone.
-                * @param original An existing object that you want to make a copy of.
-                * @param position Position for the new object.
-                * @param rotation Orientation of the new object.
-                * @param parent Parent that will be assigned to the new object.
-                * @param instantiateInWorldSpace When you assign a parent Object, pass true to position the new object directly in world space. Pass false to set the Object’s position relative to its new parent.
-                * @returns The instantiated clone. 
-                */
-                public static Instantiate ($original: UnityEngine.Object, $parent: UnityEngine.Transform) : UnityEngine.Object
-                /** Clones the object original and returns the clone.
-                * @param original An existing object that you want to make a copy of.
-                * @param position Position for the new object.
-                * @param rotation Orientation of the new object.
-                * @param parent Parent that will be assigned to the new object.
-                * @param instantiateInWorldSpace When you assign a parent Object, pass true to position the new object directly in world space. Pass false to set the Object’s position relative to its new parent.
-                * @returns The instantiated clone. 
-                */
-                public static Instantiate ($original: UnityEngine.Object, $parent: UnityEngine.Transform, $instantiateInWorldSpace: boolean) : UnityEngine.Object
-                public static Instantiate ($original: UnityEngine.Object, $parent: UnityEngine.Transform, $worldPositionStays: boolean) : UnityEngine.Object
-                /** Removes a GameObject, component or asset. * @param obj The object to destroy.
-                * @param t The optional amount of time to delay before destroying the object.
-                */
-                public static Destroy ($obj: UnityEngine.Object, $t: number) : void
-                /** Removes a GameObject, component or asset. * @param obj The object to destroy.
-                * @param t The optional amount of time to delay before destroying the object.
-                */
-                public static Destroy ($obj: UnityEngine.Object) : void
-                /** Destroys the object obj immediately. You are strongly recommended to use Destroy instead. * @param obj Object to be destroyed.
-                * @param allowDestroyingAssets Set to true to allow assets to be destroyed.
-                */
-                public static DestroyImmediate ($obj: UnityEngine.Object, $allowDestroyingAssets: boolean) : void
-                /** Destroys the object obj immediately. You are strongly recommended to use Destroy instead. * @param obj Object to be destroyed.
-                * @param allowDestroyingAssets Set to true to allow assets to be destroyed.
-                */
-                public static DestroyImmediate ($obj: UnityEngine.Object) : void
-                /** Gets a list of all loaded objects of Type type.
-                * @param type The type of object to find.
-                * @param includeInactive If true, components attached to inactive GameObjects are also included.
-                * @returns The array of objects found matching the type specified. 
-                */
-                public static FindObjectsOfType ($type: System.Type) : System.Array$1<UnityEngine.Object>
-                /** Gets a list of all loaded objects of Type type.
-                * @param type The type of object to find.
-                * @param includeInactive If true, components attached to inactive GameObjects are also included.
-                * @returns The array of objects found matching the type specified. 
-                */
-                public static FindObjectsOfType ($type: System.Type, $includeInactive: boolean) : System.Array$1<UnityEngine.Object>
-                /** Do not destroy the target Object when loading a new Scene. * @param target An Object not destroyed on Scene change.
-                */
-                public static DontDestroyOnLoad ($target: UnityEngine.Object) : void
-                /** Returns the first active loaded object of Type type.
-                * @param type The type of object to find.
-                * @returns Object The first active loaded object that matches the specified type. It returns null if no Object matches the type. 
-                */
-                public static FindObjectOfType ($type: System.Type) : UnityEngine.Object
-                /** Returns the first active loaded object of Type type.
-                * @param type The type of object to find.
-                * @returns Object The first active loaded object that matches the specified type. It returns null if no Object matches the type. 
-                */
-                public static FindObjectOfType ($type: System.Type, $includeInactive: boolean) : UnityEngine.Object
-                public static op_Equality ($x: UnityEngine.Object, $y: UnityEngine.Object) : boolean
-                public static op_Inequality ($x: UnityEngine.Object, $y: UnityEngine.Object) : boolean
                 public constructor ()
             }
             /** Asynchronous load request from the Resources bundle. */
@@ -1380,9 +1214,6 @@ declare module 'csharp' {
             {
                 protected [__keep_incompatibility]: never;
             }
-            /** Priority of a thread. */
-            enum ThreadPriority
-            { Low = 0, BelowNormal = 1, Normal = 2, High = 4 }
             /** Represents a Sprite object for use in 2D gameplay. */
             class Sprite extends UnityEngine.Object
             {
@@ -2293,6 +2124,411 @@ declare module 'csharp' {
                 protected [__keep_incompatibility]: never;
             }
         }
+        namespace System {
+            class Object
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class Void extends System.ValueType
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class ValueType extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class Int32 extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            interface IFormattable
+            {
+            }
+            interface ISpanFormattable
+            {
+            }
+            interface IComparable
+            {
+            }
+            interface IComparable$1<T>
+            {
+            }
+            interface IConvertible
+            {
+            }
+            interface IEquatable$1<T>
+            {
+            }
+            class Boolean extends System.ValueType implements System.IComparable, System.IComparable$1<boolean>, System.IConvertible, System.IEquatable$1<boolean>
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class Single extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class String extends System.Object implements System.ICloneable, System.IComparable, System.IComparable$1<string>, System.IConvertible, System.Collections.Generic.IEnumerable$1<number>, System.Collections.IEnumerable, System.IEquatable$1<string>
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            interface ICloneable
+            {
+            }
+            class Char extends System.ValueType implements System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class Enum extends System.ValueType implements System.IFormattable, System.IComparable, System.IConvertible
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            interface MulticastDelegate
+            { 
+            (...args:any[]) : any; 
+            Invoke?: (...args:any[]) => any;
+            }
+            var MulticastDelegate: { new (func: (...args:any[]) => any): MulticastDelegate; }
+            class Delegate extends System.Object implements System.Runtime.Serialization.ISerializable, System.ICloneable
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            interface Action$1<T>
+            { 
+            (obj: T) : void; 
+            Invoke?: (obj: T) => void;
+            }
+            interface Func$1<TResult>
+            { 
+            () : TResult; 
+            Invoke?: () => TResult;
+            }
+            interface Action
+            { 
+            () : void; 
+            Invoke?: () => void;
+            }
+            var Action: { new (func: () => void): Action; }
+            class Array extends System.Object implements System.Collections.IStructuralComparable, System.Collections.IStructuralEquatable, System.ICloneable, System.Collections.ICollection, System.Collections.IEnumerable, System.Collections.IList
+            {
+                protected [__keep_incompatibility]: never;
+                public get LongLength(): bigint;
+                public get IsFixedSize(): boolean;
+                public get IsReadOnly(): boolean;
+                public get IsSynchronized(): boolean;
+                public get SyncRoot(): any;
+                public get Length(): number;
+                public get Rank(): number;
+                public static CreateInstance ($elementType: System.Type, ...lengths: bigint[]) : System.Array
+                public CopyTo ($array: System.Array, $index: number) : void
+                public Clone () : any
+                public static BinarySearch ($array: System.Array, $value: any) : number
+                public static Copy ($sourceArray: System.Array, $destinationArray: System.Array, $length: bigint) : void
+                public static Copy ($sourceArray: System.Array, $sourceIndex: bigint, $destinationArray: System.Array, $destinationIndex: bigint, $length: bigint) : void
+                public CopyTo ($array: System.Array, $index: bigint) : void
+                public GetLongLength ($dimension: number) : bigint
+                public GetValue ($index: bigint) : any
+                public GetValue ($index1: bigint, $index2: bigint) : any
+                public GetValue ($index1: bigint, $index2: bigint, $index3: bigint) : any
+                public GetValue (...indices: bigint[]) : any
+                public static BinarySearch ($array: System.Array, $index: number, $length: number, $value: any) : number
+                public static BinarySearch ($array: System.Array, $value: any, $comparer: System.Collections.IComparer) : number
+                public static BinarySearch ($array: System.Array, $index: number, $length: number, $value: any, $comparer: System.Collections.IComparer) : number
+                public static IndexOf ($array: System.Array, $value: any) : number
+                public static IndexOf ($array: System.Array, $value: any, $startIndex: number) : number
+                public static IndexOf ($array: System.Array, $value: any, $startIndex: number, $count: number) : number
+                public static LastIndexOf ($array: System.Array, $value: any) : number
+                public static LastIndexOf ($array: System.Array, $value: any, $startIndex: number) : number
+                public static LastIndexOf ($array: System.Array, $value: any, $startIndex: number, $count: number) : number
+                public static Reverse ($array: System.Array) : void
+                public static Reverse ($array: System.Array, $index: number, $length: number) : void
+                public SetValue ($value: any, $index: bigint) : void
+                public SetValue ($value: any, $index1: bigint, $index2: bigint) : void
+                public SetValue ($value: any, $index1: bigint, $index2: bigint, $index3: bigint) : void
+                public SetValue ($value: any, ...indices: bigint[]) : void
+                public static Sort ($array: System.Array) : void
+                public static Sort ($array: System.Array, $index: number, $length: number) : void
+                public static Sort ($array: System.Array, $comparer: System.Collections.IComparer) : void
+                public static Sort ($array: System.Array, $index: number, $length: number, $comparer: System.Collections.IComparer) : void
+                public static Sort ($keys: System.Array, $items: System.Array) : void
+                public static Sort ($keys: System.Array, $items: System.Array, $comparer: System.Collections.IComparer) : void
+                public static Sort ($keys: System.Array, $items: System.Array, $index: number, $length: number) : void
+                public static Sort ($keys: System.Array, $items: System.Array, $index: number, $length: number, $comparer: System.Collections.IComparer) : void
+                public GetEnumerator () : System.Collections.IEnumerator
+                public GetLength ($dimension: number) : number
+                public GetLowerBound ($dimension: number) : number
+                public GetValue (...indices: number[]) : any
+                public SetValue ($value: any, ...indices: number[]) : void
+                public GetUpperBound ($dimension: number) : number
+                public GetValue ($index: number) : any
+                public GetValue ($index1: number, $index2: number) : any
+                public GetValue ($index1: number, $index2: number, $index3: number) : any
+                public SetValue ($value: any, $index: number) : void
+                public SetValue ($value: any, $index1: number, $index2: number) : void
+                public SetValue ($value: any, $index1: number, $index2: number, $index3: number) : void
+                public static CreateInstance ($elementType: System.Type, $length: number) : System.Array
+                public static CreateInstance ($elementType: System.Type, $length1: number, $length2: number) : System.Array
+                public static CreateInstance ($elementType: System.Type, $length1: number, $length2: number, $length3: number) : System.Array
+                public static CreateInstance ($elementType: System.Type, ...lengths: number[]) : System.Array
+                public static CreateInstance ($elementType: System.Type, $lengths: System.Array$1<number>, $lowerBounds: System.Array$1<number>) : System.Array
+                public static Clear ($array: System.Array, $index: number, $length: number) : void
+                public static Copy ($sourceArray: System.Array, $destinationArray: System.Array, $length: number) : void
+                public static Copy ($sourceArray: System.Array, $sourceIndex: number, $destinationArray: System.Array, $destinationIndex: number, $length: number) : void
+                public static ConstrainedCopy ($sourceArray: System.Array, $sourceIndex: number, $destinationArray: System.Array, $destinationIndex: number, $length: number) : void
+                public Initialize () : void
+            }
+            class Type extends System.Reflection.MemberInfo implements System.Runtime.InteropServices._MemberInfo, System.Runtime.InteropServices._Type, System.Reflection.ICustomAttributeProvider, System.Reflection.IReflect
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class Int64 extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<bigint>, System.IConvertible, System.IEquatable$1<bigint>
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            interface Converter$2<TInput, TOutput>
+            { 
+            (input: TInput) : TOutput; 
+            Invoke?: (input: TInput) => TOutput;
+            }
+            interface Comparison$1<T>
+            { 
+            (x: T, y: T) : number; 
+            Invoke?: (x: T, y: T) => number;
+            }
+            interface Predicate$1<T>
+            { 
+            (obj: T) : boolean; 
+            Invoke?: (obj: T) => boolean;
+            }
+            interface IFormatProvider
+            {
+            }
+            interface IDisposable
+            {
+            }
+            class Byte extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class UInt64 extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<bigint>, System.IConvertible, System.IEquatable$1<bigint>
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class UInt32 extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class MarshalByRefObject extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            interface IAsyncDisposable
+            {
+            }
+            class UInt16 extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class Double extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            interface Func$3<T1, T2, TResult>
+            { 
+            (arg1: T1, arg2: T2) : TResult; 
+            Invoke?: (arg1: T1, arg2: T2) => TResult;
+            }
+            interface IAsyncResult
+            {
+            }
+            interface Action$2<T1, T2>
+            { 
+            (arg1: T1, arg2: T2) : void; 
+            Invoke?: (arg1: T1, arg2: T2) => void;
+            }
+        }
+        namespace System.Collections.Generic {
+            interface IEnumerable$1<T> extends System.Collections.IEnumerable
+            {
+            }
+            interface IReadOnlyList$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.IReadOnlyCollection$1<T>
+            {
+            }
+            interface IReadOnlyCollection$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable
+            {
+            }
+            interface IList$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.ICollection$1<T>
+            {
+            }
+            interface ICollection$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable
+            {
+            }
+            interface IComparer$1<T>
+            {
+            }
+            class List$1<T> extends System.Object implements System.Collections.Generic.IReadOnlyList$1<T>, System.Collections.ICollection, System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.IList$1<T>, System.Collections.Generic.IReadOnlyCollection$1<T>, System.Collections.IList, System.Collections.Generic.ICollection$1<T>
+            {
+                protected [__keep_incompatibility]: never;
+            }
+        }
+        namespace System.Collections {
+            interface IEnumerable
+            {
+            }
+            interface IStructuralComparable
+            {
+            }
+            interface IStructuralEquatable
+            {
+            }
+            interface ICollection extends System.Collections.IEnumerable
+            {
+            }
+            interface IList extends System.Collections.ICollection, System.Collections.IEnumerable
+            {
+            }
+            interface IComparer
+            {
+            }
+            interface IEnumerator
+            {
+            }
+        }
+        namespace UnityEngine.Application {
+            interface AdvertisingIdentifierCallback
+            { 
+            (advertisingId: string, trackingEnabled: boolean, errorMsg: string) : void; 
+            Invoke?: (advertisingId: string, trackingEnabled: boolean, errorMsg: string) => void;
+            }
+            var AdvertisingIdentifierCallback: { new (func: (advertisingId: string, trackingEnabled: boolean, errorMsg: string) => void): AdvertisingIdentifierCallback; }
+            interface LowMemoryCallback
+            { 
+            () : void; 
+            Invoke?: () => void;
+            }
+            var LowMemoryCallback: { new (func: () => void): LowMemoryCallback; }
+            interface LogCallback
+            { 
+            (condition: string, stackTrace: string, type: UnityEngine.LogType) : void; 
+            Invoke?: (condition: string, stackTrace: string, type: UnityEngine.LogType) => void;
+            }
+            var LogCallback: { new (func: (condition: string, stackTrace: string, type: UnityEngine.LogType) => void): LogCallback; }
+        }
+        namespace System.Runtime.Serialization {
+            interface ISerializable
+            {
+            }
+        }
+        namespace UnityEngine.Events {
+            /** Zero argument delegate used by UnityEvents. */
+            interface UnityAction
+            { 
+            () : void; 
+            Invoke?: () => void;
+            }
+            var UnityAction: { new (func: () => void): UnityAction; }
+            /** A zero argument persistent callback that can be saved with the Scene. */
+            class UnityEvent extends UnityEngine.Events.UnityEventBase implements UnityEngine.ISerializationCallbackReceiver
+            {
+                protected [__keep_incompatibility]: never;
+                /** Add a non persistent listener to the UnityEvent. * @param call Callback function.
+                */
+                public AddListener ($call: UnityEngine.Events.UnityAction) : void
+                /** Remove a non persistent listener from the UnityEvent. If you have added the same listener multiple times, this method will remove all occurrences of it. * @param call Callback function.
+                */
+                public RemoveListener ($call: UnityEngine.Events.UnityAction) : void
+                public Invoke () : void
+                public constructor ()
+            }
+            /** Abstract base class for UnityEvents. */
+            class UnityEventBase extends System.Object implements UnityEngine.ISerializationCallbackReceiver
+            {
+                protected [__keep_incompatibility]: never;
+                public GetPersistentEventCount () : number
+                /** Get the target component of the listener at index index. * @param index Index of the listener to query.
+                */
+                public GetPersistentTarget ($index: number) : UnityEngine.Object
+                /** Get the target method name of the listener at index index. * @param index Index of the listener to query.
+                */
+                public GetPersistentMethodName ($index: number) : string
+                /** Modify the execution state of a persistent listener. * @param index Index of the listener to query.
+                * @param state State to set.
+                */
+                public SetPersistentListenerState ($index: number, $state: UnityEngine.Events.UnityEventCallState) : void
+                /** Returns the execution state of a persistent listener.
+                * @param index Index of the listener to query.
+                * @returns Execution state of the persistent listener. 
+                */
+                public GetPersistentListenerState ($index: number) : UnityEngine.Events.UnityEventCallState
+                public RemoveAllListeners () : void
+                /** Given an object, function name, and a list of argument types; find the method that matches. * @param obj Object to search for the method.
+                * @param functionName Function name to search for.
+                * @param argumentTypes Argument types for the function.
+                */
+                public static GetValidMethodInfo ($obj: any, $functionName: string, $argumentTypes: System.Array$1<System.Type>) : System.Reflection.MethodInfo
+                /** Given an object type, function name, and a list of argument types; find the method that matches. * @param objectType Object type to search for the method.
+                * @param functionName Function name to search for.
+                * @param argumentTypes Argument types for the function.
+                */
+                public static GetValidMethodInfo ($objectType: System.Type, $functionName: string, $argumentTypes: System.Array$1<System.Type>) : System.Reflection.MethodInfo
+            }
+            class UnityEvent$1<T0> extends UnityEngine.Events.UnityEventBase implements UnityEngine.ISerializationCallbackReceiver
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            /** Controls the scope of UnityEvent callbacks. */
+            enum UnityEventCallState
+            { Off = 0, EditorAndRuntime = 1, RuntimeOnly = 2 }
+            interface UnityAction$2<T0, T1>
+            { 
+            (arg0: T0, arg1: T1) : void; 
+            Invoke?: (arg0: T0, arg1: T1) => void;
+            }
+            interface UnityAction$1<T0>
+            { 
+            (arg0: T0) : void; 
+            Invoke?: (arg0: T0) => void;
+            }
+        }
+        namespace System.Reflection {
+            class MemberInfo extends System.Object implements System.Runtime.InteropServices._MemberInfo, System.Reflection.ICustomAttributeProvider
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            interface ICustomAttributeProvider
+            {
+            }
+            interface IReflect
+            {
+            }
+            class MethodInfo extends System.Reflection.MethodBase implements System.Runtime.InteropServices._MemberInfo, System.Runtime.InteropServices._MethodBase, System.Runtime.InteropServices._MethodInfo, System.Reflection.ICustomAttributeProvider
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            class MethodBase extends System.Reflection.MemberInfo implements System.Runtime.InteropServices._MemberInfo, System.Runtime.InteropServices._MethodBase, System.Reflection.ICustomAttributeProvider
+            {
+                protected [__keep_incompatibility]: never;
+            }
+        }
+        namespace System.Runtime.InteropServices {
+            interface _MemberInfo
+            {
+            }
+            interface _Type
+            {
+            }
+            interface _MethodBase
+            {
+            }
+            interface _MethodInfo
+            {
+            }
+        }
+        namespace System.Collections.ObjectModel {
+            class ReadOnlyCollection$1<T> extends System.Object implements System.Collections.Generic.IReadOnlyList$1<T>, System.Collections.ICollection, System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.IList$1<T>, System.Collections.Generic.IReadOnlyCollection$1<T>, System.Collections.IList, System.Collections.Generic.ICollection$1<T>
+            {
+                protected [__keep_incompatibility]: never;
+            }
+        }
         namespace Unity.Collections {
             class NativeArray$1<T> extends System.ValueType implements System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.IDisposable, System.IEquatable$1<Unity.Collections.NativeArray$1<T>>
             {
@@ -2778,77 +3014,6 @@ declare module 'csharp' {
             class AxisEventData extends UnityEngine.EventSystems.BaseEventData
             {
                 protected [__keep_incompatibility]: never;
-            }
-        }
-        namespace UnityEngine.Events {
-            /** Zero argument delegate used by UnityEvents. */
-            interface UnityAction
-            { 
-            () : void; 
-            Invoke?: () => void;
-            }
-            var UnityAction: { new (func: () => void): UnityAction; }
-            /** A zero argument persistent callback that can be saved with the Scene. */
-            class UnityEvent extends UnityEngine.Events.UnityEventBase implements UnityEngine.ISerializationCallbackReceiver
-            {
-                protected [__keep_incompatibility]: never;
-                /** Add a non persistent listener to the UnityEvent. * @param call Callback function.
-                */
-                public AddListener ($call: UnityEngine.Events.UnityAction) : void
-                /** Remove a non persistent listener from the UnityEvent. If you have added the same listener multiple times, this method will remove all occurrences of it. * @param call Callback function.
-                */
-                public RemoveListener ($call: UnityEngine.Events.UnityAction) : void
-                public Invoke () : void
-                public constructor ()
-            }
-            /** Abstract base class for UnityEvents. */
-            class UnityEventBase extends System.Object implements UnityEngine.ISerializationCallbackReceiver
-            {
-                protected [__keep_incompatibility]: never;
-                public GetPersistentEventCount () : number
-                /** Get the target component of the listener at index index. * @param index Index of the listener to query.
-                */
-                public GetPersistentTarget ($index: number) : UnityEngine.Object
-                /** Get the target method name of the listener at index index. * @param index Index of the listener to query.
-                */
-                public GetPersistentMethodName ($index: number) : string
-                /** Modify the execution state of a persistent listener. * @param index Index of the listener to query.
-                * @param state State to set.
-                */
-                public SetPersistentListenerState ($index: number, $state: UnityEngine.Events.UnityEventCallState) : void
-                /** Returns the execution state of a persistent listener.
-                * @param index Index of the listener to query.
-                * @returns Execution state of the persistent listener. 
-                */
-                public GetPersistentListenerState ($index: number) : UnityEngine.Events.UnityEventCallState
-                public RemoveAllListeners () : void
-                /** Given an object, function name, and a list of argument types; find the method that matches. * @param obj Object to search for the method.
-                * @param functionName Function name to search for.
-                * @param argumentTypes Argument types for the function.
-                */
-                public static GetValidMethodInfo ($obj: any, $functionName: string, $argumentTypes: System.Array$1<System.Type>) : System.Reflection.MethodInfo
-                /** Given an object type, function name, and a list of argument types; find the method that matches. * @param objectType Object type to search for the method.
-                * @param functionName Function name to search for.
-                * @param argumentTypes Argument types for the function.
-                */
-                public static GetValidMethodInfo ($objectType: System.Type, $functionName: string, $argumentTypes: System.Array$1<System.Type>) : System.Reflection.MethodInfo
-            }
-            class UnityEvent$1<T0> extends UnityEngine.Events.UnityEventBase implements UnityEngine.ISerializationCallbackReceiver
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            /** Controls the scope of UnityEvent callbacks. */
-            enum UnityEventCallState
-            { Off = 0, EditorAndRuntime = 1, RuntimeOnly = 2 }
-            interface UnityAction$2<T0, T1>
-            { 
-            (arg0: T0, arg1: T1) : void; 
-            Invoke?: (arg0: T0, arg1: T1) => void;
-            }
-            interface UnityAction$1<T0>
-            { 
-            (arg0: T0) : void; 
-            Invoke?: (arg0: T0) => void;
             }
         }
         namespace UnityEngine.UI.Image {
@@ -3610,6 +3775,7 @@ declare module 'csharp' {
                 public static get native(): Zes.Native.NativeChannel;
                 public static get persistentDataPath(): string;
                 public static get inEditor(): boolean;
+                public static get platform(): string;
                 public static get loader(): Zes.ResourceLoader;
                 public static Restart () : void
                 public constructor ()
@@ -3623,7 +3789,6 @@ declare module 'csharp' {
                 protected [__keep_incompatibility]: never;
                 public name : string
                 public appName : string
-                public appDisplayName : string
                 public appLanguage : string
                 public loginServer : string
                 public allowGuest : boolean
@@ -3666,6 +3831,7 @@ declare module 'csharp' {
                 public SetToken ($token: string) : void
                 public Get ($url: string) : System.Threading.Tasks.Task$1<Zes.HttpResult>
                 public Post ($url: string, $json: string) : System.Threading.Tasks.Task$1<Zes.HttpResult>
+                public Download ($url: string, $targetPath: string, $progress: System.Action$1<number>) : System.Threading.Tasks.Task$1<boolean>
                 public constructor ($baseUrl: string)
             }
             class HttpResult extends System.Object
@@ -3695,12 +3861,15 @@ declare module 'csharp' {
                 public static WaitAsyncOperation ($op: UnityEngine.AsyncOperation, $progress?: System.Action$1<number>) : System.Threading.Tasks.Task
                 public static WaitUntil ($condition: System.Func$1<boolean>) : System.Threading.Tasks.Task
                 public static Timestamp () : bigint
-                public static EnsureDir ($dir: string) : System.IO.DirectoryInfo
-                public static EnsureDir ($dir: System.IO.DirectoryInfo) : System.IO.DirectoryInfo
-                public static ClearDir ($dir: string) : System.IO.DirectoryInfo
-                public static ClearDir ($dir: System.IO.DirectoryInfo) : System.IO.DirectoryInfo
-                public static CopyDir ($from: string, $to: string) : void
-                public static CopyDir ($from: System.IO.DirectoryInfo, $to: System.IO.DirectoryInfo) : void
+                public static FileCopy ($source: string, $dest: string) : System.Threading.Tasks.Task$1<boolean>
+                public static FileSave ($text: string, $dest: string) : void
+                public static FileExists ($path: string) : boolean
+                public static DirEnsure ($dir: string) : System.IO.DirectoryInfo
+                public static DirEnsure ($dir: System.IO.DirectoryInfo) : System.IO.DirectoryInfo
+                public static DirClear ($dir: string) : System.IO.DirectoryInfo
+                public static DirClear ($dir: System.IO.DirectoryInfo) : System.IO.DirectoryInfo
+                public static DirCopy ($from: string, $to: string) : void
+                public static DirCopy ($from: System.IO.DirectoryInfo, $to: System.IO.DirectoryInfo) : void
                 public static CombineUri ($baseUri: string, $path: string) : string
             }
         }
