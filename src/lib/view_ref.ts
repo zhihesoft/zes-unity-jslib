@@ -9,7 +9,7 @@ import { BindData, BindEventOption, BindPropOption, BindViewOption, META_BINDOPT
 import { ComponentMetaData, META_COMPONENT } from "./metadata_component";
 import { getLogger } from "./logger";
 import { loader } from "./resource_loader";
-import { assert, isGameObject } from "./util";
+import { assert } from "./util";
 import { ViewHost } from "./view_host";
 import { isAfterViewInit, isOnActiveChanged, isOnInit } from "./view_interfaces";
 import { ViewOption } from "./view_option";
@@ -49,25 +49,13 @@ export class ViewRef<T = unknown> {
     private _disposed = false;
     private _children: ViewRef[] = [];
 
-    async showChild<T>(cls: constructor<T>): Promise<ViewRef<T>>;
-    async showChild<T>(cls: constructor<T>, option: ViewOption): Promise<ViewRef<T>>;
-    async showChild<T>(cls: constructor<T>, option?: ViewOption): Promise<ViewRef<T>> {
-        const view = new ViewRef(cls, this);
-        await view.show(option || {});
-        return view;
+    createChild<C>(componentClass: constructor<C>): ViewRef<C> {
+        return new ViewRef(componentClass, this);
     }
 
-    async attachChild<T>(cls: constructor<T>, host: GameObject): Promise<ViewRef<T>>;
-    async attachChild<T>(cls: constructor<T>, host: GameObject, data: any): Promise<ViewRef<T>>;
-    async attachChild<T>(cls: constructor<T>, host: GameObject, data?: any): Promise<ViewRef<T>> {
-        const v = new ViewRef(cls, this);
-        await v.attach(host, data);
-        return v;
-    }
-
-    private async attach(host: GameObject | ViewHost): Promise<void>;
-    private async attach(host: GameObject | ViewHost, data: unknown): Promise<void>;
-    private async attach(host: GameObject | ViewHost, data?: unknown): Promise<void> {
+    async attach(host: GameObject | ViewHost): Promise<ViewRef>;
+    async attach(host: GameObject | ViewHost, data: unknown): Promise<ViewRef>;
+    async attach(host: GameObject | ViewHost, data?: unknown): Promise<ViewRef> {
         if (this.parent) {
             this.parent._children.push(this);
         }
@@ -87,11 +75,12 @@ export class ViewRef<T = unknown> {
         if (isOnActiveChanged(this.component)) {
             this.component.zesOnActiveChanged(true);
         }
+        return this;
     }
 
-    private async show(): Promise<void>;
-    private async show(option: ViewOption): Promise<void>
-    private async show(option?: ViewOption): Promise<void> {
+    async show(): Promise<ViewRef>;
+    async show(option: ViewOption): Promise<ViewRef>
+    async show(option?: ViewOption): Promise<ViewRef> {
         const template = option?.template || this.componentMeta?.template;
         if (!template) {
             throw new Error(`show viewref need a template`);
@@ -108,7 +97,7 @@ export class ViewRef<T = unknown> {
             this._host = ViewHost.create(scene);
         } else {
             let hostGO: GameObject | undefined;
-            if (isGameObject(node)) {
+            if (this.isGameObject(node)) {
                 hostGO = node;
             } else if (typeof node === "string") {
                 hostGO = this.parent.host?.find(node);
@@ -127,7 +116,7 @@ export class ViewRef<T = unknown> {
         }
         assert(this.host);
         await this.attach(this.host, option?.data);
-
+        return this;
     }
 
     private isViewHost(obj: ViewHost | GameObject): obj is ViewHost {
@@ -155,8 +144,6 @@ export class ViewRef<T = unknown> {
                 continue;
             }
 
-            logger.debug(`data is ${JSON.stringify(data)}`);
-
             if (data.option && !this.isViewOption(data.option)) {
                 const comp = data_go.GetComponent(data.option.type);
                 if (!comp) {
@@ -173,7 +160,7 @@ export class ViewRef<T = unknown> {
             } else {
                 const type = Reflect.getMetadata('design:type', <any>this.component, key);
                 if (data.option) {
-                    const promise = this.attachChild(type, data_go, data.option.extra).then(v => (<any>this.component)[key] = v.component);
+                    const promise = this.createChild(type).attach(data_go, data.option.extra).then(v => (<any>this.component)[key] = v.component);
                     ps.push(promise);
                 } else if (type == GameObject) {
                     (<any>this.component)[key] = data_go;
@@ -189,6 +176,11 @@ export class ViewRef<T = unknown> {
         }
     }
 
+    private isGameObject(obj: unknown): obj is UnityEngine.GameObject {
+        return (<UnityEngine.GameObject>obj).activeSelf != undefined;
+    }
+
+
     private isPropOption(opt: BindPropOption | BindEventOption | BindViewOption): opt is BindPropOption {
         return ((<BindPropOption>opt).prop != undefined);
     }
@@ -198,7 +190,7 @@ export class ViewRef<T = unknown> {
     }
 
     private isViewOption(opt: BindPropOption | BindEventOption | BindViewOption): opt is BindViewOption {
-        return ((<BindViewOption>opt).extra != undefined);
+        return ((<BindViewOption>opt).mode != undefined);
     }
 
     private bindProp(comp: UnityEngine.Component, key: string, opt: BindPropOption) {

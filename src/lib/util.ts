@@ -1,4 +1,3 @@
-import { UnityEngine } from "csharp";
 
 export function emptyFunc() {
     // empty progress
@@ -12,18 +11,14 @@ export function waitForSeconds(seconds: number): Promise<void> {
     });
 }
 
-export function isGameObject(obj: unknown): obj is UnityEngine.GameObject {
-    return (<UnityEngine.GameObject>obj).activeSelf != undefined;
+export async function waitUntil(func: () => boolean) {
+    while (!func()) {
+        await waitForSeconds(0);
+    }
 }
 
 export function assert(value: unknown, message?: string): asserts value {
     if (!value) {
         throw new Error(message ?? "value assert failed");
-    }
-}
-
-export async function waitUntil(func: () => boolean) {
-    while (!func()) {
-        await waitForSeconds(0);
     }
 }
