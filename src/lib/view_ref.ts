@@ -1,23 +1,23 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import "reflect-metadata";
 import { UnityEngine } from "csharp";
 import { $typeof } from "puerts";
-import "reflect-metadata";
 import { Observable, Subject, throttleTime } from "rxjs";
-import { container, DependencyContainer } from "tsyringe";
-import { constructor } from "tsyringe/dist/typings/types";
 import { BindData, BindEventOption, BindPropOption, BindViewOption, META_BINDOPTION } from "./metadata_bind";
 import { ComponentMetaData, META_COMPONENT } from "./metadata_component";
 import { getLogger } from "./logger";
 import { loader } from "./resource_loader";
 import { assert } from "./util";
 import { ViewHost } from "./view_host";
-import { isAfterViewInit, isOnActiveChanged, isOnInit } from "./view_interfaces";
+import { isAfterViewInit, isOnActiveChanged, isOnDestroy, isOnInit } from "./view_interfaces";
 import { ViewOption } from "./view_option";
 
 import GameObject = UnityEngine.GameObject;
 import Transform = UnityEngine.Transform;
+import { constructor, DependencyContainer } from "tsyringe/dist/typings/types";
+import { container } from "tsyringe";
 
-export const VIEW_DATA_SYMBOL = Symbol("VIEW_DATA_SYMBOL");
+export const VIEW_DATA = Symbol("VIEW_DATA_SYMBOL");
 
 export class ViewRef<T = unknown> {
 
@@ -59,12 +59,14 @@ export class ViewRef<T = unknown> {
         if (this.parent) {
             this.parent._children.push(this);
         }
-        this.container.register(ViewRef, { useValue: this });
-        this.container.register(VIEW_DATA_SYMBOL, { useValue: data });
+
         this._host = this.isViewHost(host) ? host : ViewHost.create(host);
         this._component = this.container.resolve(this.componentClass);
-        // register component itself
+
+        this.container.register(ViewRef, { useValue: this });
+        this.container.register(VIEW_DATA, { useValue: data });
         this.container.register(this.componentClass, { useValue: this.component });
+
         await this.bind();
         if (isOnInit(this.component)) {
             await this.component.zesOnInit();
@@ -117,6 +119,20 @@ export class ViewRef<T = unknown> {
         assert(this.host);
         await this.attach(this.host, option?.data);
         return this;
+    }
+
+    destroy(cleanup = true) {
+        if (!this.disposed) {
+            Array.from(this._children).forEach(i => i.destroy(cleanup));
+            this.parent._children = this.parent._children.filter(i => i != this);
+            if (isOnDestroy(this.component)) {
+                this.component.zesOnDestroy();
+            }
+            if (cleanup) {
+                this.host?.destroy();
+            }
+            this._disposed = true;
+        }
     }
 
     private isViewHost(obj: ViewHost | GameObject): obj is ViewHost {

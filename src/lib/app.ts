@@ -1,5 +1,6 @@
 import { UnityEngine, Zes } from "csharp";
 import { constructor } from "tsyringe/dist/typings/types";
+import { LayerManager } from "./layer_manager";
 import { getLogger } from "./logger";
 import { PatchProvider } from "./patch/patch_provider";
 import { PatchProviderPseudo } from "./patch/patch_provider_pseudo";
@@ -12,6 +13,8 @@ import { ViewRef } from "./view_ref";
 export class App {
 
     public static version: string = UnityEngine.Application.version;
+
+    public static layers: LayerManager = new LayerManager();
 
     public static async bootstrap<T>(app: constructor<T>, path: string) {
         await App.getVersion();

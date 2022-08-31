@@ -18,7 +18,7 @@ export abstract class ViewHost {
 
     abstract find(path: string): GameObject;
     abstract setActive(active: boolean): void;
-    abstract destroy(cleanup: boolean): void;
+    abstract destroy(): void;
     abstract get isSceneHost(): boolean;
 
     protected findByTag(root: GameObject, tag: string): GameObject | undefined {
@@ -61,8 +61,8 @@ class ViewHostGO extends ViewHost {
         }
     }
 
-    destroy(cleanup: boolean): void {
-        if (this.gameObject && cleanup) {
+    destroy(): void {
+        if (this.gameObject) {
             UnityEngine.GameObject.Destroy(this.gameObject);
         }
     }
@@ -120,10 +120,8 @@ class ViewHostScene extends ViewHost {
         return trans.gameObject;
     }
 
-    destroy(cleanup: boolean): void {
-        if (cleanup) {
-            Zes.App.loader.UnloadScene(this.scene);
-        }
+    destroy(): void {
+        Zes.App.loader.UnloadScene(this.scene);
     }
 
     setActive(): void {

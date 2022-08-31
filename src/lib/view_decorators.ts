@@ -1,6 +1,6 @@
 import { TMPro, UnityEngine } from "csharp";
 import { $typeof } from "puerts";
-import { BindEventOption, BindOption, BindPropOption, BindViewMode, BindViewOption, META_BINDOPTION } from "./metadata_bind";
+import { BindEventOption, BindListViewExtra, BindOption, BindPropOption, BindViewMode, BindViewOption, META_BINDOPTION } from "./metadata_bind";
 import { ComponentMetaData, META_COMPONENT } from "./metadata_component";
 
 /**
@@ -41,4 +41,8 @@ export function view(path: string, mode?: BindViewMode, extra?: unknown): Proper
     extra = extra ?? {};
     mode = mode ?? BindViewMode.attach;
     return bind(path, { extra, mode });
+}
+
+export function listView(path: string, extra: BindListViewExtra): PropertyDecorator {
+    return bind(path, { mode: BindViewMode.attach, extra });
 }

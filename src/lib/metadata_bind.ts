@@ -1,4 +1,5 @@
 import { System } from "csharp";
+import { constructor } from "tsyringe/dist/typings/types";
 
 export const META_BINDOPTION = Symbol("view-meta-bindoption");
 
@@ -33,3 +34,8 @@ export interface BindViewOption {
     extra: unknown;            // extra data, list view 里面是child的constructor
 }
 
+export interface BindListViewExtra<T = unknown> {
+    itemClass: constructor<T>;
+    template: string;
+    items?: T[];
+}
