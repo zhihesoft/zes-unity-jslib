@@ -1,6 +1,9 @@
 import { UnityEngine } from "csharp";
 import { singleton } from "tsyringe";
 
+/**
+ * Layer Service
+ */
 @singleton()
 export class LayerService {
 

@@ -4,6 +4,9 @@ import { $promise } from "puerts";
 import { singleton } from "tsyringe";
 import { assert, emptyFunc, waitUntil } from "../util";
 
+/**
+ * Resource Service
+ */
 @singleton()
 export class ResourceService {
 
