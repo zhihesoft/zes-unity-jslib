@@ -1,4 +1,4 @@
-import { PatchStatus } from "./patchstatus";
+import { PatchStatus } from "./patch_status";
 
 export interface PatchProvider {
     check(): Promise<PatchStatus>;
