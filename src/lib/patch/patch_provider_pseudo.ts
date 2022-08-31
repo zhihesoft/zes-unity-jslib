@@ -1,6 +1,6 @@
 import { waitForSeconds } from "../util";
-import { PatchProvider } from "./patchprovider";
-import { PatchStatus } from "./patchstatus";
+import { PatchProvider } from "./patch_provider";
+import { PatchStatus } from "./patch_status";
 
 export class PatchProviderPseudo implements PatchProvider {
     private count = 0;
