@@ -6,7 +6,6 @@ import { Observable, Subject, throttleTime } from "rxjs";
 import { BindData, BindEventOption, BindPropOption, BindViewOption, META_BINDOPTION } from "./metadata_bind";
 import { ComponentMetaData, META_COMPONENT } from "./metadata_component";
 import { getLogger } from "./logger";
-import { loader } from "./resource_loader";
 import { assert } from "./util";
 import { ViewHost } from "./view_host";
 import { isAfterViewInit, isOnActiveChanged, isOnDestroy, isOnInit } from "./view_interfaces";
@@ -16,6 +15,7 @@ import GameObject = UnityEngine.GameObject;
 import Transform = UnityEngine.Transform;
 import { constructor, DependencyContainer } from "tsyringe/dist/typings/types";
 import { container } from "tsyringe";
+import { ResourceService } from "./services/resource_service";
 
 export const VIEW_DATA = Symbol("VIEW_DATA_SYMBOL");
 
@@ -94,6 +94,7 @@ export class ViewRef<T = unknown> {
             throw new Error(`gameobject view should have a host node...`);
         }
 
+        const loader = container.resolve(ResourceService);
         if (isSceneView) {
             const scene = await loader.loadScene(template, true);
             this._host = ViewHost.create(scene);

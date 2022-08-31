@@ -1,6 +1,8 @@
 import { UnityEngine } from "csharp";
+import { singleton } from "tsyringe";
 
-export class LayerManager {
+@singleton()
+export class LayerService {
 
     layers = new Map<string, UnityEngine.GameObject>();
 

@@ -1,9 +1,11 @@
 import { System, UnityEngine, Zes } from "csharp";
 import { sum } from "lodash";
 import { $promise } from "puerts";
-import { assert, emptyFunc, waitUntil } from "./util";
+import { singleton } from "tsyringe";
+import { assert, emptyFunc, waitUntil } from "../util";
 
-class ResourceLoader {
+@singleton()
+export class ResourceService {
 
     private bundles = new Map<string, PendingBundle>();
     private assets = new Map<string, PendingAsset>();
@@ -100,5 +102,3 @@ class PendingItem<T> {
     time = 0;
     data?: T;
 }
-
-export const loader = new ResourceLoader();
