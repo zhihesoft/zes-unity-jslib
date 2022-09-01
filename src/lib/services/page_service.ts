@@ -3,6 +3,7 @@ import "reflect-metadata";
 import { singleton } from "tsyringe";
 import { constructor } from "tsyringe/dist/typings/types";
 import { App } from "../app";
+import { getLogger } from "../logger";
 import { META_PAGE, PageMetaData, Transit } from "../metadata_page";
 import { assert } from "../util";
 import { ViewRef } from "../view_ref";
@@ -29,7 +30,12 @@ export class PageService {
     async navigate<T>(cls: constructor<T>): Promise<ViewRef<T>>;
     async navigate<T>(cls: constructor<T>, data?: unknown): Promise<ViewRef<T>> {
 
+        logger.debug(`navigate to ${cls.name}`);
+
         const meta = this.getPageMeta(cls);
+        
+        logger.debug(`navigate to ${cls.name}, get meta: ${JSON.stringify(meta)}`);
+
 
         if (meta.transit == Transit.Fade) {
             await this.fade.out();
@@ -90,9 +96,11 @@ export class PageService {
     }
 
     private getPageMeta<T>(cls: constructor<T>): { layer: UnityEngine.GameObject, transit: Transit } {
-        const conf = Reflect.getMetadata(META_PAGE, cls) as PageMetaData;
+        const conf = (Reflect.getMetadata(META_PAGE, cls) as PageMetaData) ?? {};
         const layer = conf.layer ? this.layers.get(conf.layer) : this.layers.defaultLayer;
         const transit = conf.transit ?? Transit.None;
         return { layer, transit };
     }
 }
+
+const logger = getLogger(PageService.name);

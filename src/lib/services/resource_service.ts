@@ -2,6 +2,7 @@ import { System, UnityEngine, Zes } from "csharp";
 import { sum } from "lodash";
 import { $promise } from "puerts";
 import { singleton } from "tsyringe";
+import { getLogger } from "../logger";
 import { assert, emptyFunc, waitUntil } from "../util";
 
 /**
@@ -37,17 +38,20 @@ export class ResourceService {
             const bundle = await $promise(Zes.App.loader.LoadBundle(name, progress));
             item.data = bundle;
             item.status = PendingStatus.succ;
-            if (bundle.isStreamedSceneAssetBundle) {
-                const spaths = bundle.GetAllScenePaths();
-                for (let i = 0; i < spaths.Length; i++) {
-                    const element = spaths.get_Item(i);
-                    this.scenes2Bundle.set(element, name);
-                }
-            } else {
-                const apaths = bundle.GetAllAssetNames();
-                for (let i = 0; i < apaths.Length; i++) {
-                    const element = apaths.get_Item(i);
-                    this.assets2Bundle.set(element, name);
+            if (bundle) {
+                if (bundle.isStreamedSceneAssetBundle) {
+                    const spaths = bundle.GetAllScenePaths();
+                    for (let i = 0; i < spaths.Length; i++) {
+                        const element = spaths.get_Item(i);
+                        this.scenes2Bundle.set(element, name);
+                    }
+                } else {
+                    const apaths = bundle.GetAllAssetNames();
+                    for (let i = 0; i < apaths.Length; i++) {
+                        const element = apaths.get_Item(i).toLowerCase();
+                        logger.debug(`find ${element} in bundle ${name}`);
+                        this.assets2Bundle.set(element, name);
+                    }
                 }
             }
         } else {
@@ -65,17 +69,26 @@ export class ResourceService {
             await waitUntil(() => item?.status != PendingStatus.pending);
         } else {
             item = new PendingItem<UnityEngine.Object>();
-            const bundlename = this.assets2Bundle.get(path);
-            assert(bundlename, `cannot find bundle of ${path}`);
-            const bundleitem = this.bundles.get(bundlename);
-            assert(bundleitem);
-            await waitUntil(() => bundleitem.status != PendingStatus.pending);
-            const bundle = bundleitem.data;
-            assert(bundle, `bundle is null: ${bundlename}`);
-            const asset = await $promise(Zes.App.loader.LoadAsset(bundle, path, type));
-            assert(asset, `asset load failed: ${path}`)
-            item.data = asset;
-            item.status = PendingStatus.succ;
+            this.assets.set(path, item);
+            if (Zes.App.inEditor) {
+                const asset = await $promise(Zes.App.loader.LoadAsset(null as unknown as UnityEngine.AssetBundle, path, type));
+                assert(asset, `asset load failed: ${path}`)
+                item.data = asset;
+                item.status = PendingStatus.succ;
+            } else {
+                const bundlename = this.assets2Bundle.get(path.toLowerCase());
+                assert(bundlename, `cannot find bundle of ${path}`);
+                const bundleitem = this.bundles.get(bundlename);
+                assert(bundleitem, `no bundle item ${bundlename} found`);
+                await waitUntil(() => bundleitem.status != PendingStatus.pending);
+                const bundle = bundleitem.data;
+                assert(bundle, `bundle is null: ${bundlename}`);
+                const asset = await $promise(Zes.App.loader.LoadAsset(bundle, path, type));
+                assert(asset, `asset load failed: ${path}`)
+                item.data = asset;
+                item.status = PendingStatus.succ;
+            }
+
         }
         const ret = item?.data;
         item.time = Date.now();
@@ -105,3 +118,5 @@ class PendingItem<T> {
     time = 0;
     data?: T;
 }
+
+const logger = getLogger(ResourceService.name);

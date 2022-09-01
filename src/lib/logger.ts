@@ -32,7 +32,7 @@ export class Logger {
     }
 
     private getMessage(type: string, message: string | object) {
-        return `[${type}] [${this.name}] ${message}`;
+        return `${type} [${this.name}] ${message}`;
     }
 
 }

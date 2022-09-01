@@ -17,7 +17,7 @@ export class LayerService {
 
     get(name: string): UnityEngine.GameObject {
         const ret = this.layers.get(name);
-        assert(ret, `cannot find layer of ${this.defaultLayer}`);
+        assert(ret, `cannot find layer of ${name}`);
         return ret;
     }
 
