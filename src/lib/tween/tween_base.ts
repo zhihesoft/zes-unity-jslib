@@ -31,13 +31,6 @@ export class Tween<T extends TweenableSource> {
 
     public async run(): Promise<void> {
         assert(this.ends, "end values cannot be null");
-        if (this.duration <= 0) {
-            if (this.updateCallback) {
-                this.updateCallback(this.ends!);
-            }
-            return;
-        }
-
         this.startTime = Date.now();
         let elapse = 0;
         while (elapse < this.duration) {
