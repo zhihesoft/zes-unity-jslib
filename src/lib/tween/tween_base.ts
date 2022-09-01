@@ -62,7 +62,7 @@ export class Tween<T extends TweenableSource> {
                 if (this.duration <= 0) {
                     this.target[key] = this.ends[key];
                 } else {
-                    (this.target as any)[key] = start + (end - start) * (elapse / this.duration);
+                    (this.target as TweenableSource)[key] = start + (end - start) * (elapse / this.duration);
                 }
             }
         }

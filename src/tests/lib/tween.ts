@@ -6,7 +6,7 @@ export function tweenTest() {
     return describe('tween', () => {
         it('tween base', async () => {
             const target = { a: 100 };
-            await tween(target).to({ a: 200 }, 1).run();
+            await tween(target).to({ a: 200 }, 0.5).run();
             assert.equal(target.a, 200);
         });
     });
