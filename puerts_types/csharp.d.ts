@@ -282,6 +282,243 @@ declare module 'csharp' {
             /** Describes network reachability options. */
             enum NetworkReachability
             { NotReachable = 0, ReachableViaCarrierDataNetwork = 1, ReachableViaLocalAreaNetwork = 2 }
+            /** Access system and hardware information. */
+            class SystemInfo extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                /** Value returned by SystemInfo string properties which are not supported on the current platform. */
+                public static unsupportedIdentifier : string/** The current battery level (Read Only). */
+                public static get batteryLevel(): number;
+                /** Returns the current status of the device's battery (Read Only). */
+                public static get batteryStatus(): UnityEngine.BatteryStatus;
+                /** Operating system name with version (Read Only). */
+                public static get operatingSystem(): string;
+                /** Returns the operating system family the game is running on (Read Only). */
+                public static get operatingSystemFamily(): UnityEngine.OperatingSystemFamily;
+                /** Processor name (Read Only). */
+                public static get processorType(): string;
+                /** Processor frequency in MHz (Read Only). */
+                public static get processorFrequency(): number;
+                /** Number of processors present (Read Only). */
+                public static get processorCount(): number;
+                /** Amount of system memory present (Read Only). */
+                public static get systemMemorySize(): number;
+                /** A unique device identifier. It is guaranteed to be unique for every device (Read Only). */
+                public static get deviceUniqueIdentifier(): string;
+                /** The user defined name of the device (Read Only). */
+                public static get deviceName(): string;
+                /** The model of the device (Read Only). */
+                public static get deviceModel(): string;
+                /** Is an accelerometer available on the device? */
+                public static get supportsAccelerometer(): boolean;
+                /** Is a gyroscope available on the device? */
+                public static get supportsGyroscope(): boolean;
+                /** Is the device capable of reporting its location? */
+                public static get supportsLocationService(): boolean;
+                /** Is the device capable of providing the user haptic feedback by vibration? */
+                public static get supportsVibration(): boolean;
+                /** Is there an Audio device available for playback? (Read Only) */
+                public static get supportsAudio(): boolean;
+                /** Returns the kind of device the application is running on (Read Only). */
+                public static get deviceType(): UnityEngine.DeviceType;
+                /** Amount of video memory present (Read Only). */
+                public static get graphicsMemorySize(): number;
+                /** The name of the graphics device (Read Only). */
+                public static get graphicsDeviceName(): string;
+                /** The vendor of the graphics device (Read Only). */
+                public static get graphicsDeviceVendor(): string;
+                /** The identifier code of the graphics device (Read Only). */
+                public static get graphicsDeviceID(): number;
+                /** The identifier code of the graphics device vendor (Read Only). */
+                public static get graphicsDeviceVendorID(): number;
+                /** The graphics API type used by the graphics device (Read Only). */
+                public static get graphicsDeviceType(): UnityEngine.Rendering.GraphicsDeviceType;
+                /** Returns true if the texture UV coordinate convention for this platform has Y starting at the top of the image. */
+                public static get graphicsUVStartsAtTop(): boolean;
+                /** The graphics API type and driver version used by the graphics device (Read Only). */
+                public static get graphicsDeviceVersion(): string;
+                /** Graphics device shader capability level (Read Only). */
+                public static get graphicsShaderLevel(): number;
+                /** Is graphics device using multi-threaded rendering (Read Only)? */
+                public static get graphicsMultiThreaded(): boolean;
+                /** Application's actual rendering threading mode (Read Only). */
+                public static get renderingThreadingMode(): UnityEngine.Rendering.RenderingThreadingMode;
+                /** True if the GPU supports hidden surface removal. */
+                public static get hasHiddenSurfaceRemovalOnGPU(): boolean;
+                /** Returns true when the GPU has native support for indexing uniform arrays in fragment shaders without restrictions. */
+                public static get hasDynamicUniformArrayIndexingInFragmentShaders(): boolean;
+                /** Are built-in shadows supported? (Read Only) */
+                public static get supportsShadows(): boolean;
+                /** Is sampling raw depth from shadowmaps supported? (Read Only) */
+                public static get supportsRawShadowDepthSampling(): boolean;
+                /** Whether motion vectors are supported on this platform. */
+                public static get supportsMotionVectors(): boolean;
+                /** Are 3D (volume) textures supported? (Read Only) */
+                public static get supports3DTextures(): boolean;
+                /** Are compressed formats for 3D (volume) textures supported? (Read Only). */
+                public static get supportsCompressed3DTextures(): boolean;
+                /** Are 2D Array textures supported? (Read Only) */
+                public static get supports2DArrayTextures(): boolean;
+                /** Are 3D (volume) RenderTextures supported? (Read Only) */
+                public static get supports3DRenderTextures(): boolean;
+                /** Are Cubemap Array textures supported? (Read Only) */
+                public static get supportsCubemapArrayTextures(): boolean;
+                /** Support for various Graphics.CopyTexture cases (Read Only). */
+                public static get copyTextureSupport(): UnityEngine.Rendering.CopyTextureSupport;
+                /** Are compute shaders supported? (Read Only) */
+                public static get supportsComputeShaders(): boolean;
+                /** Are geometry shaders supported? (Read Only) */
+                public static get supportsGeometryShaders(): boolean;
+                /** Are tessellation shaders supported? (Read Only) */
+                public static get supportsTessellationShaders(): boolean;
+                /** Boolean that indicates if SV_RenderTargetArrayIndex can be used in a vertex shader (true if it can be used, false if not). */
+                public static get supportsRenderTargetArrayIndexFromVertexShader(): boolean;
+                /** Is GPU draw call instancing supported? (Read Only) */
+                public static get supportsInstancing(): boolean;
+                /** Does the hardware support quad topology? (Read Only) */
+                public static get supportsHardwareQuadTopology(): boolean;
+                /** Are 32-bit index buffers supported? (Read Only) */
+                public static get supports32bitsIndexBuffer(): boolean;
+                /** Are sparse textures supported? (Read Only) */
+                public static get supportsSparseTextures(): boolean;
+                /** How many simultaneous render targets (MRTs) are supported? (Read Only) */
+                public static get supportedRenderTargetCount(): number;
+                /** Returns true when the platform supports different blend modes when rendering to multiple render targets, or false otherwise. */
+                public static get supportsSeparatedRenderTargetsBlend(): boolean;
+                /** The maximum number of random write targets (UAV) that Unity supports simultaneously. (Read Only) */
+                public static get supportedRandomWriteTargetCount(): number;
+                /** Are multisampled textures supported? (Read Only) */
+                public static get supportsMultisampledTextures(): number;
+                /** Boolean that indicates whether multisampled texture arrays are supported (true if supported, false if not supported). */
+                public static get supportsMultisampled2DArrayTextures(): boolean;
+                /** Returns true if multisampled textures are resolved automatically */
+                public static get supportsMultisampleAutoResolve(): boolean;
+                /** Returns true if the 'Mirror Once' texture wrap mode is supported. (Read Only) */
+                public static get supportsTextureWrapMirrorOnce(): number;
+                /** This property is true if the current platform uses a reversed depth buffer (where values range from 1 at the near plane and 0 at far plane), and false if the depth buffer is normal (0 is near, 1 is far). (Read Only) */
+                public static get usesReversedZBuffer(): boolean;
+                /** What NPOT (non-power of two size) texture support does the GPU provide? (Read Only) */
+                public static get npotSupport(): UnityEngine.NPOTSupport;
+                /** Maximum texture size (Read Only). */
+                public static get maxTextureSize(): number;
+                /** Maximum Cubemap texture size (Read Only). */
+                public static get maxCubemapSize(): number;
+                /** Determines how many compute buffers Unity supports simultaneously in a vertex shader for reading. (Read Only) */
+                public static get maxComputeBufferInputsVertex(): number;
+                /** Determines how many compute buffers Unity supports simultaneously in a fragment shader for reading. (Read Only) */
+                public static get maxComputeBufferInputsFragment(): number;
+                /** Determines how many compute buffers Unity supports simultaneously in a geometry shader for reading. (Read Only) */
+                public static get maxComputeBufferInputsGeometry(): number;
+                /** Determines how many compute buffers Unity supports simultaneously in a domain shader for reading. (Read Only) */
+                public static get maxComputeBufferInputsDomain(): number;
+                /** Determines how many compute buffers Unity supports simultaneously in a hull shader for reading. (Read Only) */
+                public static get maxComputeBufferInputsHull(): number;
+                /** Determines how many compute buffers Unity supports simultaneously in a compute shader for reading. (Read Only) */
+                public static get maxComputeBufferInputsCompute(): number;
+                /** The largest total number of invocations in a single local work group that can be dispatched to a compute shader (Read Only). */
+                public static get maxComputeWorkGroupSize(): number;
+                /** The maximum number of work groups that a compute shader can use in X dimension (Read Only). */
+                public static get maxComputeWorkGroupSizeX(): number;
+                /** The maximum number of work groups that a compute shader can use in Y dimension (Read Only). */
+                public static get maxComputeWorkGroupSizeY(): number;
+                /** The maximum number of work groups that a compute shader can use in Z dimension (Read Only). */
+                public static get maxComputeWorkGroupSizeZ(): number;
+                /** Returns true when the platform supports asynchronous compute queues and false if otherwise. */
+                public static get supportsAsyncCompute(): boolean;
+                /** Specifies whether the current platform supports the GPU Recorder or not. (Read Only). */
+                public static get supportsGpuRecorder(): boolean;
+                /** Returns true when the platform supports GraphicsFences, and false if otherwise. */
+                public static get supportsGraphicsFence(): boolean;
+                /** Returns true if asynchronous readback of GPU data is available for this device and false otherwise. */
+                public static get supportsAsyncGPUReadback(): boolean;
+                /** Checks if ray tracing is supported by the current configuration. */
+                public static get supportsRayTracing(): boolean;
+                /** Does the current renderer support binding constant buffers directly? (Read Only) */
+                public static get supportsSetConstantBuffer(): boolean;
+                /** Minimum buffer offset (in bytes) when binding a constant buffer using Shader.SetConstantBuffer or Material.SetConstantBuffer. */
+                public static get constantBufferOffsetAlignment(): number;
+                /** The maximum size of a graphics buffer (GraphicsBuffer, ComputeBuffer, vertex/index buffer, etc.) in bytes (Read Only). */
+                public static get maxGraphicsBufferSize(): bigint;
+                /** Returns true if the GPU supports partial mipmap chains (Read Only). */
+                public static get hasMipMaxLevel(): boolean;
+                /** Is streaming of texture mip maps supported? (Read Only) */
+                public static get supportsMipStreaming(): boolean;
+                /** True if the Graphics API takes RenderBufferLoadAction and RenderBufferStoreAction into account, false if otherwise. */
+                public static get usesLoadStoreActions(): boolean;
+                /** Returns a bitwise combination of HDRDisplaySupportFlags describing the support for HDR displays on the system. */
+                public static get hdrDisplaySupportFlags(): UnityEngine.HDRDisplaySupportFlags;
+                /** Is conservative rasterization supported? (Read Only) */
+                public static get supportsConservativeRaster(): boolean;
+                /** Boolean that indicates whether Multiview is supported (true if supported, false if not supported). (Read Only) */
+                public static get supportsMultiview(): boolean;
+                /** This property is true if the graphics API of the target build platform takes RenderBufferStoreAction.StoreAndResolve into account, false if otherwise. */
+                public static get supportsStoreAndResolveAction(): boolean;
+                /** Returns true if the platform supports multisample resolve of depth textures. */
+                public static get supportsMultisampleResolveDepth(): boolean;
+                /** Is render texture format supported?
+                * @param format The format to look up.
+                * @returns True if the format is supported. 
+                */
+                public static SupportsRenderTextureFormat ($format: UnityEngine.RenderTextureFormat) : boolean
+                /** Is blending supported on render texture format?
+                * @param format The format to look up.
+                * @returns True if blending is supported on the given format. 
+                */
+                public static SupportsBlendingOnRenderTextureFormat ($format: UnityEngine.RenderTextureFormat) : boolean
+                /** Tests if a RenderTextureFormat can be used with RenderTexture.enableRandomWrite.
+                * @param format The format to look up.
+                * @returns True if the format can be used for random access writes. 
+                */
+                public static SupportsRandomWriteOnRenderTextureFormat ($format: UnityEngine.RenderTextureFormat) : boolean
+                /** Is texture format supported on this device?
+                * @param format The TextureFormat format to look up.
+                * @returns True if the format is supported. 
+                */
+                public static SupportsTextureFormat ($format: UnityEngine.TextureFormat) : boolean
+                /** Indicates whether the given combination of a vertex attribute format and dimension is supported on this device.
+                * @param format The VertexAttributeFormat format to look up.
+                * @param dimension The dimension of vertex data to check for.
+                * @returns True if the format with the given dimension is supported. 
+                */
+                public static SupportsVertexAttributeFormat ($format: UnityEngine.Rendering.VertexAttributeFormat, $dimension: number) : boolean
+                public static IsFormatSupported ($format: UnityEngine.Experimental.Rendering.GraphicsFormat, $usage: UnityEngine.Experimental.Rendering.FormatUsage) : boolean
+                public static GetCompatibleFormat ($format: UnityEngine.Experimental.Rendering.GraphicsFormat, $usage: UnityEngine.Experimental.Rendering.FormatUsage) : UnityEngine.Experimental.Rendering.GraphicsFormat
+                /** Returns the platform-specific GraphicsFormat that is associated with the DefaultFormat. * @param format The DefaultFormat format to look up.
+                */
+                public static GetGraphicsFormat ($format: UnityEngine.Experimental.Rendering.DefaultFormat) : UnityEngine.Experimental.Rendering.GraphicsFormat
+                /** Checks if the target platform supports the MSAA samples count in the RenderTextureDescriptor argument.
+                * @param desc The RenderTextureDescriptor to check.
+                * @returns If the target platform supports the given MSAA samples count of RenderTextureDescriptor, returns the given MSAA samples count. Otherwise returns a lower fallback MSAA samples count value that the target platform supports. 
+                */
+                public static GetRenderTextureSupportedMSAASampleCount ($desc: UnityEngine.RenderTextureDescriptor) : number
+                public constructor ()
+            }
+            /** Enumeration for SystemInfo.batteryStatus which represents the current status of the device's battery. */
+            enum BatteryStatus
+            { Unknown = 0, Charging = 1, Discharging = 2, NotCharging = 3, Full = 4 }
+            /** Enumeration for SystemInfo.operatingSystemFamily. */
+            enum OperatingSystemFamily
+            { Other = 0, MacOSX = 1, Windows = 2, Linux = 3 }
+            /** Enumeration for SystemInfo.deviceType, denotes a coarse grouping of kinds of devices. */
+            enum DeviceType
+            { Unknown = 0, Handheld = 1, Console = 2, Desktop = 3 }
+            /** Format of a RenderTexture. */
+            enum RenderTextureFormat
+            { ARGB32 = 0, Depth = 1, ARGBHalf = 2, Shadowmap = 3, RGB565 = 4, ARGB4444 = 5, ARGB1555 = 6, Default = 7, ARGB2101010 = 8, DefaultHDR = 9, ARGB64 = 10, ARGBFloat = 11, RGFloat = 12, RGHalf = 13, RFloat = 14, RHalf = 15, R8 = 16, ARGBInt = 17, RGInt = 18, RInt = 19, BGRA32 = 20, RGB111110Float = 22, RG32 = 23, RGBAUShort = 24, RG16 = 25, BGRA10101010_XR = 26, BGR101010_XR = 27, R16 = 28 }
+            /** Format used when creating textures from scripts. */
+            enum TextureFormat
+            { Alpha8 = 1, ARGB4444 = 2, RGB24 = 3, RGBA32 = 4, ARGB32 = 5, RGB565 = 7, R16 = 9, DXT1 = 10, DXT5 = 12, RGBA4444 = 13, BGRA32 = 14, RHalf = 15, RGHalf = 16, RGBAHalf = 17, RFloat = 18, RGFloat = 19, RGBAFloat = 20, YUY2 = 21, RGB9e5Float = 22, BC4 = 26, BC5 = 27, BC6H = 24, BC7 = 25, DXT1Crunched = 28, DXT5Crunched = 29, PVRTC_RGB2 = 30, PVRTC_RGBA2 = 31, PVRTC_RGB4 = 32, PVRTC_RGBA4 = 33, ETC_RGB4 = 34, ATC_RGB4 = -127, ATC_RGBA8 = -127, EAC_R = 41, EAC_R_SIGNED = 42, EAC_RG = 43, EAC_RG_SIGNED = 44, ETC2_RGB = 45, ETC2_RGBA1 = 46, ETC2_RGBA8 = 47, ASTC_4x4 = 48, ASTC_5x5 = 49, ASTC_6x6 = 50, ASTC_8x8 = 51, ASTC_10x10 = 52, ASTC_12x12 = 53, ETC_RGB4_3DS = 60, ETC_RGBA8_3DS = 61, RG16 = 62, R8 = 63, ETC_RGB4Crunched = 64, ETC2_RGBA8Crunched = 65, ASTC_HDR_4x4 = 66, ASTC_HDR_5x5 = 67, ASTC_HDR_6x6 = 68, ASTC_HDR_8x8 = 69, ASTC_HDR_10x10 = 70, ASTC_HDR_12x12 = 71, RG32 = 72, RGB48 = 73, RGBA64 = 74, ASTC_RGB_4x4 = 48, ASTC_RGB_5x5 = 49, ASTC_RGB_6x6 = 50, ASTC_RGB_8x8 = 51, ASTC_RGB_10x10 = 52, ASTC_RGB_12x12 = 53, ASTC_RGBA_4x4 = 54, ASTC_RGBA_5x5 = 55, ASTC_RGBA_6x6 = 56, ASTC_RGBA_8x8 = 57, ASTC_RGBA_10x10 = 58, ASTC_RGBA_12x12 = 59, PVRTC_2BPP_RGB = -127, PVRTC_2BPP_RGBA = -127, PVRTC_4BPP_RGB = -127, PVRTC_4BPP_RGBA = -127 }
+            /** NPOT Texture2D|textures support. */
+            enum NPOTSupport
+            { None = 0, Restricted = 1, Full = 2 }
+            /** A set of flags that describe the level of HDR display support available on the system. */
+            enum HDRDisplaySupportFlags
+            { None = 0, Supported = 1, RuntimeSwitchable = 2, AutomaticTonemapping = 4 }
+            /** This struct contains all the information required to create a RenderTexture. It can be copied, cached, and reused to easily create RenderTextures that all share the same properties. Avoid using the default constructor as it does not initialize some flags with the recommended values. */
+            class RenderTextureDescriptor extends System.ValueType
+            {
+                protected [__keep_incompatibility]: never;
+            }
             /** Representation of 2D vectors and points. */
             class Vector2 extends System.ValueType implements System.IFormattable, System.IEquatable$1<UnityEngine.Vector2>
             {
@@ -2208,6 +2445,10 @@ declare module 'csharp' {
             Invoke?: () => void;
             }
             var Action: { new (func: () => void): Action; }
+            class Int64 extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<bigint>, System.IConvertible, System.IEquatable$1<bigint>
+            {
+                protected [__keep_incompatibility]: never;
+            }
             class Array extends System.Object implements System.Collections.IStructuralComparable, System.Collections.IStructuralEquatable, System.ICloneable, System.Collections.ICollection, System.Collections.IEnumerable, System.Collections.IList
             {
                 protected [__keep_incompatibility]: never;
@@ -2277,10 +2518,6 @@ declare module 'csharp' {
                 public Initialize () : void
             }
             class Type extends System.Reflection.MemberInfo implements System.Runtime.InteropServices._MemberInfo, System.Runtime.InteropServices._Type, System.Reflection.ICustomAttributeProvider, System.Reflection.IReflect
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            class Int64 extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<bigint>, System.IConvertible, System.IEquatable$1<bigint>
             {
                 protected [__keep_incompatibility]: never;
             }
@@ -2488,6 +2725,33 @@ declare module 'csharp' {
             (arg0: T0) : void; 
             Invoke?: (arg0: T0) => void;
             }
+        }
+        namespace UnityEngine.Rendering {
+            /** Graphics device API type. */
+            enum GraphicsDeviceType
+            { OpenGL2 = 0, Direct3D9 = 1, Direct3D11 = 2, PlayStation3 = 3, Null = 4, Xbox360 = 6, OpenGLES2 = 8, OpenGLES3 = 11, PlayStationVita = 12, PlayStation4 = 13, XboxOne = 14, PlayStationMobile = 15, Metal = 16, OpenGLCore = 17, Direct3D12 = 18, N3DS = 19, Vulkan = 21, Switch = 22, XboxOneD3D12 = 23, GameCoreXboxOne = 24, GameCoreScarlett = -1, GameCoreXboxSeries = 25, PlayStation5 = 26, PlayStation5NGGC = 27 }
+            /** Options for the application's actual rendering threading mode. */
+            enum RenderingThreadingMode
+            { Direct = 0, SingleThreaded = 1, MultiThreaded = 2, LegacyJobified = 3, NativeGraphicsJobs = 4, NativeGraphicsJobsWithoutRenderThread = 5 }
+            /** Support for various Graphics.CopyTexture cases. */
+            enum CopyTextureSupport
+            { None = 0, Basic = 1, Copy3D = 2, DifferentTypes = 4, TextureToRT = 8, RTToTexture = 16 }
+            /** Data type of a VertexAttribute. */
+            enum VertexAttributeFormat
+            { Float32 = 0, Float16 = 1, UNorm8 = 2, SNorm8 = 3, UNorm16 = 4, SNorm16 = 5, UInt8 = 6, SInt8 = 7, UInt16 = 8, SInt16 = 9, UInt32 = 10, SInt32 = 11 }
+        }
+        namespace UnityEngine.Experimental.Rendering {
+            /** Use this format to create either Textures or RenderTextures from scripts. */
+            enum GraphicsFormat
+            { None = 0, R8_SRGB = 1, R8G8_SRGB = 2, R8G8B8_SRGB = 3, R8G8B8A8_SRGB = 4, R8_UNorm = 5, R8G8_UNorm = 6, R8G8B8_UNorm = 7, R8G8B8A8_UNorm = 8, R8_SNorm = 9, R8G8_SNorm = 10, R8G8B8_SNorm = 11, R8G8B8A8_SNorm = 12, R8_UInt = 13, R8G8_UInt = 14, R8G8B8_UInt = 15, R8G8B8A8_UInt = 16, R8_SInt = 17, R8G8_SInt = 18, R8G8B8_SInt = 19, R8G8B8A8_SInt = 20, R16_UNorm = 21, R16G16_UNorm = 22, R16G16B16_UNorm = 23, R16G16B16A16_UNorm = 24, R16_SNorm = 25, R16G16_SNorm = 26, R16G16B16_SNorm = 27, R16G16B16A16_SNorm = 28, R16_UInt = 29, R16G16_UInt = 30, R16G16B16_UInt = 31, R16G16B16A16_UInt = 32, R16_SInt = 33, R16G16_SInt = 34, R16G16B16_SInt = 35, R16G16B16A16_SInt = 36, R32_UInt = 37, R32G32_UInt = 38, R32G32B32_UInt = 39, R32G32B32A32_UInt = 40, R32_SInt = 41, R32G32_SInt = 42, R32G32B32_SInt = 43, R32G32B32A32_SInt = 44, R16_SFloat = 45, R16G16_SFloat = 46, R16G16B16_SFloat = 47, R16G16B16A16_SFloat = 48, R32_SFloat = 49, R32G32_SFloat = 50, R32G32B32_SFloat = 51, R32G32B32A32_SFloat = 52, B8G8R8_SRGB = 56, B8G8R8A8_SRGB = 57, B8G8R8_UNorm = 58, B8G8R8A8_UNorm = 59, B8G8R8_SNorm = 60, B8G8R8A8_SNorm = 61, B8G8R8_UInt = 62, B8G8R8A8_UInt = 63, B8G8R8_SInt = 64, B8G8R8A8_SInt = 65, R4G4B4A4_UNormPack16 = 66, B4G4R4A4_UNormPack16 = 67, R5G6B5_UNormPack16 = 68, B5G6R5_UNormPack16 = 69, R5G5B5A1_UNormPack16 = 70, B5G5R5A1_UNormPack16 = 71, A1R5G5B5_UNormPack16 = 72, E5B9G9R9_UFloatPack32 = 73, B10G11R11_UFloatPack32 = 74, A2B10G10R10_UNormPack32 = 75, A2B10G10R10_UIntPack32 = 76, A2B10G10R10_SIntPack32 = 77, A2R10G10B10_UNormPack32 = 78, A2R10G10B10_UIntPack32 = 79, A2R10G10B10_SIntPack32 = 80, A2R10G10B10_XRSRGBPack32 = 81, A2R10G10B10_XRUNormPack32 = 82, R10G10B10_XRSRGBPack32 = 83, R10G10B10_XRUNormPack32 = 84, A10R10G10B10_XRSRGBPack32 = 85, A10R10G10B10_XRUNormPack32 = 86, D16_UNorm = 90, D24_UNorm = 91, D24_UNorm_S8_UInt = 92, D32_SFloat = 93, D32_SFloat_S8_UInt = 94, S8_UInt = 95, RGB_DXT1_SRGB = 96, RGBA_DXT1_SRGB = 96, RGB_DXT1_UNorm = 97, RGBA_DXT1_UNorm = 97, RGBA_DXT3_SRGB = 98, RGBA_DXT3_UNorm = 99, RGBA_DXT5_SRGB = 100, RGBA_DXT5_UNorm = 101, R_BC4_UNorm = 102, R_BC4_SNorm = 103, RG_BC5_UNorm = 104, RG_BC5_SNorm = 105, RGB_BC6H_UFloat = 106, RGB_BC6H_SFloat = 107, RGBA_BC7_SRGB = 108, RGBA_BC7_UNorm = 109, RGB_PVRTC_2Bpp_SRGB = 110, RGB_PVRTC_2Bpp_UNorm = 111, RGB_PVRTC_4Bpp_SRGB = 112, RGB_PVRTC_4Bpp_UNorm = 113, RGBA_PVRTC_2Bpp_SRGB = 114, RGBA_PVRTC_2Bpp_UNorm = 115, RGBA_PVRTC_4Bpp_SRGB = 116, RGBA_PVRTC_4Bpp_UNorm = 117, RGB_ETC_UNorm = 118, RGB_ETC2_SRGB = 119, RGB_ETC2_UNorm = 120, RGB_A1_ETC2_SRGB = 121, RGB_A1_ETC2_UNorm = 122, RGBA_ETC2_SRGB = 123, RGBA_ETC2_UNorm = 124, R_EAC_UNorm = 125, R_EAC_SNorm = 126, RG_EAC_UNorm = 127, RG_EAC_SNorm = 128, RGBA_ASTC4X4_SRGB = 129, RGBA_ASTC4X4_UNorm = 130, RGBA_ASTC5X5_SRGB = 131, RGBA_ASTC5X5_UNorm = 132, RGBA_ASTC6X6_SRGB = 133, RGBA_ASTC6X6_UNorm = 134, RGBA_ASTC8X8_SRGB = 135, RGBA_ASTC8X8_UNorm = 136, RGBA_ASTC10X10_SRGB = 137, RGBA_ASTC10X10_UNorm = 138, RGBA_ASTC12X12_SRGB = 139, RGBA_ASTC12X12_UNorm = 140, YUV2 = 141, DepthAuto = 142, ShadowAuto = 143, VideoAuto = 144, RGBA_ASTC4X4_UFloat = 145, RGBA_ASTC5X5_UFloat = 146, RGBA_ASTC6X6_UFloat = 147, RGBA_ASTC8X8_UFloat = 148, RGBA_ASTC10X10_UFloat = 149, RGBA_ASTC12X12_UFloat = 150 }
+            /** Use this format usages to figure out the capabilities of specific GraphicsFormat */
+            enum FormatUsage
+            { Sample = 0, Linear = 1, Sparse = 2, Render = 4, Blend = 5, GetPixels = 6, SetPixels = 7, SetPixels32 = 8, ReadPixels = 9, LoadStore = 10, MSAA2x = 11, MSAA4x = 12, MSAA8x = 13, StencilSampling = 16 }
+            /** 
+            Use a default format to create either Textures or RenderTextures from scripts based on platform specific capability.
+            */
+            enum DefaultFormat
+            { LDR = 0, HDR = 1, DepthStencil = 2, Shadow = 3, Video = 4 }
         }
         namespace System.Reflection {
             class MemberInfo extends System.Object implements System.Runtime.InteropServices._MemberInfo, System.Reflection.ICustomAttributeProvider

@@ -1,11 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import "reflect-metadata";
 import { UnityEngine } from "csharp";
 import { $typeof } from "puerts";
+import "reflect-metadata";
 import { Observable, Subject, throttleTime } from "rxjs";
+import { container } from "tsyringe";
+import { constructor, DependencyContainer } from "tsyringe/dist/typings/types";
+import { getLogger } from "./logger";
 import { BindData, BindEventOption, BindPropOption, BindViewOption, META_BINDOPTION } from "./metadata_bind";
 import { ComponentMetaData, META_COMPONENT } from "./metadata_component";
-import { getLogger } from "./logger";
+import { ResourceService } from "./services/resource_service";
 import { assert } from "./util";
 import { ViewHost } from "./view_host";
 import { isAfterViewInit, isOnActiveChanged, isOnDestroy, isOnInit } from "./view_interfaces";
@@ -13,9 +16,6 @@ import { ViewOption } from "./view_option";
 
 import GameObject = UnityEngine.GameObject;
 import Transform = UnityEngine.Transform;
-import { constructor, DependencyContainer } from "tsyringe/dist/typings/types";
-import { container } from "tsyringe";
-import { ResourceService } from "./services/resource_service";
 
 export const VIEW_DATA = Symbol("VIEW_DATA_SYMBOL");
 
@@ -106,13 +106,8 @@ export class ViewRef<T = unknown> {
                 hostGO = this.parent.host?.find(node);
             } else if (typeof node === "symbol") {
                 hostGO = container?.resolve(node);
-            } else {
-                throw new Error(`unknown node type (${node})`);
             }
-            if (!hostGO) {
-                throw new Error(`cannot find host go of (${String(node)})`);
-            }
-
+            assert(hostGO != null, `cannot find host GameObject of (${String(node)})`);
             const prefab: UnityEngine.Object = await loader.loadAsset(template, $typeof(UnityEngine.Object));
             const newgo = <GameObject>GameObject.Instantiate(prefab, hostGO.transform);
             this._host = ViewHost.create(newgo);
@@ -120,6 +115,10 @@ export class ViewRef<T = unknown> {
         assert(this.host);
         await this.attach(this.host, option?.data);
         return this;
+    }
+
+    setActive(value: boolean) {
+        this.host?.setActive(value);
     }
 
     destroy(cleanup = true) {
