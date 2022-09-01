@@ -1,7 +1,12 @@
 import { isEmpty } from "lodash";
+import { Md5 } from "ts-md5";
 
 export function emptyFunc() {
     // empty progress
+}
+
+export function md5(str: string): string {
+    return Md5.hashStr(str).toLowerCase();
 }
 
 export function waitForSeconds(seconds: number): Promise<void> {
