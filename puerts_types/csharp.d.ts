@@ -3776,7 +3776,7 @@ declare module 'csharp' {
                 public static get persistentDataPath(): string;
                 public static get inEditor(): boolean;
                 public static get platform(): string;
-                public static get loader(): Zes.ResourceLoader;
+                public static get loader(): Zes.IO.ResourceLoader;
                 public static Restart () : void
                 public constructor ()
             }
@@ -3802,46 +3802,6 @@ declare module 'csharp' {
                 public javascriptData : string
                 public javascriptEntry : string
                 public constructor ()
-            }
-            class ResourceLoader extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public static GetLoader () : Zes.ResourceLoader
-                public LoadText ($path: string) : System.Threading.Tasks.Task$1<string>
-                public LoadScene ($name: string, $additive: boolean, $progress: System.Action$1<number>) : System.Threading.Tasks.Task$1<UnityEngine.SceneManagement.Scene>
-                public LoadBundle ($name: string, $progress?: System.Action$1<number>) : System.Threading.Tasks.Task$1<UnityEngine.AssetBundle>
-                public UnloadBundle ($bundle: UnityEngine.AssetBundle) : void
-                public UnloadScene ($scene: UnityEngine.SceneManagement.Scene) : System.Threading.Tasks.Task
-                public LoadAsset ($bundle: UnityEngine.AssetBundle, $path: string, $type: System.Type) : System.Threading.Tasks.Task$1<UnityEngine.Object>
-            }
-            class WSConnector extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public onMessage : System.Action$1<string>
-                public get connected(): boolean;
-                public Open ($url: string, $token: string) : System.Threading.Tasks.Task$1<boolean>
-                public Close () : System.Threading.Tasks.Task
-                public Send ($message: string) : System.Threading.Tasks.Task
-                public constructor ()
-            }
-            class HttpConnector extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public baseUrl : string
-                public SetToken ($token: string) : void
-                public Get ($url: string) : System.Threading.Tasks.Task$1<Zes.HttpResult>
-                public Post ($url: string, $json: string) : System.Threading.Tasks.Task$1<Zes.HttpResult>
-                public Download ($url: string, $targetPath: string, $progress: System.Action$1<number>) : System.Threading.Tasks.Task$1<boolean>
-                public constructor ($baseUrl: string)
-            }
-            class HttpResult extends System.Object
-            {
-                protected [__keep_incompatibility]: never;
-                public error : number
-                public message : string
-                public data : string
-                public constructor ($error: number, $message: string)
-                public constructor ($data: string)
             }
             class Tags extends UnityEngine.MonoBehaviour
             {
@@ -3902,6 +3862,48 @@ declare module 'csharp' {
                 public error : number
                 public message : string
                 public constructor ()
+            }
+        }
+        namespace Zes.IO {
+            class ResourceLoader extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public static GetLoader () : Zes.IO.ResourceLoader
+                public LoadText ($path: string) : System.Threading.Tasks.Task$1<string>
+                public LoadScene ($name: string, $additive: boolean, $progress: System.Action$1<number>) : System.Threading.Tasks.Task$1<UnityEngine.SceneManagement.Scene>
+                public LoadBundle ($name: string, $progress?: System.Action$1<number>) : System.Threading.Tasks.Task$1<UnityEngine.AssetBundle>
+                public UnloadBundle ($bundle: UnityEngine.AssetBundle) : void
+                public UnloadScene ($scene: UnityEngine.SceneManagement.Scene) : System.Threading.Tasks.Task
+                public LoadAsset ($bundle: UnityEngine.AssetBundle, $path: string, $type: System.Type) : System.Threading.Tasks.Task$1<UnityEngine.Object>
+            }
+            class WSConnector extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public onMessage : System.Action$1<string>
+                public get connected(): boolean;
+                public Open ($url: string, $token: string) : System.Threading.Tasks.Task$1<boolean>
+                public Close () : System.Threading.Tasks.Task
+                public Send ($message: string) : System.Threading.Tasks.Task
+                public constructor ()
+            }
+            class HttpConnector extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public baseUrl : string
+                public SetToken ($token: string) : void
+                public Get ($url: string) : System.Threading.Tasks.Task$1<Zes.IO.HttpResult>
+                public Post ($url: string, $json: string) : System.Threading.Tasks.Task$1<Zes.IO.HttpResult>
+                public Download ($url: string, $targetPath: string, $progress: System.Action$1<number>) : System.Threading.Tasks.Task$1<boolean>
+                public constructor ($baseUrl: string)
+            }
+            class HttpResult extends System.Object
+            {
+                protected [__keep_incompatibility]: never;
+                public error : number
+                public message : string
+                public data : string
+                public constructor ($error: number, $message: string)
+                public constructor ($data: string)
             }
         }
         namespace System.Threading.Tasks {

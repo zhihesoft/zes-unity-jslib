@@ -1,5 +1,6 @@
 import { TMPro, UnityEngine } from "csharp";
 import { $typeof } from "puerts";
+import { injectable } from "tsyringe";
 import { BindEventOption, BindListViewExtra, BindOption, BindPropOption, BindViewMode, BindViewOption, META_BINDOPTION } from "./metadata_bind";
 import { ComponentMetaData, META_COMPONENT } from "./metadata_component";
 
@@ -9,9 +10,12 @@ import { ComponentMetaData, META_COMPONENT } from "./metadata_component";
  * @returns 
  */
 export function component(conf?: ComponentMetaData): ClassDecorator {
-    return Reflect.metadata(META_COMPONENT, conf);
+    return (ctor) => {
+        Reflect.metadata(META_COMPONENT, conf)(ctor);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        injectable()(ctor as any);
+    }
 }
-
 
 export function bind(path: string, option?: BindPropOption | BindEventOption | BindViewOption): PropertyDecorator {
     return (target, key) => {

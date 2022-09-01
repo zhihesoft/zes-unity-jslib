@@ -14,7 +14,7 @@ import ZApp = Zes.App;
 
 export class PatchProviderRuntime implements PatchProvider {
 
-    private http = new Zes.HttpConnector(pathCombine(ZApp.config.patchServer, ZApp.platform.toLowerCase()));
+    private http = new Zes.IO.HttpConnector(pathCombine(ZApp.config.patchServer, ZApp.platform.toLowerCase()));
 
     private get patchDataPath(): string {
         return pathCombine(UnityEngine.Application.persistentDataPath, ZApp.config.patchDataPath);
@@ -24,7 +24,6 @@ export class PatchProviderRuntime implements PatchProvider {
         const config = ZApp.config;
 
         if (!config.checkUpdate) {
-            await waitForSeconds(1);
             return PatchStatus.None;
         }
 
@@ -32,6 +31,7 @@ export class PatchProviderRuntime implements PatchProvider {
         if (!localVersion) {
             return PatchStatus.Extract; // 本地没有记录，需要解压
         }
+
         const streamingVersionInfo = await this.loadStreamingVersionInfo();
         assert(streamingVersionInfo, `parse json of streaming version info failed.`);
 
@@ -51,6 +51,7 @@ export class PatchProviderRuntime implements PatchProvider {
 
             return PatchStatus.Found;
         }
+        App.version = localVersion.version;
         return PatchStatus.None;
     }
 
