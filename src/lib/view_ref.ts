@@ -84,7 +84,7 @@ export class ViewRef<T = unknown> {
     async show(option: ViewOption): Promise<ViewRef>
     async show(option?: ViewOption): Promise<ViewRef> {
 
-        logger.debug(`show view of ${this.componentClass.name}`);
+        // logger.debug(`show view of ${this.componentClass.name}`);
 
         const template = option?.template || this.componentMeta?.template;
         if (!template) {
@@ -111,7 +111,7 @@ export class ViewRef<T = unknown> {
                 hostGO = container?.resolve(node);
             }
             assert(hostGO != null, `cannot find host GameObject of (${String(node)})`);
-            logger.debug(`show view of ${this.componentClass.name} at host ${hostGO?.name}`);
+            // logger.debug(`show view of ${this.componentClass.name} at host ${hostGO?.name}`);
             const prefab: UnityEngine.Object = await loader.loadAsset(template, $typeof(UnityEngine.Object));
             const newgo = <GameObject>GameObject.Instantiate(prefab, hostGO.transform);
             this._host = ViewHost.create(newgo);

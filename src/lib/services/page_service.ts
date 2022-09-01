@@ -3,7 +3,6 @@ import "reflect-metadata";
 import { singleton } from "tsyringe";
 import { constructor } from "tsyringe/dist/typings/types";
 import { App } from "../app";
-import { getLogger } from "../logger";
 import { META_PAGE, PageMetaData, Transit } from "../metadata_page";
 import { assert } from "../util";
 import { ViewRef } from "../view_ref";
@@ -30,13 +29,9 @@ export class PageService {
     async navigate<T>(cls: constructor<T>): Promise<ViewRef<T>>;
     async navigate<T>(cls: constructor<T>, data?: unknown): Promise<ViewRef<T>> {
 
-        logger.debug(`navigate to ${cls.name}`);
+        // logger.info(`navigate to ${cls.name}`);
 
         const meta = this.getPageMeta(cls);
-        
-        logger.debug(`navigate to ${cls.name}, get meta: ${JSON.stringify(meta)}`);
-
-
         if (meta.transit == Transit.Fade) {
             await this.fade.out();
         }
@@ -44,16 +39,14 @@ export class PageService {
         let view: ViewRef<T> | undefined = this.views.find(v => v.componentClass == cls) as ViewRef<T>;
         if (view) {
             this.currentView?.setActive(false);
+            this.views = this.views.filter(v => v.componentClass != cls);
+            this.views.push(view);
             view.setActive(true);
-
-            const idx = this.views.indexOf(view);
-            assert(this.currentView);
-            this.views[idx] = this.currentView;
-            this.views[this.views.length - 1] = view;
-
         } else {
             view = App.view.createChild(cls);
+            this.currentView?.setActive(false);
             this.views.push(view);
+            this.currentView?.setActive(true);
             view.show({ node: meta.layer, data });
         }
 
@@ -103,4 +96,4 @@ export class PageService {
     }
 }
 
-const logger = getLogger(PageService.name);
+// const logger = getLogger(PageService.name);
