@@ -54,17 +54,18 @@ export class ViewRef<T = unknown> {
     }
 
     async attach(host: GameObject | ViewHost): Promise<ViewRef>;
-    async attach(host: GameObject | ViewHost, data: unknown): Promise<ViewRef>;
-    async attach(host: GameObject | ViewHost, data?: unknown): Promise<ViewRef> {
+    async attach(host: GameObject | ViewHost, data: unknown): Promise<ViewRef<T>>;
+    async attach(host: GameObject | ViewHost, data?: unknown): Promise<ViewRef<T>> {
         if (this.parent) {
             this.parent._children.push(this);
         }
 
         this._host = this.isViewHost(host) ? host : ViewHost.create(host);
-        this._component = this.container.resolve(this.componentClass);
 
         this.container.register(ViewRef, { useValue: this });
         this.container.register(VIEW_DATA, { useValue: data });
+
+        this._component = this.container.resolve(this.componentClass);
         this.container.register(this.componentClass, { useValue: this.component });
 
         await this.bind();
@@ -137,6 +138,13 @@ export class ViewRef<T = unknown> {
             }
             this._disposed = true;
         }
+    }
+
+    destroyChildren(cleanup = true) {
+        for (const child of this._children) {
+            child.destroy(cleanup);
+        }
+        this._children = [];
     }
 
     private isViewHost(obj: ViewHost | GameObject): obj is ViewHost {

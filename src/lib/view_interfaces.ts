@@ -18,11 +18,11 @@ export interface OnActiveChanged {
 }
 
 export interface OnSelected<T = unknown> {
-    ngOnSelected: Subject<T>;
+    zesOnSelected: Subject<T>;
 }
 
 export function isOnSelected(component: unknown): component is OnSelected {
-    return (<OnSelected>component).ngOnSelected != undefined;
+    return (<OnSelected>component).zesOnSelected != undefined;
 }
 
 export function isOnInit(component: unknown): component is OnInit {
