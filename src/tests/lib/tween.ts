@@ -10,13 +10,13 @@ export function tweenTest() {
             assert.equal(ret, 200);
         });
         it('tween number array', async () => {
-            const ret = await tween([1, 2, 3]).to([100, 200, 300], 0.5).setEase(EaseType.Squared).run();
+            const ret = await tween([1, 2, 3]).to([100, 200, 300], 0.5).setEase(EaseType.InOutBounce).run();
             assert.equal(ret[0], 100);
             assert.equal(ret[1], 200);
             assert.equal(ret[2], 300);
         });
         it('tween number obj', async () => {
-            const ret = await tween({ a: 1, b: 2 }).to({ a: 1000, b: 2000 }, 0.5).setEase(EaseType.Linear).run();
+            const ret = await tween({ a: 1, b: 2 }).to({ a: 1000, b: 2000 }, 0.5).setEase(EaseType.InOutElastic).run();
             assert.equal(ret.a, 1000);
             assert.equal(ret.b, 2000);
         });
