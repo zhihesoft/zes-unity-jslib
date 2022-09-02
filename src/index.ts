@@ -4,6 +4,7 @@ export { page, PageMetaData, Transit } from "./lib/metadata_page";
 export { LayerService } from "./lib/services/layer_service";
 export { PageService } from "./lib/services/page_service";
 export { ResourceService } from "./lib/services/resource_service";
+export { tween } from "./lib/tween/tween";
 export * from "./lib/util";
 export * from "./lib/view_decorators";
 export * from "./lib/view_interfaces";

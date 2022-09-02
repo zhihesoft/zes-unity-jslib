@@ -9,7 +9,6 @@ export class TweenString extends TweenBase<string> {
 
     protected doTween(elapse: number): void {
         assert(this.ends);
-
         if (this.duration <= 0) {
             this.target = this.ends;
         } else {

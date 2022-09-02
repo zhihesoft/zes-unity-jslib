@@ -14,7 +14,7 @@ export abstract class TweenBase<T> {
 
     private updateCallback?: (now: T) => void;
 
-    public to(ends: T, duration: number): TweenBase<T> {
+    public to(ends: T, duration: number) {
         this.ends = ends;
         this.duration = duration;
         return this;

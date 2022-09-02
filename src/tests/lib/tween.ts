@@ -1,17 +1,27 @@
 import { assert } from "chai";
 import { describe } from "mocha";
-import { tween, tweenString } from "../../lib/tween/tween";
+import { tween } from "../../lib/tween/tween";
 
 export function tweenTest() {
     return describe('tween', () => {
         it('tween number', async () => {
-            const target = { a: 100 };
-            await tween(target).to({ a: 200 }, 0.5).run();
-            assert.equal(target.a, 200);
+            const ret = await tween(100).to(200, 0.5).run();
+            assert.equal(ret, 200);
+        });
+        it('tween number array', async () => {
+            const ret = await tween([1, 2, 3]).to([100, 200, 300], 0.5).run();
+            assert.equal(ret[0], 100);
+            assert.equal(ret[1], 200);
+            assert.equal(ret[2], 300);
+        });
+        it('tween number obj', async () => {
+            const ret = await tween({ a: 1, b: 2 }).to({ a: 1000, b: 2000 }, 0.5).run();
+            assert.equal(ret.a, 1000);
+            assert.equal(ret.b, 2000);
         });
         it(`tween string`, async () => {
             const target = "a";
-            const ret = await tweenString(target).to("hello world", 0.5).run();
+            const ret = await tween(target).to("hello world", 0.5).run();
             assert.equal(ret, "hello world");
         });
     });
