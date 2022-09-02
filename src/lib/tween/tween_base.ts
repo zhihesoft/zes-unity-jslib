@@ -1,4 +1,6 @@
-import { assert, waitForSeconds } from "../util";
+import { waitForSeconds } from "../util";
+import { easeFunctions } from "./ease_functions";
+import { EaseType } from "./ease_type";
 
 export abstract class TweenBase<T> {
     constructor(
@@ -12,7 +14,9 @@ export abstract class TweenBase<T> {
     public duration = 0; // seconds
     public startTime = 0;
 
+    private ease: EaseType = EaseType.Linear;
     private updateCallback?: (now: T) => void;
+    private cancel = false;
 
     public to(ends: T, duration: number) {
         this.ends = ends;
@@ -20,17 +24,28 @@ export abstract class TweenBase<T> {
         return this;
     }
 
+    public setEase(type: EaseType) {
+        this.ease = type;
+        return this;
+    }
+
     public async run(): Promise<T> {
-        assert(this.ends, "end values cannot be null");
         this.startTime = Date.now();
         let elapse = 0;
         while (elapse < this.duration) {
+            if (this.cancel) {
+                return this.target;
+            }
             this.update(elapse);
             await waitForSeconds(0);
             elapse = (Date.now() - this.startTime) / 1000;
         }
         this.update(this.duration);
         return this.target;
+    }
+
+    public stop() {
+        this.cancel = true;
     }
 
     public onUpdate(action: (now: T) => void): TweenBase<T> {
@@ -42,11 +57,22 @@ export abstract class TweenBase<T> {
     protected abstract doTween(elapse: number): void;
 
     protected update(elapse: number) {
-        assert(this.ends, "end values cannot be null");
         this.doTween(elapse);
         if (this.updateCallback) {
             this.updateCallback(this.target);
         }
+    }
+
+    protected getNormalizedElapse(elapse: number) {
+        if (this.duration <= 0) {
+            return 1;
+        }
+        const value = elapse / this.duration;
+        const func = easeFunctions.get(this.ease);
+        if (!func) {
+            return value;
+        }
+        return func(value);
     }
 
 }

@@ -23,11 +23,7 @@ export class TweenNumberObj extends TweenBase<NumberObj> {
             if (Object.prototype.hasOwnProperty.call(this.starts, key)) {
                 const start = this.starts[key];
                 const end = this.ends[key];
-                if (this.duration <= 0) {
-                    this.target[key] = this.ends[key];
-                } else {
-                    this.target[key] = start + (end - start) * (elapse / this.duration);
-                }
+                this.target[key] = start + (end - start) * this.getNormalizedElapse(elapse);
             }
         }
     }

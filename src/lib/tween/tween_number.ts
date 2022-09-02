@@ -8,11 +8,7 @@ export class TweenNumber extends TweenBase<number> {
     }
 
     protected doTween(elapse: number): void {
-        assert(this.ends, "end values cannot be null");
-        if (this.duration <= 0) {
-            this.target = this.ends;
-        } else {
-            this.target = this.starts + (this.ends - this.starts) * (elapse / this.duration);
-        }
+        assert(this.ends != undefined, "end values cannot be null");
+        this.target = this.starts + (this.ends - this.starts) * this.getNormalizedElapse(elapse);
     }
 }

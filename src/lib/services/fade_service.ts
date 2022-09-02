@@ -1,6 +1,8 @@
 import { UnityEngine } from "csharp";
 import { singleton } from "tsyringe";
-import { assert, waitForSeconds } from "../util";
+import { EaseType } from "../tween/ease_type";
+import { tween } from "../tween/tween";
+import { assert } from "../util";
 
 @singleton()
 export class FadeService {
@@ -15,40 +17,24 @@ export class FadeService {
     async out(): Promise<void> {
         assert(this.image);
         this.image.gameObject.SetActive(true);
-        if (this.speed <= 0) {
-            return;
-        }
-        const delta = 1 / this.speed * (1 / 30);
-        if (this.image.color.a < 1) {
-            while (this.image) {
-                let a = this.image.color.a;
-                a += delta;
-                this.image.color = new UnityEngine.Color(this.image.color.r, this.image.color.g, this.image.color.b, a);
-                await waitForSeconds(1 / 30);
-                if (a >= 1) {
-                    break;
+        await tween(0).to(1, this.speed).setEase(EaseType.Smooth)
+            .onUpdate(a => {
+                if (this.image) {
+                    this.image.color = new UnityEngine.Color(this.image.color.r, this.image.color.g, this.image.color.b, a);
                 }
-            }
-        }
+            })
+            .run();
     }
 
     async in(): Promise<void> {
         assert(this.image);
-        if (this.speed <= 0) {
-            return;
-        }
-        const delta = 1 / this.speed * (1 / 30);
-        if (this.image.color.a > 0) {
-            while (this.image) {
-                let a = this.image.color.a;
-                a -= delta;
-                this.image.color = new UnityEngine.Color(this.image.color.r, this.image.color.g, this.image.color.b, a);
-                await waitForSeconds(1 / 30);
-                if (a <= 0) {
-                    break;
+        await tween(1).to(0, this.speed).setEase(EaseType.Smooth)
+            .onUpdate(a => {
+                if (this.image) {
+                    this.image.color = new UnityEngine.Color(this.image.color.r, this.image.color.g, this.image.color.b, a);
                 }
-            }
-        }
+            })
+            .run();
         this.image.gameObject.SetActive(false);
     }
 }
