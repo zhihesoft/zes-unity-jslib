@@ -37,5 +37,4 @@ export interface BindViewOption {
 export interface BindListViewExtra<T = unknown> {
     itemClass: constructor<T>;
     template?: string;
-    items?: T[];
 }

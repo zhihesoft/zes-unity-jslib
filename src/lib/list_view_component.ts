@@ -8,10 +8,10 @@ import { isOnSelected, OnInit } from "./view_interfaces";
 import { ViewRef, VIEW_DATA } from "./view_ref";
 
 @component()
-export class ListViewComponent<D, C> implements OnInit {
+export class ListViewComponent<D> implements OnInit {
 
     constructor(
-        @inject(VIEW_DATA) public data: BindListViewExtra<C>,
+        @inject(VIEW_DATA) public data: BindListViewExtra,
         public view: ViewRef,
     ) { }
 
@@ -29,7 +29,10 @@ export class ListViewComponent<D, C> implements OnInit {
 
         this.template.SetActive(false);
         this.items.subscribe(this.onItemsChanged.bind(this));
+    }
 
+    setData(newItems: D[]) {
+        this.items.next(newItems);
     }
 
     private onItemsChanged(items: D[]) {
