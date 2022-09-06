@@ -173,7 +173,7 @@ export class ViewRef<T = unknown> {
             }
 
             if (data.option && !this.isViewOption(data.option)) {
-                const comp = data_go.GetComponent(data.option.type);
+                const comp = data_go.GetComponent($typeof(data.option.type));
                 if (!comp) {
                     logger.error(`cannot find component on gameobject [${data.path}] (${this.componentClass.name}.${String(key)})`);
                     continue;

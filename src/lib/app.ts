@@ -13,10 +13,14 @@ export class App {
     public static async bootstrap<T>(app: constructor<T>, path: string) {
         logger.info(`app@${App.version} bootstrap on ${path} with ${app.name}`);
         App.view = await ViewRef.createRootView(RootComponent, path);
-        
+
         const appview = App.view.createChild(app);
         assert(App.view.host);
         appview.attach(App.view.host);
+    }
+
+    public static i18n(id: number) {
+        return `i18n=${id}`;
     }
 }
 

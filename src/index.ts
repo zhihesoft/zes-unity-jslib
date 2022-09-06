@@ -1,4 +1,5 @@
 export { App } from "./lib/app";
+export * from "./lib/bind_decorators";
 export { ListViewComponent } from "./lib/list_view_component";
 export { getLogger } from "./lib/logger";
 export { page, PageMetaData, Transit } from "./lib/metadata_page";

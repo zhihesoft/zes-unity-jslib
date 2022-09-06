@@ -1,5 +1,8 @@
-import { System } from "csharp";
 import { constructor } from "tsyringe/dist/typings/types";
+
+// this is raw type from c#
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type RawType = new (...args: any[]) => any;
 
 export const META_BINDOPTION = Symbol("view-meta-bindoption");
 
@@ -19,12 +22,12 @@ export interface BindOption {
 }
 
 export interface BindPropOption {
-    type: System.Type,
+    type: RawType,
     prop: string,
 }
 
 export interface BindEventOption {
-    type: System.Type;
+    type: RawType;
     event: "onClick" | "onValueChanged";
     throttleSeconds?: number;
 }
