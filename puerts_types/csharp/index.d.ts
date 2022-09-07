@@ -1325,6 +1325,95 @@ declare module 'csharp' {
             /** The coordinate space in which to operate. */
             enum Space
             { World = 0, Self = 1 }
+            /** Position, size, anchor and pivot information for a rectangle. */
+            class RectTransform extends UnityEngine.Transform implements System.Collections.IEnumerable
+            {
+                protected [__keep_incompatibility]: never;
+                /** The calculated rectangle in the local space of the Transform. */
+                public get rect(): UnityEngine.Rect;
+                /** The normalized position in the parent RectTransform that the lower left corner is anchored to. */
+                public get anchorMin(): UnityEngine.Vector2;
+                public set anchorMin(value: UnityEngine.Vector2);
+                /** The normalized position in the parent RectTransform that the upper right corner is anchored to. */
+                public get anchorMax(): UnityEngine.Vector2;
+                public set anchorMax(value: UnityEngine.Vector2);
+                /** The position of the pivot of this RectTransform relative to the anchor reference point. */
+                public get anchoredPosition(): UnityEngine.Vector2;
+                public set anchoredPosition(value: UnityEngine.Vector2);
+                /** The size of this RectTransform relative to the distances between the anchors. */
+                public get sizeDelta(): UnityEngine.Vector2;
+                public set sizeDelta(value: UnityEngine.Vector2);
+                /** The normalized position in this RectTransform that it rotates around. */
+                public get pivot(): UnityEngine.Vector2;
+                public set pivot(value: UnityEngine.Vector2);
+                /** The 3D position of the pivot of this RectTransform relative to the anchor reference point. */
+                public get anchoredPosition3D(): UnityEngine.Vector3;
+                public set anchoredPosition3D(value: UnityEngine.Vector3);
+                /** The offset of the lower left corner of the rectangle relative to the lower left anchor. */
+                public get offsetMin(): UnityEngine.Vector2;
+                public set offsetMin(value: UnityEngine.Vector2);
+                /** The offset of the upper right corner of the rectangle relative to the upper right anchor. */
+                public get offsetMax(): UnityEngine.Vector2;
+                public set offsetMax(value: UnityEngine.Vector2);
+                /** The object that is driving the values of this RectTransform. Value is null if not driven. */
+                public get drivenByObject(): UnityEngine.Object;
+                public static add_reapplyDrivenProperties ($value: UnityEngine.RectTransform.ReapplyDrivenProperties) : void
+                public static remove_reapplyDrivenProperties ($value: UnityEngine.RectTransform.ReapplyDrivenProperties) : void
+                public ForceUpdateRectTransforms () : void
+                /** Get the corners of the calculated rectangle in the local space of its Transform. * @param fourCornersArray The array that corners are filled into.
+                */
+                public GetLocalCorners ($fourCornersArray: System.Array$1<UnityEngine.Vector3>) : void
+                /** Get the corners of the calculated rectangle in world space. * @param fourCornersArray The array that corners are filled into.
+                */
+                public GetWorldCorners ($fourCornersArray: System.Array$1<UnityEngine.Vector3>) : void
+                public SetInsetAndSizeFromParentEdge ($edge: UnityEngine.RectTransform.Edge, $inset: number, $size: number) : void
+                public SetSizeWithCurrentAnchors ($axis: UnityEngine.RectTransform.Axis, $size: number) : void
+                public constructor ()
+            }
+            /** A 2D Rectangle defined by X and Y position, width and height. */
+            class Rect extends System.ValueType implements System.IFormattable, System.IEquatable$1<UnityEngine.Rect>
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            /** A Canvas placable element that can be used to modify children Alpha, Raycasting, Enabled state. */
+            class CanvasGroup extends UnityEngine.Behaviour implements UnityEngine.ICanvasRaycastFilter
+            {
+                protected [__keep_incompatibility]: never;
+                /** Set the alpha of the group. */
+                public get alpha(): number;
+                public set alpha(value: number);
+                /** Is the group interactable (are the elements beneath the group enabled). */
+                public get interactable(): boolean;
+                public set interactable(value: boolean);
+                /** Does this group block raycasting (allow collision). */
+                public get blocksRaycasts(): boolean;
+                public set blocksRaycasts(value: boolean);
+                /** Should the group ignore parent groups? */
+                public get ignoreParentGroups(): boolean;
+                public set ignoreParentGroups(value: boolean);
+                /** Returns true if the Group allows raycasts. */
+                public IsRaycastLocationValid ($sp: UnityEngine.Vector2, $eventCamera: UnityEngine.Camera) : boolean
+                public constructor ()
+            }
+            /** Behaviours are Components that can be enabled or disabled. */
+            class Behaviour extends UnityEngine.Component
+            {
+                protected [__keep_incompatibility]: never;
+                /** Enabled Behaviours are Updated, disabled Behaviours are not. */
+                public get enabled(): boolean;
+                public set enabled(value: boolean);
+                /** Reports whether a GameObject and its associated Behaviour is active and enabled. */
+                public get isActiveAndEnabled(): boolean;
+                public constructor ()
+            }
+            interface ICanvasRaycastFilter
+            {
+            }
+            /** A Camera is a device through which the player views the world. */
+            class Camera extends UnityEngine.Behaviour
+            {
+                protected [__keep_incompatibility]: never;
+            }
             /** AssetBundles let you stream additional assets via the UnityWebRequest class and instantiate them at runtime. AssetBundles are created via BuildPipeline.BuildAssetBundle. */
             class AssetBundle extends UnityEngine.Object
             {
@@ -1567,11 +1656,6 @@ declare module 'csharp' {
             {
                 protected [__keep_incompatibility]: never;
             }
-            /** A 2D Rectangle defined by X and Y position, width and height. */
-            class Rect extends System.ValueType implements System.IFormattable, System.IEquatable$1<UnityEngine.Rect>
-            {
-                protected [__keep_incompatibility]: never;
-            }
             /** Representation of four-dimensional vectors. */
             class Vector4 extends System.ValueType implements System.IFormattable, System.IEquatable$1<UnityEngine.Vector4>
             {
@@ -1694,24 +1778,8 @@ declare module 'csharp' {
             {
                 protected [__keep_incompatibility]: never;
             }
-            /** Behaviours are Components that can be enabled or disabled. */
-            class Behaviour extends UnityEngine.Component
-            {
-                protected [__keep_incompatibility]: never;
-                /** Enabled Behaviours are Updated, disabled Behaviours are not. */
-                public get enabled(): boolean;
-                public set enabled(value: boolean);
-                /** Reports whether a GameObject and its associated Behaviour is active and enabled. */
-                public get isActiveAndEnabled(): boolean;
-                public constructor ()
-            }
             /** The material class. */
             class Material extends UnityEngine.Object
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            /** Position, size, anchor and pivot information for a rectangle. */
-            class RectTransform extends UnityEngine.Transform implements System.Collections.IEnumerable
             {
                 protected [__keep_incompatibility]: never;
             }
@@ -1724,14 +1792,6 @@ declare module 'csharp' {
             class CanvasRenderer extends UnityEngine.Component
             {
                 protected [__keep_incompatibility]: never;
-            }
-            /** A Camera is a device through which the player views the world. */
-            class Camera extends UnityEngine.Behaviour
-            {
-                protected [__keep_incompatibility]: never;
-            }
-            interface ICanvasRaycastFilter
-            {
             }
             interface ISerializationCallbackReceiver
             {
@@ -3050,6 +3110,18 @@ declare module 'csharp' {
             /** Scene unloading options passed to SceneManager.UnloadScene. */
             enum UnloadSceneOptions
             { None = 0, UnloadAllEmbeddedSceneObjects = 1 }
+        }
+        namespace UnityEngine.RectTransform {
+            interface ReapplyDrivenProperties
+            { 
+            (driven: UnityEngine.RectTransform) : void; 
+            Invoke?: (driven: UnityEngine.RectTransform) => void;
+            }
+            var ReapplyDrivenProperties: { new (func: (driven: UnityEngine.RectTransform) => void): ReapplyDrivenProperties; }
+            enum Edge
+            { Left = 0, Right = 1, Top = 2, Bottom = 3 }
+            enum Axis
+            { Horizontal = 0, Vertical = 1 }
         }
         namespace System.IO {
             class Stream extends System.MarshalByRefObject implements System.IAsyncDisposable, System.IDisposable

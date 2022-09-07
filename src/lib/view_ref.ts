@@ -4,6 +4,7 @@ import "reflect-metadata";
 import { Observable, Subject, throttleTime } from "rxjs";
 import { container } from "tsyringe";
 import { constructor, DependencyContainer } from "tsyringe/dist/typings/types";
+import { DialogRef } from "./dialog_ref";
 import { getLogger } from "./logger";
 import { BindData, BindEventOption, BindPropOption, META_BINDOPTION } from "./metadata/metadata_bind";
 import { ComponentMetaData, META_COMPONENT } from "./metadata/metadata_component";
@@ -30,7 +31,10 @@ export class ViewRef<T = unknown> {
         return view;
     }
 
-    public constructor(public componentClass: constructor<T>, public parent: ViewRef) {
+    public constructor(
+        public componentClass: constructor<T>,
+        public parent: ViewRef
+    ) {
         this.componentMeta = Reflect.getMetadata(META_COMPONENT, componentClass);
         if (parent) {
             this.container = parent.container.createChildContainer();
@@ -54,6 +58,7 @@ export class ViewRef<T = unknown> {
         } else {
             this._outlet = this.host?.root;
         }
+        assert(this._outlet, `outlet is null, ${this.host}`);
         return this._outlet;
     }
 
@@ -67,8 +72,6 @@ export class ViewRef<T = unknown> {
         return new ViewRef(componentClass, this);
     }
 
-    async attach(node: string | GameObject | ViewHost): Promise<ViewRef>;
-    async attach(node: string | GameObject | ViewHost, data: unknown): Promise<ViewRef<T>>;
     async attach(node: string | GameObject | ViewHost, data?: unknown): Promise<ViewRef<T>> {
         if (this.parent) {
             this.parent._children.push(this);
@@ -101,8 +104,14 @@ export class ViewRef<T = unknown> {
         return this;
     }
 
-    async show(): Promise<ViewRef>;
-    async show(option: ViewOption): Promise<ViewRef>
+    async dialog<D, R>(cls: constructor<D>, option?: ViewOption): Promise<DialogRef<R>> {
+        const view = new ViewRef(cls, this);
+        const dlg = new DialogRef<R>(view);
+        view.container.register(DialogRef<R>, { useValue: dlg });
+        await view.show(option);
+        return dlg;
+    }
+
     async show(option?: ViewOption): Promise<ViewRef> {
 
         const template = option?.template || this.componentMeta?.template;
@@ -112,9 +121,9 @@ export class ViewRef<T = unknown> {
 
         const isSceneView = template.endsWith(".unity");
         const node = option?.node;
-        if (!node && !isSceneView) {
-            throw new Error(`gameobject view should have a host node...`);
-        }
+        // if (!node && !isSceneView) {
+        //     throw new Error(`gameobject view should have a host node...`);
+        // }
 
         const loader = container.resolve(ResourceService);
         if (isSceneView) {
@@ -129,7 +138,7 @@ export class ViewRef<T = unknown> {
             } else if (typeof node === "symbol") {
                 hostGO = container?.resolve(node);
             } else {
-                hostGO = this.outlet;
+                hostGO = this.parent.outlet;
             }
             assert(hostGO != null, `cannot find host GameObject of (${String(node)})`);
             const prefab: UnityEngine.Object = await loader.loadAsset(template, $typeof(UnityEngine.Object));

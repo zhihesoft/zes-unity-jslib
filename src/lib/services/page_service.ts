@@ -3,10 +3,11 @@ import "reflect-metadata";
 import { singleton } from "tsyringe";
 import { constructor } from "tsyringe/dist/typings/types";
 import { App } from "../app";
-import { META_PAGE, PageMetaData, Transit } from "../metadata/metadata_page";
+import { ComponentMetaData, META_COMPONENT } from "../metadata/metadata_component";
+import { TransitionService } from "../transitions/transitions";
+import { Transit } from "../transitions/transit_type";
 import { assert } from "../util_common";
 import { ViewRef } from "../view_ref";
-import { FadeService } from "./fade_service";
 import { LayerService } from "./layer_service";
 
 @singleton()
@@ -14,7 +15,7 @@ export class PageService {
 
     constructor(
         private layers: LayerService,
-        private fade: FadeService,
+        private transition: TransitionService
     ) { }
 
     private views: ViewRef[] = [];
@@ -30,12 +31,8 @@ export class PageService {
     async navigate<T>(cls: constructor<T>, data?: unknown): Promise<ViewRef<T>> {
 
         // logger.info(`navigate to ${cls.name}`);
-
         const meta = this.getPageMeta(cls);
-        if (meta.transit == Transit.Fade) {
-            await this.fade.out();
-        }
-
+        await this.transition.before(meta.transit);
         let view: ViewRef<T> | undefined = this.views.find(v => v.componentClass == cls) as ViewRef<T>;
         if (view) {
             this.currentView?.setActive(false);
@@ -47,13 +44,10 @@ export class PageService {
             this.currentView?.setActive(false);
             this.views.push(view);
             this.currentView?.setActive(true);
-            view.show({ node: meta.layer, data });
+            await view.show({ node: meta.layer, data });
         }
 
-        if (meta.transit == Transit.Fade) {
-            await this.fade.in();
-        }
-
+        await this.transition.after(meta.transit, view);
         return view;
     }
 
@@ -70,26 +64,18 @@ export class PageService {
     async replace<T>(cls: constructor<T>, data?: unknown): Promise<ViewRef<T>> {
         const meta = this.getPageMeta(cls);
 
-        if (meta.transit == Transit.Fade) {
-            await this.fade.out();
-        }
-
+        await this.transition.before(meta.transit);
         this.views.forEach(v => v.destroy());
         this.views = [];
-
         const view = App.view.createChild(cls);
         this.views.push(view);
-        view.show({ node: meta.layer, data });
-
-        if (meta.transit == Transit.Fade) {
-            await this.fade.in();
-        }
-
+        await view.show({ node: meta.layer, data });
+        await this.transition.after(meta.transit, view);
         return view;
     }
 
     private getPageMeta<T>(cls: constructor<T>): { layer: UnityEngine.GameObject, transit: Transit } {
-        const conf = (Reflect.getMetadata(META_PAGE, cls) as PageMetaData) ?? {};
+        const conf = (Reflect.getMetadata(META_COMPONENT, cls) as ComponentMetaData) ?? {};
         const layer = conf.layer ? this.layers.get(conf.layer) : this.layers.defaultLayer;
         const transit = conf.transit ?? Transit.None;
         return { layer, transit };
