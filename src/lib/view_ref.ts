@@ -45,8 +45,20 @@ export class ViewRef<T = unknown> {
     public get component() { return this._component; }
     public get destroyed() { return this._destroyed; }
     public get children() { return this._children; }
+    public get outlet() {
+        if (this._outlet) {
+            return this._outlet;
+        }
+        if (this.host?.exists("outlet")) {
+            this._outlet = this.host?.find("outlet");
+        } else {
+            this._outlet = this.host?.root;
+        }
+        return this._outlet;
+    }
 
     private _host?: ViewHost;
+    private _outlet?: UnityEngine.GameObject;
     private _component?: T;
     private _destroyed = false;
     private _children: ViewRef[] = [];
@@ -63,6 +75,7 @@ export class ViewRef<T = unknown> {
         }
 
         this._host = isViewHost(host) ? host : ViewHost.create(host);
+        // this._outlet = this._host.find("outlet");
 
         this.container.register(ViewRef, { useValue: this });
         this.container.register(VIEW_DATA, { useValue: data });
@@ -111,10 +124,7 @@ export class ViewRef<T = unknown> {
             } else if (typeof node === "symbol") {
                 hostGO = container?.resolve(node);
             } else {
-                hostGO = this.parent.host?.find("outlet");
-                if (!hostGO) {
-                    hostGO = this.parent.host?.root;
-                }
+                hostGO = this.outlet;
             }
             assert(hostGO != null, `cannot find host GameObject of (${String(node)})`);
             const prefab: UnityEngine.Object = await loader.loadAsset(template, $typeof(UnityEngine.Object));

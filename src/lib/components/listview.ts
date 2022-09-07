@@ -26,7 +26,6 @@ export class ListViewComponent<D> implements OnInit {
         assert(this.data.itemClass, "list view item class cannot be null");
         this.template = this.view.host?.find(this.data.template ?? "template");
         assert(this.template, `list view template cannot be null: ${this.data.template}`);
-
         this.template.SetActive(false);
         this.items.subscribe(this.onItemsChanged.bind(this));
     }
@@ -41,7 +40,8 @@ export class ListViewComponent<D> implements OnInit {
         // this.view.destroy(false);
         const newCount = items.length - this.pool.length;
         for (let i = 0; i < newCount; i++) {
-            const go = UnityEngine.GameObject.Instantiate(this.template, this.template.transform.parent);
+            assert(this.view.outlet, "list view outlet cannot be empty");
+            const go = UnityEngine.GameObject.Instantiate(this.template, this.view.outlet.transform);
             // logger.debug(`create go at ${i}`);
             this.pool.push(<UnityEngine.GameObject>go);
         }

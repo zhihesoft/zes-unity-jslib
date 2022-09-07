@@ -18,6 +18,7 @@ export abstract class ViewHost {
     protected tags?: Zes.Tags;
 
     abstract find(path: string): GameObject;
+    abstract exists(path: string): boolean;
     abstract setActive(active: boolean): void;
     abstract destroy(): Promise<void>;
     abstract get isSceneHost(): boolean;
@@ -44,6 +45,19 @@ class ViewHostGO extends ViewHost {
     get isSceneHost(): boolean { return false; }
 
     get root(): GameObject { return this.gameObject; }
+
+    exists(path: string): boolean {
+        if (isEmpty(path)) {
+            return true;
+        }
+        if (path.startsWith("#")) {
+            const go = this.findByTag(this.gameObject, path.substring(1));
+            return go != null;
+        } else {
+            const trans = this.gameObject.transform.Find(path);
+            return trans != null;
+        }
+    }
 
     find(path: string): UnityEngine.GameObject {
         if (isEmpty(path)) {
@@ -87,6 +101,19 @@ class ViewHostScene extends ViewHost {
 
     get isSceneHost(): boolean { return true; }
     get root(): GameObject { return this.rootGameObjects[0]; }
+
+    exists(path: string): boolean {
+        if (isEmpty(path)) {
+            return true;
+        }
+        if (path.startsWith("#")) {
+            const go = this.findByTag(this.rootGameObjects[0], path.substring(1));
+            return go != null;
+        } else {
+            const trans = this.rootGameObjects[0].transform.Find(path);
+            return trans != null;
+        }
+    }
 
     find(path: string): GameObject {
         if (path.startsWith("#")) {

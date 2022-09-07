@@ -16,11 +16,21 @@ export class ResourceService {
     private scenes2Bundle = new Map<string, string>();
     private assets2Bundle = new Map<string, string>();
 
+    /**
+     * load a text data from file
+     * @param path file path
+     * @returns text data
+     */
     async loadText(path: string): Promise<string> {
         const ret = await $promise(Zes.App.loader.LoadText(path));
         return ret;
     }
-
+    
+    /**
+     * batch load bundles
+     * @param names bundle names
+     * @param progress loading progress
+     */
     async loadBundles(names: string[], progress: (p: number) => void): Promise<void> {
         const allprogress: number[] = [names.length];
         const ps = names.map((n, i) => this.loadBundle(n, (p) => {
@@ -30,6 +40,11 @@ export class ResourceService {
         await Promise.all(ps);
     }
 
+    /**
+     * load one bundle
+     * @param name bundle name
+     * @param progress load progress
+     */
     async loadBundle(name: string, progress?: (p: number) => void): Promise<void> {
         let item = this.bundles.get(name);
         if (!item) {
@@ -63,6 +78,12 @@ export class ResourceService {
         item.time = Date.now();
     }
 
+    /**
+     * load an asset from bundle
+     * @param path asset path, should be full path like 'Assets/Bundles/conf/game.json'
+     * @param type asset type, like UnityEngine.TextAsset and so on
+     * @returns UnityEngine.Object
+     */
     async loadAsset(path: string, type: System.Type): Promise<UnityEngine.Object> {
         let item = this.assets.get(path);
         if (item) {
@@ -96,6 +117,13 @@ export class ResourceService {
         return ret;
     }
 
+    /**
+     * load a scene
+     * @param path scene full path
+     * @param additive additive mode
+     * @param progress load progress
+     * @returns  Scene
+     */
     async loadScene(path: string, additive: boolean, progress?: (p: number) => void): Promise<UnityEngine.SceneManagement.Scene> {
         progress = progress ?? emptyFunc;
         assert(this.scenes2Bundle.get(path), "scene bundle is not loaded");
