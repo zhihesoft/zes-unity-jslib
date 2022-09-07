@@ -43,11 +43,11 @@ export class ViewRef<T = unknown> {
     public readonly container: DependencyContainer;
     public get host() { return this._host; }
     public get component() { return this._component; }
-    public get disposed() { return this._disposed; }
+    public get destroyed() { return this._destroyed; }
 
     private _host?: ViewHost;
     private _component?: T;
-    private _disposed = false;
+    private _destroyed = false;
     private _children: ViewRef[] = [];
 
     createChild<C>(componentClass: constructor<C>): ViewRef<C> {
@@ -85,8 +85,6 @@ export class ViewRef<T = unknown> {
     async show(): Promise<ViewRef>;
     async show(option: ViewOption): Promise<ViewRef>
     async show(option?: ViewOption): Promise<ViewRef> {
-
-        // logger.debug(`show view of ${this.componentClass.name}`);
 
         const template = option?.template || this.componentMeta?.template;
         if (!template) {
@@ -128,17 +126,16 @@ export class ViewRef<T = unknown> {
     }
 
     destroy(cleanup = true) {
-        if (!this.disposed) {
-            Array.from(this._children).forEach(i => i.destroy(cleanup));
-            this.parent._children = this.parent._children.filter(i => i != this);
-            if (isOnDestroy(this.component)) {
-                this.component.zesOnDestroy();
-            }
-            if (cleanup) {
-                this.host?.destroy();
-            }
-            this._disposed = true;
+        assert(!this.destroyed, "view can only destroy once.");
+        Array.from(this._children).forEach(i => i.destroy(cleanup));
+        this.parent._children = this.parent._children.filter(i => i != this);
+        if (isOnDestroy(this.component)) {
+            this.component.zesOnDestroy();
         }
+        if (cleanup) {
+            this.host?.destroy();
+        }
+        this._destroyed = true;
     }
 
     destroyChildren(cleanup = true) {
@@ -204,18 +201,16 @@ export class ViewRef<T = unknown> {
         }
     }
 
-    private bindProp(comp: UnityEngine.Component, key: string, opt: BindPropOption) {
+    private bindProp(uComponent: UnityEngine.Component, key: string, opt: BindPropOption) {
         const propkey = opt.prop;
         assert(propkey, `component property key is empty. (${this.componentClass.name}.${key})`)
 
         // 值绑定皆为subject
-        const subject = (this.component as { [index: string]: unknown })[key];
+        const subject = (this.component as Record<string, unknown>)[key];
         if (!isSubject(subject)) {
             logger.error(`${this.componentClass.name}.${key} is not a subject object`);
         } else {
-            subject.subscribe({
-                next: (v: unknown) => (comp as unknown as Record<string, unknown>)[propkey] = v
-            });
+            subject.subscribe(v => (uComponent as unknown as Record<string, unknown>)[propkey] = v);
         }
     }
 
