@@ -37,7 +37,8 @@ export class ListViewComponent<D> implements OnInit {
 
     private onItemsChanged(items: D[]) {
         assert(this.template, "onItemsChanged failed: template cannot be null");
-        this.view.destroy(false);
+        this.view.destroyChildren(false);
+        // this.view.destroy(false);
         const newCount = items.length - this.pool.length;
         for (let i = 0; i < newCount; i++) {
             const go = UnityEngine.GameObject.Instantiate(this.template, this.template.transform.parent);

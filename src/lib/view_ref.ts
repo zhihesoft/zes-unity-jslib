@@ -44,6 +44,7 @@ export class ViewRef<T = unknown> {
     public get host() { return this._host; }
     public get component() { return this._component; }
     public get destroyed() { return this._destroyed; }
+    public get children() { return this._children; }
 
     private _host?: ViewHost;
     private _component?: T;
