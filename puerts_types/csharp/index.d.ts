@@ -4214,7 +4214,7 @@ declare module 'csharp' {
                 public LoadScene ($name: string, $additive: boolean, $progress: System.Action$1<number>) : System.Threading.Tasks.Task$1<UnityEngine.SceneManagement.Scene>
                 public LoadBundle ($name: string, $progress?: System.Action$1<number>) : System.Threading.Tasks.Task$1<UnityEngine.AssetBundle>
                 public UnloadBundle ($bundle: UnityEngine.AssetBundle) : void
-                public UnloadScene ($scene: UnityEngine.SceneManagement.Scene) : System.Threading.Tasks.Task
+                public UnloadScene ($scene: UnityEngine.SceneManagement.Scene) : System.Threading.Tasks.Task$1<boolean>
                 public LoadAsset ($bundle: UnityEngine.AssetBundle, $path: string, $type: System.Type) : System.Threading.Tasks.Task$1<UnityEngine.Object>
             }
             class WSConnector extends System.Object

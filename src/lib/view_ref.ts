@@ -109,9 +109,13 @@ export class ViewRef<T = unknown> {
                 hostGO = this.parent.host?.find(node);
             } else if (typeof node === "symbol") {
                 hostGO = container?.resolve(node);
+            } else {
+                hostGO = this.parent.host?.find("outlet");
+                if (!hostGO) {
+                    hostGO = this.parent.host?.root;
+                }
             }
             assert(hostGO != null, `cannot find host GameObject of (${String(node)})`);
-            // logger.debug(`show view of ${this.componentClass.name} at host ${hostGO?.name}`);
             const prefab: UnityEngine.Object = await loader.loadAsset(template, $typeof(UnityEngine.Object));
             const newgo = <GameObject>GameObject.Instantiate(prefab, hostGO.transform);
             this._host = ViewHost.create(newgo);

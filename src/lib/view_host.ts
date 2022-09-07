@@ -1,6 +1,7 @@
-import { Zes, UnityEngine } from "csharp";
+import { UnityEngine, Zes } from "csharp";
 import { isEmpty } from "lodash";
-import { $typeof } from "puerts";
+import { $promise, $typeof } from "puerts";
+import { assert } from "./util_common";
 
 import GameObject = UnityEngine.GameObject;
 import Scene = UnityEngine.SceneManagement.Scene;
@@ -18,8 +19,9 @@ export abstract class ViewHost {
 
     abstract find(path: string): GameObject;
     abstract setActive(active: boolean): void;
-    abstract destroy(): void;
+    abstract destroy(): Promise<void>;
     abstract get isSceneHost(): boolean;
+    abstract get root(): GameObject;
 
     protected findByTag(root: GameObject, tag: string): GameObject | undefined {
         if (!this.tags) {
@@ -41,6 +43,8 @@ class ViewHostGO extends ViewHost {
 
     get isSceneHost(): boolean { return false; }
 
+    get root(): GameObject { return this.gameObject; }
+
     find(path: string): UnityEngine.GameObject {
         if (isEmpty(path)) {
             return this.gameObject;
@@ -48,20 +52,16 @@ class ViewHostGO extends ViewHost {
 
         if (path.startsWith("#")) {
             const go = this.findByTag(this.gameObject, path.substring(1));
-            if (!go) {
-                throw new Error(`cannot find tag of (${path}).`);
-            }
+            assert(go, `cannot find tag of (${path}).`)
             return go;
         } else {
             const trans = this.gameObject.transform.Find(path);
-            if (!trans) {
-                throw new Error(`cannot find transform of path (${path}).`);
-            }
+            assert(trans, `cannot find transform of path (${path}).`);
             return trans.gameObject;
         }
     }
 
-    destroy(): void {
+    async destroy() {
         if (this.gameObject) {
             UnityEngine.GameObject.Destroy(this.gameObject);
         }
@@ -86,6 +86,7 @@ class ViewHostScene extends ViewHost {
     private rootGameObjects: GameObject[] = [];
 
     get isSceneHost(): boolean { return true; }
+    get root(): GameObject { return this.rootGameObjects[0]; }
 
     find(path: string): GameObject {
         if (path.startsWith("#")) {
@@ -120,13 +121,12 @@ class ViewHostScene extends ViewHost {
         return trans.gameObject;
     }
 
-    destroy(): void {
-        Zes.App.loader.UnloadScene(this.scene);
+    async destroy() {
+        await $promise(Zes.App.loader.UnloadScene(this.scene));
     }
 
     setActive(): void {
         // nothing to do
-        // logger.debug(`scene set active ${active}`);
     }
 
 }
