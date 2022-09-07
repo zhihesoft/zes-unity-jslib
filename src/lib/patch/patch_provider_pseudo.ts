@@ -1,10 +1,11 @@
+import { tween } from "../tween/tween";
 import { waitForSeconds } from "../util_common";
 import { PatchProvider } from "./patch_provider";
 import { PatchStatus } from "./patch_status";
 
 export class PatchProviderPseudo implements PatchProvider {
     private count = 0;
-    
+
     async check(): Promise<PatchStatus> {
         if (this.count == 0) {
             this.count++;
@@ -21,10 +22,6 @@ export class PatchProviderPseudo implements PatchProvider {
     }
 
     async patch(progress: (p: number) => void) {
-        for (let i = 0; i < 100; i++) {
-            progress(i * 0.01);
-            await waitForSeconds(0.01);
-        }
-        progress(1);
+        await tween(0).to(1, 5).onUpdate(progress).run();
     }
 }

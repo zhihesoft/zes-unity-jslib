@@ -4,6 +4,8 @@ export { getLogger } from "./lib/logger";
 export * from "./lib/metadata/decorator_bind";
 export * from "./lib/metadata/decorator_view";
 export { Page, PageMetaData, Transit } from "./lib/metadata/metadata_page";
+export { getPatcher, PatchProvider } from "./lib/patch/patch_provider";
+export { PatchStatus } from "./lib/patch/patch_status";
 export { FadeService } from "./lib/services/fade_service";
 export { LayerService } from "./lib/services/layer_service";
 export { PageService } from "./lib/services/page_service";
@@ -14,6 +16,10 @@ export { tween } from "./lib/tween/tween";
 export * from "./lib/util_common";
 export * from "./lib/view_interfaces";
 export { ViewRef, VIEW_DATA } from "./lib/view_ref";
+
+
+
+
 
 
 
