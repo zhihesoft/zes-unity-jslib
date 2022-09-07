@@ -6,6 +6,7 @@ export * from "./lib/metadata/decorator_view";
 export { getPatcher, PatchProvider } from "./lib/patch/patch_provider";
 export { PatchStatus } from "./lib/patch/patch_status";
 export { FadeService } from "./lib/services/fade_service";
+export * from "./lib/services/i18n_service";
 export { LayerService } from "./lib/services/layer_service";
 export { PageService } from "./lib/services/page_service";
 export { ResourceService } from "./lib/services/resource_service";
@@ -16,6 +17,8 @@ export { tween } from "./lib/tween/tween";
 export * from "./lib/util_common";
 export * from "./lib/view_interfaces";
 export { ViewRef, VIEW_DATA } from "./lib/view_ref";
+
+
 
 
 
