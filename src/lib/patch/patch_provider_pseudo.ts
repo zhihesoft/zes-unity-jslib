@@ -1,4 +1,4 @@
-import { waitForSeconds } from "../util";
+import { waitForSeconds } from "../util_common";
 import { PatchProvider } from "./patch_provider";
 import { PatchStatus } from "./patch_status";
 

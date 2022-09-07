@@ -6,10 +6,11 @@ import { Observable, Subject, throttleTime } from "rxjs";
 import { container } from "tsyringe";
 import { constructor, DependencyContainer } from "tsyringe/dist/typings/types";
 import { getLogger } from "./logger";
-import { BindData, BindEventOption, BindPropOption, BindViewOption, META_BINDOPTION } from "./metadata_bind";
-import { ComponentMetaData, META_COMPONENT } from "./metadata_component";
+import { BindData, BindEventOption, BindPropOption, META_BINDOPTION } from "./metadata/metadata_bind";
+import { ComponentMetaData, META_COMPONENT } from "./metadata/metadata_component";
 import { ResourceService } from "./services/resource_service";
-import { assert } from "./util";
+import { assert, isGameObject } from "./util_common";
+import { isEventOption, isPropOption, isViewHost, isViewOption } from "./util_view";
 import { ViewHost } from "./view_host";
 import { isAfterViewInit, isOnActiveChanged, isOnDestroy, isOnInit } from "./view_interfaces";
 import { ViewOption } from "./view_option";
@@ -60,7 +61,7 @@ export class ViewRef<T = unknown> {
             this.parent._children.push(this);
         }
 
-        this._host = this.isViewHost(host) ? host : ViewHost.create(host);
+        this._host = isViewHost(host) ? host : ViewHost.create(host);
 
         this.container.register(ViewRef, { useValue: this });
         this.container.register(VIEW_DATA, { useValue: data });
@@ -104,7 +105,7 @@ export class ViewRef<T = unknown> {
             this._host = ViewHost.create(scene);
         } else {
             let hostGO: GameObject | undefined;
-            if (this.isGameObject(node)) {
+            if (isGameObject(node)) {
                 hostGO = node;
             } else if (typeof node === "string") {
                 hostGO = this.parent.host?.find(node);
@@ -147,10 +148,6 @@ export class ViewRef<T = unknown> {
         this._children = [];
     }
 
-    private isViewHost(obj: ViewHost | GameObject): obj is ViewHost {
-        return (<ViewHost>obj).isSceneHost != undefined;
-    }
-
     private async bind() {
         if (!this.host) {
             throw new Error(`host in viewref cannot be null`);
@@ -172,15 +169,15 @@ export class ViewRef<T = unknown> {
                 continue;
             }
 
-            if (data.option && !this.isViewOption(data.option)) {
+            if (data.option && !isViewOption(data.option)) {
                 const comp = data_go.GetComponent($typeof(data.option.type));
                 if (!comp) {
                     logger.error(`cannot find component on gameobject [${data.path}] (${this.componentClass.name}.${String(key)})`);
                     continue;
                 }
-                if (this.isPropOption(data.option)) {
+                if (isPropOption(data.option)) {
                     this.bindProp(comp, key, data.option);
-                } else if (this.isEventOption(data.option)) {
+                } else if (isEventOption(data.option)) {
                     this.bindEvent(comp, key, data.option);
                 } else {
                     throw new Error(`unknown bind option: ${JSON.stringify(data.option)}`);
@@ -202,23 +199,6 @@ export class ViewRef<T = unknown> {
         if (ps.length > 0) {
             await Promise.all(ps);
         }
-    }
-
-    private isGameObject(obj: unknown): obj is UnityEngine.GameObject {
-        return (<UnityEngine.GameObject>obj).activeSelf != undefined;
-    }
-
-
-    private isPropOption(opt: BindPropOption | BindEventOption | BindViewOption): opt is BindPropOption {
-        return ((<BindPropOption>opt).prop != undefined);
-    }
-
-    private isEventOption(opt: BindPropOption | BindEventOption | BindViewOption): opt is BindEventOption {
-        return ((<BindEventOption>opt).event != undefined);
-    }
-
-    private isViewOption(opt: BindPropOption | BindEventOption | BindViewOption): opt is BindViewOption {
-        return ((<BindViewOption>opt).mode != undefined);
     }
 
     private bindProp(comp: UnityEngine.Component, key: string, opt: BindPropOption) {

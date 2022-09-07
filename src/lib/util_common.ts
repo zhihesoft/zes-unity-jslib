@@ -1,3 +1,4 @@
+import { UnityEngine } from "csharp";
 import { isEmpty } from "lodash";
 import { Md5 } from "ts-md5";
 
@@ -47,3 +48,8 @@ export function pathCombine(...values: string[]): string {
     }
     return ret;
 }
+
+export function isGameObject(obj: unknown): obj is UnityEngine.GameObject {
+    return (obj as UnityEngine.GameObject)?.activeSelf != undefined;
+}
+

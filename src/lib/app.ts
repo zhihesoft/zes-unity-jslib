@@ -1,8 +1,8 @@
 import { UnityEngine } from "csharp";
 import { constructor } from "tsyringe/dist/typings/types";
+import { RootComponent } from "./components/root";
 import { getLogger } from "./logger";
-import { RootComponent } from "./root_component";
-import { assert } from "./util";
+import { assert } from "./util_common";
 import { ViewRef } from "./view_ref";
 
 export class App {

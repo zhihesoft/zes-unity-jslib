@@ -2,7 +2,7 @@ import { UnityEngine } from "csharp";
 import { singleton } from "tsyringe";
 import { EaseType } from "../tween/ease_type";
 import { tween } from "../tween/tween";
-import { assert } from "../util";
+import { assert } from "../util_common";
 
 @singleton()
 export class FadeService {

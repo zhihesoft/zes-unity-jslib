@@ -11,7 +11,7 @@ export interface PageMetaData {
     transit?: Transit;
 }
 
-export function page(conf?: PageMetaData): ClassDecorator {
+export function Page(conf?: PageMetaData): ClassDecorator {
     conf = conf ?? {};
     return Reflect.metadata(META_PAGE, conf);
 }

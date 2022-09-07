@@ -1,4 +1,4 @@
-import { assert } from "../util";
+import { assert } from "../util_common";
 import { TweenBase } from "./tween_base";
 
 export class TweenNumberArray extends TweenBase<number[]>{

@@ -3,7 +3,7 @@ import { sum } from "lodash";
 import { $promise } from "puerts";
 import { singleton } from "tsyringe";
 import { getLogger } from "../logger";
-import { assert, emptyFunc, waitUntil } from "../util";
+import { assert, emptyFunc, waitUntil } from "../util_common";
 
 /**
  * Resource Service

@@ -4,7 +4,7 @@ import { sumBy } from "lodash";
 import { $promise } from "puerts";
 import { App } from "../app";
 import { getLogger } from "../logger";
-import { assert, pathCombine, waitForSeconds } from "../util";
+import { assert, pathCombine, waitForSeconds } from "../util_common";
 import { PatchFileInfo, PatchInfo } from "./patch_info";
 import { PatchProvider } from "./patch_provider";
 import { PatchStatus } from "./patch_status";

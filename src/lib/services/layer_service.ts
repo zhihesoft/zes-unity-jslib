@@ -1,6 +1,6 @@
 import { UnityEngine } from "csharp";
 import { singleton } from "tsyringe";
-import { assert } from "../util";
+import { assert } from "../util_common";
 
 /**
  * Layer Service

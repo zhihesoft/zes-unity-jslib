@@ -6,7 +6,7 @@ import { ComponentMetaData, META_COMPONENT } from "./metadata_component";
  * @param conf component meta data
  * @returns 
  */
-export function component(conf?: ComponentMetaData): ClassDecorator {
+export function Component(conf?: ComponentMetaData): ClassDecorator {
     return (ctor) => {
         Reflect.metadata(META_COMPONENT, conf)(ctor);
         // eslint-disable-next-line @typescript-eslint/no-explicit-any

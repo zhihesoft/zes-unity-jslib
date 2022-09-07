@@ -1,4 +1,4 @@
-import { assert } from "../util";
+import { assert } from "../util_common";
 import { TweenBase } from "./tween_base";
 
 export class TweenString extends TweenBase<string> {
