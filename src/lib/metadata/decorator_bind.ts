@@ -1,7 +1,6 @@
 import { TMPro, UnityEngine } from "csharp";
 import { BindEventOption, BindListViewExtra, BindOption, BindPropOption, BindViewMode, BindViewOption, META_BINDOPTION, RawType } from "./metadata_bind";
 
-
 export function Bind(path: string, option?: BindPropOption | BindEventOption | BindViewOption): PropertyDecorator {
     return (target, key) => {
         let data: Map<string, BindOption> = Reflect.getMetadata(META_BINDOPTION, target.constructor);
@@ -17,7 +16,10 @@ export function Prop(path: string, type: RawType, prop = "value") {
     return Bind(path, { type, prop });
 }
 
-export function Text(path: string) {
+export function Text(path: string, forTMP = true) {
+    if (!forTMP) {
+        return Bind(path, { type: UnityEngine.UI.Text, prop: "text" });
+    }
     return Bind(path, { type: TMPro.TMP_Text, prop: "text" });
 }
 

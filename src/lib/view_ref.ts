@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { UnityEngine } from "csharp";
 import { $typeof } from "puerts";
 import "reflect-metadata";
@@ -9,7 +8,7 @@ import { getLogger } from "./logger";
 import { BindData, BindEventOption, BindPropOption, META_BINDOPTION } from "./metadata/metadata_bind";
 import { ComponentMetaData, META_COMPONENT } from "./metadata/metadata_component";
 import { ResourceService } from "./services/resource_service";
-import { assert, isGameObject } from "./util_common";
+import { assert, isGameObject, isSubject } from "./util_common";
 import { isEventOption, isPropOption, isViewHost, isViewOption } from "./util_view";
 import { ViewHost } from "./view_host";
 import { isAfterViewInit, isOnActiveChanged, isOnDestroy, isOnInit } from "./view_interfaces";
@@ -23,6 +22,7 @@ export const VIEW_DATA = Symbol("VIEW_DATA_SYMBOL");
 export class ViewRef<T = unknown> {
 
     public static async createRootView<T>(cls: constructor<T>, path: string): Promise<ViewRef<T>> {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const view = new ViewRef(cls, null as any); // trick, root view has no parent
         const rootGO = GameObject.Find(path);
         assert(rootGO != null, `cannot find root obj on ${path}`);
@@ -183,16 +183,19 @@ export class ViewRef<T = unknown> {
                     throw new Error(`unknown bind option: ${JSON.stringify(data.option)}`);
                 }
             } else {
-                const type = Reflect.getMetadata('design:type', <any>this.component, key);
+                const type = Reflect.getMetadata('design:type', this.component as Record<string, unknown>, key);
+                const record = this.component as Record<string, unknown>;
                 if (data.option) {
-                    const promise = this.createChild(type).attach(data_go, data.option.extra).then(v => (<any>this.component)[key] = v.component);
+                    const promise = this.createChild(type)
+                        .attach(data_go, data.option.extra)
+                        .then(v => record[key] = v.component);
                     ps.push(promise);
                 } else if (type == GameObject) {
-                    (<any>this.component)[key] = data_go;
+                    record[key] = data_go;
                 } else if (type == Transform) {
-                    (<any>this.component)[key] = data_go.transform;
+                    record[key] = data_go.transform;
                 } else {
-                    (<any>this.component)[key] = data_go.GetComponent($typeof(type));
+                    record[key] = data_go.GetComponent($typeof(type));
                 }
             }
         }
@@ -203,18 +206,15 @@ export class ViewRef<T = unknown> {
 
     private bindProp(comp: UnityEngine.Component, key: string, opt: BindPropOption) {
         const propkey = opt.prop;
-        if (!propkey) {
-            logger.error(`component property key is empty. (${this.componentClass.name}.${key})`);
-            return;
-        }
+        assert(propkey, `component property key is empty. (${this.componentClass.name}.${key})`)
 
         // 值绑定皆为subject
-        const subject = (<any>this.component)[key];
-        if (!subject.subscribe) {
+        const subject = (this.component as { [index: string]: unknown })[key];
+        if (!isSubject(subject)) {
             logger.error(`${this.componentClass.name}.${key} is not a subject object`);
         } else {
             subject.subscribe({
-                next: (v: any) => (<any>comp)[propkey] = v
+                next: (v: unknown) => (comp as unknown as Record<string, unknown>)[propkey] = v
             });
         }
     }
@@ -226,39 +226,32 @@ export class ViewRef<T = unknown> {
             return;
         }
 
-        const handle = (<any>comp)[propkey];
+        const handle = (comp as unknown as Record<string, unknown>)[propkey];
         if (!handle) {
             logger.error(`event ${propkey} is not existed on (${opt.type}`);
             return;
         }
 
-        const evt: UnityEngine.Events.UnityEvent = handle;
-        const subject = (<any>this.component)[key];
+        const evt = handle as unknown as UnityEngine.Events.UnityEvent;
+        const subject = (this.component as unknown as Record<string, unknown>)[key];
 
         evt.AddListener(this.eventCallback(subject, opt));
     }
 
-    private eventCallback(target: any, opt: BindEventOption): (args?: any) => void {
+    private eventCallback(target: unknown, opt: BindEventOption): (args?: unknown) => void {
         const subject = new Subject();
         let observable: Observable<unknown> = subject;
         if (opt.throttleSeconds) {
             observable = subject.pipe(throttleTime(opt.throttleSeconds * 1000));
         }
-        if (this.isSubject(target)) {
+        if (isSubject(target)) {
             observable.subscribe(v => target.next(v));
         } else {
-            observable.subscribe(v => target.bind(this.component)(v));
+            type callbackFunction = (v: unknown) => void;
+            observable.subscribe(v => (target as callbackFunction).bind(this.component)(v));
         }
-        return (args?: any) => subject.next(args);
+        return (args?: unknown) => subject.next(args);
     }
-
-    private isSubject<T = any>(target: any): target is Subject<T> {
-        if (target.subscribe) {
-            return true;
-        }
-        return false;
-    }
-
 }
 
 const logger = getLogger(ViewRef.name);

@@ -1,5 +1,6 @@
 import { UnityEngine } from "csharp";
 import { isEmpty } from "lodash";
+import { Subject } from "rxjs";
 import { Md5 } from "ts-md5";
 
 export function emptyFunc() {
@@ -53,3 +54,9 @@ export function isGameObject(obj: unknown): obj is UnityEngine.GameObject {
     return (obj as UnityEngine.GameObject)?.activeSelf != undefined;
 }
 
+export function isSubject<T = unknown>(target: unknown): target is Subject<T> {
+    if ((target as { subscribe: unknown }).subscribe) {
+        return true;
+    }
+    return false;
+}

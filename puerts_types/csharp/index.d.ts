@@ -1736,6 +1736,33 @@ declare module 'csharp' {
             interface ISerializationCallbackReceiver
             {
             }
+            /** Class that can be used to generate text for rendering. */
+            class TextGenerator extends System.Object implements System.IDisposable
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            /** Script interface for. */
+            class Font extends UnityEngine.Object
+            {
+                protected [__keep_incompatibility]: never;
+            }
+            /** Where the anchor of the text is placed. */
+            enum TextAnchor
+            { UpperLeft = 0, UpperCenter = 1, UpperRight = 2, MiddleLeft = 3, MiddleCenter = 4, MiddleRight = 5, LowerLeft = 6, LowerCenter = 7, LowerRight = 8 }
+            /** Wrapping modes for text that reaches the horizontal boundary. */
+            enum HorizontalWrapMode
+            { Wrap = 0, Overflow = 1 }
+            /** Wrapping modes for text that reaches the vertical boundary. */
+            enum VerticalWrapMode
+            { Truncate = 0, Overflow = 1 }
+            /** Font Style applied to GUI Texts, Text Meshes or GUIStyles. */
+            enum FontStyle
+            { Normal = 0, Bold = 1, Italic = 2, BoldAndItalic = 3 }
+            /** A struct that stores the settings for TextGeneration. */
+            class TextGenerationSettings extends System.ValueType
+            {
+                protected [__keep_incompatibility]: never;
+            }
             /** `PlayerPrefs` is a class that stores Player preferences between game sessions. It can store string, float and integer values into the user’s platform registry. */
             class PlayerPrefs extends System.Object
             {
@@ -3149,6 +3176,52 @@ declare module 'csharp' {
             interface ILayoutElement
             {
             }
+            class Text extends UnityEngine.UI.MaskableGraphic implements UnityEngine.UI.IMaterialModifier, UnityEngine.UI.IMaskable, UnityEngine.UI.ICanvasElement, UnityEngine.UI.ILayoutElement, UnityEngine.UI.IClippable
+            {
+                protected [__keep_incompatibility]: never;
+                public get cachedTextGenerator(): UnityEngine.TextGenerator;
+                public get cachedTextGeneratorForLayout(): UnityEngine.TextGenerator;
+                public get mainTexture(): UnityEngine.Texture;
+                public get font(): UnityEngine.Font;
+                public set font(value: UnityEngine.Font);
+                public get text(): string;
+                public set text(value: string);
+                public get supportRichText(): boolean;
+                public set supportRichText(value: boolean);
+                public get resizeTextForBestFit(): boolean;
+                public set resizeTextForBestFit(value: boolean);
+                public get resizeTextMinSize(): number;
+                public set resizeTextMinSize(value: number);
+                public get resizeTextMaxSize(): number;
+                public set resizeTextMaxSize(value: number);
+                public get alignment(): UnityEngine.TextAnchor;
+                public set alignment(value: UnityEngine.TextAnchor);
+                public get alignByGeometry(): boolean;
+                public set alignByGeometry(value: boolean);
+                public get fontSize(): number;
+                public set fontSize(value: number);
+                public get horizontalOverflow(): UnityEngine.HorizontalWrapMode;
+                public set horizontalOverflow(value: UnityEngine.HorizontalWrapMode);
+                public get verticalOverflow(): UnityEngine.VerticalWrapMode;
+                public set verticalOverflow(value: UnityEngine.VerticalWrapMode);
+                public get lineSpacing(): number;
+                public set lineSpacing(value: number);
+                public get fontStyle(): UnityEngine.FontStyle;
+                public set fontStyle(value: UnityEngine.FontStyle);
+                public get pixelsPerUnit(): number;
+                public get minWidth(): number;
+                public get preferredWidth(): number;
+                public get flexibleWidth(): number;
+                public get minHeight(): number;
+                public get preferredHeight(): number;
+                public get flexibleHeight(): number;
+                public get layoutPriority(): number;
+                public FontTextureChanged () : void
+                public GetGenerationSettings ($extents: UnityEngine.Vector2) : UnityEngine.TextGenerationSettings
+                public static GetTextAnchorPivot ($anchor: UnityEngine.TextAnchor) : UnityEngine.Vector2
+                public CalculateLayoutInputHorizontal () : void
+                public CalculateLayoutInputVertical () : void
+            }
             class Button extends UnityEngine.UI.Selectable implements UnityEngine.EventSystems.IEventSystemHandler, UnityEngine.EventSystems.IPointerEnterHandler, UnityEngine.EventSystems.ISelectHandler, UnityEngine.EventSystems.IPointerExitHandler, UnityEngine.EventSystems.IDeselectHandler, UnityEngine.EventSystems.IPointerDownHandler, UnityEngine.EventSystems.IPointerUpHandler, UnityEngine.EventSystems.IMoveHandler, UnityEngine.EventSystems.ISubmitHandler, UnityEngine.EventSystems.IPointerClickHandler
             {
                 protected [__keep_incompatibility]: never;
@@ -4065,6 +4138,10 @@ declare module 'csharp' {
                 public javascriptBundle : string
                 public javascriptData : string
                 public javascriptEntry : string
+                public configBundleName : string
+                public configBundlePath : string
+                public languageBundleName : string
+                public languageBundlePath : string
                 public constructor ()
             }
             class Tags extends UnityEngine.MonoBehaviour
