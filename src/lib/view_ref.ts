@@ -67,15 +67,20 @@ export class ViewRef<T = unknown> {
         return new ViewRef(componentClass, this);
     }
 
-    async attach(host: GameObject | ViewHost): Promise<ViewRef>;
-    async attach(host: GameObject | ViewHost, data: unknown): Promise<ViewRef<T>>;
-    async attach(host: GameObject | ViewHost, data?: unknown): Promise<ViewRef<T>> {
+    async attach(node: string | GameObject | ViewHost): Promise<ViewRef>;
+    async attach(node: string | GameObject | ViewHost, data: unknown): Promise<ViewRef<T>>;
+    async attach(node: string | GameObject | ViewHost, data?: unknown): Promise<ViewRef<T>> {
         if (this.parent) {
             this.parent._children.push(this);
         }
 
-        this._host = isViewHost(host) ? host : ViewHost.create(host);
-        // this._outlet = this._host.find("outlet");
+        if (typeof node == "string") {
+            const hostNode = this.host?.find(node);
+            assert(hostNode, `cannot find host node of ${node}`);
+            this._host = ViewHost.create(hostNode);
+        } else {
+            this._host = isViewHost(node) ? node : ViewHost.create(node);
+        }
 
         this.container.register(ViewRef, { useValue: this });
         this.container.register(VIEW_DATA, { useValue: data });
