@@ -1,4 +1,3 @@
-import { TMPro, UnityEngine } from "csharp";
 import { BindEventOption, BindListViewExtra, BindOption, BindPropOption, BindViewMode, BindViewOption, META_BINDOPTION, RawType } from "./metadata_bind";
 
 export function Bind(path: string, option?: BindPropOption | BindEventOption | BindViewOption): PropertyDecorator {
@@ -18,16 +17,16 @@ export function Prop(path: string, type: RawType, prop = "value") {
 
 export function Text(path: string, forTMP = true) {
     if (!forTMP) {
-        return Bind(path, { type: UnityEngine.UI.Text, prop: "text" });
+        return Bind(path, { type: CS.UnityEngine.UI.Text, prop: "text" });
     }
-    return Bind(path, { type: TMPro.TMP_Text, prop: "text" });
+    return Bind(path, { type: CS.TMPro.TMP_Text, prop: "text" });
 }
 
 export function Click(path: string): PropertyDecorator;
 export function Click(path: string, throttleSeconds: number): PropertyDecorator;
 export function Click(path: string, throttleSeconds?: number): PropertyDecorator {
     throttleSeconds = throttleSeconds ?? 0;
-    return Bind(path, { type: UnityEngine.UI.Button, event: "onClick", throttleSeconds });
+    return Bind(path, { type: CS.UnityEngine.UI.Button, event: "onClick", throttleSeconds });
 }
 
 export function View(path: string): PropertyDecorator;

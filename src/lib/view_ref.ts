@@ -1,4 +1,3 @@
-import { UnityEngine } from "csharp";
 import { $typeof } from "puerts";
 import "reflect-metadata";
 import { Observable, Subject, throttleTime } from "rxjs";
@@ -15,8 +14,9 @@ import { ViewHost } from "./view_host";
 import { isAfterViewInit, isOnActiveChanged, isOnDestroy, isOnInit } from "./view_interfaces";
 import { ViewOption } from "./view_option";
 
-import GameObject = UnityEngine.GameObject;
-import Transform = UnityEngine.Transform;
+import UnityEngine = CS.UnityEngine;
+import GameObject = CS.UnityEngine.GameObject;
+import Transform = CS.UnityEngine.Transform;
 
 export const VIEW_DATA = Symbol("VIEW_DATA_SYMBOL");
 

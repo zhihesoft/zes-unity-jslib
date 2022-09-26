@@ -1,5 +1,4 @@
 import { assert } from "console";
-import { UnityEngine } from "csharp";
 import { isEmpty } from "lodash";
 import { singleton } from "tsyringe";
 
@@ -41,22 +40,22 @@ export class Prefs {
     private getOfUser(user: string, key: string, defaultValue: string | number | boolean): string | number | boolean {
         key = this.getKey(user, key);
         if (typeof defaultValue == "string") {
-            return UnityEngine.PlayerPrefs.GetString(key, defaultValue);
+            return CS.UnityEngine.PlayerPrefs.GetString(key, defaultValue);
         } else if (typeof defaultValue == "boolean") {
-            return UnityEngine.PlayerPrefs.GetInt(key, defaultValue ? 1 : 0) != 0;
+            return CS.UnityEngine.PlayerPrefs.GetInt(key, defaultValue ? 1 : 0) != 0;
         } else {
-            return UnityEngine.PlayerPrefs.GetInt(key, defaultValue);
+            return CS.UnityEngine.PlayerPrefs.GetInt(key, defaultValue);
         }
     }
 
     private setOfUser(user: string, key: string, value: string | number | boolean) {
         key = this.getKey(user, key);
         if (typeof value == "string") {
-            UnityEngine.PlayerPrefs.SetString(key, value);
+            CS.UnityEngine.PlayerPrefs.SetString(key, value);
         } else if (typeof value == "boolean") {
-            UnityEngine.PlayerPrefs.SetInt(key, value ? 1 : 0);
+            CS.UnityEngine.PlayerPrefs.SetInt(key, value ? 1 : 0);
         } else {
-            UnityEngine.PlayerPrefs.SetInt(key, value);
+            CS.UnityEngine.PlayerPrefs.SetInt(key, value);
         }
     }
 

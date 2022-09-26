@@ -1,10 +1,9 @@
-import { UnityEngine, Zes } from "csharp";
 import { isEmpty } from "lodash";
 import { $promise, $typeof } from "puerts";
 import { assert } from "./util_common";
 
-import GameObject = UnityEngine.GameObject;
-import Scene = UnityEngine.SceneManagement.Scene;
+import GameObject = CS.UnityEngine.GameObject;
+import Scene = CS.UnityEngine.SceneManagement.Scene;
 
 export abstract class ViewHost {
     static create(target: GameObject | Scene): ViewHost {
@@ -15,7 +14,7 @@ export abstract class ViewHost {
         }
     }
 
-    protected tags?: Zes.Tags;
+    protected tags?: CS.Au.Tags;
 
     abstract find(path: string): GameObject;
     abstract exists(path: string): boolean;
@@ -26,12 +25,12 @@ export abstract class ViewHost {
 
     protected findByTag(root: GameObject, tag: string): GameObject | undefined {
         if (!this.tags) {
-            this.tags = root.GetComponent($typeof(Zes.Tags)) as Zes.Tags;
+            this.tags = root.GetComponent($typeof(CS.Au.Tags)) as CS.Au.Tags;
             if (!this.tags) {
                 return undefined;
             }
         }
-        const go = this.tags.GetTag(tag);
+        const go = this.tags.Get(tag);
         return go;
     }
 }
@@ -39,7 +38,7 @@ export abstract class ViewHost {
 
 class ViewHostGO extends ViewHost {
     constructor(
-        public gameObject: UnityEngine.GameObject,
+        public gameObject: GameObject,
     ) { super(); }
 
     get isSceneHost(): boolean { return false; }
@@ -59,7 +58,7 @@ class ViewHostGO extends ViewHost {
         }
     }
 
-    find(path: string): UnityEngine.GameObject {
+    find(path: string): GameObject {
         if (isEmpty(path)) {
             return this.gameObject;
         }
@@ -77,7 +76,7 @@ class ViewHostGO extends ViewHost {
 
     async destroy() {
         if (this.gameObject) {
-            UnityEngine.GameObject.Destroy(this.gameObject);
+            GameObject.Destroy(this.gameObject);
         }
     }
 

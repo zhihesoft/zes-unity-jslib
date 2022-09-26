@@ -1,8 +1,6 @@
-import { UnityEngine } from "csharp";
 import { BindEventOption, BindPropOption, BindViewOption } from "./metadata/metadata_bind";
 import { ViewHost } from "./view_host";
-
-import GameObject = UnityEngine.GameObject;
+import GameObject = CS.UnityEngine.GameObject;
 
 export function isViewHost(obj: ViewHost | GameObject): obj is ViewHost {
     return (<ViewHost>obj).isSceneHost != undefined;

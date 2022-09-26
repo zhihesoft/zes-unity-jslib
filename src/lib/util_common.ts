@@ -1,7 +1,9 @@
-import { UnityEngine } from "csharp";
+
 import { isEmpty } from "lodash";
 import { Subject } from "rxjs";
 import { Md5 } from "ts-md5";
+
+import GameObject = CS.UnityEngine.GameObject;
 
 export function emptyFunc() {
     // empty progress
@@ -50,8 +52,8 @@ export function pathCombine(...values: string[]): string {
     return ret;
 }
 
-export function isGameObject(obj: unknown): obj is UnityEngine.GameObject {
-    return (obj as UnityEngine.GameObject)?.activeSelf != undefined;
+export function isGameObject(obj: unknown): obj is GameObject {
+    return (obj as GameObject)?.activeSelf != undefined;
 }
 
 export function isSubject<T = unknown>(target: unknown): target is Subject<T> {

@@ -1,4 +1,3 @@
-import { UnityEngine } from "csharp";
 import { singleton } from "tsyringe";
 import { EaseType } from "../tween/ease_type";
 import { tween } from "../tween/tween";
@@ -8,9 +7,9 @@ import { assert } from "../util_common";
 export class FadeService {
 
     speed = 0.2;
-    private image: UnityEngine.UI.Image | undefined;
+    private image: CS.UnityEngine.UI.Image | undefined;
 
-    setFadeImage(image: UnityEngine.UI.Image) {
+    setFadeImage(image: CS.UnityEngine.UI.Image) {
         this.image = image;
     }
 
@@ -20,7 +19,7 @@ export class FadeService {
         await tween(0).to(1, this.speed).setEase(EaseType.Smooth)
             .onUpdate(a => {
                 if (this.image) {
-                    this.image.color = new UnityEngine.Color(this.image.color.r, this.image.color.g, this.image.color.b, a);
+                    this.image.color = new CS.UnityEngine.Color(this.image.color.r, this.image.color.g, this.image.color.b, a);
                 }
             })
             .run();
@@ -31,7 +30,7 @@ export class FadeService {
         await tween(1).to(0, this.speed).setEase(EaseType.Smooth)
             .onUpdate(a => {
                 if (this.image) {
-                    this.image.color = new UnityEngine.Color(this.image.color.r, this.image.color.g, this.image.color.b, a);
+                    this.image.color = new CS.UnityEngine.Color(this.image.color.r, this.image.color.g, this.image.color.b, a);
                 }
             })
             .run();

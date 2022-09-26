@@ -1,4 +1,3 @@
-import { UnityEngine } from "csharp";
 import { BehaviorSubject, Subject } from "rxjs";
 import { inject } from "tsyringe";
 import { Component } from "../metadata/decorator_view";
@@ -6,6 +5,8 @@ import { BindListViewExtra } from "../metadata/metadata_bind";
 import { assert } from "../util_common";
 import { isOnSelected, OnInit } from "../view_interfaces";
 import { ViewRef, VIEW_DATA } from "../view_ref";
+
+import GameObject = CS.UnityEngine.GameObject;
 
 @Component()
 export class ListViewComponent<D> implements OnInit {
@@ -16,10 +17,10 @@ export class ListViewComponent<D> implements OnInit {
     ) { }
 
 
-    private template?: UnityEngine.GameObject;
+    private template?: GameObject;
     private onItemSelected = new Subject<D>(); //  item click event
     private items = new BehaviorSubject<D[]>([]);
-    private pool: UnityEngine.GameObject[] = [];
+    private pool: GameObject[] = [];
 
     zesOnInit(): void {
         assert(this.data, "list view data cannot be null");
@@ -41,9 +42,9 @@ export class ListViewComponent<D> implements OnInit {
         const newCount = items.length - this.pool.length;
         for (let i = 0; i < newCount; i++) {
             assert(this.view.outlet, "list view outlet cannot be empty");
-            const go = UnityEngine.GameObject.Instantiate(this.template, this.view.outlet.transform);
+            const go = GameObject.Instantiate(this.template, this.view.outlet.transform);
             // logger.debug(`create go at ${i}`);
-            this.pool.push(<UnityEngine.GameObject>go);
+            this.pool.push(<GameObject>go);
         }
 
         for (let i = 0; i < items.length; i++) {

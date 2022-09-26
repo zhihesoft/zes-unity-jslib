@@ -1,4 +1,3 @@
-import { UnityEngine } from "csharp";
 import "reflect-metadata";
 import { singleton } from "tsyringe";
 import { constructor } from "tsyringe/dist/typings/types";
@@ -74,7 +73,7 @@ export class PageService {
         return view;
     }
 
-    private getPageMeta<T>(cls: constructor<T>): { layer: UnityEngine.GameObject, transit: Transit } {
+    private getPageMeta<T>(cls: constructor<T>): { layer: CS.UnityEngine.GameObject, transit: Transit } {
         const conf = (Reflect.getMetadata(META_COMPONENT, cls) as ComponentMetaData) ?? {};
         const layer = conf.layer ? this.layers.get(conf.layer) : this.layers.defaultLayer;
         const transit = conf.transit ?? Transit.None;

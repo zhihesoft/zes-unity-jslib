@@ -1,4 +1,4 @@
-import { UnityEngine } from "csharp";
+import GameObject = CS.UnityEngine.GameObject;
 
 /**
  * Options when show a view
@@ -14,7 +14,7 @@ export interface ViewOption {
      *   1. a gameobject named 'outlet' in parent
      *   2. parent root gameobject
      */
-    node?: symbol | string | UnityEngine.GameObject;    // root node
+    node?: symbol | string | GameObject;    // root node
     /**
      * data for view
      */

@@ -1,6 +1,7 @@
-import { UnityEngine } from "csharp";
 import { singleton } from "tsyringe";
 import { assert } from "../util_common";
+
+import GameObject = CS.UnityEngine.GameObject;
 
 /**
  * Layer Service
@@ -9,19 +10,19 @@ import { assert } from "../util_common";
 export class LayerService {
 
     private defaultLayerName = "main";
-    private layers = new Map<string, UnityEngine.GameObject>();
+    private layers = new Map<string, GameObject>();
 
-    add(name: string, go: UnityEngine.GameObject) {
+    add(name: string, go: GameObject) {
         this.layers.set(name, go);
     }
 
-    get(name: string): UnityEngine.GameObject {
+    get(name: string): GameObject {
         const ret = this.layers.get(name);
         assert(ret, `cannot find layer of ${name}`);
         return ret;
     }
 
-    get defaultLayer(): UnityEngine.GameObject {
+    get defaultLayer(): GameObject {
         return this.get(this.defaultLayerName);
     }
 }
