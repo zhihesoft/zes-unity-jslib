@@ -11,7 +11,7 @@ declare namespace CS {
             set_Item(index: number, value: T):void;
         }
     }
-    interface $Task<T> {}
+    type $Task<T> = System.Threading.Tasks.Task$1<T>
     namespace System {
         class Object
         {
@@ -177,6 +177,14 @@ declare namespace CS {
             protected [__keep_incompatibility]: never;
         }
         class MarshalByRefObject extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class ReadOnlySpan$1<T> extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class Span$1<T> extends System.ValueType
         {
             protected [__keep_incompatibility]: never;
         }
@@ -3834,10 +3842,11 @@ declare namespace CS {
         class App extends UnityEngine.MonoBehaviour
         {
             protected [__keep_incompatibility]: never;
-            public static jsDebugMode : boolean
+            public static get inEditor(): boolean;
+            public static get platform(): string;
             public static get loader(): Au.Loaders.Loader;
             public static get config(): Au.AppConfig;
-            public static RestartJS () : void
+            public static RestartJS () : System.Threading.Tasks.Task$1<boolean>
             public constructor ()
         }
         class AppConfig extends System.Object
@@ -3851,9 +3860,11 @@ declare namespace CS {
             public patchServer : string
             public minVersion : string
             public checkUpdate : boolean
+            public bundleDataPath : string
             public bundleJS : string
             public bundleConfig : string
             public bundleLanguage : string
+            public jsEntry : string
             public constructor ()
         }
         class Tags extends UnityEngine.MonoBehaviour
@@ -3875,8 +3886,13 @@ declare namespace CS {
             public static WaitAsyncOperation ($op: UnityEngine.AsyncOperation, $progress?: System.Action$1<number>) : System.Threading.Tasks.Task
             public static WaitUntil ($condition: System.Func$1<boolean>) : System.Threading.Tasks.Task
             public static Timestamp () : bigint
+            public static FileCopy ($source: string, $dest: string) : System.Threading.Tasks.Task$1<boolean>
+            public static FileSave ($text: string, $dest: string) : void
+            public static FileExists ($path: string) : boolean
             public static DirEnsure ($dir: string) : System.IO.DirectoryInfo
             public static DirEnsure ($dir: System.IO.DirectoryInfo) : System.IO.DirectoryInfo
+            public static DirClear ($dir: string) : System.IO.DirectoryInfo
+            public static DirClear ($dir: System.IO.DirectoryInfo) : System.IO.DirectoryInfo
             public static DirCopy ($from: string, $to: string) : void
             public static DirCopy ($from: System.IO.DirectoryInfo, $to: System.IO.DirectoryInfo) : void
         }
@@ -3885,6 +3901,27 @@ declare namespace CS {
         class Loader extends System.Object
         {
             protected [__keep_incompatibility]: never;
+            public LoadText ($path: string) : System.Threading.Tasks.Task$1<string>
+            public LoadBundle ($name: string, $progress: System.Action$1<number>) : System.Threading.Tasks.Task$1<boolean>
+            public UnloadBundle ($name: string) : boolean
+            public LoadScene ($name: string, $additive: boolean, $progress: System.Action$1<number>) : System.Threading.Tasks.Task$1<UnityEngine.SceneManagement.Scene>
+            public UnloadScene ($scene: UnityEngine.SceneManagement.Scene) : System.Threading.Tasks.Task$1<boolean>
+            public LoadAsset ($path: string, $type: System.Type) : System.Threading.Tasks.Task$1<UnityEngine.Object>
+        }
+    }
+    namespace System.Threading.Tasks {
+        class Task extends System.Object implements System.IAsyncResult, System.Threading.IThreadPoolWorkItem, System.IDisposable
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class Task$1<TResult> extends System.Threading.Tasks.Task implements System.IAsyncResult, System.Threading.IThreadPoolWorkItem, System.IDisposable
+        {
+            protected [__keep_incompatibility]: never;
+        }
+    }
+    namespace System.Threading {
+        interface IThreadPoolWorkItem
+        {
         }
     }
     namespace System.Text {
@@ -3895,17 +3932,6 @@ declare namespace CS {
         class StringBuilder extends System.Object implements System.Runtime.Serialization.ISerializable
         {
             protected [__keep_incompatibility]: never;
-        }
-    }
-    namespace System.Threading.Tasks {
-        class Task extends System.Object implements System.IAsyncResult, System.Threading.IThreadPoolWorkItem, System.IDisposable
-        {
-            protected [__keep_incompatibility]: never;
-        }
-    }
-    namespace System.Threading {
-        interface IThreadPoolWorkItem
-        {
         }
     }
     namespace System.Runtime.Serialization {
@@ -3922,9 +3948,69 @@ declare namespace CS {
         {
             protected [__keep_incompatibility]: never;
         }
+        class Path extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static AltDirectorySeparatorChar : number
+            public static DirectorySeparatorChar : number
+            public static PathSeparator : number
+            public static VolumeSeparatorChar : number
+            public static ChangeExtension ($path: string, $extension: string) : string
+            public static Combine ($path1: string, $path2: string) : string
+            public static GetDirectoryName ($path: string) : string
+            public static GetExtension ($path: string) : string
+            public static GetFileName ($path: string) : string
+            public static GetFileNameWithoutExtension ($path: string) : string
+            public static GetFullPath ($path: string) : string
+            public static GetPathRoot ($path: string) : string
+            public static GetTempFileName () : string
+            public static GetTempPath () : string
+            public static HasExtension ($path: string) : boolean
+            public static IsPathRooted ($path: string) : boolean
+            public static GetInvalidFileNameChars () : System.Array$1<number>
+            public static GetInvalidPathChars () : System.Array$1<number>
+            public static GetRandomFileName () : string
+            public static Combine (...paths: string[]) : string
+            public static Combine ($path1: string, $path2: string, $path3: string) : string
+            public static Combine ($path1: string, $path2: string, $path3: string, $path4: string) : string
+            public static GetRelativePath ($relativeTo: string, $path: string) : string
+            public static IsPathFullyQualified ($path: string) : boolean
+            public static GetFullPath ($path: string, $basePath: string) : string
+        }
         class Stream extends System.MarshalByRefObject implements System.IAsyncDisposable, System.IDisposable
         {
             protected [__keep_incompatibility]: never;
+        }
+    }
+    namespace Au.Connectors {
+        class HttpConnector extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public baseUrl : string
+            public SetToken ($token: string) : void
+            public Get ($url: string) : System.Threading.Tasks.Task$1<Au.Connectors.HttpResult>
+            public Post ($url: string, $json: string) : System.Threading.Tasks.Task$1<Au.Connectors.HttpResult>
+            public Download ($url: string, $targetPath: string, $progress: System.Action$1<number>) : System.Threading.Tasks.Task$1<boolean>
+            public constructor ($baseUrl: string)
+        }
+        class HttpResult extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public error : number
+            public message : string
+            public data : string
+            public constructor ($error: number, $message: string)
+            public constructor ($data: string)
+        }
+        class WSConnector extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public onMessage : System.Action$1<string>
+            public get connected(): boolean;
+            public Open ($url: string, $token: string) : System.Threading.Tasks.Task$1<boolean>
+            public Close () : System.Threading.Tasks.Task
+            public Send ($message: string) : System.Threading.Tasks.Task
+            public constructor ()
         }
     }
     namespace UnityEngine.Application {

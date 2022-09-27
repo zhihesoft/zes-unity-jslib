@@ -1,5 +1,4 @@
 import compareVersions from "compare-versions";
-import { UnityEngine, Zes } from "csharp";
 import { sumBy } from "lodash";
 import { $promise } from "puerts";
 import { App } from "../app";
@@ -10,15 +9,17 @@ import { PatchProvider } from "./patch_provider";
 import { PatchStatus } from "./patch_status";
 import { VersionInfo } from "./version_info";
 
-import ZApp = Zes.App;
+import ZApp = CS.Au.App;
+import Path = CS.System.IO.Path;
 
 export class PatchProviderRuntime implements PatchProvider {
 
-    private http = new Zes.IO.HttpConnector(pathCombine(ZApp.config.patchServer, ZApp.platform.toLowerCase()));
+    private http = new CS.Au.Connectors.HttpConnector(pathCombine(ZApp.config.patchServer, ZApp.platform.toLowerCase()));
 
-    private get patchDataPath(): string {
-        return pathCombine(UnityEngine.Application.persistentDataPath, ZApp.config.patchDataPath);
-    }
+    private get patchDataPath(): string { return Path.Combine(CS.UnityEngine.Application.persistentDataPath, "patch_data"); }
+    private get patchTempPath(): string { return Path.Combine(CS.UnityEngine.Application.persistentDataPath, "__patch_temp"); }
+    private get versionFile() { return "version.json"; }
+    private get patchFile() { return "patch.json"; }
 
     async check(): Promise<PatchStatus> {
         const config = ZApp.config;
@@ -56,9 +57,9 @@ export class PatchProviderRuntime implements PatchProvider {
     }
 
     async extract(): Promise<void> {
-        Zes.Util.DirClear(this.patchDataPath);
-        await this.copyToPersistent(ZApp.config.versionInfoFile);
-        await this.copyToPersistent(ZApp.config.patchInfoFile);
+        CS.Au.Utils.DirClear(this.patchDataPath);
+        await this.copyToPersistent(this.versionFile);
+        await this.copyToPersistent(this.patchFile);
     }
 
     async patch(progress: (p: number) => void): Promise<void> {
@@ -96,12 +97,12 @@ export class PatchProviderRuntime implements PatchProvider {
         const totalsize = sumBy(list, (i) => i.size);
         let downloaded = 0;
 
-        const tempDir = pathCombine(UnityEngine.Application.persistentDataPath, "__temp");
-        const patchDir = pathCombine(UnityEngine.Application.persistentDataPath, ZApp.config.patchDataPath);
-        Zes.Util.DirClear(tempDir);
+        const tempDir = this.patchTempPath;
+        const patchDir = this.patchDataPath;
+        CS.Au.Utils.DirClear(tempDir);
 
         for (const item of list) {
-            await $promise(this.http.Download(`${remote.url}/${item.path}`, pathCombine(tempDir, item.path), (p: number) => {
+            await $promise(this.http.Download(`${remote.url}/${item.path}`, Path.Combine(tempDir, item.path), (p: number) => {
                 const downloading = p * item.size;
                 progress((downloaded + downloading) / totalsize);
             }));
@@ -112,12 +113,12 @@ export class PatchProviderRuntime implements PatchProvider {
 
         for (const item of list) {
             logger.info(`copy patch file ${item.path} to ${patchDir}`);
-            await $promise(Zes.Util.FileCopy(pathCombine(tempDir, item.path), pathCombine(patchDir, item.path)));
+            await $promise(CS.Au.Utils.FileCopy(pathCombine(tempDir, item.path), pathCombine(patchDir, item.path)));
         }
 
-        Zes.Util.DirClear(tempDir);
-        Zes.Util.FileSave(JSON.stringify(remoteVersion), pathCombine(patchDir, ZApp.config.versionInfoFile));
-        Zes.Util.FileSave(JSON.stringify(remote), pathCombine(patchDir, ZApp.config.patchInfoFile));
+        CS.Au.Utils.DirClear(tempDir);
+        CS.Au.Utils.FileSave(JSON.stringify(remoteVersion), Path.Combine(patchDir, this.versionFile));
+        CS.Au.Utils.FileSave(JSON.stringify(remote), Path.Combine(patchDir, this.patchFile));
 
         App.version = remote.version;
 
@@ -125,56 +126,54 @@ export class PatchProviderRuntime implements PatchProvider {
     }
 
     private async copyToPersistent(name: string): Promise<void> {
-        const streamPath = pathCombine(UnityEngine.Application.streamingAssetsPath, name);
-        const persistentPath = pathCombine(UnityEngine.Application.persistentDataPath, ZApp.config.patchDataPath, name);
+        const streamPath = Path.Combine(CS.UnityEngine.Application.streamingAssetsPath, name);
+        const persistentPath = Path.Combine(CS.UnityEngine.Application.persistentDataPath, this.patchDataPath, name);
         logger.info(`copy ${name} from ${streamPath} to ${persistentPath}`);
-        await Zes.Util.FileCopy(streamPath, persistentPath);
+        await CS.Au.Utils.FileCopy(streamPath, persistentPath);
     }
 
     private async loadRemotePatchInfo(): Promise<PatchInfo | undefined> {
-        const remoteJson = await $promise(this.http.Get(`/${ZApp.config.patchInfoFile}`));
+        const remoteJson = await $promise<CS.Au.Connectors.HttpResult>(this.http.Get(`/${this.patchFile}`));
         assert(remoteJson.data, `load remote patch info failed`);
         return JSON.parse(remoteJson.data);
     }
 
     private async loadRemoteVersionInfo(): Promise<VersionInfo | undefined> {
-        const remoteJson = await $promise(this.http.Get(`/${ZApp.config.versionInfoFile}`));
+        const remoteJson = await $promise<CS.Au.Connectors.HttpResult>(this.http.Get(`/${this.versionFile}`));
         assert(remoteJson.data, `load remote version info failed`);
         return JSON.parse(remoteJson.data);
     }
 
     private async loadLocalPatchInfo(): Promise<PatchInfo | undefined> {
-        const patchInfoPath = pathCombine(
-            UnityEngine.Application.persistentDataPath,
-            ZApp.config.patchDataPath,
-            ZApp.config.patchInfoFile);
-        if (!Zes.Util.FileExists(patchInfoPath)) {
+        const patchInfoPath = Path.Combine(
+            CS.UnityEngine.Application.persistentDataPath,
+            this.patchDataPath,
+            this.patchFile);
+        if (!CS.Au.Utils.FileExists(patchInfoPath)) {
             return undefined;
         }
-        const json = await $promise(ZApp.loader.LoadText(patchInfoPath));
+        const json = await $promise<string>(ZApp.loader.LoadText(patchInfoPath));
         return JSON.parse(json);
     }
 
     private async loadStreamingVersionInfo(): Promise<VersionInfo | undefined> {
-        const versionInfoPath = pathCombine(
-            UnityEngine.Application.streamingAssetsPath,
-            ZApp.config.versionInfoFile);
-        if (!Zes.Util.FileExists(versionInfoPath)) {
+        const versionInfoPath = Path.Combine(CS.UnityEngine.Application.streamingAssetsPath, this.versionFile);
+        if (!CS.Au.Utils.FileExists(versionInfoPath)) {
             return undefined;
         }
-        const json = await $promise(ZApp.loader.LoadText(versionInfoPath));
+        const json = await $promise<string>(ZApp.loader.LoadText(versionInfoPath));
         return JSON.parse(json);
     }
 
     private async loadLocalVersionInfo(): Promise<VersionInfo | undefined> {
-        const versionInfoPath = pathCombine(
-            UnityEngine.Application.persistentDataPath,
-            ZApp.config.patchDataPath,
-            ZApp.config.versionInfoFile);
-        if (!Zes.Util.FileExists(versionInfoPath)) {
+        const versionInfoPath = Path.Combine(
+            CS.UnityEngine.Application.persistentDataPath,
+            this.patchDataPath,
+            this.versionFile);
+        if (!CS.Au.Utils.FileExists(versionInfoPath)) {
             return undefined;
         }
-        const json = await $promise(ZApp.loader.LoadText(versionInfoPath));
+        const json = await $promise<string>(ZApp.loader.LoadText(versionInfoPath));
         return JSON.parse(json);
     }
 }

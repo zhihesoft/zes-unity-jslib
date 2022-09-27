@@ -1,9 +1,10 @@
-import { System, UnityEngine, Zes } from "csharp";
 import { sum } from "lodash";
 import { $promise } from "puerts";
 import { singleton } from "tsyringe";
-import { getLogger } from "../logger";
-import { assert, emptyFunc, waitUntil } from "../util_common";
+import { App } from "../app";
+import { assert, emptyFunc } from "../util_common";
+
+import Type = CS.System.Type;
 
 /**
  * Resource Service
@@ -11,10 +12,7 @@ import { assert, emptyFunc, waitUntil } from "../util_common";
 @singleton()
 export class ResourceService {
 
-    private bundles = new Map<string, PendingBundle>();
-    private assets = new Map<string, PendingAsset>();
-    private scenes2Bundle = new Map<string, string>();
-    private assets2Bundle = new Map<string, string>();
+    private assets = new Map<string, CachedAsset>();
 
     /**
      * load a text data from file
@@ -22,10 +20,10 @@ export class ResourceService {
      * @returns text data
      */
     async loadText(path: string): Promise<string> {
-        const ret = await $promise(Zes.App.loader.LoadText(path));
+        const ret: string = await $promise(App.loader.LoadText(path));
         return ret;
     }
-    
+
     /**
      * batch load bundles
      * @param names bundle names
@@ -46,36 +44,10 @@ export class ResourceService {
      * @param progress load progress
      */
     async loadBundle(name: string, progress?: (p: number) => void): Promise<void> {
-        let item = this.bundles.get(name);
-        if (!item) {
-            item = new PendingItem<UnityEngine.AssetBundle>();
-            this.bundles.set(name, item);
-            const bundle = await $promise(Zes.App.loader.LoadBundle(name, progress));
-            item.data = bundle;
-            item.status = PendingStatus.succ;
-            if (bundle) {
-                if (bundle.isStreamedSceneAssetBundle) {
-                    const spaths = bundle.GetAllScenePaths();
-                    for (let i = 0; i < spaths.Length; i++) {
-                        const element = spaths.get_Item(i);
-                        this.scenes2Bundle.set(element, name);
-                    }
-                } else {
-                    const apaths = bundle.GetAllAssetNames();
-                    for (let i = 0; i < apaths.Length; i++) {
-                        const element = apaths.get_Item(i).toLowerCase();
-                        logger.debug(`find ${element} in bundle ${name}`);
-                        this.assets2Bundle.set(element, name);
-                    }
-                }
-            }
-        } else {
-            await waitUntil(() => item?.status != PendingStatus.pending);
-            if (progress) {
-                progress(1);
-            }
-        }
-        item.time = Date.now();
+
+        await App.loader.LoadBundle(name, (p) => {
+            progress?.call(this, p);
+        });
     }
 
     /**
@@ -84,36 +56,18 @@ export class ResourceService {
      * @param type asset type, like UnityEngine.TextAsset and so on
      * @returns UnityEngine.Object
      */
-    async loadAsset(path: string, type: System.Type): Promise<UnityEngine.Object> {
-        let item = this.assets.get(path);
-        if (item) {
-            await waitUntil(() => item?.status != PendingStatus.pending);
-        } else {
-            item = new PendingItem<UnityEngine.Object>();
-            this.assets.set(path, item);
-            if (Zes.App.inEditor) {
-                const asset = await $promise(Zes.App.loader.LoadAsset(null as unknown as UnityEngine.AssetBundle, path, type));
-                assert(asset, `asset load failed: ${path}`)
-                item.data = asset;
-                item.status = PendingStatus.succ;
-            } else {
-                const bundlename = this.assets2Bundle.get(path.toLowerCase());
-                assert(bundlename, `cannot find bundle of ${path}`);
-                const bundleitem = this.bundles.get(bundlename);
-                assert(bundleitem, `no bundle item ${bundlename} found`);
-                await waitUntil(() => bundleitem.status != PendingStatus.pending);
-                const bundle = bundleitem.data;
-                assert(bundle, `bundle is null: ${bundlename}`);
-                const asset = await $promise(Zes.App.loader.LoadAsset(bundle, path, type));
-                assert(asset, `asset load failed: ${path}`)
-                item.data = asset;
-                item.status = PendingStatus.succ;
-            }
-
+    async loadAsset(path: string, type: Type): Promise<CS.UnityEngine.Object> {
+        if (this.assets.has(path)) {
+            const exists = this.assets.get(path);
+            assert(exists?.data, `asset of ${path} in cache cannot be null`);
+            exists.time = new Date().getTime();
+            return exists.data;
         }
-        const ret = item?.data;
-        item.time = Date.now();
-        assert(ret);
+
+        const ret: CS.UnityEngine.Object = await $promise(App.loader.LoadAsset(path, type));
+        const item = new CachedItem<CS.UnityEngine.Object>();
+        item.data = ret;
+        this.assets.set(path, item);
         return ret;
     }
 
@@ -124,27 +78,17 @@ export class ResourceService {
      * @param progress load progress
      * @returns  Scene
      */
-    async loadScene(path: string, additive: boolean, progress?: (p: number) => void): Promise<UnityEngine.SceneManagement.Scene> {
+    async loadScene(path: string, additive: boolean, progress?: (p: number) => void): Promise<CS.UnityEngine.SceneManagement.Scene> {
         progress = progress ?? emptyFunc;
-        assert(this.scenes2Bundle.get(path), "scene bundle is not loaded");
-        const ret = await $promise(Zes.App.loader.LoadScene(path, additive, progress));
+        const ret: CS.UnityEngine.SceneManagement.Scene = await $promise(App.loader.LoadScene(path, additive, progress));
         return ret;
     }
 }
 
-type PendingBundle = PendingItem<UnityEngine.AssetBundle>;
-type PendingAsset = PendingItem<UnityEngine.Object>;
+type CachedAsset = CachedItem<CS.UnityEngine.Object>;
 
-enum PendingStatus {
-    pending,
-    succ,
-    failed,
-}
-
-class PendingItem<T> {
-    status = PendingStatus.pending;
-    time = 0;
+class CachedItem<T> {
     data?: T;
+    time = new Date().getTime();
 }
 
-const logger = getLogger(ResourceService.name);

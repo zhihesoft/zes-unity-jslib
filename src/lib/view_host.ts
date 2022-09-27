@@ -148,7 +148,7 @@ class ViewHostScene extends ViewHost {
     }
 
     async destroy() {
-        await $promise(Zes.App.loader.UnloadScene(this.scene));
+        await $promise(CS.Au.App.loader.UnloadScene(this.scene));
     }
 
     setActive(): void {

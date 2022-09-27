@@ -9,7 +9,7 @@ export interface PatchProvider {
 }
 
 export function getPatcher(): PatchProvider {
-    if (Zes.App.inEditor) {
+    if (CS.Au.App.inEditor) {
         return new PatchProviderPseudo();
     } else {
         return new PatchProviderRuntime();
