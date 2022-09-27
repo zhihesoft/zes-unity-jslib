@@ -7,33 +7,33 @@ import { assert } from "../util_common";
 export class FadeService {
 
     speed = 0.2;
-    private image: CS.UnityEngine.UI.Image | undefined;
+    private canvas: CS.UnityEngine.CanvasGroup | undefined;
 
-    setFadeImage(image: CS.UnityEngine.UI.Image) {
-        this.image = image;
+    setFadeImage(canvas: CS.UnityEngine.CanvasGroup) {
+        this.canvas = canvas;
     }
 
     async out(): Promise<void> {
-        assert(this.image);
-        this.image.gameObject.SetActive(true);
+        assert(this.canvas);
+        this.canvas.gameObject.SetActive(true);
         await tween(0).to(1, this.speed).setEase(EaseType.Smooth)
             .onUpdate(a => {
-                if (this.image) {
-                    this.image.color = new CS.UnityEngine.Color(this.image.color.r, this.image.color.g, this.image.color.b, a);
+                if (this.canvas) {
+                    this.canvas.alpha = a;
                 }
             })
             .run();
     }
 
     async in(): Promise<void> {
-        assert(this.image);
+        assert(this.canvas);
         await tween(1).to(0, this.speed).setEase(EaseType.Smooth)
             .onUpdate(a => {
-                if (this.image) {
-                    this.image.color = new CS.UnityEngine.Color(this.image.color.r, this.image.color.g, this.image.color.b, a);
+                if (this.canvas) {
+                    this.canvas.alpha = a;
                 }
             })
             .run();
-        this.image.gameObject.SetActive(false);
+        this.canvas.gameObject.SetActive(false);
     }
 }

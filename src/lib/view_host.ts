@@ -1,5 +1,4 @@
 import { isEmpty } from "lodash";
-import { $promise, $typeof } from "puerts";
 import { assert } from "./util_common";
 
 import GameObject = CS.UnityEngine.GameObject;
@@ -25,7 +24,7 @@ export abstract class ViewHost {
 
     protected findByTag(root: GameObject, tag: string): GameObject | undefined {
         if (!this.tags) {
-            this.tags = root.GetComponent($typeof(CS.Au.Tags)) as CS.Au.Tags;
+            this.tags = root.GetComponent(puer.$typeof(CS.Au.Tags)) as CS.Au.Tags;
             if (!this.tags) {
                 return undefined;
             }
@@ -148,7 +147,7 @@ class ViewHostScene extends ViewHost {
     }
 
     async destroy() {
-        await $promise(CS.Au.App.loader.UnloadScene(this.scene));
+        await puer.$promise(CS.Au.App.loader.UnloadScene(this.scene));
     }
 
     setActive(): void {

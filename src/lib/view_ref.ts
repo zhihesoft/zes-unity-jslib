@@ -1,4 +1,3 @@
-import { $typeof } from "puerts";
 import "reflect-metadata";
 import { Observable, Subject, throttleTime } from "rxjs";
 import { container } from "tsyringe";
@@ -141,7 +140,7 @@ export class ViewRef<T = unknown> {
                 hostGO = this.parent.outlet;
             }
             assert(hostGO != null, `cannot find host GameObject of (${String(node)})`);
-            const prefab: UnityEngine.Object = await loader.loadAsset(template, $typeof(UnityEngine.Object));
+            const prefab: UnityEngine.Object = await loader.loadAsset(template, puer.$typeof(UnityEngine.Object));
             const newgo = <GameObject>GameObject.Instantiate(prefab, hostGO.transform);
             this._host = ViewHost.create(newgo);
         }
@@ -196,7 +195,7 @@ export class ViewRef<T = unknown> {
             }
 
             if (data.option && !isViewOption(data.option)) {
-                const comp = data_go.GetComponent($typeof(data.option.type));
+                const comp = data_go.GetComponent(puer.$typeof(data.option.type));
                 if (!comp) {
                     logger.error(`cannot find component on gameobject [${data.path}] (${this.componentClass.name}.${String(key)})`);
                     continue;
@@ -221,7 +220,7 @@ export class ViewRef<T = unknown> {
                 } else if (type == Transform) {
                     record[key] = data_go.transform;
                 } else {
-                    record[key] = data_go.GetComponent($typeof(type));
+                    record[key] = data_go.GetComponent(puer.$typeof(type));
                 }
             }
         }

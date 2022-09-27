@@ -1,5 +1,4 @@
 import { sum } from "lodash";
-import { $promise } from "puerts";
 import { singleton } from "tsyringe";
 import { App } from "../app";
 import { assert, emptyFunc } from "../util_common";
@@ -20,7 +19,7 @@ export class ResourceService {
      * @returns text data
      */
     async loadText(path: string): Promise<string> {
-        const ret: string = await $promise(App.loader.LoadText(path));
+        const ret: string = await puerts.$promise(App.loader.LoadText(path));
         return ret;
     }
 
@@ -50,6 +49,10 @@ export class ResourceService {
         });
     }
 
+    async unloadBundle(name: string) {
+        await App.loader.UnloadBundle(name);
+    }
+
     /**
      * load an asset from bundle
      * @param path asset path, should be full path like 'Assets/Bundles/conf/game.json'
@@ -57,6 +60,11 @@ export class ResourceService {
      * @returns UnityEngine.Object
      */
     async loadAsset(path: string, type: Type): Promise<CS.UnityEngine.Object> {
+
+        if (!path.startsWith("Assets")) {
+            path = `Assets/${CS.Au.App.config.bundleDataPath}/${path}`;
+        }
+
         if (this.assets.has(path)) {
             const exists = this.assets.get(path);
             assert(exists?.data, `asset of ${path} in cache cannot be null`);
@@ -64,7 +72,7 @@ export class ResourceService {
             return exists.data;
         }
 
-        const ret: CS.UnityEngine.Object = await $promise(App.loader.LoadAsset(path, type));
+        const ret: CS.UnityEngine.Object = await puer.$promise(App.loader.LoadAsset(path, type));
         const item = new CachedItem<CS.UnityEngine.Object>();
         item.data = ret;
         this.assets.set(path, item);
@@ -80,7 +88,7 @@ export class ResourceService {
      */
     async loadScene(path: string, additive: boolean, progress?: (p: number) => void): Promise<CS.UnityEngine.SceneManagement.Scene> {
         progress = progress ?? emptyFunc;
-        const ret: CS.UnityEngine.SceneManagement.Scene = await $promise(App.loader.LoadScene(path, additive, progress));
+        const ret: CS.UnityEngine.SceneManagement.Scene = await puer.$promise(App.loader.LoadScene(path, additive, progress));
         return ret;
     }
 }

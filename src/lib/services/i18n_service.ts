@@ -1,4 +1,3 @@
-import { $typeof } from "puerts";
 import { container, singleton } from "tsyringe";
 import { ResourceService } from "./resource_service";
 
@@ -17,9 +16,11 @@ export class I18nService {
 
     async load(language: string, assetPath: string) {
         const loader = container.resolve(ResourceService);
-        const obj = await loader.loadAsset(assetPath, $typeof(CS.UnityEngine.TextAsset));
+        await loader.loadBundle(CS.Au.App.config.bundleJS);
+        const obj = await loader.loadAsset(assetPath, puer.$typeof(CS.UnityEngine.TextAsset));
         const txt = obj as CS.UnityEngine.TextAsset;
         this.langs.set(language, JSON.parse(txt.text));
+        await loader.unloadBundle(CS.Au.App.config.bundleJS);
     }
 
     text(id: number): string {

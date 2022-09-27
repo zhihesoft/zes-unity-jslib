@@ -1,6 +1,5 @@
 import compareVersions from "compare-versions";
 import { sumBy } from "lodash";
-import { $promise } from "puerts";
 import { App } from "../app";
 import { getLogger } from "../logger";
 import { assert, pathCombine, waitForSeconds } from "../util_common";
@@ -11,6 +10,7 @@ import { VersionInfo } from "./version_info";
 
 import ZApp = CS.Au.App;
 import Path = CS.System.IO.Path;
+import $promise = puer.$promise;
 
 export class PatchProviderRuntime implements PatchProvider {
 
