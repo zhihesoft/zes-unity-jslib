@@ -1,6 +1,6 @@
 
 import { container } from "tsyringe";
-import { constructor } from "tsyringe/dist/typings/types";
+import { constructor, DependencyContainer } from "tsyringe/dist/typings/types";
 import { RootComponent } from "./components/root";
 import { getLogger } from "./logger";
 import { I18nService } from "./services/i18n_service";
@@ -13,6 +13,7 @@ export class App {
 
     public static version: string = CS.UnityEngine.Application.version;
     public static view: ViewRef;
+    public static container: DependencyContainer = container;
     private static languageService: I18nService;
 
     public static async bootstrap<T>(app: constructor<T>, path: string) {
@@ -27,7 +28,7 @@ export class App {
 
     public static i18n(id: number) {
         if (this.languageService == null) {
-            this.languageService = container.resolve(I18nService);
+            this.languageService = App.container.resolve(I18nService);
         }
         return this.languageService.text(id); // `i18n=${id}`;
     }

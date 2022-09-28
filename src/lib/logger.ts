@@ -24,11 +24,11 @@ export class Logger {
     }
 
     warn(message: string | object) {
-        console.log(this.getMessage("[WARN]", message));
+        console.warn(this.getMessage("[WARN]", message));
     }
 
     error(message: string | object) {
-        console.log(this.getMessage("[ERROR]", message));
+        console.error(this.getMessage("[ERROR]", message));
     }
 
     private getMessage(type: string, message: string | object) {

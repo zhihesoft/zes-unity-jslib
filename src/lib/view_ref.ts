@@ -1,10 +1,10 @@
 import "reflect-metadata";
 import { Observable, Subject, throttleTime } from "rxjs";
-import { container } from "tsyringe";
 import { constructor, DependencyContainer } from "tsyringe/dist/typings/types";
+import { App } from "./app";
 import { DialogRef } from "./dialog_ref";
 import { getLogger } from "./logger";
-import { BindData, BindEventOption, BindPropOption, META_BINDOPTION } from "./metadata/metadata_bind";
+import { BindEventOption, BindMetaData, BindPropOption, META_BINDOPTION } from "./metadata/metadata_bind";
 import { ComponentMetaData, META_COMPONENT } from "./metadata/metadata_component";
 import { ResourceService } from "./services/resource_service";
 import { assert, isGameObject, isSubject } from "./util_common";
@@ -38,7 +38,7 @@ export class ViewRef<T = unknown> {
         if (parent) {
             this.container = parent.container.createChildContainer();
         } else {
-            this.container = container;
+            this.container = App.container;
         }
     }
 
@@ -124,7 +124,7 @@ export class ViewRef<T = unknown> {
         //     throw new Error(`gameobject view should have a host node...`);
         // }
 
-        const loader = container.resolve(ResourceService);
+        const loader = App.container.resolve(ResourceService);
         if (isSceneView) {
             const scene = await loader.loadScene(template, true);
             this._host = ViewHost.create(scene);
@@ -135,7 +135,7 @@ export class ViewRef<T = unknown> {
             } else if (typeof node === "string") {
                 hostGO = this.parent.host?.find(node);
             } else if (typeof node === "symbol") {
-                hostGO = container?.resolve(node);
+                hostGO = this.container?.resolve(node);
             } else {
                 hostGO = this.parent.outlet;
             }
@@ -177,7 +177,7 @@ export class ViewRef<T = unknown> {
         if (!this.host) {
             throw new Error(`host in viewref cannot be null`);
         }
-        const bindMap: Map<string, BindData> = Reflect.getMetadata(META_BINDOPTION, this.componentClass);
+        const bindMap: Map<string, BindMetaData> = Reflect.getMetadata(META_BINDOPTION, this.componentClass);
 
         if (!bindMap) {
             return;

@@ -44,13 +44,11 @@ export class ResourceService {
      */
     async loadBundle(name: string, progress?: (p: number) => void): Promise<void> {
 
-        await App.loader.LoadBundle(name, (p) => {
-            progress?.call(this, p);
-        });
+        await puer.$promise(App.loader.LoadBundle(name, p => progress?.call(this, p)));
     }
 
-    async unloadBundle(name: string) {
-        await App.loader.UnloadBundle(name);
+    unloadBundle(name: string) {
+        App.loader.UnloadBundle(name);
     }
 
     /**
@@ -64,6 +62,8 @@ export class ResourceService {
         if (!path.startsWith("Assets")) {
             path = `Assets/${CS.Au.App.config.bundleDataPath}/${path}`;
         }
+
+        path = path.toLowerCase();
 
         if (this.assets.has(path)) {
             const exists = this.assets.get(path);

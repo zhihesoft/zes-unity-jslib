@@ -1,33 +1,27 @@
 import { constructor } from "tsyringe/dist/typings/types";
 
-// this is raw type from c#
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type RawType = new (...args: any[]) => any;
-
-export const META_BINDOPTION = Symbol("view-meta-bindoption");
-
-export interface BindData {
-    path: string;
-    option?: BindPropOption | BindEventOption | BindViewOption;
-}
-
+/**
+ * Bind View Mode
+ */
 export enum BindViewMode {
     attach = 0,
     create,
 }
 
-export interface BindOption {
+export const META_BINDOPTION = Symbol("view-meta-bindoption");
+
+export interface BindMetaData {
     path: string;
     option?: BindPropOption | BindEventOption | BindViewOption;
 }
 
 export interface BindPropOption {
-    type: RawType,
+    type: constructor<unknown>,
     prop: string,
 }
 
 export interface BindEventOption {
-    type: RawType;
+    type: constructor<unknown>;
     event: "onClick" | "onValueChanged";
     throttleSeconds?: number;
 }

@@ -6,12 +6,8 @@ import { assert } from "../util_common";
 @singleton()
 export class FadeService {
 
-    speed = 0.2;
-    private canvas: CS.UnityEngine.CanvasGroup | undefined;
-
-    setFadeImage(canvas: CS.UnityEngine.CanvasGroup) {
-        this.canvas = canvas;
-    }
+    public speed = 0.2; // fade speed
+    public canvas: CS.UnityEngine.CanvasGroup | undefined;
 
     async out(): Promise<void> {
         assert(this.canvas);
@@ -21,8 +17,7 @@ export class FadeService {
                 if (this.canvas) {
                     this.canvas.alpha = a;
                 }
-            })
-            .run();
+            }).run();
     }
 
     async in(): Promise<void> {
