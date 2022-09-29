@@ -73,10 +73,8 @@ export class PatchProviderRuntime implements PatchProvider {
 
         const map = new Map<string, PatchFileInfo>();
         const list: PatchFileInfo[] = [];
-
-        for (const item of local.files) {
-            map.set(item.path, item);
-        }
+        local.files.forEach(i => map.set(i.path, i));
+        
         for (const item of remote.files) {
             if (!map.has(item.path)) {
                 list.push(item);
