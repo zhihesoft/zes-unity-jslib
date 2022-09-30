@@ -1,6 +1,6 @@
 import { BehaviorSubject, Subject } from "rxjs";
 import { inject } from "tsyringe";
-import { Component } from "../metadata/decorator_view";
+import { component } from "../metadata/decorator_view";
 import { BindListViewExtra } from "../metadata/metadata_bind";
 import { assert } from "../util_common";
 import { isOnSelected, OnInit } from "../view_interfaces";
@@ -8,7 +8,7 @@ import { ViewRef, VIEW_DATA } from "../view_ref";
 
 import GameObject = CS.UnityEngine.GameObject;
 
-@Component()
+@component()
 export class ListViewComponent<D> implements OnInit {
 
     constructor(

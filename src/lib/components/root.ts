@@ -1,4 +1,4 @@
-import { Component } from "../metadata/decorator_view";
+import { component } from "../metadata/decorator_view";
 
-@Component()
+@component()
 export class RootComponent {}
