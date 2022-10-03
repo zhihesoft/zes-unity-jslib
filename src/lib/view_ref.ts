@@ -4,7 +4,7 @@ import { constructor, DependencyContainer } from "tsyringe/dist/typings/types";
 import { App } from "./app";
 import { DialogRef } from "./dialog_ref";
 import { getLogger } from "./logger";
-import { BindEventOption, BindMetaData, BindPropOption, META_BINDOPTION } from "./metadata/metadata_bind";
+import { BindEventOption, BindMetaData, BindPropOption, BindViewMode, META_BINDOPTION } from "./metadata/metadata_bind";
 import { ComponentMetaData, META_COMPONENT } from "./metadata/metadata_component";
 import { ResourceService } from "./services/resource_service";
 import { assert, isGameObject, isSubject } from "./util_common";
@@ -114,6 +114,9 @@ export class ViewRef<T = unknown> {
     async show(option?: ViewOption): Promise<ViewRef> {
 
         const template = option?.template || this.componentMeta?.template;
+
+        logger.debug(`ViewRef.show ${template}`);
+
         if (!template) {
             throw new Error(`show viewref need a template`);
         }
@@ -126,7 +129,9 @@ export class ViewRef<T = unknown> {
 
         const loader = App.container.resolve(ResourceService);
         if (isSceneView) {
+            logger.info(`load scene ${template}`);
             const scene = await loader.loadScene(template, true);
+            logger.info(`load scene ${template} finished`);
             this._host = ViewHost.create(scene);
         } else {
             let hostGO: GameObject | undefined;
@@ -211,10 +216,17 @@ export class ViewRef<T = unknown> {
                 const type = Reflect.getMetadata('design:type', this.component as Record<string, unknown>, key);
                 const record = this.component as Record<string, unknown>;
                 if (data.option) {
-                    const promise = this.createChild(type)
-                        .attach(data_go, data.option.extra)
-                        .then(v => record[key] = v.component);
-                    ps.push(promise);
+                    // logger.debug(`create child ${type.name} in ${this.componentMeta?.template}`);
+                    if (data.option.mode == BindViewMode.attach) {
+                        const promise = this.createChild(type).attach(data_go, data.option.extra).then(v => record[key] = v.component);
+                        ps.push(promise);
+                    } else {
+                        const promise = this.createChild(type).show().then(v => {
+                            record[key] = v.component;
+                            // logger.debug(`set record ${key} to ${v.component}`);
+                        });
+                        ps.push(promise);
+                    }
                 } else if (type == GameObject) {
                     record[key] = data_go;
                 } else if (type == Transform) {
