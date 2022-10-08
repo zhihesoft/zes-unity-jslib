@@ -216,15 +216,11 @@ export class ViewRef<T = unknown> {
                 const type = Reflect.getMetadata('design:type', this.component as Record<string, unknown>, key);
                 const record = this.component as Record<string, unknown>;
                 if (data.option) {
-                    // logger.debug(`create child ${type.name} in ${this.componentMeta?.template}`);
                     if (data.option.mode == BindViewMode.attach) {
                         const promise = this.createChild(type).attach(data_go, data.option.extra).then(v => record[key] = v.component);
                         ps.push(promise);
                     } else {
-                        const promise = this.createChild(type).show().then(v => {
-                            record[key] = v.component;
-                            // logger.debug(`set record ${key} to ${v.component}`);
-                        });
+                        const promise = this.createChild(type).show({ data: data.option.extra }).then(v => record[key] = v.component);
                         ps.push(promise);
                     }
                 } else if (type == GameObject) {
