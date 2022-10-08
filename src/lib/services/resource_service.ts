@@ -47,6 +47,10 @@ export class ResourceService {
         await puer.$promise(App.loader.LoadBundle(name, p => progress?.call(this, p)));
     }
 
+    /**
+     * unload one bundle
+     * @param name bundle name
+     */
     unloadBundle(name: string) {
         App.loader.UnloadBundle(name);
     }
@@ -90,6 +94,15 @@ export class ResourceService {
         progress = progress ?? emptyFunc;
         const ret: CS.UnityEngine.SceneManagement.Scene = await puer.$promise(App.loader.LoadScene(path, additive, progress));
         return ret;
+    }
+
+    /**
+     * unload a scene
+     * @param scene scene to unload
+     * @returns 
+     */
+    async unloadScene(scene: CS.UnityEngine.SceneManagement.Scene): Promise<boolean> {
+        return puer.$promise(App.loader.UnloadScene(scene));
     }
 }
 
