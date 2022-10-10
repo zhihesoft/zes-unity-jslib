@@ -21,22 +21,21 @@ declare namespace CS {
         {
             protected [__keep_incompatibility]: never;
         }
-        class Enum extends System.ValueType implements System.IFormattable, System.IComparable, System.IConvertible
+        class Boolean extends System.ValueType implements System.IComparable, System.IComparable$1<boolean>, System.IConvertible, System.IEquatable$1<boolean>
         {
             protected [__keep_incompatibility]: never;
         }
-        interface IFormattable
+        interface IComparable
         {
         }
-        interface IComparable
+        interface IComparable$1<T>
         {
         }
         interface IConvertible
         {
         }
-        class Type extends System.Reflection.MemberInfo implements System.Runtime.InteropServices._MemberInfo, System.Runtime.InteropServices._Type, System.Reflection.ICustomAttributeProvider, System.Reflection.IReflect
+        interface IEquatable$1<T>
         {
-            protected [__keep_incompatibility]: never;
         }
         class String extends System.Object implements System.ICloneable, System.IComparable, System.IComparable$1<string>, System.IConvertible, System.Collections.Generic.IEnumerable$1<number>, System.Collections.IEnumerable, System.IEquatable$1<string>
         {
@@ -45,19 +44,40 @@ declare namespace CS {
         interface ICloneable
         {
         }
-        interface IComparable$1<T>
-        {
-        }
         class Char extends System.ValueType implements System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>
         {
             protected [__keep_incompatibility]: never;
         }
-        interface IEquatable$1<T>
-        {
-        }
-        class Boolean extends System.ValueType implements System.IComparable, System.IComparable$1<boolean>, System.IConvertible, System.IEquatable$1<boolean>
+        class Delegate extends System.Object implements System.Runtime.Serialization.ISerializable, System.ICloneable
         {
             protected [__keep_incompatibility]: never;
+        }
+        interface MulticastDelegate
+        { 
+        (...args:any[]) : any; 
+        Invoke?: (...args:any[]) => any;
+        }
+        var MulticastDelegate: { new (func: (...args:any[]) => any): MulticastDelegate; }
+        class Int32 extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        interface IFormattable
+        {
+        }
+        interface ISpanFormattable
+        {
+        }
+        interface Func$2<T, TResult>
+        { 
+        (arg: T) : TResult; 
+        Invoke?: (arg: T) => TResult;
+        }
+        interface IAsyncResult
+        {
+        }
+        interface IDisposable
+        {
         }
         class Array extends System.Object implements System.Collections.IStructuralComparable, System.Collections.IStructuralEquatable, System.ICloneable, System.Collections.ICollection, System.Collections.IEnumerable, System.Collections.IList
         {
@@ -127,45 +147,18 @@ declare namespace CS {
             public static ConstrainedCopy ($sourceArray: System.Array, $sourceIndex: number, $destinationArray: System.Array, $destinationIndex: number, $length: number) : void
             public Initialize () : void
         }
-        class Void extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class Int32 extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        interface ISpanFormattable
-        {
-        }
-        class UInt64 extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<bigint>, System.IConvertible, System.IEquatable$1<bigint>
-        {
-            protected [__keep_incompatibility]: never;
-        }
         class Single extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>
         {
             protected [__keep_incompatibility]: never;
         }
-        interface IAsyncResult
-        {
-        }
-        interface IDisposable
-        {
-        }
-        class Delegate extends System.Object implements System.Runtime.Serialization.ISerializable, System.ICloneable
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        interface MulticastDelegate
-        { 
-        (...args:any[]) : any; 
-        Invoke?: (...args:any[]) => any;
-        }
-        var MulticastDelegate: { new (func: (...args:any[]) => any): MulticastDelegate; }
         interface Action$1<T>
         { 
         (obj: T) : void; 
         Invoke?: (obj: T) => void;
+        }
+        class Void extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
         }
         interface Func$1<TResult>
         { 
@@ -180,6 +173,10 @@ declare namespace CS {
         {
             protected [__keep_incompatibility]: never;
         }
+        class Type extends System.Reflection.MemberInfo implements System.Runtime.InteropServices._MemberInfo, System.Runtime.InteropServices._Type, System.Reflection.ICustomAttributeProvider, System.Reflection.IReflect
+        {
+            protected [__keep_incompatibility]: never;
+        }
         class ReadOnlySpan$1<T> extends System.ValueType
         {
             protected [__keep_incompatibility]: never;
@@ -190,6 +187,10 @@ declare namespace CS {
         }
         interface IFormatProvider
         {
+        }
+        class Enum extends System.ValueType implements System.IFormattable, System.IComparable, System.IConvertible
+        {
+            protected [__keep_incompatibility]: never;
         }
         interface Action
         { 
@@ -213,6 +214,10 @@ declare namespace CS {
         Invoke?: (obj: T) => boolean;
         }
         class Byte extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class UInt64 extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<bigint>, System.IConvertible, System.IEquatable$1<bigint>
         {
             protected [__keep_incompatibility]: never;
         }
@@ -348,6 +353,177 @@ declare namespace CS {
             public static op_Equality ($x: UnityEngine.Object, $y: UnityEngine.Object) : boolean
             public static op_Inequality ($x: UnityEngine.Object, $y: UnityEngine.Object) : boolean
             public constructor ()
+        }
+        /** Base class for everything attached to GameObjects.
+        */
+        class Component extends UnityEngine.Object
+        {
+            protected [__keep_incompatibility]: never;
+            /** The Transform attached to this GameObject.
+            */
+            public get transform(): UnityEngine.Transform;
+            /** The game object this component is attached to. A component is always attached to a game object.
+            */
+            public get gameObject(): UnityEngine.GameObject;
+            /** The tag of this game object.
+            */
+            public get tag(): string;
+            public set tag(value: string);
+            /** Returns the component of type if the GameObject has one attached.
+            * @param type The type of Component to retrieve.
+            * @returns A Component of the matching type, otherwise null if no Component is found. 
+            */
+            public GetComponent ($type: System.Type) : UnityEngine.Component
+            /** Gets the component of the specified type, if it exists.
+            * @param type The type of the component to retrieve.
+            * @param component The output argument that will contain the component or null.
+            * @returns Returns true if the component is found, false otherwise. 
+            */
+            public TryGetComponent ($type: System.Type, $component: $Ref<UnityEngine.Component>) : boolean
+            /** To improve the performance of your code, consider using GetComponent with a type instead of a string.
+            * @param type The name of the type of Component to get.
+            * @returns A Component of the matching type, otherwise null if no Component is found. 
+            */
+            public GetComponent ($type: string) : UnityEngine.Component
+            /** Returns the Component of type in the GameObject or any of its children using depth first search.
+            * @param t The type of Component to retrieve.
+            * @param includeInactive Should Components on inactive GameObjects be included in the found set?
+            * @returns A Component of the matching type, otherwise null if no Component is found. 
+            */
+            public GetComponentInChildren ($t: System.Type, $includeInactive: boolean) : UnityEngine.Component
+            /** Returns the Component of type in the GameObject or any of its children using depth first search.
+            * @param t The type of Component to retrieve.
+            * @param includeInactive Should Components on inactive GameObjects be included in the found set?
+            * @returns A Component of the matching type, otherwise null if no Component is found. 
+            */
+            public GetComponentInChildren ($t: System.Type) : UnityEngine.Component
+            /** Returns all components of Type type in the GameObject or any of its children using depth first search. Works recursively.
+            * @param t The type of Component to retrieve.
+            * @param includeInactive Should Components on inactive GameObjects be included in the found set. includeInactive decides which children of the GameObject will be searched.  The GameObject that you call GetComponentsInChildren on is always searched regardless. Default is false.
+            */
+            public GetComponentsInChildren ($t: System.Type, $includeInactive: boolean) : System.Array$1<UnityEngine.Component>
+            public GetComponentsInChildren ($t: System.Type) : System.Array$1<UnityEngine.Component>
+            /** Returns the Component of type in the GameObject or any of its parents.
+            * @param t The type of Component to retrieve.
+            * @param includeInactive Should Components on inactive GameObjects be included in the found set?
+            * @returns A Component of the matching type, otherwise null if no Component is found. 
+            */
+            public GetComponentInParent ($t: System.Type, $includeInactive: boolean) : UnityEngine.Component
+            /** Returns the Component of type in the GameObject or any of its parents.
+            * @param t The type of Component to retrieve.
+            * @param includeInactive Should Components on inactive GameObjects be included in the found set?
+            * @returns A Component of the matching type, otherwise null if no Component is found. 
+            */
+            public GetComponentInParent ($t: System.Type) : UnityEngine.Component
+            /** Returns all components of Type type in the GameObject or any of its parents.
+            * @param t The type of Component to retrieve.
+            * @param includeInactive Should inactive Components be included in the found set?
+            */
+            public GetComponentsInParent ($t: System.Type, $includeInactive: boolean) : System.Array$1<UnityEngine.Component>
+            public GetComponentsInParent ($t: System.Type) : System.Array$1<UnityEngine.Component>
+            /** Returns all components of Type type in the GameObject.
+            * @param type The type of Component to retrieve.
+            */
+            public GetComponents ($type: System.Type) : System.Array$1<UnityEngine.Component>
+            public GetComponents ($type: System.Type, $results: System.Collections.Generic.List$1<UnityEngine.Component>) : void
+            /** Checks the GameObject's tag against the defined tag.
+            * @param tag The tag to compare.
+            * @returns Returns true if GameObject has same tag. Returns false otherwise. 
+            */
+            public CompareTag ($tag: string) : boolean
+            /** Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.
+            * @param methodName Name of method to call.
+            * @param value Optional parameter value for the method.
+            * @param options Should an error be raised if the method does not exist on the target object?
+            */
+            public SendMessageUpwards ($methodName: string, $value: any, $options: UnityEngine.SendMessageOptions) : void
+            /** Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.
+            * @param methodName Name of method to call.
+            * @param value Optional parameter value for the method.
+            * @param options Should an error be raised if the method does not exist on the target object?
+            */
+            public SendMessageUpwards ($methodName: string, $value: any) : void
+            /** Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.
+            * @param methodName Name of method to call.
+            * @param value Optional parameter value for the method.
+            * @param options Should an error be raised if the method does not exist on the target object?
+            */
+            public SendMessageUpwards ($methodName: string) : void
+            /** Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.
+            * @param methodName Name of method to call.
+            * @param value Optional parameter value for the method.
+            * @param options Should an error be raised if the method does not exist on the target object?
+            */
+            public SendMessageUpwards ($methodName: string, $options: UnityEngine.SendMessageOptions) : void
+            /** Calls the method named methodName on every MonoBehaviour in this game object.
+            * @param methodName Name of the method to call.
+            * @param value Optional parameter for the method.
+            * @param options Should an error be raised if the target object doesn't implement the method for the message?
+            */
+            public SendMessage ($methodName: string, $value: any) : void
+            /** Calls the method named methodName on every MonoBehaviour in this game object.
+            * @param methodName Name of the method to call.
+            * @param value Optional parameter for the method.
+            * @param options Should an error be raised if the target object doesn't implement the method for the message?
+            */
+            public SendMessage ($methodName: string) : void
+            /** Calls the method named methodName on every MonoBehaviour in this game object.
+            * @param methodName Name of the method to call.
+            * @param value Optional parameter for the method.
+            * @param options Should an error be raised if the target object doesn't implement the method for the message?
+            */
+            public SendMessage ($methodName: string, $value: any, $options: UnityEngine.SendMessageOptions) : void
+            /** Calls the method named methodName on every MonoBehaviour in this game object.
+            * @param methodName Name of the method to call.
+            * @param value Optional parameter for the method.
+            * @param options Should an error be raised if the target object doesn't implement the method for the message?
+            */
+            public SendMessage ($methodName: string, $options: UnityEngine.SendMessageOptions) : void
+            /** Calls the method named methodName on every MonoBehaviour in this game object or any of its children.
+            * @param methodName Name of the method to call.
+            * @param parameter Optional parameter to pass to the method (can be any value).
+            * @param options Should an error be raised if the method does not exist for a given target object?
+            */
+            public BroadcastMessage ($methodName: string, $parameter: any, $options: UnityEngine.SendMessageOptions) : void
+            /** Calls the method named methodName on every MonoBehaviour in this game object or any of its children.
+            * @param methodName Name of the method to call.
+            * @param parameter Optional parameter to pass to the method (can be any value).
+            * @param options Should an error be raised if the method does not exist for a given target object?
+            */
+            public BroadcastMessage ($methodName: string, $parameter: any) : void
+            /** Calls the method named methodName on every MonoBehaviour in this game object or any of its children.
+            * @param methodName Name of the method to call.
+            * @param parameter Optional parameter to pass to the method (can be any value).
+            * @param options Should an error be raised if the method does not exist for a given target object?
+            */
+            public BroadcastMessage ($methodName: string) : void
+            /** Calls the method named methodName on every MonoBehaviour in this game object or any of its children.
+            * @param methodName Name of the method to call.
+            * @param parameter Optional parameter to pass to the method (can be any value).
+            * @param options Should an error be raised if the method does not exist for a given target object?
+            */
+            public BroadcastMessage ($methodName: string, $options: UnityEngine.SendMessageOptions) : void
+            public constructor ()
+        }
+        /** Behaviours are Components that can be enabled or disabled.
+        */
+        class Behaviour extends UnityEngine.Component
+        {
+            protected [__keep_incompatibility]: never;
+            /** Enabled Behaviours are Updated, disabled Behaviours are not.
+            */
+            public get enabled(): boolean;
+            public set enabled(value: boolean);
+            /** Reports whether a GameObject and its associated Behaviour is active and enabled.
+            */
+            public get isActiveAndEnabled(): boolean;
+            public constructor ()
+        }
+        /** MonoBehaviour is the base class from which every Unity script derives.
+        */
+        class MonoBehaviour extends UnityEngine.Behaviour
+        {
+            protected [__keep_incompatibility]: never;
         }
         /** Base class for all entities in Unity Scenes.
         */
@@ -516,558 +692,34 @@ declare namespace CS {
             public constructor ()
             public constructor ($name: string, ...components: System.Type[])
         }
-        /** The various primitives that can be created using the GameObject.CreatePrimitive function.
+        /** Base class for all yield instructions.
         */
-        enum PrimitiveType
-        { Sphere = 0, Capsule = 1, Cylinder = 2, Cube = 3, Plane = 4, Quad = 5 }
-        /** Base class for everything attached to GameObjects.
-        */
-        class Component extends UnityEngine.Object
+        class YieldInstruction extends System.Object
         {
             protected [__keep_incompatibility]: never;
-            /** The Transform attached to this GameObject.
+        }
+        /** Asynchronous operation coroutine.
+        */
+        class AsyncOperation extends UnityEngine.YieldInstruction
+        {
+            protected [__keep_incompatibility]: never;
+            /** Has the operation finished? (Read Only)
             */
-            public get transform(): UnityEngine.Transform;
-            /** The game object this component is attached to. A component is always attached to a game object.
+            public get isDone(): boolean;
+            /** What's the operation's progress. (Read Only)
             */
-            public get gameObject(): UnityEngine.GameObject;
-            /** The tag of this game object.
+            public get progress(): number;
+            /** Priority lets you tweak in which order async operation calls will be performed.
             */
-            public get tag(): string;
-            public set tag(value: string);
-            /** Returns the component of type if the GameObject has one attached.
-            * @param type The type of Component to retrieve.
-            * @returns A Component of the matching type, otherwise null if no Component is found. 
+            public get priority(): number;
+            public set priority(value: number);
+            /** Allow Scenes to be activated as soon as it is ready.
             */
-            public GetComponent ($type: System.Type) : UnityEngine.Component
-            /** Gets the component of the specified type, if it exists.
-            * @param type The type of the component to retrieve.
-            * @param component The output argument that will contain the component or null.
-            * @returns Returns true if the component is found, false otherwise. 
-            */
-            public TryGetComponent ($type: System.Type, $component: $Ref<UnityEngine.Component>) : boolean
-            /** To improve the performance of your code, consider using GetComponent with a type instead of a string.
-            * @param type The name of the type of Component to get.
-            * @returns A Component of the matching type, otherwise null if no Component is found. 
-            */
-            public GetComponent ($type: string) : UnityEngine.Component
-            /** Returns the Component of type in the GameObject or any of its children using depth first search.
-            * @param t The type of Component to retrieve.
-            * @param includeInactive Should Components on inactive GameObjects be included in the found set?
-            * @returns A Component of the matching type, otherwise null if no Component is found. 
-            */
-            public GetComponentInChildren ($t: System.Type, $includeInactive: boolean) : UnityEngine.Component
-            /** Returns the Component of type in the GameObject or any of its children using depth first search.
-            * @param t The type of Component to retrieve.
-            * @param includeInactive Should Components on inactive GameObjects be included in the found set?
-            * @returns A Component of the matching type, otherwise null if no Component is found. 
-            */
-            public GetComponentInChildren ($t: System.Type) : UnityEngine.Component
-            /** Returns all components of Type type in the GameObject or any of its children using depth first search. Works recursively.
-            * @param t The type of Component to retrieve.
-            * @param includeInactive Should Components on inactive GameObjects be included in the found set. includeInactive decides which children of the GameObject will be searched.  The GameObject that you call GetComponentsInChildren on is always searched regardless. Default is false.
-            */
-            public GetComponentsInChildren ($t: System.Type, $includeInactive: boolean) : System.Array$1<UnityEngine.Component>
-            public GetComponentsInChildren ($t: System.Type) : System.Array$1<UnityEngine.Component>
-            /** Returns the Component of type in the GameObject or any of its parents.
-            * @param t The type of Component to retrieve.
-            * @param includeInactive Should Components on inactive GameObjects be included in the found set?
-            * @returns A Component of the matching type, otherwise null if no Component is found. 
-            */
-            public GetComponentInParent ($t: System.Type, $includeInactive: boolean) : UnityEngine.Component
-            /** Returns the Component of type in the GameObject or any of its parents.
-            * @param t The type of Component to retrieve.
-            * @param includeInactive Should Components on inactive GameObjects be included in the found set?
-            * @returns A Component of the matching type, otherwise null if no Component is found. 
-            */
-            public GetComponentInParent ($t: System.Type) : UnityEngine.Component
-            /** Returns all components of Type type in the GameObject or any of its parents.
-            * @param t The type of Component to retrieve.
-            * @param includeInactive Should inactive Components be included in the found set?
-            */
-            public GetComponentsInParent ($t: System.Type, $includeInactive: boolean) : System.Array$1<UnityEngine.Component>
-            public GetComponentsInParent ($t: System.Type) : System.Array$1<UnityEngine.Component>
-            /** Returns all components of Type type in the GameObject.
-            * @param type The type of Component to retrieve.
-            */
-            public GetComponents ($type: System.Type) : System.Array$1<UnityEngine.Component>
-            public GetComponents ($type: System.Type, $results: System.Collections.Generic.List$1<UnityEngine.Component>) : void
-            /** Checks the GameObject's tag against the defined tag.
-            * @param tag The tag to compare.
-            * @returns Returns true if GameObject has same tag. Returns false otherwise. 
-            */
-            public CompareTag ($tag: string) : boolean
-            /** Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.
-            * @param methodName Name of method to call.
-            * @param value Optional parameter value for the method.
-            * @param options Should an error be raised if the method does not exist on the target object?
-            */
-            public SendMessageUpwards ($methodName: string, $value: any, $options: UnityEngine.SendMessageOptions) : void
-            /** Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.
-            * @param methodName Name of method to call.
-            * @param value Optional parameter value for the method.
-            * @param options Should an error be raised if the method does not exist on the target object?
-            */
-            public SendMessageUpwards ($methodName: string, $value: any) : void
-            /** Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.
-            * @param methodName Name of method to call.
-            * @param value Optional parameter value for the method.
-            * @param options Should an error be raised if the method does not exist on the target object?
-            */
-            public SendMessageUpwards ($methodName: string) : void
-            /** Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.
-            * @param methodName Name of method to call.
-            * @param value Optional parameter value for the method.
-            * @param options Should an error be raised if the method does not exist on the target object?
-            */
-            public SendMessageUpwards ($methodName: string, $options: UnityEngine.SendMessageOptions) : void
-            /** Calls the method named methodName on every MonoBehaviour in this game object.
-            * @param methodName Name of the method to call.
-            * @param value Optional parameter for the method.
-            * @param options Should an error be raised if the target object doesn't implement the method for the message?
-            */
-            public SendMessage ($methodName: string, $value: any) : void
-            /** Calls the method named methodName on every MonoBehaviour in this game object.
-            * @param methodName Name of the method to call.
-            * @param value Optional parameter for the method.
-            * @param options Should an error be raised if the target object doesn't implement the method for the message?
-            */
-            public SendMessage ($methodName: string) : void
-            /** Calls the method named methodName on every MonoBehaviour in this game object.
-            * @param methodName Name of the method to call.
-            * @param value Optional parameter for the method.
-            * @param options Should an error be raised if the target object doesn't implement the method for the message?
-            */
-            public SendMessage ($methodName: string, $value: any, $options: UnityEngine.SendMessageOptions) : void
-            /** Calls the method named methodName on every MonoBehaviour in this game object.
-            * @param methodName Name of the method to call.
-            * @param value Optional parameter for the method.
-            * @param options Should an error be raised if the target object doesn't implement the method for the message?
-            */
-            public SendMessage ($methodName: string, $options: UnityEngine.SendMessageOptions) : void
-            /** Calls the method named methodName on every MonoBehaviour in this game object or any of its children.
-            * @param methodName Name of the method to call.
-            * @param parameter Optional parameter to pass to the method (can be any value).
-            * @param options Should an error be raised if the method does not exist for a given target object?
-            */
-            public BroadcastMessage ($methodName: string, $parameter: any, $options: UnityEngine.SendMessageOptions) : void
-            /** Calls the method named methodName on every MonoBehaviour in this game object or any of its children.
-            * @param methodName Name of the method to call.
-            * @param parameter Optional parameter to pass to the method (can be any value).
-            * @param options Should an error be raised if the method does not exist for a given target object?
-            */
-            public BroadcastMessage ($methodName: string, $parameter: any) : void
-            /** Calls the method named methodName on every MonoBehaviour in this game object or any of its children.
-            * @param methodName Name of the method to call.
-            * @param parameter Optional parameter to pass to the method (can be any value).
-            * @param options Should an error be raised if the method does not exist for a given target object?
-            */
-            public BroadcastMessage ($methodName: string) : void
-            /** Calls the method named methodName on every MonoBehaviour in this game object or any of its children.
-            * @param methodName Name of the method to call.
-            * @param parameter Optional parameter to pass to the method (can be any value).
-            * @param options Should an error be raised if the method does not exist for a given target object?
-            */
-            public BroadcastMessage ($methodName: string, $options: UnityEngine.SendMessageOptions) : void
+            public get allowSceneActivation(): boolean;
+            public set allowSceneActivation(value: boolean);
+            public add_completed ($value: System.Action$1<UnityEngine.AsyncOperation>) : void
+            public remove_completed ($value: System.Action$1<UnityEngine.AsyncOperation>) : void
             public constructor ()
-        }
-        /** Options for how to send a message.
-        */
-        enum SendMessageOptions
-        { RequireReceiver = 0, DontRequireReceiver = 1 }
-        /** Position, rotation and scale of an object.
-        */
-        class Transform extends UnityEngine.Component implements System.Collections.IEnumerable
-        {
-            protected [__keep_incompatibility]: never;
-            /** The world space position of the Transform.
-            */
-            public get position(): UnityEngine.Vector3;
-            public set position(value: UnityEngine.Vector3);
-            /** Position of the transform relative to the parent transform.
-            */
-            public get localPosition(): UnityEngine.Vector3;
-            public set localPosition(value: UnityEngine.Vector3);
-            /** The rotation as Euler angles in degrees.
-            */
-            public get eulerAngles(): UnityEngine.Vector3;
-            public set eulerAngles(value: UnityEngine.Vector3);
-            /** The rotation as Euler angles in degrees relative to the parent transform's rotation.
-            */
-            public get localEulerAngles(): UnityEngine.Vector3;
-            public set localEulerAngles(value: UnityEngine.Vector3);
-            /** The red axis of the transform in world space.
-            */
-            public get right(): UnityEngine.Vector3;
-            public set right(value: UnityEngine.Vector3);
-            /** The green axis of the transform in world space.
-            */
-            public get up(): UnityEngine.Vector3;
-            public set up(value: UnityEngine.Vector3);
-            /** Returns a normalized vector representing the blue axis of the transform in world space.
-            */
-            public get forward(): UnityEngine.Vector3;
-            public set forward(value: UnityEngine.Vector3);
-            /** A Quaternion that stores the rotation of the Transform in world space.
-            */
-            public get rotation(): UnityEngine.Quaternion;
-            public set rotation(value: UnityEngine.Quaternion);
-            /** The rotation of the transform relative to the transform rotation of the parent.
-            */
-            public get localRotation(): UnityEngine.Quaternion;
-            public set localRotation(value: UnityEngine.Quaternion);
-            /** The scale of the transform relative to the GameObjects parent.
-            */
-            public get localScale(): UnityEngine.Vector3;
-            public set localScale(value: UnityEngine.Vector3);
-            /** The parent of the transform.
-            */
-            public get parent(): UnityEngine.Transform;
-            public set parent(value: UnityEngine.Transform);
-            /** Matrix that transforms a point from world space into local space (Read Only).
-            */
-            public get worldToLocalMatrix(): UnityEngine.Matrix4x4;
-            /** Matrix that transforms a point from local space into world space (Read Only).
-            */
-            public get localToWorldMatrix(): UnityEngine.Matrix4x4;
-            /** Returns the topmost transform in the hierarchy.
-            */
-            public get root(): UnityEngine.Transform;
-            /** The number of children the parent Transform has.
-            */
-            public get childCount(): number;
-            /** The global scale of the object (Read Only).
-            */
-            public get lossyScale(): UnityEngine.Vector3;
-            /** Has the transform changed since the last time the flag was set to 'false'?
-            */
-            public get hasChanged(): boolean;
-            public set hasChanged(value: boolean);
-            /** The transform capacity of the transform's hierarchy data structure.
-            */
-            public get hierarchyCapacity(): number;
-            public set hierarchyCapacity(value: number);
-            /** The number of transforms in the transform's hierarchy data structure.
-            */
-            public get hierarchyCount(): number;
-            /** Set the parent of the transform.
-            * @param parent The parent Transform to use.
-            * @param worldPositionStays If true, the parent-relative position, scale and rotation are modified such that the object keeps the same world space position, rotation and scale as before.
-            */
-            public SetParent ($p: UnityEngine.Transform) : void
-            /** Set the parent of the transform.
-            * @param parent The parent Transform to use.
-            * @param worldPositionStays If true, the parent-relative position, scale and rotation are modified such that the object keeps the same world space position, rotation and scale as before.
-            */
-            public SetParent ($parent: UnityEngine.Transform, $worldPositionStays: boolean) : void
-            /** Sets the world space position and rotation of the Transform component.
-            */
-            public SetPositionAndRotation ($position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion) : void
-            /** Moves the transform in the direction and distance of translation.
-            */
-            public Translate ($translation: UnityEngine.Vector3, $relativeTo: UnityEngine.Space) : void
-            /** Moves the transform in the direction and distance of translation.
-            */
-            public Translate ($translation: UnityEngine.Vector3) : void
-            /** Moves the transform by x along the x axis, y along the y axis, and z along the z axis.
-            */
-            public Translate ($x: number, $y: number, $z: number, $relativeTo: UnityEngine.Space) : void
-            /** Moves the transform by x along the x axis, y along the y axis, and z along the z axis.
-            */
-            public Translate ($x: number, $y: number, $z: number) : void
-            /** Moves the transform in the direction and distance of translation.
-            */
-            public Translate ($translation: UnityEngine.Vector3, $relativeTo: UnityEngine.Transform) : void
-            /** Moves the transform by x along the x axis, y along the y axis, and z along the z axis.
-            */
-            public Translate ($x: number, $y: number, $z: number, $relativeTo: UnityEngine.Transform) : void
-            /** Applies a rotation of eulerAngles.z degrees around the z-axis, eulerAngles.x degrees around the x-axis, and eulerAngles.y degrees around the y-axis (in that order).
-            * @param eulers The rotation to apply in euler angles.
-            * @param relativeTo Determines whether to rotate the GameObject either locally to  the GameObject or relative to the Scene in world space.
-            */
-            public Rotate ($eulers: UnityEngine.Vector3, $relativeTo: UnityEngine.Space) : void
-            /** Applies a rotation of eulerAngles.z degrees around the z-axis, eulerAngles.x degrees around the x-axis, and eulerAngles.y degrees around the y-axis (in that order).
-            * @param eulers The rotation to apply in euler angles.
-            */
-            public Rotate ($eulers: UnityEngine.Vector3) : void
-            /** The implementation of this method applies a rotation of zAngle degrees around the z axis, xAngle degrees around the x axis, and yAngle degrees around the y axis (in that order).
-            * @param relativeTo Determines whether to rotate the GameObject either locally to the GameObject or relative to the Scene in world space.
-            * @param xAngle Degrees to rotate the GameObject around the X axis.
-            * @param yAngle Degrees to rotate the GameObject around the Y axis.
-            * @param zAngle Degrees to rotate the GameObject around the Z axis.
-            */
-            public Rotate ($xAngle: number, $yAngle: number, $zAngle: number, $relativeTo: UnityEngine.Space) : void
-            /** The implementation of this method applies a rotation of zAngle degrees around the z axis, xAngle degrees around the x axis, and yAngle degrees around the y axis (in that order).
-            * @param xAngle Degrees to rotate the GameObject around the X axis.
-            * @param yAngle Degrees to rotate the GameObject around the Y axis.
-            * @param zAngle Degrees to rotate the GameObject around the Z axis.
-            */
-            public Rotate ($xAngle: number, $yAngle: number, $zAngle: number) : void
-            /** Rotates the object around the given axis by the number of degrees defined by the given angle.
-            * @param angle The degrees of rotation to apply.
-            * @param axis The axis to apply rotation to.
-            * @param relativeTo Determines whether to rotate the GameObject either locally to the GameObject or relative to the Scene in world space.
-            */
-            public Rotate ($axis: UnityEngine.Vector3, $angle: number, $relativeTo: UnityEngine.Space) : void
-            /** Rotates the object around the given axis by the number of degrees defined by the given angle.
-            * @param axis The axis to apply rotation to.
-            * @param angle The degrees of rotation to apply.
-            */
-            public Rotate ($axis: UnityEngine.Vector3, $angle: number) : void
-            /** Rotates the transform about axis passing through point in world coordinates by angle degrees.
-            */
-            public RotateAround ($point: UnityEngine.Vector3, $axis: UnityEngine.Vector3, $angle: number) : void
-            /** Rotates the transform so the forward vector points at target's current position.
-            * @param target Object to point towards.
-            * @param worldUp Vector specifying the upward direction.
-            */
-            public LookAt ($target: UnityEngine.Transform, $worldUp: UnityEngine.Vector3) : void
-            /** Rotates the transform so the forward vector points at target's current position.
-            * @param target Object to point towards.
-            * @param worldUp Vector specifying the upward direction.
-            */
-            public LookAt ($target: UnityEngine.Transform) : void
-            /** Rotates the transform so the forward vector points at worldPosition.
-            * @param worldPosition Point to look at.
-            * @param worldUp Vector specifying the upward direction.
-            */
-            public LookAt ($worldPosition: UnityEngine.Vector3, $worldUp: UnityEngine.Vector3) : void
-            /** Rotates the transform so the forward vector points at worldPosition.
-            * @param worldPosition Point to look at.
-            * @param worldUp Vector specifying the upward direction.
-            */
-            public LookAt ($worldPosition: UnityEngine.Vector3) : void
-            /** Transforms direction from local space to world space.
-            */
-            public TransformDirection ($direction: UnityEngine.Vector3) : UnityEngine.Vector3
-            /** Transforms direction x, y, z from local space to world space.
-            */
-            public TransformDirection ($x: number, $y: number, $z: number) : UnityEngine.Vector3
-            /** Transforms a direction from world space to local space. The opposite of Transform.TransformDirection.
-            */
-            public InverseTransformDirection ($direction: UnityEngine.Vector3) : UnityEngine.Vector3
-            /** Transforms the direction x, y, z from world space to local space. The opposite of Transform.TransformDirection.
-            */
-            public InverseTransformDirection ($x: number, $y: number, $z: number) : UnityEngine.Vector3
-            /** Transforms vector from local space to world space.
-            */
-            public TransformVector ($vector: UnityEngine.Vector3) : UnityEngine.Vector3
-            /** Transforms vector x, y, z from local space to world space.
-            */
-            public TransformVector ($x: number, $y: number, $z: number) : UnityEngine.Vector3
-            /** Transforms a vector from world space to local space. The opposite of Transform.TransformVector.
-            */
-            public InverseTransformVector ($vector: UnityEngine.Vector3) : UnityEngine.Vector3
-            /** Transforms the vector x, y, z from world space to local space. The opposite of Transform.TransformVector.
-            */
-            public InverseTransformVector ($x: number, $y: number, $z: number) : UnityEngine.Vector3
-            /** Transforms position from local space to world space.
-            */
-            public TransformPoint ($position: UnityEngine.Vector3) : UnityEngine.Vector3
-            /** Transforms the position x, y, z from local space to world space.
-            */
-            public TransformPoint ($x: number, $y: number, $z: number) : UnityEngine.Vector3
-            /** Transforms position from world space to local space.
-            */
-            public InverseTransformPoint ($position: UnityEngine.Vector3) : UnityEngine.Vector3
-            /** Transforms the position x, y, z from world space to local space. The opposite of Transform.TransformPoint.
-            */
-            public InverseTransformPoint ($x: number, $y: number, $z: number) : UnityEngine.Vector3
-            public DetachChildren () : void
-            public SetAsFirstSibling () : void
-            public SetAsLastSibling () : void
-            /** Sets the sibling index.
-            * @param index Index to set.
-            */
-            public SetSiblingIndex ($index: number) : void
-            public GetSiblingIndex () : number
-            /** Finds a child by name n and returns it.
-            * @param n Name of child to be found.
-            * @returns The found child transform. Null if child with matching name isn't found. 
-            */
-            public Find ($n: string) : UnityEngine.Transform
-            /** Is this transform a child of parent?
-            */
-            public IsChildOf ($parent: UnityEngine.Transform) : boolean
-            public GetEnumerator () : System.Collections.IEnumerator
-            /** Returns a transform child by index.
-            * @param index Index of the child transform to return. Must be smaller than Transform.childCount.
-            * @returns Transform child by index. 
-            */
-            public GetChild ($index: number) : UnityEngine.Transform
-        }
-        /** Behaviours are Components that can be enabled or disabled.
-        */
-        class Behaviour extends UnityEngine.Component
-        {
-            protected [__keep_incompatibility]: never;
-            /** Enabled Behaviours are Updated, disabled Behaviours are not.
-            */
-            public get enabled(): boolean;
-            public set enabled(value: boolean);
-            /** Reports whether a GameObject and its associated Behaviour is active and enabled.
-            */
-            public get isActiveAndEnabled(): boolean;
-            public constructor ()
-        }
-        /** MonoBehaviour is the base class from which every Unity script derives.
-        */
-        class MonoBehaviour extends UnityEngine.Behaviour
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        interface ICanvasRaycastFilter
-        {
-        }
-        interface ISerializationCallbackReceiver
-        {
-        }
-        /** Represents a Sprite object for use in 2D gameplay.
-        */
-        class Sprite extends UnityEngine.Object
-        {
-            protected [__keep_incompatibility]: never;
-            /** Bounds of the Sprite, specified by its center and extents in world space units.
-            */
-            public get bounds(): UnityEngine.Bounds;
-            /** Location of the Sprite on the original Texture, specified in pixels.
-            */
-            public get rect(): UnityEngine.Rect;
-            /** Returns the border sizes of the sprite.
-            */
-            public get border(): UnityEngine.Vector4;
-            /** Get the reference to the used texture. If packed this will point to the atlas, if not packed will point to the source sprite.
-            */
-            public get texture(): UnityEngine.Texture2D;
-            /** The number of pixels in the sprite that correspond to one unit in world space. (Read Only)
-            */
-            public get pixelsPerUnit(): number;
-            /** The Variant scale of texture used by the Sprite. This is useful to check when a Variant SpriteAtlas is being used by Sprites.
-            */
-            public get spriteAtlasTextureScale(): number;
-            /** Returns the texture that contains the alpha channel from the source texture. Unity generates this texture under the hood for sprites that have alpha in the source, and need to be compressed using techniques like ETC1.
-            Returns NULL if there is no associated alpha texture for the source sprite. This is the case if the sprite has not been setup to use ETC1 compression.
-            */
-            public get associatedAlphaSplitTexture(): UnityEngine.Texture2D;
-            /** Location of the Sprite's center point in the Rect on the original Texture, specified in pixels.
-            */
-            public get pivot(): UnityEngine.Vector2;
-            public get isUsingPlaceholder(): boolean;
-            /** Returns true if this Sprite is packed in an atlas.
-            */
-            public get packed(): boolean;
-            /** If Sprite is packed (see Sprite.packed), returns its SpritePackingMode.
-            */
-            public get packingMode(): UnityEngine.SpritePackingMode;
-            /** If Sprite is packed (see Sprite.packed), returns its SpritePackingRotation.
-            */
-            public get packingRotation(): UnityEngine.SpritePackingRotation;
-            /** Get the rectangle this sprite uses on its texture. Raises an exception if this sprite is tightly packed in an atlas.
-            */
-            public get textureRect(): UnityEngine.Rect;
-            /** Gets the offset of the rectangle this sprite uses on its texture to the original sprite bounds. If sprite mesh type is FullRect, offset is zero.
-            */
-            public get textureRectOffset(): UnityEngine.Vector2;
-            /** Returns a copy of the array containing sprite mesh vertex positions.
-            */
-            public get vertices(): System.Array$1<UnityEngine.Vector2>;
-            /** Returns a copy of the array containing sprite mesh triangles.
-            */
-            public get triangles(): System.Array$1<number>;
-            /** The base texture coordinates of the sprite mesh.
-            */
-            public get uv(): System.Array$1<UnityEngine.Vector2>;
-            public GetPhysicsShapeCount () : number
-            /** The number of points in the selected physics shape for the Sprite.
-            * @param shapeIdx The index of the physics shape to retrieve the number of points from.
-            * @returns The number of points in the selected physics shape for the Sprite. 
-            */
-            public GetPhysicsShapePointCount ($shapeIdx: number) : number
-            public GetPhysicsShape ($shapeIdx: number, $physicsShape: System.Collections.Generic.List$1<UnityEngine.Vector2>) : number
-            public OverridePhysicsShape ($physicsShapes: System.Collections.Generic.IList$1<System.Array$1<UnityEngine.Vector2>>) : void
-            /** Sets up new Sprite geometry.
-            * @param vertices Array of vertex positions in Sprite Rect space.
-            * @param triangles Array of sprite mesh triangle indices.
-            */
-            public OverrideGeometry ($vertices: System.Array$1<UnityEngine.Vector2>, $triangles: System.Array$1<number>) : void
-            /** Create a new Sprite object.
-            * @param texture Texture from which to obtain the sprite graphic.
-            * @param rect Rectangular section of the texture to use for the sprite.
-            * @param pivot Sprite's pivot point relative to its graphic rectangle.
-            * @param pixelsPerUnit The number of pixels in the sprite that correspond to one unit in world space.
-            * @param extrude Amount by which the sprite mesh should be expanded outwards.
-            * @param meshType Controls the type of mesh generated for the sprite.
-            * @param border The border sizes of the sprite (X=left, Y=bottom, Z=right, W=top).
-            * @param generateFallbackPhysicsShape Generates a default physics shape for the sprite.
-            */
-            public static Create ($texture: UnityEngine.Texture2D, $rect: UnityEngine.Rect, $pivot: UnityEngine.Vector2, $pixelsPerUnit: number, $extrude: number, $meshType: UnityEngine.SpriteMeshType, $border: UnityEngine.Vector4, $generateFallbackPhysicsShape: boolean) : UnityEngine.Sprite
-            /** Create a new Sprite object.
-            * @param texture Texture from which to obtain the sprite graphic.
-            * @param rect Rectangular section of the texture to use for the sprite.
-            * @param pivot Sprite's pivot point relative to its graphic rectangle.
-            * @param pixelsPerUnit The number of pixels in the sprite that correspond to one unit in world space.
-            * @param extrude Amount by which the sprite mesh should be expanded outwards.
-            * @param meshType Controls the type of mesh generated for the sprite.
-            * @param border The border sizes of the sprite (X=left, Y=bottom, Z=right, W=top).
-            * @param generateFallbackPhysicsShape Generates a default physics shape for the sprite.
-            */
-            public static Create ($texture: UnityEngine.Texture2D, $rect: UnityEngine.Rect, $pivot: UnityEngine.Vector2, $pixelsPerUnit: number, $extrude: number, $meshType: UnityEngine.SpriteMeshType, $border: UnityEngine.Vector4) : UnityEngine.Sprite
-            /** Create a new Sprite object.
-            * @param texture Texture from which to obtain the sprite graphic.
-            * @param rect Rectangular section of the texture to use for the sprite.
-            * @param pivot Sprite's pivot point relative to its graphic rectangle.
-            * @param pixelsPerUnit The number of pixels in the sprite that correspond to one unit in world space.
-            * @param extrude Amount by which the sprite mesh should be expanded outwards.
-            * @param meshType Controls the type of mesh generated for the sprite.
-            * @param border The border sizes of the sprite (X=left, Y=bottom, Z=right, W=top).
-            * @param generateFallbackPhysicsShape Generates a default physics shape for the sprite.
-            */
-            public static Create ($texture: UnityEngine.Texture2D, $rect: UnityEngine.Rect, $pivot: UnityEngine.Vector2, $pixelsPerUnit: number, $extrude: number, $meshType: UnityEngine.SpriteMeshType) : UnityEngine.Sprite
-            /** Create a new Sprite object.
-            * @param texture Texture from which to obtain the sprite graphic.
-            * @param rect Rectangular section of the texture to use for the sprite.
-            * @param pivot Sprite's pivot point relative to its graphic rectangle.
-            * @param pixelsPerUnit The number of pixels in the sprite that correspond to one unit in world space.
-            * @param extrude Amount by which the sprite mesh should be expanded outwards.
-            * @param meshType Controls the type of mesh generated for the sprite.
-            * @param border The border sizes of the sprite (X=left, Y=bottom, Z=right, W=top).
-            * @param generateFallbackPhysicsShape Generates a default physics shape for the sprite.
-            */
-            public static Create ($texture: UnityEngine.Texture2D, $rect: UnityEngine.Rect, $pivot: UnityEngine.Vector2, $pixelsPerUnit: number, $extrude: number) : UnityEngine.Sprite
-            /** Create a new Sprite object.
-            * @param texture Texture from which to obtain the sprite graphic.
-            * @param rect Rectangular section of the texture to use for the sprite.
-            * @param pivot Sprite's pivot point relative to its graphic rectangle.
-            * @param pixelsPerUnit The number of pixels in the sprite that correspond to one unit in world space.
-            * @param extrude Amount by which the sprite mesh should be expanded outwards.
-            * @param meshType Controls the type of mesh generated for the sprite.
-            * @param border The border sizes of the sprite (X=left, Y=bottom, Z=right, W=top).
-            * @param generateFallbackPhysicsShape Generates a default physics shape for the sprite.
-            */
-            public static Create ($texture: UnityEngine.Texture2D, $rect: UnityEngine.Rect, $pivot: UnityEngine.Vector2, $pixelsPerUnit: number) : UnityEngine.Sprite
-            /** Create a new Sprite object.
-            * @param texture Texture from which to obtain the sprite graphic.
-            * @param rect Rectangular section of the texture to use for the sprite.
-            * @param pivot Sprite's pivot point relative to its graphic rectangle.
-            * @param pixelsPerUnit The number of pixels in the sprite that correspond to one unit in world space.
-            * @param extrude Amount by which the sprite mesh should be expanded outwards.
-            * @param meshType Controls the type of mesh generated for the sprite.
-            * @param border The border sizes of the sprite (X=left, Y=bottom, Z=right, W=top).
-            * @param generateFallbackPhysicsShape Generates a default physics shape for the sprite.
-            */
-            public static Create ($texture: UnityEngine.Texture2D, $rect: UnityEngine.Rect, $pivot: UnityEngine.Vector2) : UnityEngine.Sprite
-        }
-        /** The material class.
-        */
-        class Material extends UnityEngine.Object
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        /** Base class for Texture handling.
-        */
-        class Texture extends UnityEngine.Object
-        {
-            protected [__keep_incompatibility]: never;
         }
         /** Representation of 2D vectors and points.
         */
@@ -1228,41 +880,6 @@ declare namespace CS {
             public static op_Implicit ($v: UnityEngine.Vector3) : UnityEngine.Vector2
             public static op_Implicit ($v: UnityEngine.Vector2) : UnityEngine.Vector3
             public constructor ($x: number, $y: number)
-        }
-        /** A Camera is a device through which the player views the world.
-        */
-        class Camera extends UnityEngine.Behaviour
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        /** Base class for all yield instructions.
-        */
-        class YieldInstruction extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        /** Asynchronous operation coroutine.
-        */
-        class AsyncOperation extends UnityEngine.YieldInstruction
-        {
-            protected [__keep_incompatibility]: never;
-            /** Has the operation finished? (Read Only)
-            */
-            public get isDone(): boolean;
-            /** What's the operation's progress. (Read Only)
-            */
-            public get progress(): number;
-            /** Priority lets you tweak in which order async operation calls will be performed.
-            */
-            public get priority(): number;
-            public set priority(value: number);
-            /** Allow Scenes to be activated as soon as it is ready.
-            */
-            public get allowSceneActivation(): boolean;
-            public set allowSceneActivation(value: boolean);
-            public add_completed ($value: System.Action$1<UnityEngine.AsyncOperation>) : void
-            public remove_completed ($value: System.Action$1<UnityEngine.AsyncOperation>) : void
-            public constructor ()
         }
         /** Representation of 3D vectors and points.
         */
@@ -1602,6 +1219,227 @@ declare namespace CS {
         class Quaternion extends System.ValueType implements System.IFormattable, System.IEquatable$1<UnityEngine.Quaternion>
         {
             protected [__keep_incompatibility]: never;
+        }
+        /** Position, rotation and scale of an object.
+        */
+        class Transform extends UnityEngine.Component implements System.Collections.IEnumerable
+        {
+            protected [__keep_incompatibility]: never;
+            /** The world space position of the Transform.
+            */
+            public get position(): UnityEngine.Vector3;
+            public set position(value: UnityEngine.Vector3);
+            /** Position of the transform relative to the parent transform.
+            */
+            public get localPosition(): UnityEngine.Vector3;
+            public set localPosition(value: UnityEngine.Vector3);
+            /** The rotation as Euler angles in degrees.
+            */
+            public get eulerAngles(): UnityEngine.Vector3;
+            public set eulerAngles(value: UnityEngine.Vector3);
+            /** The rotation as Euler angles in degrees relative to the parent transform's rotation.
+            */
+            public get localEulerAngles(): UnityEngine.Vector3;
+            public set localEulerAngles(value: UnityEngine.Vector3);
+            /** The red axis of the transform in world space.
+            */
+            public get right(): UnityEngine.Vector3;
+            public set right(value: UnityEngine.Vector3);
+            /** The green axis of the transform in world space.
+            */
+            public get up(): UnityEngine.Vector3;
+            public set up(value: UnityEngine.Vector3);
+            /** Returns a normalized vector representing the blue axis of the transform in world space.
+            */
+            public get forward(): UnityEngine.Vector3;
+            public set forward(value: UnityEngine.Vector3);
+            /** A Quaternion that stores the rotation of the Transform in world space.
+            */
+            public get rotation(): UnityEngine.Quaternion;
+            public set rotation(value: UnityEngine.Quaternion);
+            /** The rotation of the transform relative to the transform rotation of the parent.
+            */
+            public get localRotation(): UnityEngine.Quaternion;
+            public set localRotation(value: UnityEngine.Quaternion);
+            /** The scale of the transform relative to the GameObjects parent.
+            */
+            public get localScale(): UnityEngine.Vector3;
+            public set localScale(value: UnityEngine.Vector3);
+            /** The parent of the transform.
+            */
+            public get parent(): UnityEngine.Transform;
+            public set parent(value: UnityEngine.Transform);
+            /** Matrix that transforms a point from world space into local space (Read Only).
+            */
+            public get worldToLocalMatrix(): UnityEngine.Matrix4x4;
+            /** Matrix that transforms a point from local space into world space (Read Only).
+            */
+            public get localToWorldMatrix(): UnityEngine.Matrix4x4;
+            /** Returns the topmost transform in the hierarchy.
+            */
+            public get root(): UnityEngine.Transform;
+            /** The number of children the parent Transform has.
+            */
+            public get childCount(): number;
+            /** The global scale of the object (Read Only).
+            */
+            public get lossyScale(): UnityEngine.Vector3;
+            /** Has the transform changed since the last time the flag was set to 'false'?
+            */
+            public get hasChanged(): boolean;
+            public set hasChanged(value: boolean);
+            /** The transform capacity of the transform's hierarchy data structure.
+            */
+            public get hierarchyCapacity(): number;
+            public set hierarchyCapacity(value: number);
+            /** The number of transforms in the transform's hierarchy data structure.
+            */
+            public get hierarchyCount(): number;
+            /** Set the parent of the transform.
+            * @param parent The parent Transform to use.
+            * @param worldPositionStays If true, the parent-relative position, scale and rotation are modified such that the object keeps the same world space position, rotation and scale as before.
+            */
+            public SetParent ($p: UnityEngine.Transform) : void
+            /** Set the parent of the transform.
+            * @param parent The parent Transform to use.
+            * @param worldPositionStays If true, the parent-relative position, scale and rotation are modified such that the object keeps the same world space position, rotation and scale as before.
+            */
+            public SetParent ($parent: UnityEngine.Transform, $worldPositionStays: boolean) : void
+            /** Sets the world space position and rotation of the Transform component.
+            */
+            public SetPositionAndRotation ($position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion) : void
+            /** Moves the transform in the direction and distance of translation.
+            */
+            public Translate ($translation: UnityEngine.Vector3, $relativeTo: UnityEngine.Space) : void
+            /** Moves the transform in the direction and distance of translation.
+            */
+            public Translate ($translation: UnityEngine.Vector3) : void
+            /** Moves the transform by x along the x axis, y along the y axis, and z along the z axis.
+            */
+            public Translate ($x: number, $y: number, $z: number, $relativeTo: UnityEngine.Space) : void
+            /** Moves the transform by x along the x axis, y along the y axis, and z along the z axis.
+            */
+            public Translate ($x: number, $y: number, $z: number) : void
+            /** Moves the transform in the direction and distance of translation.
+            */
+            public Translate ($translation: UnityEngine.Vector3, $relativeTo: UnityEngine.Transform) : void
+            /** Moves the transform by x along the x axis, y along the y axis, and z along the z axis.
+            */
+            public Translate ($x: number, $y: number, $z: number, $relativeTo: UnityEngine.Transform) : void
+            /** Applies a rotation of eulerAngles.z degrees around the z-axis, eulerAngles.x degrees around the x-axis, and eulerAngles.y degrees around the y-axis (in that order).
+            * @param eulers The rotation to apply in euler angles.
+            * @param relativeTo Determines whether to rotate the GameObject either locally to  the GameObject or relative to the Scene in world space.
+            */
+            public Rotate ($eulers: UnityEngine.Vector3, $relativeTo: UnityEngine.Space) : void
+            /** Applies a rotation of eulerAngles.z degrees around the z-axis, eulerAngles.x degrees around the x-axis, and eulerAngles.y degrees around the y-axis (in that order).
+            * @param eulers The rotation to apply in euler angles.
+            */
+            public Rotate ($eulers: UnityEngine.Vector3) : void
+            /** The implementation of this method applies a rotation of zAngle degrees around the z axis, xAngle degrees around the x axis, and yAngle degrees around the y axis (in that order).
+            * @param relativeTo Determines whether to rotate the GameObject either locally to the GameObject or relative to the Scene in world space.
+            * @param xAngle Degrees to rotate the GameObject around the X axis.
+            * @param yAngle Degrees to rotate the GameObject around the Y axis.
+            * @param zAngle Degrees to rotate the GameObject around the Z axis.
+            */
+            public Rotate ($xAngle: number, $yAngle: number, $zAngle: number, $relativeTo: UnityEngine.Space) : void
+            /** The implementation of this method applies a rotation of zAngle degrees around the z axis, xAngle degrees around the x axis, and yAngle degrees around the y axis (in that order).
+            * @param xAngle Degrees to rotate the GameObject around the X axis.
+            * @param yAngle Degrees to rotate the GameObject around the Y axis.
+            * @param zAngle Degrees to rotate the GameObject around the Z axis.
+            */
+            public Rotate ($xAngle: number, $yAngle: number, $zAngle: number) : void
+            /** Rotates the object around the given axis by the number of degrees defined by the given angle.
+            * @param angle The degrees of rotation to apply.
+            * @param axis The axis to apply rotation to.
+            * @param relativeTo Determines whether to rotate the GameObject either locally to the GameObject or relative to the Scene in world space.
+            */
+            public Rotate ($axis: UnityEngine.Vector3, $angle: number, $relativeTo: UnityEngine.Space) : void
+            /** Rotates the object around the given axis by the number of degrees defined by the given angle.
+            * @param axis The axis to apply rotation to.
+            * @param angle The degrees of rotation to apply.
+            */
+            public Rotate ($axis: UnityEngine.Vector3, $angle: number) : void
+            /** Rotates the transform about axis passing through point in world coordinates by angle degrees.
+            */
+            public RotateAround ($point: UnityEngine.Vector3, $axis: UnityEngine.Vector3, $angle: number) : void
+            /** Rotates the transform so the forward vector points at target's current position.
+            * @param target Object to point towards.
+            * @param worldUp Vector specifying the upward direction.
+            */
+            public LookAt ($target: UnityEngine.Transform, $worldUp: UnityEngine.Vector3) : void
+            /** Rotates the transform so the forward vector points at target's current position.
+            * @param target Object to point towards.
+            * @param worldUp Vector specifying the upward direction.
+            */
+            public LookAt ($target: UnityEngine.Transform) : void
+            /** Rotates the transform so the forward vector points at worldPosition.
+            * @param worldPosition Point to look at.
+            * @param worldUp Vector specifying the upward direction.
+            */
+            public LookAt ($worldPosition: UnityEngine.Vector3, $worldUp: UnityEngine.Vector3) : void
+            /** Rotates the transform so the forward vector points at worldPosition.
+            * @param worldPosition Point to look at.
+            * @param worldUp Vector specifying the upward direction.
+            */
+            public LookAt ($worldPosition: UnityEngine.Vector3) : void
+            /** Transforms direction from local space to world space.
+            */
+            public TransformDirection ($direction: UnityEngine.Vector3) : UnityEngine.Vector3
+            /** Transforms direction x, y, z from local space to world space.
+            */
+            public TransformDirection ($x: number, $y: number, $z: number) : UnityEngine.Vector3
+            /** Transforms a direction from world space to local space. The opposite of Transform.TransformDirection.
+            */
+            public InverseTransformDirection ($direction: UnityEngine.Vector3) : UnityEngine.Vector3
+            /** Transforms the direction x, y, z from world space to local space. The opposite of Transform.TransformDirection.
+            */
+            public InverseTransformDirection ($x: number, $y: number, $z: number) : UnityEngine.Vector3
+            /** Transforms vector from local space to world space.
+            */
+            public TransformVector ($vector: UnityEngine.Vector3) : UnityEngine.Vector3
+            /** Transforms vector x, y, z from local space to world space.
+            */
+            public TransformVector ($x: number, $y: number, $z: number) : UnityEngine.Vector3
+            /** Transforms a vector from world space to local space. The opposite of Transform.TransformVector.
+            */
+            public InverseTransformVector ($vector: UnityEngine.Vector3) : UnityEngine.Vector3
+            /** Transforms the vector x, y, z from world space to local space. The opposite of Transform.TransformVector.
+            */
+            public InverseTransformVector ($x: number, $y: number, $z: number) : UnityEngine.Vector3
+            /** Transforms position from local space to world space.
+            */
+            public TransformPoint ($position: UnityEngine.Vector3) : UnityEngine.Vector3
+            /** Transforms the position x, y, z from local space to world space.
+            */
+            public TransformPoint ($x: number, $y: number, $z: number) : UnityEngine.Vector3
+            /** Transforms position from world space to local space.
+            */
+            public InverseTransformPoint ($position: UnityEngine.Vector3) : UnityEngine.Vector3
+            /** Transforms the position x, y, z from world space to local space. The opposite of Transform.TransformPoint.
+            */
+            public InverseTransformPoint ($x: number, $y: number, $z: number) : UnityEngine.Vector3
+            public DetachChildren () : void
+            public SetAsFirstSibling () : void
+            public SetAsLastSibling () : void
+            /** Sets the sibling index.
+            * @param index Index to set.
+            */
+            public SetSiblingIndex ($index: number) : void
+            public GetSiblingIndex () : number
+            /** Finds a child by name n and returns it.
+            * @param n Name of child to be found.
+            * @returns The found child transform. Null if child with matching name isn't found. 
+            */
+            public Find ($n: string) : UnityEngine.Transform
+            /** Is this transform a child of parent?
+            */
+            public IsChildOf ($parent: UnityEngine.Transform) : boolean
+            public GetEnumerator () : System.Collections.IEnumerator
+            /** Returns a transform child by index.
+            * @param index Index of the child transform to return. Must be smaller than Transform.childCount.
+            * @returns Transform child by index. 
+            */
+            public GetChild ($index: number) : UnityEngine.Transform
         }
         /** Bit mask that controls object destruction, saving and visibility in inspectors.
         */
@@ -2130,6 +1968,10 @@ declare namespace CS {
         {
             protected [__keep_incompatibility]: never;
         }
+        /** Options for how to send a message.
+        */
+        enum SendMessageOptions
+        { RequireReceiver = 0, DontRequireReceiver = 1 }
         /** The Resources class allows you to find and access Objects including assets.
         */
         class Resources extends System.Object
@@ -2204,6 +2046,10 @@ declare namespace CS {
             public constructor ()
             public constructor ($text: string)
         }
+        /** The various primitives that can be created using the GameObject.CreatePrimitive function.
+        */
+        enum PrimitiveType
+        { Sphere = 0, Capsule = 1, Cylinder = 2, Cube = 3, Plane = 4, Quad = 5 }
         /** A standard 4x4 transformation matrix.
         */
         class Matrix4x4 extends System.ValueType implements System.IFormattable, System.IEquatable$1<UnityEngine.Matrix4x4>
@@ -2303,6 +2149,15 @@ declare namespace CS {
             */
             public IsRaycastLocationValid ($sp: UnityEngine.Vector2, $eventCamera: UnityEngine.Camera) : boolean
             public constructor ()
+        }
+        interface ICanvasRaycastFilter
+        {
+        }
+        /** A Camera is a device through which the player views the world.
+        */
+        class Camera extends UnityEngine.Behaviour
+        {
+            protected [__keep_incompatibility]: never;
         }
         /** AssetBundles let you stream additional assets via the UnityWebRequest class and instantiate them at runtime. AssetBundles are created via BuildPipeline.BuildAssetBundle.
         */
@@ -2452,9 +2307,150 @@ declare namespace CS {
         {
             protected [__keep_incompatibility]: never;
         }
+        /** Represents a Sprite object for use in 2D gameplay.
+        */
+        class Sprite extends UnityEngine.Object
+        {
+            protected [__keep_incompatibility]: never;
+            /** Bounds of the Sprite, specified by its center and extents in world space units.
+            */
+            public get bounds(): UnityEngine.Bounds;
+            /** Location of the Sprite on the original Texture, specified in pixels.
+            */
+            public get rect(): UnityEngine.Rect;
+            /** Returns the border sizes of the sprite.
+            */
+            public get border(): UnityEngine.Vector4;
+            /** Get the reference to the used texture. If packed this will point to the atlas, if not packed will point to the source sprite.
+            */
+            public get texture(): UnityEngine.Texture2D;
+            /** The number of pixels in the sprite that correspond to one unit in world space. (Read Only)
+            */
+            public get pixelsPerUnit(): number;
+            /** The Variant scale of texture used by the Sprite. This is useful to check when a Variant SpriteAtlas is being used by Sprites.
+            */
+            public get spriteAtlasTextureScale(): number;
+            /** Returns the texture that contains the alpha channel from the source texture. Unity generates this texture under the hood for sprites that have alpha in the source, and need to be compressed using techniques like ETC1.
+            Returns NULL if there is no associated alpha texture for the source sprite. This is the case if the sprite has not been setup to use ETC1 compression.
+            */
+            public get associatedAlphaSplitTexture(): UnityEngine.Texture2D;
+            /** Location of the Sprite's center point in the Rect on the original Texture, specified in pixels.
+            */
+            public get pivot(): UnityEngine.Vector2;
+            public get isUsingPlaceholder(): boolean;
+            /** Returns true if this Sprite is packed in an atlas.
+            */
+            public get packed(): boolean;
+            /** If Sprite is packed (see Sprite.packed), returns its SpritePackingMode.
+            */
+            public get packingMode(): UnityEngine.SpritePackingMode;
+            /** If Sprite is packed (see Sprite.packed), returns its SpritePackingRotation.
+            */
+            public get packingRotation(): UnityEngine.SpritePackingRotation;
+            /** Get the rectangle this sprite uses on its texture. Raises an exception if this sprite is tightly packed in an atlas.
+            */
+            public get textureRect(): UnityEngine.Rect;
+            /** Gets the offset of the rectangle this sprite uses on its texture to the original sprite bounds. If sprite mesh type is FullRect, offset is zero.
+            */
+            public get textureRectOffset(): UnityEngine.Vector2;
+            /** Returns a copy of the array containing sprite mesh vertex positions.
+            */
+            public get vertices(): System.Array$1<UnityEngine.Vector2>;
+            /** Returns a copy of the array containing sprite mesh triangles.
+            */
+            public get triangles(): System.Array$1<number>;
+            /** The base texture coordinates of the sprite mesh.
+            */
+            public get uv(): System.Array$1<UnityEngine.Vector2>;
+            public GetPhysicsShapeCount () : number
+            /** The number of points in the selected physics shape for the Sprite.
+            * @param shapeIdx The index of the physics shape to retrieve the number of points from.
+            * @returns The number of points in the selected physics shape for the Sprite. 
+            */
+            public GetPhysicsShapePointCount ($shapeIdx: number) : number
+            public GetPhysicsShape ($shapeIdx: number, $physicsShape: System.Collections.Generic.List$1<UnityEngine.Vector2>) : number
+            public OverridePhysicsShape ($physicsShapes: System.Collections.Generic.IList$1<System.Array$1<UnityEngine.Vector2>>) : void
+            /** Sets up new Sprite geometry.
+            * @param vertices Array of vertex positions in Sprite Rect space.
+            * @param triangles Array of sprite mesh triangle indices.
+            */
+            public OverrideGeometry ($vertices: System.Array$1<UnityEngine.Vector2>, $triangles: System.Array$1<number>) : void
+            /** Create a new Sprite object.
+            * @param texture Texture from which to obtain the sprite graphic.
+            * @param rect Rectangular section of the texture to use for the sprite.
+            * @param pivot Sprite's pivot point relative to its graphic rectangle.
+            * @param pixelsPerUnit The number of pixels in the sprite that correspond to one unit in world space.
+            * @param extrude Amount by which the sprite mesh should be expanded outwards.
+            * @param meshType Controls the type of mesh generated for the sprite.
+            * @param border The border sizes of the sprite (X=left, Y=bottom, Z=right, W=top).
+            * @param generateFallbackPhysicsShape Generates a default physics shape for the sprite.
+            */
+            public static Create ($texture: UnityEngine.Texture2D, $rect: UnityEngine.Rect, $pivot: UnityEngine.Vector2, $pixelsPerUnit: number, $extrude: number, $meshType: UnityEngine.SpriteMeshType, $border: UnityEngine.Vector4, $generateFallbackPhysicsShape: boolean) : UnityEngine.Sprite
+            /** Create a new Sprite object.
+            * @param texture Texture from which to obtain the sprite graphic.
+            * @param rect Rectangular section of the texture to use for the sprite.
+            * @param pivot Sprite's pivot point relative to its graphic rectangle.
+            * @param pixelsPerUnit The number of pixels in the sprite that correspond to one unit in world space.
+            * @param extrude Amount by which the sprite mesh should be expanded outwards.
+            * @param meshType Controls the type of mesh generated for the sprite.
+            * @param border The border sizes of the sprite (X=left, Y=bottom, Z=right, W=top).
+            * @param generateFallbackPhysicsShape Generates a default physics shape for the sprite.
+            */
+            public static Create ($texture: UnityEngine.Texture2D, $rect: UnityEngine.Rect, $pivot: UnityEngine.Vector2, $pixelsPerUnit: number, $extrude: number, $meshType: UnityEngine.SpriteMeshType, $border: UnityEngine.Vector4) : UnityEngine.Sprite
+            /** Create a new Sprite object.
+            * @param texture Texture from which to obtain the sprite graphic.
+            * @param rect Rectangular section of the texture to use for the sprite.
+            * @param pivot Sprite's pivot point relative to its graphic rectangle.
+            * @param pixelsPerUnit The number of pixels in the sprite that correspond to one unit in world space.
+            * @param extrude Amount by which the sprite mesh should be expanded outwards.
+            * @param meshType Controls the type of mesh generated for the sprite.
+            * @param border The border sizes of the sprite (X=left, Y=bottom, Z=right, W=top).
+            * @param generateFallbackPhysicsShape Generates a default physics shape for the sprite.
+            */
+            public static Create ($texture: UnityEngine.Texture2D, $rect: UnityEngine.Rect, $pivot: UnityEngine.Vector2, $pixelsPerUnit: number, $extrude: number, $meshType: UnityEngine.SpriteMeshType) : UnityEngine.Sprite
+            /** Create a new Sprite object.
+            * @param texture Texture from which to obtain the sprite graphic.
+            * @param rect Rectangular section of the texture to use for the sprite.
+            * @param pivot Sprite's pivot point relative to its graphic rectangle.
+            * @param pixelsPerUnit The number of pixels in the sprite that correspond to one unit in world space.
+            * @param extrude Amount by which the sprite mesh should be expanded outwards.
+            * @param meshType Controls the type of mesh generated for the sprite.
+            * @param border The border sizes of the sprite (X=left, Y=bottom, Z=right, W=top).
+            * @param generateFallbackPhysicsShape Generates a default physics shape for the sprite.
+            */
+            public static Create ($texture: UnityEngine.Texture2D, $rect: UnityEngine.Rect, $pivot: UnityEngine.Vector2, $pixelsPerUnit: number, $extrude: number) : UnityEngine.Sprite
+            /** Create a new Sprite object.
+            * @param texture Texture from which to obtain the sprite graphic.
+            * @param rect Rectangular section of the texture to use for the sprite.
+            * @param pivot Sprite's pivot point relative to its graphic rectangle.
+            * @param pixelsPerUnit The number of pixels in the sprite that correspond to one unit in world space.
+            * @param extrude Amount by which the sprite mesh should be expanded outwards.
+            * @param meshType Controls the type of mesh generated for the sprite.
+            * @param border The border sizes of the sprite (X=left, Y=bottom, Z=right, W=top).
+            * @param generateFallbackPhysicsShape Generates a default physics shape for the sprite.
+            */
+            public static Create ($texture: UnityEngine.Texture2D, $rect: UnityEngine.Rect, $pivot: UnityEngine.Vector2, $pixelsPerUnit: number) : UnityEngine.Sprite
+            /** Create a new Sprite object.
+            * @param texture Texture from which to obtain the sprite graphic.
+            * @param rect Rectangular section of the texture to use for the sprite.
+            * @param pivot Sprite's pivot point relative to its graphic rectangle.
+            * @param pixelsPerUnit The number of pixels in the sprite that correspond to one unit in world space.
+            * @param extrude Amount by which the sprite mesh should be expanded outwards.
+            * @param meshType Controls the type of mesh generated for the sprite.
+            * @param border The border sizes of the sprite (X=left, Y=bottom, Z=right, W=top).
+            * @param generateFallbackPhysicsShape Generates a default physics shape for the sprite.
+            */
+            public static Create ($texture: UnityEngine.Texture2D, $rect: UnityEngine.Rect, $pivot: UnityEngine.Vector2) : UnityEngine.Sprite
+        }
         /** Represents an axis aligned bounding box.
         */
         class Bounds extends System.ValueType implements System.IFormattable, System.IEquatable$1<UnityEngine.Bounds>
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        /** Base class for Texture handling.
+        */
+        class Texture extends UnityEngine.Object
         {
             protected [__keep_incompatibility]: never;
         }
@@ -2476,6 +2472,12 @@ declare namespace CS {
         */
         enum SpriteMeshType
         { FullRect = 0, Tight = 1 }
+        /** The material class.
+        */
+        class Material extends UnityEngine.Object
+        {
+            protected [__keep_incompatibility]: never;
+        }
         /** Element that can be used for screen rendering.
         */
         class Canvas extends UnityEngine.Behaviour
@@ -2487,6 +2489,9 @@ declare namespace CS {
         class CanvasRenderer extends UnityEngine.Component
         {
             protected [__keep_incompatibility]: never;
+        }
+        interface ISerializationCallbackReceiver
+        {
         }
         /** Class that can be used to generate text for rendering.
         */
@@ -3428,416 +3433,6 @@ declare namespace CS {
             protected [__keep_incompatibility]: never;
         }
     }
-    namespace System.Reflection {
-        class MemberInfo extends System.Object implements System.Runtime.InteropServices._MemberInfo, System.Reflection.ICustomAttributeProvider
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        interface ICustomAttributeProvider
-        {
-        }
-        interface IReflect
-        {
-        }
-        class MethodBase extends System.Reflection.MemberInfo implements System.Runtime.InteropServices._MemberInfo, System.Runtime.InteropServices._MethodBase, System.Reflection.ICustomAttributeProvider
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class MethodInfo extends System.Reflection.MethodBase implements System.Runtime.InteropServices._MemberInfo, System.Runtime.InteropServices._MethodBase, System.Runtime.InteropServices._MethodInfo, System.Reflection.ICustomAttributeProvider
-        {
-            protected [__keep_incompatibility]: never;
-        }
-    }
-    namespace System.Runtime.InteropServices {
-        interface _MemberInfo
-        {
-        }
-        interface _Type
-        {
-        }
-        interface _MethodBase
-        {
-        }
-        interface _MethodInfo
-        {
-        }
-    }
-    namespace System.Collections.Generic {
-        interface IEnumerable$1<T> extends System.Collections.IEnumerable
-        {
-        }
-        interface IReadOnlyList$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.IReadOnlyCollection$1<T>
-        {
-        }
-        interface IReadOnlyCollection$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable
-        {
-        }
-        interface IList$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.ICollection$1<T>
-        {
-        }
-        interface ICollection$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable
-        {
-        }
-        class List$1<T> extends System.Object implements System.Collections.Generic.IReadOnlyList$1<T>, System.Collections.ICollection, System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.IList$1<T>, System.Collections.Generic.IReadOnlyCollection$1<T>, System.Collections.IList, System.Collections.Generic.ICollection$1<T>
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        interface IComparer$1<T>
-        {
-        }
-    }
-    namespace System.Collections {
-        interface IEnumerable
-        {
-        }
-        interface IStructuralComparable
-        {
-        }
-        interface IStructuralEquatable
-        {
-        }
-        interface ICollection extends System.Collections.IEnumerable
-        {
-        }
-        interface IList extends System.Collections.ICollection, System.Collections.IEnumerable
-        {
-        }
-        interface IComparer
-        {
-        }
-        interface IEnumerator
-        {
-        }
-    }
-    namespace UnityEngine.SceneManagement {
-        /** Run-time data structure for *.unity file.
-        */
-        class Scene extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
-            public get handle(): number;
-            /** Returns the relative path of the Scene. Like: "AssetsMyScenesMyScene.unity".
-            */
-            public get path(): string;
-            /** Returns the name of the Scene that is currently active in the game or app.
-            */
-            public get name(): string;
-            public set name(value: string);
-            /** Returns true if the Scene is loaded.
-            */
-            public get isLoaded(): boolean;
-            /** Return the index of the Scene in the Build Settings.
-            */
-            public get buildIndex(): number;
-            /** Returns true if the Scene is modifed.
-            */
-            public get isDirty(): boolean;
-            /** The number of root transforms of this Scene.
-            */
-            public get rootCount(): number;
-            public get isSubScene(): boolean;
-            public set isSubScene(value: boolean);
-            public IsValid () : boolean
-            public GetRootGameObjects () : System.Array$1<UnityEngine.GameObject>
-            public GetRootGameObjects ($rootGameObjects: System.Collections.Generic.List$1<UnityEngine.GameObject>) : void
-            public static op_Equality ($lhs: UnityEngine.SceneManagement.Scene, $rhs: UnityEngine.SceneManagement.Scene) : boolean
-            public static op_Inequality ($lhs: UnityEngine.SceneManagement.Scene, $rhs: UnityEngine.SceneManagement.Scene) : boolean
-        }
-    }
-    namespace UnityEngine.EventSystems {
-        class UIBehaviour extends UnityEngine.MonoBehaviour
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        interface IEventSystemHandler
-        {
-        }
-        interface IPointerEnterHandler extends UnityEngine.EventSystems.IEventSystemHandler
-        {
-        }
-        interface ISelectHandler extends UnityEngine.EventSystems.IEventSystemHandler
-        {
-        }
-        interface IPointerExitHandler extends UnityEngine.EventSystems.IEventSystemHandler
-        {
-        }
-        interface IDeselectHandler extends UnityEngine.EventSystems.IEventSystemHandler
-        {
-        }
-        interface IPointerDownHandler extends UnityEngine.EventSystems.IEventSystemHandler
-        {
-        }
-        interface IPointerUpHandler extends UnityEngine.EventSystems.IEventSystemHandler
-        {
-        }
-        interface IMoveHandler extends UnityEngine.EventSystems.IEventSystemHandler
-        {
-        }
-        interface ISubmitHandler extends UnityEngine.EventSystems.IEventSystemHandler
-        {
-        }
-        interface IPointerClickHandler extends UnityEngine.EventSystems.IEventSystemHandler
-        {
-        }
-        class AbstractEventData extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class BaseEventData extends UnityEngine.EventSystems.AbstractEventData
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class PointerEventData extends UnityEngine.EventSystems.BaseEventData
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        interface IInitializePotentialDragHandler extends UnityEngine.EventSystems.IEventSystemHandler
-        {
-        }
-        interface IDragHandler extends UnityEngine.EventSystems.IEventSystemHandler
-        {
-        }
-        class AxisEventData extends UnityEngine.EventSystems.BaseEventData
-        {
-            protected [__keep_incompatibility]: never;
-        }
-    }
-    namespace UnityEngine.UI {
-        class Graphic extends UnityEngine.EventSystems.UIBehaviour implements UnityEngine.UI.ICanvasElement
-        {
-            protected [__keep_incompatibility]: never;
-            public static get defaultGraphicMaterial(): UnityEngine.Material;
-            public get color(): UnityEngine.Color;
-            public set color(value: UnityEngine.Color);
-            public get raycastTarget(): boolean;
-            public set raycastTarget(value: boolean);
-            public get raycastPadding(): UnityEngine.Vector4;
-            public set raycastPadding(value: UnityEngine.Vector4);
-            public get depth(): number;
-            public get rectTransform(): UnityEngine.RectTransform;
-            public get canvas(): UnityEngine.Canvas;
-            public get canvasRenderer(): UnityEngine.CanvasRenderer;
-            public get defaultMaterial(): UnityEngine.Material;
-            public get material(): UnityEngine.Material;
-            public set material(value: UnityEngine.Material);
-            public get materialForRendering(): UnityEngine.Material;
-            public get mainTexture(): UnityEngine.Texture;
-            public SetAllDirty () : void
-            public SetLayoutDirty () : void
-            public SetVerticesDirty () : void
-            public SetMaterialDirty () : void
-            public OnCullingChanged () : void
-            public Rebuild ($update: UnityEngine.UI.CanvasUpdate) : void
-            public LayoutComplete () : void
-            public GraphicUpdateComplete () : void
-            public OnRebuildRequested () : void
-            public SetNativeSize () : void
-            public Raycast ($sp: UnityEngine.Vector2, $eventCamera: UnityEngine.Camera) : boolean
-            public PixelAdjustPoint ($point: UnityEngine.Vector2) : UnityEngine.Vector2
-            public GetPixelAdjustedRect () : UnityEngine.Rect
-            public CrossFadeColor ($targetColor: UnityEngine.Color, $duration: number, $ignoreTimeScale: boolean, $useAlpha: boolean) : void
-            public CrossFadeColor ($targetColor: UnityEngine.Color, $duration: number, $ignoreTimeScale: boolean, $useAlpha: boolean, $useRGB: boolean) : void
-            public CrossFadeAlpha ($alpha: number, $duration: number, $ignoreTimeScale: boolean) : void
-            public RegisterDirtyLayoutCallback ($action: UnityEngine.Events.UnityAction) : void
-            public UnregisterDirtyLayoutCallback ($action: UnityEngine.Events.UnityAction) : void
-            public RegisterDirtyVerticesCallback ($action: UnityEngine.Events.UnityAction) : void
-            public UnregisterDirtyVerticesCallback ($action: UnityEngine.Events.UnityAction) : void
-            public RegisterDirtyMaterialCallback ($action: UnityEngine.Events.UnityAction) : void
-            public UnregisterDirtyMaterialCallback ($action: UnityEngine.Events.UnityAction) : void
-        }
-        interface ICanvasElement
-        {
-        }
-        class MaskableGraphic extends UnityEngine.UI.Graphic implements UnityEngine.UI.IMaterialModifier, UnityEngine.UI.IMaskable, UnityEngine.UI.ICanvasElement, UnityEngine.UI.IClippable
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        interface IMaterialModifier
-        {
-        }
-        interface IMaskable
-        {
-        }
-        interface IClippable
-        {
-        }
-        class Image extends UnityEngine.UI.MaskableGraphic implements UnityEngine.UI.IMaterialModifier, UnityEngine.UI.IMaskable, UnityEngine.ICanvasRaycastFilter, UnityEngine.UI.ICanvasElement, UnityEngine.UI.ILayoutElement, UnityEngine.ISerializationCallbackReceiver, UnityEngine.UI.IClippable
-        {
-            protected [__keep_incompatibility]: never;
-            public get sprite(): UnityEngine.Sprite;
-            public set sprite(value: UnityEngine.Sprite);
-            public get overrideSprite(): UnityEngine.Sprite;
-            public set overrideSprite(value: UnityEngine.Sprite);
-            public get type(): UnityEngine.UI.Image.Type;
-            public set type(value: UnityEngine.UI.Image.Type);
-            public get preserveAspect(): boolean;
-            public set preserveAspect(value: boolean);
-            public get fillCenter(): boolean;
-            public set fillCenter(value: boolean);
-            public get fillMethod(): UnityEngine.UI.Image.FillMethod;
-            public set fillMethod(value: UnityEngine.UI.Image.FillMethod);
-            public get fillAmount(): number;
-            public set fillAmount(value: number);
-            public get fillClockwise(): boolean;
-            public set fillClockwise(value: boolean);
-            public get fillOrigin(): number;
-            public set fillOrigin(value: number);
-            public get alphaHitTestMinimumThreshold(): number;
-            public set alphaHitTestMinimumThreshold(value: number);
-            public get useSpriteMesh(): boolean;
-            public set useSpriteMesh(value: boolean);
-            public static get defaultETC1GraphicMaterial(): UnityEngine.Material;
-            public get mainTexture(): UnityEngine.Texture;
-            public get hasBorder(): boolean;
-            public get pixelsPerUnitMultiplier(): number;
-            public set pixelsPerUnitMultiplier(value: number);
-            public get pixelsPerUnit(): number;
-            public get material(): UnityEngine.Material;
-            public set material(value: UnityEngine.Material);
-            public get minWidth(): number;
-            public get preferredWidth(): number;
-            public get flexibleWidth(): number;
-            public get minHeight(): number;
-            public get preferredHeight(): number;
-            public get flexibleHeight(): number;
-            public get layoutPriority(): number;
-            public DisableSpriteOptimizations () : void
-            public OnBeforeSerialize () : void
-            public OnAfterDeserialize () : void
-            public CalculateLayoutInputHorizontal () : void
-            public CalculateLayoutInputVertical () : void
-            public IsRaycastLocationValid ($screenPoint: UnityEngine.Vector2, $eventCamera: UnityEngine.Camera) : boolean
-        }
-        interface ILayoutElement
-        {
-        }
-        enum CanvasUpdate
-        { Prelayout = 0, Layout = 1, PostLayout = 2, PreRender = 3, LatePreRender = 4, MaxUpdateValue = 5 }
-        class Text extends UnityEngine.UI.MaskableGraphic implements UnityEngine.UI.IMaterialModifier, UnityEngine.UI.IMaskable, UnityEngine.UI.ICanvasElement, UnityEngine.UI.ILayoutElement, UnityEngine.UI.IClippable
-        {
-            protected [__keep_incompatibility]: never;
-            public get cachedTextGenerator(): UnityEngine.TextGenerator;
-            public get cachedTextGeneratorForLayout(): UnityEngine.TextGenerator;
-            public get mainTexture(): UnityEngine.Texture;
-            public get font(): UnityEngine.Font;
-            public set font(value: UnityEngine.Font);
-            public get text(): string;
-            public set text(value: string);
-            public get supportRichText(): boolean;
-            public set supportRichText(value: boolean);
-            public get resizeTextForBestFit(): boolean;
-            public set resizeTextForBestFit(value: boolean);
-            public get resizeTextMinSize(): number;
-            public set resizeTextMinSize(value: number);
-            public get resizeTextMaxSize(): number;
-            public set resizeTextMaxSize(value: number);
-            public get alignment(): UnityEngine.TextAnchor;
-            public set alignment(value: UnityEngine.TextAnchor);
-            public get alignByGeometry(): boolean;
-            public set alignByGeometry(value: boolean);
-            public get fontSize(): number;
-            public set fontSize(value: number);
-            public get horizontalOverflow(): UnityEngine.HorizontalWrapMode;
-            public set horizontalOverflow(value: UnityEngine.HorizontalWrapMode);
-            public get verticalOverflow(): UnityEngine.VerticalWrapMode;
-            public set verticalOverflow(value: UnityEngine.VerticalWrapMode);
-            public get lineSpacing(): number;
-            public set lineSpacing(value: number);
-            public get fontStyle(): UnityEngine.FontStyle;
-            public set fontStyle(value: UnityEngine.FontStyle);
-            public get pixelsPerUnit(): number;
-            public get minWidth(): number;
-            public get preferredWidth(): number;
-            public get flexibleWidth(): number;
-            public get minHeight(): number;
-            public get preferredHeight(): number;
-            public get flexibleHeight(): number;
-            public get layoutPriority(): number;
-            public FontTextureChanged () : void
-            public GetGenerationSettings ($extents: UnityEngine.Vector2) : UnityEngine.TextGenerationSettings
-            public static GetTextAnchorPivot ($anchor: UnityEngine.TextAnchor) : UnityEngine.Vector2
-            public CalculateLayoutInputHorizontal () : void
-            public CalculateLayoutInputVertical () : void
-        }
-        class Selectable extends UnityEngine.EventSystems.UIBehaviour implements UnityEngine.EventSystems.IEventSystemHandler, UnityEngine.EventSystems.IPointerEnterHandler, UnityEngine.EventSystems.ISelectHandler, UnityEngine.EventSystems.IPointerExitHandler, UnityEngine.EventSystems.IDeselectHandler, UnityEngine.EventSystems.IPointerDownHandler, UnityEngine.EventSystems.IPointerUpHandler, UnityEngine.EventSystems.IMoveHandler
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class Button extends UnityEngine.UI.Selectable implements UnityEngine.EventSystems.IEventSystemHandler, UnityEngine.EventSystems.IPointerEnterHandler, UnityEngine.EventSystems.ISelectHandler, UnityEngine.EventSystems.IPointerExitHandler, UnityEngine.EventSystems.IDeselectHandler, UnityEngine.EventSystems.IPointerDownHandler, UnityEngine.EventSystems.IPointerUpHandler, UnityEngine.EventSystems.IMoveHandler, UnityEngine.EventSystems.ISubmitHandler, UnityEngine.EventSystems.IPointerClickHandler
-        {
-            protected [__keep_incompatibility]: never;
-            public get onClick(): UnityEngine.UI.Button.ButtonClickedEvent;
-            public set onClick(value: UnityEngine.UI.Button.ButtonClickedEvent);
-            public OnPointerClick ($eventData: UnityEngine.EventSystems.PointerEventData) : void
-            public OnSubmit ($eventData: UnityEngine.EventSystems.BaseEventData) : void
-        }
-        class Toggle extends UnityEngine.UI.Selectable implements UnityEngine.UI.ICanvasElement, UnityEngine.EventSystems.IEventSystemHandler, UnityEngine.EventSystems.IPointerEnterHandler, UnityEngine.EventSystems.ISelectHandler, UnityEngine.EventSystems.IPointerExitHandler, UnityEngine.EventSystems.IDeselectHandler, UnityEngine.EventSystems.IPointerDownHandler, UnityEngine.EventSystems.IPointerUpHandler, UnityEngine.EventSystems.IMoveHandler, UnityEngine.EventSystems.ISubmitHandler, UnityEngine.EventSystems.IPointerClickHandler
-        {
-            protected [__keep_incompatibility]: never;
-            public toggleTransition : UnityEngine.UI.Toggle.ToggleTransition
-            public graphic : UnityEngine.UI.Graphic
-            public onValueChanged : UnityEngine.UI.Toggle.ToggleEvent
-            public get group(): UnityEngine.UI.ToggleGroup;
-            public set group(value: UnityEngine.UI.ToggleGroup);
-            public get isOn(): boolean;
-            public set isOn(value: boolean);
-            public Rebuild ($executing: UnityEngine.UI.CanvasUpdate) : void
-            public LayoutComplete () : void
-            public GraphicUpdateComplete () : void
-            public SetIsOnWithoutNotify ($value: boolean) : void
-            public OnPointerClick ($eventData: UnityEngine.EventSystems.PointerEventData) : void
-            public OnSubmit ($eventData: UnityEngine.EventSystems.BaseEventData) : void
-        }
-        class ToggleGroup extends UnityEngine.EventSystems.UIBehaviour
-        {
-            protected [__keep_incompatibility]: never;
-            public get allowSwitchOff(): boolean;
-            public set allowSwitchOff(value: boolean);
-            public NotifyToggleOn ($toggle: UnityEngine.UI.Toggle, $sendCallback?: boolean) : void
-            public UnregisterToggle ($toggle: UnityEngine.UI.Toggle) : void
-            public RegisterToggle ($toggle: UnityEngine.UI.Toggle) : void
-            public EnsureValidState () : void
-            public AnyTogglesOn () : boolean
-            public ActiveToggles () : System.Collections.Generic.IEnumerable$1<UnityEngine.UI.Toggle>
-            public GetFirstActiveToggle () : UnityEngine.UI.Toggle
-            public SetAllTogglesOff ($sendCallback?: boolean) : void
-        }
-        class Slider extends UnityEngine.UI.Selectable implements UnityEngine.EventSystems.IInitializePotentialDragHandler, UnityEngine.EventSystems.IDragHandler, UnityEngine.UI.ICanvasElement, UnityEngine.EventSystems.IEventSystemHandler, UnityEngine.EventSystems.IPointerEnterHandler, UnityEngine.EventSystems.ISelectHandler, UnityEngine.EventSystems.IPointerExitHandler, UnityEngine.EventSystems.IDeselectHandler, UnityEngine.EventSystems.IPointerDownHandler, UnityEngine.EventSystems.IPointerUpHandler, UnityEngine.EventSystems.IMoveHandler
-        {
-            protected [__keep_incompatibility]: never;
-            public get fillRect(): UnityEngine.RectTransform;
-            public set fillRect(value: UnityEngine.RectTransform);
-            public get handleRect(): UnityEngine.RectTransform;
-            public set handleRect(value: UnityEngine.RectTransform);
-            public get direction(): UnityEngine.UI.Slider.Direction;
-            public set direction(value: UnityEngine.UI.Slider.Direction);
-            public get minValue(): number;
-            public set minValue(value: number);
-            public get maxValue(): number;
-            public set maxValue(value: number);
-            public get wholeNumbers(): boolean;
-            public set wholeNumbers(value: boolean);
-            public get value(): number;
-            public set value(value: number);
-            public get normalizedValue(): number;
-            public set normalizedValue(value: number);
-            public get onValueChanged(): UnityEngine.UI.Slider.SliderEvent;
-            public set onValueChanged(value: UnityEngine.UI.Slider.SliderEvent);
-            public SetValueWithoutNotify ($input: number) : void
-            public Rebuild ($executing: UnityEngine.UI.CanvasUpdate) : void
-            public LayoutComplete () : void
-            public GraphicUpdateComplete () : void
-            public OnDrag ($eventData: UnityEngine.EventSystems.PointerEventData) : void
-            public OnInitializePotentialDrag ($eventData: UnityEngine.EventSystems.PointerEventData) : void
-            public SetDirection ($direction: UnityEngine.UI.Slider.Direction, $includeRectLayouts: boolean) : void
-        }
-    }
-    namespace UnityEngine.UI.Image {
-        enum Type
-        { Simple = 0, Sliced = 1, Tiled = 2, Filled = 3 }
-        enum FillMethod
-        { Horizontal = 0, Vertical = 1, Radial90 = 2, Radial180 = 3, Radial360 = 4 }
-    }
     namespace Au {
         class App extends UnityEngine.MonoBehaviour
         {
@@ -3846,6 +3441,7 @@ declare namespace CS {
             public static get platform(): string;
             public static get loader(): Au.Loaders.Loader;
             public static get config(): Au.AppConfig;
+            public static get i18n(): System.Func$2<number, string>;
             public static RestartJS () : System.Threading.Tasks.Task$1<boolean>
             public constructor ()
         }
@@ -3897,6 +3493,53 @@ declare namespace CS {
             public static DirCopy ($from: System.IO.DirectoryInfo, $to: System.IO.DirectoryInfo) : void
         }
     }
+    namespace System.Collections.Generic {
+        interface IEnumerable$1<T> extends System.Collections.IEnumerable
+        {
+        }
+        interface IReadOnlyList$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.IReadOnlyCollection$1<T>
+        {
+        }
+        interface IReadOnlyCollection$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable
+        {
+        }
+        interface IList$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.ICollection$1<T>
+        {
+        }
+        interface ICollection$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable
+        {
+        }
+        class List$1<T> extends System.Object implements System.Collections.Generic.IReadOnlyList$1<T>, System.Collections.ICollection, System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.IList$1<T>, System.Collections.Generic.IReadOnlyCollection$1<T>, System.Collections.IList, System.Collections.Generic.ICollection$1<T>
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        interface IComparer$1<T>
+        {
+        }
+    }
+    namespace System.Collections {
+        interface IEnumerable
+        {
+        }
+        interface IStructuralComparable
+        {
+        }
+        interface IStructuralEquatable
+        {
+        }
+        interface ICollection extends System.Collections.IEnumerable
+        {
+        }
+        interface IList extends System.Collections.ICollection, System.Collections.IEnumerable
+        {
+        }
+        interface IComparer
+        {
+        }
+        interface IEnumerator
+        {
+        }
+    }
     namespace Au.Loaders {
         class Loader extends System.Object
         {
@@ -3907,6 +3550,12 @@ declare namespace CS {
             public LoadScene ($name: string, $additive: boolean, $progress: System.Action$1<number>) : System.Threading.Tasks.Task$1<UnityEngine.SceneManagement.Scene>
             public UnloadScene ($scene: UnityEngine.SceneManagement.Scene) : System.Threading.Tasks.Task$1<boolean>
             public LoadAsset ($path: string, $type: System.Type) : System.Threading.Tasks.Task$1<UnityEngine.Object>
+            public UnloadAllBundles () : void
+        }
+    }
+    namespace System.Runtime.Serialization {
+        interface ISerializable
+        {
         }
     }
     namespace System.Threading.Tasks {
@@ -3932,11 +3581,6 @@ declare namespace CS {
         class StringBuilder extends System.Object implements System.Runtime.Serialization.ISerializable
         {
             protected [__keep_incompatibility]: never;
-        }
-    }
-    namespace System.Runtime.Serialization {
-        interface ISerializable
-        {
         }
     }
     namespace System.IO {
@@ -3980,6 +3624,75 @@ declare namespace CS {
         class Stream extends System.MarshalByRefObject implements System.IAsyncDisposable, System.IDisposable
         {
             protected [__keep_incompatibility]: never;
+        }
+    }
+    namespace UnityEngine.SceneManagement {
+        /** Run-time data structure for *.unity file.
+        */
+        class Scene extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public get handle(): number;
+            /** Returns the relative path of the Scene. Like: "AssetsMyScenesMyScene.unity".
+            */
+            public get path(): string;
+            /** Returns the name of the Scene that is currently active in the game or app.
+            */
+            public get name(): string;
+            public set name(value: string);
+            /** Returns true if the Scene is loaded.
+            */
+            public get isLoaded(): boolean;
+            /** Return the index of the Scene in the Build Settings.
+            */
+            public get buildIndex(): number;
+            /** Returns true if the Scene is modifed.
+            */
+            public get isDirty(): boolean;
+            /** The number of root transforms of this Scene.
+            */
+            public get rootCount(): number;
+            public get isSubScene(): boolean;
+            public set isSubScene(value: boolean);
+            public IsValid () : boolean
+            public GetRootGameObjects () : System.Array$1<UnityEngine.GameObject>
+            public GetRootGameObjects ($rootGameObjects: System.Collections.Generic.List$1<UnityEngine.GameObject>) : void
+            public static op_Equality ($lhs: UnityEngine.SceneManagement.Scene, $rhs: UnityEngine.SceneManagement.Scene) : boolean
+            public static op_Inequality ($lhs: UnityEngine.SceneManagement.Scene, $rhs: UnityEngine.SceneManagement.Scene) : boolean
+        }
+    }
+    namespace System.Reflection {
+        class MemberInfo extends System.Object implements System.Runtime.InteropServices._MemberInfo, System.Reflection.ICustomAttributeProvider
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        interface ICustomAttributeProvider
+        {
+        }
+        interface IReflect
+        {
+        }
+        class MethodBase extends System.Reflection.MemberInfo implements System.Runtime.InteropServices._MemberInfo, System.Runtime.InteropServices._MethodBase, System.Reflection.ICustomAttributeProvider
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class MethodInfo extends System.Reflection.MethodBase implements System.Runtime.InteropServices._MemberInfo, System.Runtime.InteropServices._MethodBase, System.Runtime.InteropServices._MethodInfo, System.Reflection.ICustomAttributeProvider
+        {
+            protected [__keep_incompatibility]: never;
+        }
+    }
+    namespace System.Runtime.InteropServices {
+        interface _MemberInfo
+        {
+        }
+        interface _Type
+        {
+        }
+        interface _MethodBase
+        {
+        }
+        interface _MethodInfo
+        {
         }
     }
     namespace Au.Connectors {
@@ -4161,6 +3874,300 @@ declare namespace CS {
         { Left = 0, Right = 1, Top = 2, Bottom = 3 }
         enum Axis
         { Horizontal = 0, Vertical = 1 }
+    }
+    namespace UnityEngine.EventSystems {
+        class UIBehaviour extends UnityEngine.MonoBehaviour
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        interface IEventSystemHandler
+        {
+        }
+        interface IPointerEnterHandler extends UnityEngine.EventSystems.IEventSystemHandler
+        {
+        }
+        interface ISelectHandler extends UnityEngine.EventSystems.IEventSystemHandler
+        {
+        }
+        interface IPointerExitHandler extends UnityEngine.EventSystems.IEventSystemHandler
+        {
+        }
+        interface IDeselectHandler extends UnityEngine.EventSystems.IEventSystemHandler
+        {
+        }
+        interface IPointerDownHandler extends UnityEngine.EventSystems.IEventSystemHandler
+        {
+        }
+        interface IPointerUpHandler extends UnityEngine.EventSystems.IEventSystemHandler
+        {
+        }
+        interface IMoveHandler extends UnityEngine.EventSystems.IEventSystemHandler
+        {
+        }
+        interface ISubmitHandler extends UnityEngine.EventSystems.IEventSystemHandler
+        {
+        }
+        interface IPointerClickHandler extends UnityEngine.EventSystems.IEventSystemHandler
+        {
+        }
+        class AbstractEventData extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class BaseEventData extends UnityEngine.EventSystems.AbstractEventData
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class PointerEventData extends UnityEngine.EventSystems.BaseEventData
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        interface IInitializePotentialDragHandler extends UnityEngine.EventSystems.IEventSystemHandler
+        {
+        }
+        interface IDragHandler extends UnityEngine.EventSystems.IEventSystemHandler
+        {
+        }
+        class AxisEventData extends UnityEngine.EventSystems.BaseEventData
+        {
+            protected [__keep_incompatibility]: never;
+        }
+    }
+    namespace UnityEngine.UI {
+        class Graphic extends UnityEngine.EventSystems.UIBehaviour implements UnityEngine.UI.ICanvasElement
+        {
+            protected [__keep_incompatibility]: never;
+            public static get defaultGraphicMaterial(): UnityEngine.Material;
+            public get color(): UnityEngine.Color;
+            public set color(value: UnityEngine.Color);
+            public get raycastTarget(): boolean;
+            public set raycastTarget(value: boolean);
+            public get raycastPadding(): UnityEngine.Vector4;
+            public set raycastPadding(value: UnityEngine.Vector4);
+            public get depth(): number;
+            public get rectTransform(): UnityEngine.RectTransform;
+            public get canvas(): UnityEngine.Canvas;
+            public get canvasRenderer(): UnityEngine.CanvasRenderer;
+            public get defaultMaterial(): UnityEngine.Material;
+            public get material(): UnityEngine.Material;
+            public set material(value: UnityEngine.Material);
+            public get materialForRendering(): UnityEngine.Material;
+            public get mainTexture(): UnityEngine.Texture;
+            public SetAllDirty () : void
+            public SetLayoutDirty () : void
+            public SetVerticesDirty () : void
+            public SetMaterialDirty () : void
+            public OnCullingChanged () : void
+            public Rebuild ($update: UnityEngine.UI.CanvasUpdate) : void
+            public LayoutComplete () : void
+            public GraphicUpdateComplete () : void
+            public OnRebuildRequested () : void
+            public SetNativeSize () : void
+            public Raycast ($sp: UnityEngine.Vector2, $eventCamera: UnityEngine.Camera) : boolean
+            public PixelAdjustPoint ($point: UnityEngine.Vector2) : UnityEngine.Vector2
+            public GetPixelAdjustedRect () : UnityEngine.Rect
+            public CrossFadeColor ($targetColor: UnityEngine.Color, $duration: number, $ignoreTimeScale: boolean, $useAlpha: boolean) : void
+            public CrossFadeColor ($targetColor: UnityEngine.Color, $duration: number, $ignoreTimeScale: boolean, $useAlpha: boolean, $useRGB: boolean) : void
+            public CrossFadeAlpha ($alpha: number, $duration: number, $ignoreTimeScale: boolean) : void
+            public RegisterDirtyLayoutCallback ($action: UnityEngine.Events.UnityAction) : void
+            public UnregisterDirtyLayoutCallback ($action: UnityEngine.Events.UnityAction) : void
+            public RegisterDirtyVerticesCallback ($action: UnityEngine.Events.UnityAction) : void
+            public UnregisterDirtyVerticesCallback ($action: UnityEngine.Events.UnityAction) : void
+            public RegisterDirtyMaterialCallback ($action: UnityEngine.Events.UnityAction) : void
+            public UnregisterDirtyMaterialCallback ($action: UnityEngine.Events.UnityAction) : void
+        }
+        interface ICanvasElement
+        {
+        }
+        enum CanvasUpdate
+        { Prelayout = 0, Layout = 1, PostLayout = 2, PreRender = 3, LatePreRender = 4, MaxUpdateValue = 5 }
+        class MaskableGraphic extends UnityEngine.UI.Graphic implements UnityEngine.UI.IMaterialModifier, UnityEngine.UI.IMaskable, UnityEngine.UI.ICanvasElement, UnityEngine.UI.IClippable
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        interface IMaterialModifier
+        {
+        }
+        interface IMaskable
+        {
+        }
+        interface IClippable
+        {
+        }
+        class Image extends UnityEngine.UI.MaskableGraphic implements UnityEngine.UI.IMaterialModifier, UnityEngine.UI.IMaskable, UnityEngine.ICanvasRaycastFilter, UnityEngine.UI.ICanvasElement, UnityEngine.UI.ILayoutElement, UnityEngine.ISerializationCallbackReceiver, UnityEngine.UI.IClippable
+        {
+            protected [__keep_incompatibility]: never;
+            public get sprite(): UnityEngine.Sprite;
+            public set sprite(value: UnityEngine.Sprite);
+            public get overrideSprite(): UnityEngine.Sprite;
+            public set overrideSprite(value: UnityEngine.Sprite);
+            public get type(): UnityEngine.UI.Image.Type;
+            public set type(value: UnityEngine.UI.Image.Type);
+            public get preserveAspect(): boolean;
+            public set preserveAspect(value: boolean);
+            public get fillCenter(): boolean;
+            public set fillCenter(value: boolean);
+            public get fillMethod(): UnityEngine.UI.Image.FillMethod;
+            public set fillMethod(value: UnityEngine.UI.Image.FillMethod);
+            public get fillAmount(): number;
+            public set fillAmount(value: number);
+            public get fillClockwise(): boolean;
+            public set fillClockwise(value: boolean);
+            public get fillOrigin(): number;
+            public set fillOrigin(value: number);
+            public get alphaHitTestMinimumThreshold(): number;
+            public set alphaHitTestMinimumThreshold(value: number);
+            public get useSpriteMesh(): boolean;
+            public set useSpriteMesh(value: boolean);
+            public static get defaultETC1GraphicMaterial(): UnityEngine.Material;
+            public get mainTexture(): UnityEngine.Texture;
+            public get hasBorder(): boolean;
+            public get pixelsPerUnitMultiplier(): number;
+            public set pixelsPerUnitMultiplier(value: number);
+            public get pixelsPerUnit(): number;
+            public get material(): UnityEngine.Material;
+            public set material(value: UnityEngine.Material);
+            public get minWidth(): number;
+            public get preferredWidth(): number;
+            public get flexibleWidth(): number;
+            public get minHeight(): number;
+            public get preferredHeight(): number;
+            public get flexibleHeight(): number;
+            public get layoutPriority(): number;
+            public DisableSpriteOptimizations () : void
+            public OnBeforeSerialize () : void
+            public OnAfterDeserialize () : void
+            public CalculateLayoutInputHorizontal () : void
+            public CalculateLayoutInputVertical () : void
+            public IsRaycastLocationValid ($screenPoint: UnityEngine.Vector2, $eventCamera: UnityEngine.Camera) : boolean
+        }
+        interface ILayoutElement
+        {
+        }
+        class Text extends UnityEngine.UI.MaskableGraphic implements UnityEngine.UI.IMaterialModifier, UnityEngine.UI.IMaskable, UnityEngine.UI.ICanvasElement, UnityEngine.UI.ILayoutElement, UnityEngine.UI.IClippable
+        {
+            protected [__keep_incompatibility]: never;
+            public get cachedTextGenerator(): UnityEngine.TextGenerator;
+            public get cachedTextGeneratorForLayout(): UnityEngine.TextGenerator;
+            public get mainTexture(): UnityEngine.Texture;
+            public get font(): UnityEngine.Font;
+            public set font(value: UnityEngine.Font);
+            public get text(): string;
+            public set text(value: string);
+            public get supportRichText(): boolean;
+            public set supportRichText(value: boolean);
+            public get resizeTextForBestFit(): boolean;
+            public set resizeTextForBestFit(value: boolean);
+            public get resizeTextMinSize(): number;
+            public set resizeTextMinSize(value: number);
+            public get resizeTextMaxSize(): number;
+            public set resizeTextMaxSize(value: number);
+            public get alignment(): UnityEngine.TextAnchor;
+            public set alignment(value: UnityEngine.TextAnchor);
+            public get alignByGeometry(): boolean;
+            public set alignByGeometry(value: boolean);
+            public get fontSize(): number;
+            public set fontSize(value: number);
+            public get horizontalOverflow(): UnityEngine.HorizontalWrapMode;
+            public set horizontalOverflow(value: UnityEngine.HorizontalWrapMode);
+            public get verticalOverflow(): UnityEngine.VerticalWrapMode;
+            public set verticalOverflow(value: UnityEngine.VerticalWrapMode);
+            public get lineSpacing(): number;
+            public set lineSpacing(value: number);
+            public get fontStyle(): UnityEngine.FontStyle;
+            public set fontStyle(value: UnityEngine.FontStyle);
+            public get pixelsPerUnit(): number;
+            public get minWidth(): number;
+            public get preferredWidth(): number;
+            public get flexibleWidth(): number;
+            public get minHeight(): number;
+            public get preferredHeight(): number;
+            public get flexibleHeight(): number;
+            public get layoutPriority(): number;
+            public FontTextureChanged () : void
+            public GetGenerationSettings ($extents: UnityEngine.Vector2) : UnityEngine.TextGenerationSettings
+            public static GetTextAnchorPivot ($anchor: UnityEngine.TextAnchor) : UnityEngine.Vector2
+            public CalculateLayoutInputHorizontal () : void
+            public CalculateLayoutInputVertical () : void
+        }
+        class Selectable extends UnityEngine.EventSystems.UIBehaviour implements UnityEngine.EventSystems.IEventSystemHandler, UnityEngine.EventSystems.IPointerEnterHandler, UnityEngine.EventSystems.ISelectHandler, UnityEngine.EventSystems.IPointerExitHandler, UnityEngine.EventSystems.IDeselectHandler, UnityEngine.EventSystems.IPointerDownHandler, UnityEngine.EventSystems.IPointerUpHandler, UnityEngine.EventSystems.IMoveHandler
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class Button extends UnityEngine.UI.Selectable implements UnityEngine.EventSystems.IEventSystemHandler, UnityEngine.EventSystems.IPointerEnterHandler, UnityEngine.EventSystems.ISelectHandler, UnityEngine.EventSystems.IPointerExitHandler, UnityEngine.EventSystems.IDeselectHandler, UnityEngine.EventSystems.IPointerDownHandler, UnityEngine.EventSystems.IPointerUpHandler, UnityEngine.EventSystems.IMoveHandler, UnityEngine.EventSystems.ISubmitHandler, UnityEngine.EventSystems.IPointerClickHandler
+        {
+            protected [__keep_incompatibility]: never;
+            public get onClick(): UnityEngine.UI.Button.ButtonClickedEvent;
+            public set onClick(value: UnityEngine.UI.Button.ButtonClickedEvent);
+            public OnPointerClick ($eventData: UnityEngine.EventSystems.PointerEventData) : void
+            public OnSubmit ($eventData: UnityEngine.EventSystems.BaseEventData) : void
+        }
+        class Toggle extends UnityEngine.UI.Selectable implements UnityEngine.UI.ICanvasElement, UnityEngine.EventSystems.IEventSystemHandler, UnityEngine.EventSystems.IPointerEnterHandler, UnityEngine.EventSystems.ISelectHandler, UnityEngine.EventSystems.IPointerExitHandler, UnityEngine.EventSystems.IDeselectHandler, UnityEngine.EventSystems.IPointerDownHandler, UnityEngine.EventSystems.IPointerUpHandler, UnityEngine.EventSystems.IMoveHandler, UnityEngine.EventSystems.ISubmitHandler, UnityEngine.EventSystems.IPointerClickHandler
+        {
+            protected [__keep_incompatibility]: never;
+            public toggleTransition : UnityEngine.UI.Toggle.ToggleTransition
+            public graphic : UnityEngine.UI.Graphic
+            public onValueChanged : UnityEngine.UI.Toggle.ToggleEvent
+            public get group(): UnityEngine.UI.ToggleGroup;
+            public set group(value: UnityEngine.UI.ToggleGroup);
+            public get isOn(): boolean;
+            public set isOn(value: boolean);
+            public Rebuild ($executing: UnityEngine.UI.CanvasUpdate) : void
+            public LayoutComplete () : void
+            public GraphicUpdateComplete () : void
+            public SetIsOnWithoutNotify ($value: boolean) : void
+            public OnPointerClick ($eventData: UnityEngine.EventSystems.PointerEventData) : void
+            public OnSubmit ($eventData: UnityEngine.EventSystems.BaseEventData) : void
+        }
+        class ToggleGroup extends UnityEngine.EventSystems.UIBehaviour
+        {
+            protected [__keep_incompatibility]: never;
+            public get allowSwitchOff(): boolean;
+            public set allowSwitchOff(value: boolean);
+            public NotifyToggleOn ($toggle: UnityEngine.UI.Toggle, $sendCallback?: boolean) : void
+            public UnregisterToggle ($toggle: UnityEngine.UI.Toggle) : void
+            public RegisterToggle ($toggle: UnityEngine.UI.Toggle) : void
+            public EnsureValidState () : void
+            public AnyTogglesOn () : boolean
+            public ActiveToggles () : System.Collections.Generic.IEnumerable$1<UnityEngine.UI.Toggle>
+            public GetFirstActiveToggle () : UnityEngine.UI.Toggle
+            public SetAllTogglesOff ($sendCallback?: boolean) : void
+        }
+        class Slider extends UnityEngine.UI.Selectable implements UnityEngine.EventSystems.IInitializePotentialDragHandler, UnityEngine.EventSystems.IDragHandler, UnityEngine.UI.ICanvasElement, UnityEngine.EventSystems.IEventSystemHandler, UnityEngine.EventSystems.IPointerEnterHandler, UnityEngine.EventSystems.ISelectHandler, UnityEngine.EventSystems.IPointerExitHandler, UnityEngine.EventSystems.IDeselectHandler, UnityEngine.EventSystems.IPointerDownHandler, UnityEngine.EventSystems.IPointerUpHandler, UnityEngine.EventSystems.IMoveHandler
+        {
+            protected [__keep_incompatibility]: never;
+            public get fillRect(): UnityEngine.RectTransform;
+            public set fillRect(value: UnityEngine.RectTransform);
+            public get handleRect(): UnityEngine.RectTransform;
+            public set handleRect(value: UnityEngine.RectTransform);
+            public get direction(): UnityEngine.UI.Slider.Direction;
+            public set direction(value: UnityEngine.UI.Slider.Direction);
+            public get minValue(): number;
+            public set minValue(value: number);
+            public get maxValue(): number;
+            public set maxValue(value: number);
+            public get wholeNumbers(): boolean;
+            public set wholeNumbers(value: boolean);
+            public get value(): number;
+            public set value(value: number);
+            public get normalizedValue(): number;
+            public set normalizedValue(value: number);
+            public get onValueChanged(): UnityEngine.UI.Slider.SliderEvent;
+            public set onValueChanged(value: UnityEngine.UI.Slider.SliderEvent);
+            public SetValueWithoutNotify ($input: number) : void
+            public Rebuild ($executing: UnityEngine.UI.CanvasUpdate) : void
+            public LayoutComplete () : void
+            public GraphicUpdateComplete () : void
+            public OnDrag ($eventData: UnityEngine.EventSystems.PointerEventData) : void
+            public OnInitializePotentialDrag ($eventData: UnityEngine.EventSystems.PointerEventData) : void
+            public SetDirection ($direction: UnityEngine.UI.Slider.Direction, $includeRectLayouts: boolean) : void
+        }
+    }
+    namespace UnityEngine.UI.Image {
+        enum Type
+        { Simple = 0, Sliced = 1, Tiled = 2, Filled = 3 }
+        enum FillMethod
+        { Horizontal = 0, Vertical = 1, Radial90 = 2, Radial180 = 3, Radial360 = 4 }
     }
     namespace UnityEngine.UI.Button {
         class ButtonClickedEvent extends UnityEngine.Events.UnityEvent implements UnityEngine.ISerializationCallbackReceiver

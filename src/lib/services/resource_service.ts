@@ -55,6 +55,10 @@ export class ResourceService {
         App.loader.UnloadBundle(name);
     }
 
+    unloadAllBundles() {
+        App.loader.UnloadAllBundles();
+    }
+
     /**
      * load an asset from bundle
      * @param path asset path, should be full path like 'Assets/Bundles/conf/game.json'
