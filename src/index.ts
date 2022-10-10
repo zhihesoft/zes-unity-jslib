@@ -1,14 +1,15 @@
 export { App } from "./lib/app";
 export { ListViewComponent } from "./lib/components/listview";
+export { PageContainer } from "./lib/components/pagecontainer";
 export { getLogger } from "./lib/logger";
 export * from "./lib/metadata/decorator_bind";
 export * from "./lib/metadata/decorator_view";
+export { component } from "./lib/metadata/decorator_view";
+export { BindViewMode } from "./lib/metadata/metadata_bind";
 export { getPatcher, PatchProvider } from "./lib/patch/patch_provider";
 export { PatchStatus } from "./lib/patch/patch_status";
 export { FadeService } from "./lib/services/fade_service";
 export * from "./lib/services/i18n_service";
-export { LayerService } from "./lib/services/layer_service";
-export { PageService } from "./lib/services/page_service";
 export { ResourceService } from "./lib/services/resource_service";
 export { SystemInfo } from "./lib/services/systeminfo_service";
 export { Transit } from "./lib/transitions/transit_type";

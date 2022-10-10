@@ -1,22 +1,20 @@
-import "reflect-metadata";
-import { singleton } from "tsyringe";
 import { constructor } from "tsyringe/dist/typings/types";
 import { App } from "../app";
+import { getLogger } from "../logger";
 import { ComponentMetaData, META_COMPONENT } from "../metadata/metadata_component";
 import { TransitionService } from "../transitions/transitions";
 import { Transit } from "../transitions/transit_type";
 import { assert } from "../util_common";
 import { ViewRef } from "../view_ref";
-import { LayerService } from "./layer_service";
 
-@singleton()
-export class PageService {
-
+export class PageContainer {
     constructor(
-        private layers: LayerService,
-        private transition: TransitionService
-    ) { }
+        private root: ViewRef
+    ) {
+        this.transition = App.container.resolve(TransitionService);
+    }
 
+    private readonly transition: TransitionService;
     private views: ViewRef[] = [];
 
     get currentView(): ViewRef | undefined {
@@ -39,7 +37,7 @@ export class PageService {
             this.views.push(view);
             view.setActive(true);
         } else {
-            view = App.view.createChild(cls);
+            view = this.root.createChild(cls);
             this.currentView?.setActive(false);
             this.views.push(view);
             this.currentView?.setActive(true);
@@ -66,7 +64,7 @@ export class PageService {
         await this.transition.before(meta.transit);
         this.views.forEach(v => v.destroy());
         this.views = [];
-        const view = App.view.createChild(cls);
+        const view = this.root.createChild(cls);
         this.views.push(view);
         await view.show({ node: meta.layer, data });
         await this.transition.after(meta.transit, view);
@@ -75,10 +73,30 @@ export class PageService {
 
     private getPageMeta<T>(cls: constructor<T>): { layer: CS.UnityEngine.GameObject, transit: Transit } {
         const conf = (Reflect.getMetadata(META_COMPONENT, cls) as ComponentMetaData) ?? {};
-        const layer = conf.layer ? this.layers.get(conf.layer) : this.layers.defaultLayer;
+        const layer = this.getLayer(conf.layer); //  conf.layer ? this.layers.get(conf.layer) : this.layers.defaultLayer;
         const transit = conf.transit ?? Transit.None;
         return { layer, transit };
     }
+
+    private getLayer(layer?: string): CS.UnityEngine.GameObject {
+        const rootGo = this.root.host?.root;
+        assert(rootGo);
+        if (!layer || layer.length <= 0) {
+            return rootGo;
+        }
+
+        const kv: Record<string, unknown> = this.root.component as Record<string, unknown>;
+        if (kv[layer]) {
+            return kv[layer] as CS.UnityEngine.GameObject;
+        }
+
+        const trans = rootGo.transform.Find(layer);
+        if (!trans) {
+            logger.error(`cannot find outlet of ${layer} on ${rootGo.name}`);
+            return rootGo;
+        }
+        return trans.gameObject;
+    }
 }
 
-// const logger = getLogger(PageService.name);
+const logger = getLogger(PageContainer.name);

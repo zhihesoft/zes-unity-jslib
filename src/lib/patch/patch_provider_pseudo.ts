@@ -14,6 +14,7 @@ export class PatchProviderPseudo implements PatchProvider {
             this.count++;
             return PatchStatus.Found;
         }
+        this.count = 0;
         return PatchStatus.None;
     }
 
@@ -22,6 +23,6 @@ export class PatchProviderPseudo implements PatchProvider {
     }
 
     async patch(progress: (p: number) => void) {
-        await tween(0).to(1, 5).onUpdate(progress).run();
+        await tween(0).to(1, 2).onUpdate(progress).run();
     }
 }

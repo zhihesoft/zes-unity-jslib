@@ -123,10 +123,6 @@ export class ViewRef<T = unknown> {
 
         const isSceneView = template.endsWith(".unity");
         const node = option?.node;
-        // if (!node && !isSceneView) {
-        //     throw new Error(`gameobject view should have a host node...`);
-        // }
-
         const loader = App.container.resolve(ResourceService);
         if (isSceneView) {
             logger.info(`load scene ${template}`);
@@ -228,7 +224,11 @@ export class ViewRef<T = unknown> {
                 } else if (type == Transform) {
                     record[key] = data_go.transform;
                 } else {
-                    record[key] = data_go.GetComponent(puer.$typeof(type));
+                    const cvalue = data_go.GetComponent(puer.$typeof(type));
+                    if (!cvalue) {
+                        logger.error(`cannot get component of type ${type} on ${data_go.name}`);
+                    }
+                    record[key] = cvalue;
                 }
             }
         }
