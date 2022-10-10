@@ -18,5 +18,3 @@ export function isViewOption(opt: BindPropOption | BindEventOption | BindViewOpt
     return ((<BindViewOption>opt).mode != undefined);
 }
 
-
-

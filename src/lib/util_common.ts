@@ -52,13 +52,35 @@ export function pathCombine(...values: string[]): string {
     return ret;
 }
 
+/**
+ * Whether target is a GameObject 
+ * @param obj target
+ * @returns 
+ */
 export function isGameObject(obj: unknown): obj is GameObject {
     return (obj as GameObject)?.activeSelf != undefined;
 }
 
+/**
+ * Whether target is a subject object
+ * @param target target
+ * @returns 
+ */
 export function isSubject<T = unknown>(target: unknown): target is Subject<T> {
     if ((target as { subscribe: unknown }).subscribe) {
         return true;
     }
     return false;
+}
+
+/**
+ * Remove all children in target
+ * @param go target
+ */
+export function removeAllChildren(go: CS.UnityEngine.GameObject) {
+    const count = go.transform.childCount;
+    for (let i = count - 1; i >= 0; i--) {
+        const child = go.transform.GetChild(i);
+        CS.UnityEngine.Object.Destroy(child);
+    }
 }
