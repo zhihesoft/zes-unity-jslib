@@ -1,6 +1,7 @@
 export { App } from "./lib/app";
 export { ListViewComponent } from "./lib/components/listview";
 export { PageContainer } from "./lib/components/pagecontainer";
+export { HttpConnector } from "./lib/http_connector";
 export { getLogger } from "./lib/logger";
 export * from "./lib/metadata/decorator_bind";
 export * from "./lib/metadata/decorator_view";
@@ -19,4 +20,5 @@ export * from "./lib/util_common";
 export { removeAllChildren } from "./lib/util_common";
 export * from "./lib/view_interfaces";
 export { ViewRef, VIEW_DATA } from "./lib/view_ref";
+
 
