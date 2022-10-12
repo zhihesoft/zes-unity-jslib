@@ -51,9 +51,9 @@ export class PageService {
             view.setActive(true);
         } else {
             view = this.host.createChild(cls);
+            await view.show({ node: meta.layer, data });
             this.currentPage?.setActive(false);
             this.pages.push(view);
-            await view.show({ node: meta.layer, data });
             this.currentPage?.setActive(true);
         }
 
@@ -75,11 +75,11 @@ export class PageService {
         assert(this.host);
         const meta = this.getPageMeta(cls);
         await this.transition.before(meta.transit);
+        const view = this.host.createChild(cls);
+        await view.show({ node: meta.layer, data });
         this.pages.forEach(v => v.destroy());
         this.pages = [];
-        const view = this.host.createChild(cls);
         this.pages.push(view);
-        await view.show({ node: meta.layer, data });
         await this.transition.after(meta.transit, view);
         return view;
     }
