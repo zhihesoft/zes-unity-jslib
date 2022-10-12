@@ -1,5 +1,6 @@
 export { App } from "./lib/app";
 export { ListViewComponent } from "./lib/components/listview";
+export { PageView } from "./lib/components/pageview";
 export { HttpConnector } from "./lib/http_connector";
 export { getLogger } from "./lib/logger";
 export * from "./lib/metadata/decorator_bind";
@@ -10,7 +11,6 @@ export { getPatcher, PatchProvider } from "./lib/patch/patch_provider";
 export { PatchStatus } from "./lib/patch/patch_status";
 export { FadeService } from "./lib/services/fade_service";
 export * from "./lib/services/i18n_service";
-export { PageService } from "./lib/services/page_service";
 export { ResourceService } from "./lib/services/resource_service";
 export { SystemInfo } from "./lib/services/systeminfo_service";
 export { Transit } from "./lib/transitions/transit_type";
@@ -20,5 +20,7 @@ export * from "./lib/util_common";
 export { removeAllChildren } from "./lib/util_common";
 export * from "./lib/view_interfaces";
 export { ViewRef, VIEW_DATA } from "./lib/view_ref";
+
+
 
 

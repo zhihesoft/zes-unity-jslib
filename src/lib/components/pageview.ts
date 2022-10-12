@@ -1,17 +1,18 @@
-import { injectable } from "tsyringe";
 import { constructor } from "tsyringe/dist/typings/types";
 import { getLogger } from "../logger";
+import { component } from "../metadata/decorator_view";
 import { ComponentMetaData, META_COMPONENT } from "../metadata/metadata_component";
 import { TransitionService } from "../transitions/transitions";
 import { Transit } from "../transitions/transit_type";
 import { assert } from "../util_common";
 import { ViewRef } from "../view_ref";
 
-@injectable()
-export class PageService {
+@component()
+export class PageView {
+
     constructor(
-        public view: ViewRef,
-        private transition: TransitionService
+        private view: ViewRef,
+        private transition: TransitionService,
     ) { }
 
     private views: ViewRef[] = [];
@@ -98,4 +99,4 @@ export class PageService {
     }
 }
 
-const logger = getLogger(PageService.name);
+const logger = getLogger(PageView.name);
