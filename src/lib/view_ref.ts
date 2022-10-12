@@ -34,6 +34,7 @@ export class ViewRef<T = unknown> {
         public componentClass: constructor<T>,
         public parent: ViewRef
     ) {
+        assert(componentClass, "componentClass cannot be null");
         this.componentMeta = Reflect.getMetadata(META_COMPONENT, componentClass);
         if (parent) {
             this.container = parent.container.createChildContainer();
@@ -88,7 +89,7 @@ export class ViewRef<T = unknown> {
         this.container.register(VIEW_DATA, { useValue: data });
 
         this._component = this.container.resolve(this.componentClass);
-        this.container.register(this.componentClass, { useValue: this.component });
+        this.container.registerInstance(this.componentClass, this.component);
 
         await this.bind();
         if (isOnInit(this.component)) {
