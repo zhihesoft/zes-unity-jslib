@@ -1,5 +1,5 @@
+import { injectable } from "tsyringe";
 import { constructor } from "tsyringe/dist/typings/types";
-import { App } from "../app";
 import { getLogger } from "../logger";
 import { ComponentMetaData, META_COMPONENT } from "../metadata/metadata_component";
 import { TransitionService } from "../transitions/transitions";
@@ -7,14 +7,13 @@ import { Transit } from "../transitions/transit_type";
 import { assert } from "../util_common";
 import { ViewRef } from "../view_ref";
 
-export class PageContainer {
+@injectable()
+export class PageService {
     constructor(
-        private root: ViewRef
-    ) {
-        this.transition = App.container.resolve(TransitionService);
-    }
+        public view: ViewRef,
+        private transition: TransitionService
+    ) { }
 
-    private readonly transition: TransitionService;
     private views: ViewRef[] = [];
 
     get currentView(): ViewRef | undefined {
@@ -37,11 +36,11 @@ export class PageContainer {
             this.views.push(view);
             view.setActive(true);
         } else {
-            view = this.root.createChild(cls);
+            view = this.view.createChild(cls);
             this.currentView?.setActive(false);
             this.views.push(view);
-            this.currentView?.setActive(true);
             await view.show({ node: meta.layer, data });
+            this.currentView?.setActive(true);
         }
 
         await this.transition.after(meta.transit, view);
@@ -64,7 +63,7 @@ export class PageContainer {
         await this.transition.before(meta.transit);
         this.views.forEach(v => v.destroy());
         this.views = [];
-        const view = this.root.createChild(cls);
+        const view = this.view.createChild(cls);
         this.views.push(view);
         await view.show({ node: meta.layer, data });
         await this.transition.after(meta.transit, view);
@@ -79,13 +78,13 @@ export class PageContainer {
     }
 
     private getLayer(layer?: string): CS.UnityEngine.GameObject {
-        const rootGo = this.root.host?.root;
+        const rootGo = this.view.host?.root;
         assert(rootGo);
         if (!layer || layer.length <= 0) {
             return rootGo;
         }
 
-        const kv: Record<string, unknown> = this.root.component as Record<string, unknown>;
+        const kv: Record<string, unknown> = this.view.component as Record<string, unknown>;
         if (kv[layer]) {
             return kv[layer] as CS.UnityEngine.GameObject;
         }
@@ -99,4 +98,4 @@ export class PageContainer {
     }
 }
 
-const logger = getLogger(PageContainer.name);
+const logger = getLogger(PageService.name);
