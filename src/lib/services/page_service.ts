@@ -56,7 +56,6 @@ export class PageService {
             this.pages.push(view);
             this.currentPage?.setActive(true);
         }
-
         await this.transition.after(meta.transit, view);
         return view;
     }

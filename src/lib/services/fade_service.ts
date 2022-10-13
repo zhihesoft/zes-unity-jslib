@@ -17,22 +17,17 @@ export class FadeService {
     async out(): Promise<void> {
         assert(this.canvas, "fade canvas is not set");
         this.canvas.gameObject.SetActive(true);
+        const canvas = this.canvas;
         await tween(0).to(1, this.speed).setEase(EaseType.Smooth)
-            .onUpdate(a => {
-                if (this.canvas) {
-                    this.canvas.alpha = Math.max(a, this.canvas.alpha);
-                }
-            }).run();
+            .onUpdate(a => canvas.alpha = Math.max(a, canvas.alpha))
+            .run();
     }
 
     async in(): Promise<void> {
         assert(this.canvas, "fade canvas is not set");
+        const canvas = this.canvas;
         await tween(1).to(0, this.speed).setEase(EaseType.Smooth)
-            .onUpdate(a => {
-                if (this.canvas) {
-                    this.canvas.alpha = Math.min(a, this.canvas.alpha);
-                }
-            })
+            .onUpdate(a => canvas.alpha = Math.min(a, canvas.alpha))
             .run();
         this.canvas.gameObject.SetActive(false);
     }
