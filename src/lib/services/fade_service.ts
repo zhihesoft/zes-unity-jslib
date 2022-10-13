@@ -20,7 +20,7 @@ export class FadeService {
         await tween(0).to(1, this.speed).setEase(EaseType.Smooth)
             .onUpdate(a => {
                 if (this.canvas) {
-                    this.canvas.alpha = a;
+                    this.canvas.alpha = Math.max(a, this.canvas.alpha);
                 }
             }).run();
     }
@@ -30,7 +30,7 @@ export class FadeService {
         await tween(1).to(0, this.speed).setEase(EaseType.Smooth)
             .onUpdate(a => {
                 if (this.canvas) {
-                    this.canvas.alpha = a;
+                    this.canvas.alpha = Math.min(a, this.canvas.alpha);
                 }
             })
             .run();
