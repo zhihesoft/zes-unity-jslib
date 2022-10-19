@@ -5,8 +5,8 @@ import { getLogger } from "../logger";
 import { ComponentMetaData, META_COMPONENT } from "../metadata/metadata_component";
 import { TransitionService } from "../transitions/transitions";
 import { Transit } from "../transitions/transit_type";
-import { assert } from "../util_common";
-import { ViewRef } from "../view_ref";
+import { assert } from "../utils";
+import { ViewRef } from "../views/view_ref";
 
 @singleton()
 export class PageService {

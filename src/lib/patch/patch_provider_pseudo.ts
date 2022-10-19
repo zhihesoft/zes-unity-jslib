@@ -1,5 +1,5 @@
 import { tween } from "../tween/tween";
-import { waitForSeconds } from "../util_common";
+import { waitForSeconds } from "../utils";
 import { PatchProvider } from "./patch_provider";
 import { PatchStatus } from "./patch_status";
 

@@ -1,7 +1,7 @@
 import { App } from "../app";
 import { FadeService } from "../services/fade_service";
-import { assert } from "../util_common";
-import { ViewRef } from "../view_ref";
+import { assert } from "../utils";
+import { ViewRef } from "../views/view_ref";
 import { Transition } from "./transit_type";
 
 export class TransitionFade implements Transition {

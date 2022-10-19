@@ -1,7 +1,7 @@
 import { sum } from "lodash";
 import { singleton } from "tsyringe";
 import { App } from "../app";
-import { assert, emptyFunc } from "../util_common";
+import { assert, emptyFunc } from "../utils";
 
 import Type = CS.System.Type;
 

@@ -5,14 +5,36 @@ import { Md5 } from "ts-md5";
 
 import GameObject = CS.UnityEngine.GameObject;
 
-export function emptyFunc() {
-    // empty progress
+/**
+ * Empty Function
+ */
+export const emptyFunc = () => { /** Empty */ };
+
+/**
+ * Assert value
+ * @param value value to assert
+ * @param message error message when failed
+ */
+export function assert(value: unknown, message?: string): asserts value {
+    if (!value) {
+        throw new Error(message ?? "value assert failed");
+    }
 }
 
+/**
+ * Get md5 hash of a string
+ * @param str string 
+ * @returns md5 hash
+ */
 export function md5(str: string): string {
     return Md5.hashStr(str).toLowerCase();
 }
 
+/**
+ * Wait for seconds
+ * @param seconds 
+ * @returns 
+ */
 export function waitForSeconds(seconds: number): Promise<void> {
     return new Promise(resolve => {
         setTimeout(() => {
@@ -21,15 +43,13 @@ export function waitForSeconds(seconds: number): Promise<void> {
     });
 }
 
+/**
+ * Wait until func return true
+ * @param func 
+ */
 export async function waitUntil(func: () => boolean) {
     while (!func()) {
         await waitForSeconds(0);
-    }
-}
-
-export function assert(value: unknown, message?: string): asserts value {
-    if (!value) {
-        throw new Error(message ?? "value assert failed");
     }
 }
 

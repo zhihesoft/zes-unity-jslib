@@ -1,4 +1,4 @@
-import { ViewRef } from "../view_ref";
+import { ViewRef } from "../views/view_ref";
 
 export enum Transit {
     None,

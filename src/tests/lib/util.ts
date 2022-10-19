@@ -1,6 +1,6 @@
 import { assert } from "chai";
 import { describe } from "mocha";
-import { pathCombine } from "../../lib/util_common";
+import { pathCombine } from "../../lib/utils";
 
 export function utilTest() {
     return describe(`util`, () => {

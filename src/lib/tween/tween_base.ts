@@ -1,4 +1,4 @@
-import { waitForSeconds } from "../util_common";
+import { waitForSeconds } from "../utils";
 import { easeFunctions } from "./ease_functions";
 import { EaseType } from "./ease_type";
 

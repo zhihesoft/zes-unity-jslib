@@ -1,17 +1,17 @@
 import "reflect-metadata";
 import { Observable, Subject, throttleTime } from "rxjs";
 import { constructor, DependencyContainer } from "tsyringe/dist/typings/types";
-import { App } from "./app";
-import { DialogRef } from "./dialog_ref";
-import { getLogger } from "./logger";
-import { BindEventOption, BindMetaData, BindPropOption, BindViewMode, META_BINDOPTION } from "./metadata/metadata_bind";
-import { ComponentMetaData, META_COMPONENT } from "./metadata/metadata_component";
-import { ResourceService } from "./services/resource_service";
-import { assert, isGameObject, isSubject } from "./util_common";
-import { isEventOption, isPropOption, isViewHost, isViewOption } from "./util_view";
+import { App } from "../app";
+import { DialogRef } from "../dialog_ref";
+import { getLogger } from "../logger";
+import { BindEventOption, BindMetaData, BindPropOption, BindViewMode, META_BINDOPTION } from "../metadata/metadata_bind";
+import { ComponentMetaData, META_COMPONENT } from "../metadata/metadata_component";
+import { ResourceService } from "../services/resource_service";
+import { assert, isGameObject, isSubject } from "../utils";
 import { ViewHost } from "./view_host";
 import { isAfterViewInit, isOnActiveChanged, isOnDestroy, isOnInit } from "./view_interfaces";
 import { ViewOption } from "./view_option";
+import { isEventOption, isPropOption, isViewHost, isViewOption } from "./view_util";
 
 import UnityEngine = CS.UnityEngine;
 import GameObject = CS.UnityEngine.GameObject;

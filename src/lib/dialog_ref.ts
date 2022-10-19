@@ -1,5 +1,5 @@
 import { Observable, Subject } from "rxjs";
-import { ViewRef } from "./view_ref";
+import { ViewRef } from "./views/view_ref";
 
 export class DialogRef<R = unknown>{
     constructor(

@@ -1,4 +1,4 @@
-import { BindEventOption, BindPropOption, BindViewOption } from "./metadata/metadata_bind";
+import { BindEventOption, BindPropOption, BindViewOption } from "../metadata/metadata_bind";
 import { ViewHost } from "./view_host";
 import GameObject = CS.UnityEngine.GameObject;
 

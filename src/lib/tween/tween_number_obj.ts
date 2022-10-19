@@ -1,4 +1,4 @@
-import { assert } from "../util_common";
+import { assert } from "../utils";
 import { TweenBase } from "./tween_base";
 
 export interface NumberObj {

@@ -4,8 +4,8 @@ import { constructor, DependencyContainer } from "tsyringe/dist/typings/types";
 import { RootComponent } from "./components/root";
 import { getLogger } from "./logger";
 import { I18nService } from "./services/i18n_service";
-import { assert } from "./util_common";
-import { ViewRef } from "./view_ref";
+import { assert } from "./utils";
+import { ViewRef } from "./views/view_ref";
 
 import Au = CS.Au.App;
 

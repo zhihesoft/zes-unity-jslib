@@ -1,5 +1,5 @@
 import { isEmpty } from "lodash";
-import { assert } from "./util_common";
+import { assert } from "../utils";
 
 import GameObject = CS.UnityEngine.GameObject;
 import Scene = CS.UnityEngine.SceneManagement.Scene;

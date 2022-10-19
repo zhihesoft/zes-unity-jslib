@@ -2,7 +2,7 @@ import { singleton } from "tsyringe";
 import { getLogger } from "../logger";
 import { EaseType } from "../tween/ease_type";
 import { tween } from "../tween/tween";
-import { assert } from "../util_common";
+import { assert } from "../utils";
 
 @singleton()
 export class FadeService {

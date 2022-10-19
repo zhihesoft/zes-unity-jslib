@@ -2,7 +2,7 @@ import compareVersions from "compare-versions";
 import { sumBy } from "lodash";
 import { App } from "../app";
 import { getLogger } from "../logger";
-import { assert, pathCombine, waitForSeconds } from "../util_common";
+import { assert, pathCombine, waitForSeconds } from "../utils";
 import { PatchFileInfo, PatchInfo } from "./patch_info";
 import { PatchProvider } from "./patch_provider";
 import { PatchStatus } from "./patch_status";

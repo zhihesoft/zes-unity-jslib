@@ -2,7 +2,7 @@ import http from "http";
 import https from "https";
 import { forIn } from "lodash";
 import { getLogger } from "./logger";
-import { assert } from "./util_common";
+import { assert } from "./utils";
 
 export const HttpMethod = {
     get: "GET",

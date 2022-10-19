@@ -1,5 +1,5 @@
 import { singleton } from "tsyringe";
-import { ViewRef } from "../view_ref";
+import { ViewRef } from "../views/view_ref";
 import { TransitionFade } from "./transit_fade";
 import { Transit, Transition } from "./transit_type";
 
