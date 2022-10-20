@@ -78,6 +78,9 @@ export function pathCombine(...values: string[]): string {
  * @returns 
  */
 export function isGameObject(obj: unknown): obj is GameObject {
+    if (!obj) {
+        return false;
+    }
     return (obj as GameObject)?.activeSelf != undefined;
 }
 
