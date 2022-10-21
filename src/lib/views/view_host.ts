@@ -4,12 +4,17 @@ import { assert } from "../utils";
 import GameObject = CS.UnityEngine.GameObject;
 import Scene = CS.UnityEngine.SceneManagement.Scene;
 
+/**
+ * ViewRef host node
+ * It will be a GameObject or Scene
+ */
 export abstract class ViewHost {
+
     static create(target: GameObject | Scene): ViewHost {
-        if ((<Scene>target).GetRootGameObjects != undefined) {
-            return new ViewHostScene(<Scene>target);
+        if ((target as Scene).GetRootGameObjects != undefined) {
+            return new ViewHostScene(target as Scene);
         } else {
-            return new ViewHostGO(<GameObject>target);
+            return new ViewHostGO(target as GameObject);
         }
     }
 

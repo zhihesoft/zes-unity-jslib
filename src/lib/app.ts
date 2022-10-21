@@ -17,7 +17,7 @@ export class App {
     public static async bootstrap<T>(app: constructor<T>, path: string) {
         logger.info(`app@${App.version} bootstrap on ${path} with ${app.name}`);
         App.view = await ViewRef.createRootView(RootComponent, path);
-        const appview = App.view.createChild(app);
+        const appview = new ViewRef(app, App.view); // App.view.createChild(app);
         assert(App.view.host);
         appview.attach(App.view.host);
     }
@@ -25,7 +25,6 @@ export class App {
     public static get loader() {
         return Au.loader;
     }
-
 }
 
 const logger = getLogger(App.name);

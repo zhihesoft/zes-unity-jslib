@@ -16,6 +16,8 @@ export { EaseType } from "./lib/tween/ease_type";
 export { tween } from "./lib/tween/tween";
 export * from "./lib/utils";
 export { removeAllChildren } from "./lib/utils";
+export { ZES_DIALOG_DATA } from "./lib/views/dialog";
 export * from "./lib/views/view_interfaces";
-export { ViewRef, VIEW_DATA } from "./lib/views/view_ref";
+export { ViewRef, ZES_VIEW_DATA } from "./lib/views/view_ref";
+
 

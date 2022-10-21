@@ -13,7 +13,7 @@ export class Dialog {
 
     async open<T = unknown>(cls: constructor<T>, data: unknown): Promise<DialogRef> {
         this.view.container.register(ZES_DIALOG_DATA, { useValue: data });
-        const child = this.view.createChild(cls);
+        const child = new ViewRef(cls, this.view);
         const dlgRef = new DialogRef(child);
         child.container.register(DialogRef, { useValue: dlgRef });
         await child.show();

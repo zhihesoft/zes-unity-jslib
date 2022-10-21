@@ -4,7 +4,7 @@ import { component } from "../metadata/decorator_view";
 import { BindListViewExtra } from "../metadata/metadata_bind";
 import { assert } from "../utils";
 import { isOnSelected, OnInit } from "../views/view_interfaces";
-import { ViewRef, VIEW_DATA } from "../views/view_ref";
+import { ViewRef, ZES_VIEW_DATA } from "../views/view_ref";
 
 import GameObject = CS.UnityEngine.GameObject;
 
@@ -12,7 +12,7 @@ import GameObject = CS.UnityEngine.GameObject;
 export class ListViewComponent<D> implements OnInit {
 
     constructor(
-        @inject(VIEW_DATA) public data: BindListViewExtra,
+        @inject(ZES_VIEW_DATA) public data: BindListViewExtra,
         public view: ViewRef,
     ) { }
 
@@ -51,7 +51,7 @@ export class ListViewComponent<D> implements OnInit {
             const item = items[i];
             const host = this.pool[i];
             host.SetActive(true);
-            const cv = this.view.createChild(this.data.itemClass);
+            const cv = new ViewRef(this.data.itemClass, this.view);
             cv.attach(host, item).then(v => {
                 if (isOnSelected(v.component)) {
                     (v.component.zesOnSelected as Subject<D>).subscribe(this.onItemSelected);

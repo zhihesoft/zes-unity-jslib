@@ -10,4 +10,5 @@ export interface ComponentMetaData {
     layer?: string;     // component layer in parent view
     outlet?: string;    // component outlet for children
     transit?: Transit;  // transition type
+    data?: unknown;     // extra data
 }

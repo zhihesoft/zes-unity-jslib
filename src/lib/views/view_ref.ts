@@ -17,7 +17,7 @@ import UnityEngine = CS.UnityEngine;
 import GameObject = CS.UnityEngine.GameObject;
 import Transform = CS.UnityEngine.Transform;
 
-export const VIEW_DATA = Symbol("VIEW_DATA_SYMBOL");
+export const ZES_VIEW_DATA = Symbol("ZES_VIEW_DATA_SYMBOL");
 
 export class ViewRef<T = unknown> {
 
@@ -68,14 +68,8 @@ export class ViewRef<T = unknown> {
     private _destroyed = false;
     private _children: ViewRef[] = [];
 
-    createChild<C>(componentClass: constructor<C>): ViewRef<C> {
-        return new ViewRef(componentClass, this);
-    }
-
     async attach(node: string | GameObject | ViewHost, data?: unknown): Promise<ViewRef<T>> {
-        if (this.parent) {
-            this.parent._children.push(this);
-        }
+        this.parent?._children.push(this);
 
         if (typeof node == "string") {
             const hostNode = this.host?.find(node);
@@ -85,8 +79,9 @@ export class ViewRef<T = unknown> {
             this._host = isViewHost(node) ? node : ViewHost.create(node);
         }
 
-        this.container.register(ViewRef, { useValue: this });
-        this.container.register(VIEW_DATA, { useValue: data });
+        this.container
+            .register(ViewRef, { useValue: this })
+            .register(ZES_VIEW_DATA, { useValue: data });
 
         this._component = this.container.resolve(this.componentClass);
         this.container.registerInstance(this.componentClass, this.component);
@@ -214,10 +209,10 @@ export class ViewRef<T = unknown> {
                 const record = this.component as Record<string, unknown>;
                 if (data.option) {
                     if (data.option.mode == BindViewMode.attach) {
-                        const promise = this.createChild(type).attach(data_go, data.option.extra).then(v => record[key] = v.component);
+                        const promise = new ViewRef(type, this).attach(data_go, data.option.extra).then(v => record[key] = v.component);
                         ps.push(promise);
                     } else {
-                        const promise = this.createChild(type).show({ data: data.option.extra }).then(v => record[key] = v.component);
+                        const promise = new ViewRef(type, this).show({ data: data.option.extra }).then(v => record[key] = v.component);
                         ps.push(promise);
                     }
                 } else if (type == GameObject) {
