@@ -12,7 +12,6 @@ import GameObject = CS.UnityEngine.GameObject;
 @component()
 export class ApplicationRef implements OnInit {
 
-
     constructor(
         private view: ViewRef,
         @inject(ZES_VIEW_DATA) public startupInfo: ApplicationStartupInfo
@@ -25,8 +24,6 @@ export class ApplicationRef implements OnInit {
         logger.info(`Application ${this.startupInfo.id} started ~`);
     }
 }
-
-
 
 /**
  * Application Startup Info

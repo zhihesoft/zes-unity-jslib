@@ -94,7 +94,7 @@ export class ResourceService {
      */
     async loadScene(path: string, additive: boolean, progress?: (p: number) => void): Promise<CS.UnityEngine.SceneManagement.Scene> {
         progress = progress ?? emptyFunc;
-        const ret: CS.UnityEngine.SceneManagement.Scene = await puer.$promise(CS.Au.AssetSet.LoadScene(path, additive, progress));
+        const ret: CS.UnityEngine.SceneManagement.Scene = await puer.$promise(this.assetSet.LoadScene(path, additive, progress));
         return ret;
     }
 
@@ -104,7 +104,7 @@ export class ResourceService {
      * @returns 
      */
     async unloadScene(scene: CS.UnityEngine.SceneManagement.Scene): Promise<boolean> {
-        return puer.$promise(CS.Au.AssetSet.UnloadScene(scene));
+        return puer.$promise(this.assetSet.UnloadScene(scene));
     }
 }
 
