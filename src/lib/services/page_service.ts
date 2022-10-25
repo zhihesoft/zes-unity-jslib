@@ -1,6 +1,6 @@
 import { singleton } from "tsyringe";
 import { constructor } from "tsyringe/dist/typings/types";
-import { rootContainer } from "../app";
+import { rootContainer } from "../boot";
 import { getLogger } from "../logger";
 import { ComponentMetaData, META_COMPONENT } from "../metadata/metadata_component";
 import { TransitionService } from "../transitions/transitions";

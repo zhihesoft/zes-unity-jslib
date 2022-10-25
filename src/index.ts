@@ -1,4 +1,4 @@
-export { bootstrap } from "./lib/app";
+export { bootstrap } from "./lib/boot";
 export { ListViewComponent } from "./lib/components/listview";
 export { HttpConnector } from "./lib/http_connector";
 export { getLogger } from "./lib/logger";

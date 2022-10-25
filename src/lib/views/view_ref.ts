@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import { Observable, Subject, throttleTime } from "rxjs";
 import { constructor, DependencyContainer } from "tsyringe/dist/typings/types";
-import { rootContainer } from "../app";
+import { rootContainer } from "../boot";
 import { getLogger } from "../logger";
 import { BindEventOption, BindMetaData, BindPropOption, BindViewMode, META_BINDOPTION } from "../metadata/metadata_bind";
 import { ComponentMetaData, META_COMPONENT } from "../metadata/metadata_component";
