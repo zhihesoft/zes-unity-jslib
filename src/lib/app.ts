@@ -1,30 +1,24 @@
-
 import { container } from "tsyringe";
-import { constructor, DependencyContainer } from "tsyringe/dist/typings/types";
-import { RootComponent } from "./components/root";
-import { getLogger } from "./logger";
+import { constructor } from "tsyringe/dist/typings/types";
 import { assert } from "./utils";
+import { ApplicationRef } from "./views/application_ref";
 import { ViewRef } from "./views/view_ref";
 
-import Au = CS.Au.App;
+export const rootContainer = container;
 
-export class App {
-
-    public static version: string = CS.UnityEngine.Application.version;
-    public static view: ViewRef;
-    public static container: DependencyContainer = container;
-
-    public static async bootstrap<T>(app: constructor<T>, path: string) {
-        logger.info(`app@${App.version} bootstrap on ${path} with ${app.name}`);
-        App.view = await ViewRef.createRootView(RootComponent, path);
-        const appview = new ViewRef(app, App.view); // App.view.createChild(app);
-        assert(App.view.host);
-        appview.attach(App.view.host);
-    }
-
-    public static get loader() {
-        return Au.loader;
-    }
+export async function bootstrap<T = unknown>(
+    id: string,
+    assets: CS.Au.AssetSet,
+    rootComponent: constructor<T>,
+    rootGO: CS.UnityEngine.GameObject
+) {
+    assert(rootGO != null, `root game object cannot be null`);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const view = new ViewRef(ApplicationRef, null as any); // trick, root view has no parent
+    await view.attach(rootGO, {
+        appId: id,
+        assets,
+        rootComponent,
+        rootGO,
+    });
 }
-
-const logger = getLogger(App.name);

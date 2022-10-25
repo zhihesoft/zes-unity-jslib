@@ -1,6 +1,5 @@
 import { isEmpty } from "lodash";
 import { assert } from "../utils";
-
 import GameObject = CS.UnityEngine.GameObject;
 import Scene = CS.UnityEngine.SceneManagement.Scene;
 
@@ -152,7 +151,7 @@ class ViewHostScene extends ViewHost {
     }
 
     async destroy() {
-        await puer.$promise(CS.Au.App.loader.UnloadScene(this.scene));
+        await puer.$promise(CS.Au.AssetSet.UnloadScene(this.scene));
     }
 
     setActive(): void {

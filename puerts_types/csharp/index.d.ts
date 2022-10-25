@@ -1,5 +1,5 @@
 ﻿
-declare namespace CS {
+    declare namespace CS {
     //keep type incompatibility / 此属性保持类型不兼容
     const __keep_incompatibility: unique symbol;
     interface $Ref<T> {
@@ -17,13 +17,22 @@ declare namespace CS {
         {
             protected [__keep_incompatibility]: never;
         }
+        interface IAsyncResult
+        {
+        }
+        interface IDisposable
+        {
+        }
         class ValueType extends System.Object
         {
             protected [__keep_incompatibility]: never;
         }
-        class Boolean extends System.ValueType implements System.IComparable, System.IComparable$1<boolean>, System.IConvertible, System.IEquatable$1<boolean>
+        class String extends System.Object implements System.ICloneable, System.IComparable, System.IComparable$1<string>, System.IConvertible, System.Collections.Generic.IEnumerable$1<number>, System.Collections.IEnumerable, System.IEquatable$1<string>
         {
             protected [__keep_incompatibility]: never;
+        }
+        interface ICloneable
+        {
         }
         interface IComparable
         {
@@ -34,17 +43,14 @@ declare namespace CS {
         interface IConvertible
         {
         }
-        interface IEquatable$1<T>
-        {
-        }
-        class String extends System.Object implements System.ICloneable, System.IComparable, System.IComparable$1<string>, System.IConvertible, System.Collections.Generic.IEnumerable$1<number>, System.Collections.IEnumerable, System.IEquatable$1<string>
+        class Char extends System.ValueType implements System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>
         {
             protected [__keep_incompatibility]: never;
         }
-        interface ICloneable
+        interface IEquatable$1<T>
         {
         }
-        class Char extends System.ValueType implements System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>
+        class Boolean extends System.ValueType implements System.IComparable, System.IComparable$1<boolean>, System.IConvertible, System.IEquatable$1<boolean>
         {
             protected [__keep_incompatibility]: never;
         }
@@ -58,7 +64,7 @@ declare namespace CS {
         Invoke?: (...args:any[]) => any;
         }
         var MulticastDelegate: { new (func: (...args:any[]) => any): MulticastDelegate; }
-        class Int32 extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>
+        class Single extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>
         {
             protected [__keep_incompatibility]: never;
         }
@@ -68,16 +74,27 @@ declare namespace CS {
         interface ISpanFormattable
         {
         }
-        interface Func$2<T, TResult>
+        interface Action$1<T>
         { 
-        (arg: T) : TResult; 
-        Invoke?: (arg: T) => TResult;
+        (obj: T) : void; 
+        Invoke?: (obj: T) => void;
         }
-        interface IAsyncResult
+        class Void extends System.ValueType
         {
+            protected [__keep_incompatibility]: never;
         }
-        interface IDisposable
+        class Type extends System.Reflection.MemberInfo implements System.Runtime.InteropServices._MemberInfo, System.Runtime.InteropServices._Type, System.Reflection.ICustomAttributeProvider, System.Reflection.IReflect
         {
+            protected [__keep_incompatibility]: never;
+        }
+        interface Func$1<TResult>
+        { 
+        () : TResult; 
+        Invoke?: () => TResult;
+        }
+        class MarshalByRefObject extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
         }
         class Array extends System.Object implements System.Collections.IStructuralComparable, System.Collections.IStructuralEquatable, System.ICloneable, System.Collections.ICollection, System.Collections.IEnumerable, System.Collections.IList
         {
@@ -147,41 +164,7 @@ declare namespace CS {
             public static ConstrainedCopy ($sourceArray: System.Array, $sourceIndex: number, $destinationArray: System.Array, $destinationIndex: number, $length: number) : void
             public Initialize () : void
         }
-        class Single extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        interface Action$1<T>
-        { 
-        (obj: T) : void; 
-        Invoke?: (obj: T) => void;
-        }
-        class Void extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        interface Func$1<TResult>
-        { 
-        () : TResult; 
-        Invoke?: () => TResult;
-        }
-        class Int64 extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<bigint>, System.IConvertible, System.IEquatable$1<bigint>
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class MarshalByRefObject extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class Type extends System.Reflection.MemberInfo implements System.Runtime.InteropServices._MemberInfo, System.Runtime.InteropServices._Type, System.Reflection.ICustomAttributeProvider, System.Reflection.IReflect
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class ReadOnlySpan$1<T> extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class Span$1<T> extends System.ValueType
+        class Int32 extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>
         {
             protected [__keep_incompatibility]: never;
         }
@@ -198,6 +181,10 @@ declare namespace CS {
         Invoke?: () => void;
         }
         var Action: { new (func: () => void): Action; }
+        class Int64 extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<bigint>, System.IConvertible, System.IEquatable$1<bigint>
+        {
+            protected [__keep_incompatibility]: never;
+        }
         interface Converter$2<TInput, TOutput>
         { 
         (input: TInput) : TOutput; 
@@ -240,6 +227,182 @@ declare namespace CS {
         { 
         (arg1: T1, arg2: T2) : TResult; 
         Invoke?: (arg1: T1, arg2: T2) => TResult;
+        }
+    }
+    namespace Au {
+        class AssetSet extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public get parent(): Au.AssetSet;
+            public set parent(value: Au.AssetSet);
+            public static LoadScene ($name: string, $additive: boolean, $progress: System.Action$1<number>) : System.Threading.Tasks.Task$1<UnityEngine.SceneManagement.Scene>
+            public static UnloadScene ($scene: UnityEngine.SceneManagement.Scene) : System.Threading.Tasks.Task$1<boolean>
+            public LoadBundle ($name: string, $progress: System.Action$1<number>) : System.Threading.Tasks.Task$1<boolean>
+            public UnloadBundle ($name: string) : void
+            public UnloadAllBundles () : void
+            public ObjectExists ($path: string) : boolean
+            public LoadObject ($path: string, $type: System.Type) : System.Threading.Tasks.Task$1<UnityEngine.Object>
+            public constructor ($basePath: string)
+        }
+        class Async extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static WaitUntil ($condition: System.Func$1<boolean>) : System.Threading.Tasks.Task
+            public static WaitAsyncOperation ($op: UnityEngine.AsyncOperation, $progress?: System.Action$1<number>) : System.Threading.Tasks.Task
+        }
+        class Files extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static utf8WithoutBOM : System.Text.Encoding
+            public static IsWebFile ($path: string) : boolean
+            public static Copy ($source: string, $dest: string) : System.Threading.Tasks.Task$1<boolean>
+            public static Read ($file: string) : System.Threading.Tasks.Task$1<string>
+            public static Save ($dest: string, $text: string) : void
+            public static Exists ($path: string) : boolean
+            public static EnsureDir ($dir: string) : System.IO.DirectoryInfo
+            public static EnsureDir ($dir: System.IO.DirectoryInfo) : System.IO.DirectoryInfo
+            public static ClearDir ($dir: string) : System.IO.DirectoryInfo
+            public static ClearDir ($dir: System.IO.DirectoryInfo) : System.IO.DirectoryInfo
+            public static CopyDir ($from: string, $to: string) : void
+            public static CopyDir ($from: System.IO.DirectoryInfo, $to: System.IO.DirectoryInfo) : void
+        }
+        class I18n extends UnityEngine.MonoBehaviour
+        {
+            protected [__keep_incompatibility]: never;
+            public static LanguageCN : string
+            public static LanguageHK : string
+            public static LanguageJP : string
+            public static LanguageUS : string
+            public static LanguageKR : string
+            public static CurrentLanguage : string
+            public languageId : string
+            public static AddData ($name: string, $json: string) : void
+            public static RemoveData ($name: string) : void
+            public static AddAdditive ($name: string, $additive: string, $json: string) : void
+            public static RemoveAdditive ($name: string, $additive: string) : void
+            public Refresh () : void
+            public constructor ()
+        }
+        class Tags extends UnityEngine.MonoBehaviour
+        {
+            protected [__keep_incompatibility]: never;
+            public items : System.Array$1<Au.Tag>
+            public Get ($name: string) : UnityEngine.GameObject
+            public constructor ()
+        }
+        class Tag extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class Fader extends UnityEngine.MonoBehaviour
+        {
+            protected [__keep_incompatibility]: never;
+            public canvasGroup : UnityEngine.CanvasGroup
+            public static FadeIn ($seconds: number) : System.Threading.Tasks.Task$1<boolean>
+            public static FadeOut ($seconds: number) : System.Threading.Tasks.Task$1<boolean>
+            public constructor ()
+        }
+    }
+    namespace System.Threading.Tasks {
+        class Task extends System.Object implements System.IAsyncResult, System.Threading.IThreadPoolWorkItem, System.IDisposable
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class Task$1<TResult> extends System.Threading.Tasks.Task implements System.IAsyncResult, System.Threading.IThreadPoolWorkItem, System.IDisposable
+        {
+            protected [__keep_incompatibility]: never;
+        }
+    }
+    namespace System.Threading {
+        interface IThreadPoolWorkItem
+        {
+        }
+    }
+    namespace UnityEngine.SceneManagement {
+        /** Run-time data structure for *.unity file.
+        */
+        class Scene extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            public get handle(): number;
+            /** Returns the relative path of the Scene. Like: "AssetsMyScenesMyScene.unity".
+            */
+            public get path(): string;
+            /** Returns the name of the Scene that is currently active in the game or app.
+            */
+            public get name(): string;
+            public set name(value: string);
+            /** Returns true if the Scene is loaded.
+            */
+            public get isLoaded(): boolean;
+            /** Return the index of the Scene in the Build Settings.
+            */
+            public get buildIndex(): number;
+            /** Returns true if the Scene is modifed.
+            */
+            public get isDirty(): boolean;
+            /** The number of root transforms of this Scene.
+            */
+            public get rootCount(): number;
+            public get isSubScene(): boolean;
+            public set isSubScene(value: boolean);
+            public IsValid () : boolean
+            public GetRootGameObjects () : System.Array$1<UnityEngine.GameObject>
+            public GetRootGameObjects ($rootGameObjects: System.Collections.Generic.List$1<UnityEngine.GameObject>) : void
+            public static op_Equality ($lhs: UnityEngine.SceneManagement.Scene, $rhs: UnityEngine.SceneManagement.Scene) : boolean
+            public static op_Inequality ($lhs: UnityEngine.SceneManagement.Scene, $rhs: UnityEngine.SceneManagement.Scene) : boolean
+        }
+    }
+    namespace System.Collections.Generic {
+        interface IEnumerable$1<T> extends System.Collections.IEnumerable
+        {
+        }
+        interface IReadOnlyList$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.IReadOnlyCollection$1<T>
+        {
+        }
+        interface IReadOnlyCollection$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable
+        {
+        }
+        interface IList$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.ICollection$1<T>
+        {
+        }
+        interface ICollection$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable
+        {
+        }
+        class List$1<T> extends System.Object implements System.Collections.Generic.IReadOnlyList$1<T>, System.Collections.ICollection, System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.IList$1<T>, System.Collections.Generic.IReadOnlyCollection$1<T>, System.Collections.IList, System.Collections.Generic.ICollection$1<T>
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        interface IComparer$1<T>
+        {
+        }
+    }
+    namespace System.Collections {
+        interface IEnumerable
+        {
+        }
+        interface IStructuralComparable
+        {
+        }
+        interface IStructuralEquatable
+        {
+        }
+        interface ICollection extends System.Collections.IEnumerable
+        {
+        }
+        interface IList extends System.Collections.ICollection, System.Collections.IEnumerable
+        {
+        }
+        interface IComparer
+        {
+        }
+        interface IEnumerator
+        {
+        }
+    }
+    namespace System.Runtime.Serialization {
+        interface ISerializable
+        {
         }
     }
     namespace UnityEngine {
@@ -352,6 +515,35 @@ declare namespace CS {
             public static FindObjectOfType ($type: System.Type, $includeInactive: boolean) : UnityEngine.Object
             public static op_Equality ($x: UnityEngine.Object, $y: UnityEngine.Object) : boolean
             public static op_Inequality ($x: UnityEngine.Object, $y: UnityEngine.Object) : boolean
+            public constructor ()
+        }
+        /** Base class for all yield instructions.
+        */
+        class YieldInstruction extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        /** Asynchronous operation coroutine.
+        */
+        class AsyncOperation extends UnityEngine.YieldInstruction
+        {
+            protected [__keep_incompatibility]: never;
+            /** Has the operation finished? (Read Only)
+            */
+            public get isDone(): boolean;
+            /** What's the operation's progress. (Read Only)
+            */
+            public get progress(): number;
+            /** Priority lets you tweak in which order async operation calls will be performed.
+            */
+            public get priority(): number;
+            public set priority(value: number);
+            /** Allow Scenes to be activated as soon as it is ready.
+            */
+            public get allowSceneActivation(): boolean;
+            public set allowSceneActivation(value: boolean);
+            public add_completed ($value: System.Action$1<UnityEngine.AsyncOperation>) : void
+            public remove_completed ($value: System.Action$1<UnityEngine.AsyncOperation>) : void
             public constructor ()
         }
         /** Base class for everything attached to GameObjects.
@@ -692,34 +884,40 @@ declare namespace CS {
             public constructor ()
             public constructor ($name: string, ...components: System.Type[])
         }
-        /** Base class for all yield instructions.
+        /** Base class for all entities in Unity Scenes.
         */
-        class YieldInstruction extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
+        interface GameObject {
+            IsNull () : boolean;
+            GetOrAddComponent ($type: System.Type) : UnityEngine.Component;
         }
-        /** Asynchronous operation coroutine.
+        /** A Canvas placable element that can be used to modify children Alpha, Raycasting, Enabled state.
         */
-        class AsyncOperation extends UnityEngine.YieldInstruction
+        class CanvasGroup extends UnityEngine.Behaviour implements UnityEngine.ICanvasRaycastFilter
         {
             protected [__keep_incompatibility]: never;
-            /** Has the operation finished? (Read Only)
+            /** Set the alpha of the group.
             */
-            public get isDone(): boolean;
-            /** What's the operation's progress. (Read Only)
+            public get alpha(): number;
+            public set alpha(value: number);
+            /** Is the group interactable (are the elements beneath the group enabled).
             */
-            public get progress(): number;
-            /** Priority lets you tweak in which order async operation calls will be performed.
+            public get interactable(): boolean;
+            public set interactable(value: boolean);
+            /** Does this group block raycasting (allow collision).
             */
-            public get priority(): number;
-            public set priority(value: number);
-            /** Allow Scenes to be activated as soon as it is ready.
+            public get blocksRaycasts(): boolean;
+            public set blocksRaycasts(value: boolean);
+            /** Should the group ignore parent groups?
             */
-            public get allowSceneActivation(): boolean;
-            public set allowSceneActivation(value: boolean);
-            public add_completed ($value: System.Action$1<UnityEngine.AsyncOperation>) : void
-            public remove_completed ($value: System.Action$1<UnityEngine.AsyncOperation>) : void
+            public get ignoreParentGroups(): boolean;
+            public set ignoreParentGroups(value: boolean);
+            /** Returns true if the Group allows raycasts.
+            */
+            public IsRaycastLocationValid ($sp: UnityEngine.Vector2, $eventCamera: UnityEngine.Camera) : boolean
             public constructor ()
+        }
+        interface ICanvasRaycastFilter
+        {
         }
         /** Representation of 2D vectors and points.
         */
@@ -2124,35 +2322,6 @@ declare namespace CS {
         {
             protected [__keep_incompatibility]: never;
         }
-        /** A Canvas placable element that can be used to modify children Alpha, Raycasting, Enabled state.
-        */
-        class CanvasGroup extends UnityEngine.Behaviour implements UnityEngine.ICanvasRaycastFilter
-        {
-            protected [__keep_incompatibility]: never;
-            /** Set the alpha of the group.
-            */
-            public get alpha(): number;
-            public set alpha(value: number);
-            /** Is the group interactable (are the elements beneath the group enabled).
-            */
-            public get interactable(): boolean;
-            public set interactable(value: boolean);
-            /** Does this group block raycasting (allow collision).
-            */
-            public get blocksRaycasts(): boolean;
-            public set blocksRaycasts(value: boolean);
-            /** Should the group ignore parent groups?
-            */
-            public get ignoreParentGroups(): boolean;
-            public set ignoreParentGroups(value: boolean);
-            /** Returns true if the Group allows raycasts.
-            */
-            public IsRaycastLocationValid ($sp: UnityEngine.Vector2, $eventCamera: UnityEngine.Camera) : boolean
-            public constructor ()
-        }
-        interface ICanvasRaycastFilter
-        {
-        }
         /** A Camera is a device through which the player views the world.
         */
         class Camera extends UnityEngine.Behaviour
@@ -3432,233 +3601,27 @@ declare namespace CS {
         {
             protected [__keep_incompatibility]: never;
         }
-    }
-    namespace Au {
-        class App extends UnityEngine.MonoBehaviour
-        {
-            protected [__keep_incompatibility]: never;
-            public static get inEditor(): boolean;
-            public static get platform(): string;
-            public static get loader(): Au.Loaders.Loader;
-            public static get config(): Au.AppConfig;
-            public static get i18n(): System.Func$2<number, string>;
-            public static RestartJS () : System.Threading.Tasks.Task$1<boolean>
-            public constructor ()
-        }
-        class AppConfig extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public name : string
-            public appName : string
-            public appLanguage : string
-            public loginServer : string
-            public allowGuest : boolean
-            public patchServer : string
-            public minVersion : string
-            public checkUpdate : boolean
-            public bundleDataPath : string
-            public bundleJS : string
-            public bundleConfig : string
-            public bundleLanguage : string
-            public jsEntry : string
-            public constructor ()
-        }
-        class Tags extends UnityEngine.MonoBehaviour
-        {
-            protected [__keep_incompatibility]: never;
-            public items : System.Array$1<Au.Tag>
-            public Get ($name: string) : UnityEngine.GameObject
-            public constructor ()
-        }
-        class Tag extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class Utils extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static utf8WithoutBOM : System.Text.Encoding
-            public static IsWebFile ($path: string) : boolean
-            public static WaitAsyncOperation ($op: UnityEngine.AsyncOperation, $progress?: System.Action$1<number>) : System.Threading.Tasks.Task
-            public static WaitUntil ($condition: System.Func$1<boolean>) : System.Threading.Tasks.Task
-            public static Timestamp () : bigint
-            public static FileCopy ($source: string, $dest: string) : System.Threading.Tasks.Task$1<boolean>
-            public static FileSave ($text: string, $dest: string) : void
-            public static FileExists ($path: string) : boolean
-            public static DirEnsure ($dir: string) : System.IO.DirectoryInfo
-            public static DirEnsure ($dir: System.IO.DirectoryInfo) : System.IO.DirectoryInfo
-            public static DirClear ($dir: string) : System.IO.DirectoryInfo
-            public static DirClear ($dir: System.IO.DirectoryInfo) : System.IO.DirectoryInfo
-            public static DirCopy ($from: string, $to: string) : void
-            public static DirCopy ($from: System.IO.DirectoryInfo, $to: System.IO.DirectoryInfo) : void
-        }
-    }
-    namespace System.Collections.Generic {
-        interface IEnumerable$1<T> extends System.Collections.IEnumerable
-        {
-        }
-        interface IReadOnlyList$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.IReadOnlyCollection$1<T>
-        {
-        }
-        interface IReadOnlyCollection$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable
-        {
-        }
-        interface IList$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.ICollection$1<T>
-        {
-        }
-        interface ICollection$1<T> extends System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable
-        {
-        }
-        class List$1<T> extends System.Object implements System.Collections.Generic.IReadOnlyList$1<T>, System.Collections.ICollection, System.Collections.Generic.IEnumerable$1<T>, System.Collections.IEnumerable, System.Collections.Generic.IList$1<T>, System.Collections.Generic.IReadOnlyCollection$1<T>, System.Collections.IList, System.Collections.Generic.ICollection$1<T>
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        interface IComparer$1<T>
-        {
-        }
-    }
-    namespace System.Collections {
-        interface IEnumerable
-        {
-        }
-        interface IStructuralComparable
-        {
-        }
-        interface IStructuralEquatable
-        {
-        }
-        interface ICollection extends System.Collections.IEnumerable
-        {
-        }
-        interface IList extends System.Collections.ICollection, System.Collections.IEnumerable
-        {
-        }
-        interface IComparer
-        {
-        }
-        interface IEnumerator
-        {
-        }
-    }
-    namespace Au.Loaders {
-        class Loader extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public LoadText ($path: string) : System.Threading.Tasks.Task$1<string>
-            public LoadBundle ($name: string, $progress: System.Action$1<number>) : System.Threading.Tasks.Task$1<boolean>
-            public UnloadBundle ($name: string) : boolean
-            public LoadScene ($name: string, $additive: boolean, $progress: System.Action$1<number>) : System.Threading.Tasks.Task$1<UnityEngine.SceneManagement.Scene>
-            public UnloadScene ($scene: UnityEngine.SceneManagement.Scene) : System.Threading.Tasks.Task$1<boolean>
-            public LoadAsset ($path: string, $type: System.Type) : System.Threading.Tasks.Task$1<UnityEngine.Object>
-            public UnloadAllBundles () : void
-        }
-    }
-    namespace System.Runtime.Serialization {
-        interface ISerializable
-        {
-        }
-    }
-    namespace System.Threading.Tasks {
-        class Task extends System.Object implements System.IAsyncResult, System.Threading.IThreadPoolWorkItem, System.IDisposable
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class Task$1<TResult> extends System.Threading.Tasks.Task implements System.IAsyncResult, System.Threading.IThreadPoolWorkItem, System.IDisposable
-        {
-            protected [__keep_incompatibility]: never;
-        }
-    }
-    namespace System.Threading {
-        interface IThreadPoolWorkItem
-        {
-        }
-    }
-    namespace System.Text {
-        class Encoding extends System.Object implements System.ICloneable
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class StringBuilder extends System.Object implements System.Runtime.Serialization.ISerializable
-        {
-            protected [__keep_incompatibility]: never;
-        }
-    }
-    namespace System.IO {
-        class FileSystemInfo extends System.MarshalByRefObject implements System.Runtime.Serialization.ISerializable
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class DirectoryInfo extends System.IO.FileSystemInfo implements System.Runtime.Serialization.ISerializable
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class Path extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static AltDirectorySeparatorChar : number
-            public static DirectorySeparatorChar : number
-            public static PathSeparator : number
-            public static VolumeSeparatorChar : number
-            public static ChangeExtension ($path: string, $extension: string) : string
-            public static Combine ($path1: string, $path2: string) : string
-            public static GetDirectoryName ($path: string) : string
-            public static GetExtension ($path: string) : string
-            public static GetFileName ($path: string) : string
-            public static GetFileNameWithoutExtension ($path: string) : string
-            public static GetFullPath ($path: string) : string
-            public static GetPathRoot ($path: string) : string
-            public static GetTempFileName () : string
-            public static GetTempPath () : string
-            public static HasExtension ($path: string) : boolean
-            public static IsPathRooted ($path: string) : boolean
-            public static GetInvalidFileNameChars () : System.Array$1<number>
-            public static GetInvalidPathChars () : System.Array$1<number>
-            public static GetRandomFileName () : string
-            public static Combine (...paths: string[]) : string
-            public static Combine ($path1: string, $path2: string, $path3: string) : string
-            public static Combine ($path1: string, $path2: string, $path3: string, $path4: string) : string
-            public static GetRelativePath ($relativeTo: string, $path: string) : string
-            public static IsPathFullyQualified ($path: string) : boolean
-            public static GetFullPath ($path: string, $basePath: string) : string
-        }
-        class Stream extends System.MarshalByRefObject implements System.IAsyncDisposable, System.IDisposable
-        {
-            protected [__keep_incompatibility]: never;
-        }
-    }
-    namespace UnityEngine.SceneManagement {
-        /** Run-time data structure for *.unity file.
+        /** Enumeration of the different types of supported touchscreen keyboards.
         */
-        class Scene extends System.ValueType
+        enum TouchScreenKeyboardType
+        { Default = 0, ASCIICapable = 1, NumbersAndPunctuation = 2, URL = 3, NumberPad = 4, PhonePad = 5, NamePhonePad = 6, EmailAddress = 7, NintendoNetworkAccount = 8, Social = 9, Search = 10, DecimalPad = 11, OneTimeCode = 12 }
+        /** A UnityGUI event.
+        */
+        class Event extends System.Object
         {
             protected [__keep_incompatibility]: never;
-            public get handle(): number;
-            /** Returns the relative path of the Scene. Like: "AssetsMyScenesMyScene.unity".
-            */
-            public get path(): string;
-            /** Returns the name of the Scene that is currently active in the game or app.
-            */
-            public get name(): string;
-            public set name(value: string);
-            /** Returns true if the Scene is loaded.
-            */
-            public get isLoaded(): boolean;
-            /** Return the index of the Scene in the Build Settings.
-            */
-            public get buildIndex(): number;
-            /** Returns true if the Scene is modifed.
-            */
-            public get isDirty(): boolean;
-            /** The number of root transforms of this Scene.
-            */
-            public get rootCount(): number;
-            public get isSubScene(): boolean;
-            public set isSubScene(value: boolean);
-            public IsValid () : boolean
-            public GetRootGameObjects () : System.Array$1<UnityEngine.GameObject>
-            public GetRootGameObjects ($rootGameObjects: System.Collections.Generic.List$1<UnityEngine.GameObject>) : void
-            public static op_Equality ($lhs: UnityEngine.SceneManagement.Scene, $rhs: UnityEngine.SceneManagement.Scene) : boolean
-            public static op_Inequality ($lhs: UnityEngine.SceneManagement.Scene, $rhs: UnityEngine.SceneManagement.Scene) : boolean
+        }
+        /** Describes a collision.
+        */
+        class Collision extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        /** A base class of all colliders.
+        */
+        class Collider extends UnityEngine.Component
+        {
+            protected [__keep_incompatibility]: never;
         }
     }
     namespace System.Reflection {
@@ -3695,35 +3658,50 @@ declare namespace CS {
         {
         }
     }
-    namespace Au.Connectors {
-        class HttpConnector extends System.Object
+    namespace System.Text {
+        class Encoding extends System.Object implements System.ICloneable
         {
             protected [__keep_incompatibility]: never;
-            public baseUrl : string
-            public SetToken ($token: string) : void
-            public Get ($url: string) : System.Threading.Tasks.Task$1<Au.Connectors.HttpResult>
-            public Post ($url: string, $json: string) : System.Threading.Tasks.Task$1<Au.Connectors.HttpResult>
-            public Download ($url: string, $targetPath: string, $progress: System.Action$1<number>) : System.Threading.Tasks.Task$1<boolean>
-            public constructor ($baseUrl: string)
         }
-        class HttpResult extends System.Object
+        class StringBuilder extends System.Object implements System.Runtime.Serialization.ISerializable
         {
             protected [__keep_incompatibility]: never;
-            public error : number
-            public message : string
-            public data : string
-            public constructor ($error: number, $message: string)
-            public constructor ($data: string)
         }
-        class WSConnector extends System.Object
+    }
+    namespace System.IO {
+        class FileSystemInfo extends System.MarshalByRefObject implements System.Runtime.Serialization.ISerializable
         {
             protected [__keep_incompatibility]: never;
-            public onMessage : System.Action$1<string>
-            public get connected(): boolean;
-            public Open ($url: string, $token: string) : System.Threading.Tasks.Task$1<boolean>
-            public Close () : System.Threading.Tasks.Task
-            public Send ($message: string) : System.Threading.Tasks.Task
-            public constructor ()
+        }
+        class DirectoryInfo extends System.IO.FileSystemInfo implements System.Runtime.Serialization.ISerializable
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class Stream extends System.MarshalByRefObject implements System.IAsyncDisposable, System.IDisposable
+        {
+            protected [__keep_incompatibility]: never;
+        }
+    }
+    namespace Au.TS {
+        class TSApp extends System.Object implements System.IDisposable
+        {
+            protected [__keep_incompatibility]: never;
+            public Run () : void
+            public Restart () : void
+            public Dispose () : void
+            public Tick () : void
+            public constructor ($script: string)
+            public constructor ($startupInfo: Au.TS.StartupInfo)
+        }
+        class StartupInfo extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class GameObjectExtension extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static IsNull ($go: UnityEngine.GameObject) : boolean
+            public static GetOrAddComponent ($go: UnityEngine.GameObject, $type: System.Type) : UnityEngine.Component
         }
     }
     namespace UnityEngine.Application {
@@ -3817,6 +3795,10 @@ declare namespace CS {
         */
         enum UnityEventCallState
         { Off = 0, EditorAndRuntime = 1, RuntimeOnly = 2 }
+        class UnityEvent$3<T0, T1, T2> extends UnityEngine.Events.UnityEventBase implements UnityEngine.ISerializationCallbackReceiver
+        {
+            protected [__keep_incompatibility]: never;
+        }
     }
     namespace UnityEngine.Rendering {
         /** Graphics device API type.
@@ -3921,6 +3903,67 @@ declare namespace CS {
         class PointerEventData extends UnityEngine.EventSystems.BaseEventData
         {
             protected [__keep_incompatibility]: never;
+            public hovered : System.Collections.Generic.List$1<UnityEngine.GameObject>
+            public get pointerEnter(): UnityEngine.GameObject;
+            public set pointerEnter(value: UnityEngine.GameObject);
+            public get lastPress(): UnityEngine.GameObject;
+            public get rawPointerPress(): UnityEngine.GameObject;
+            public set rawPointerPress(value: UnityEngine.GameObject);
+            public get pointerDrag(): UnityEngine.GameObject;
+            public set pointerDrag(value: UnityEngine.GameObject);
+            public get pointerClick(): UnityEngine.GameObject;
+            public set pointerClick(value: UnityEngine.GameObject);
+            public get pointerCurrentRaycast(): UnityEngine.EventSystems.RaycastResult;
+            public set pointerCurrentRaycast(value: UnityEngine.EventSystems.RaycastResult);
+            public get pointerPressRaycast(): UnityEngine.EventSystems.RaycastResult;
+            public set pointerPressRaycast(value: UnityEngine.EventSystems.RaycastResult);
+            public get eligibleForClick(): boolean;
+            public set eligibleForClick(value: boolean);
+            public get pointerId(): number;
+            public set pointerId(value: number);
+            public get position(): UnityEngine.Vector2;
+            public set position(value: UnityEngine.Vector2);
+            public get delta(): UnityEngine.Vector2;
+            public set delta(value: UnityEngine.Vector2);
+            public get pressPosition(): UnityEngine.Vector2;
+            public set pressPosition(value: UnityEngine.Vector2);
+            public get clickTime(): number;
+            public set clickTime(value: number);
+            public get clickCount(): number;
+            public set clickCount(value: number);
+            public get scrollDelta(): UnityEngine.Vector2;
+            public set scrollDelta(value: UnityEngine.Vector2);
+            public get useDragThreshold(): boolean;
+            public set useDragThreshold(value: boolean);
+            public get dragging(): boolean;
+            public set dragging(value: boolean);
+            public get button(): UnityEngine.EventSystems.PointerEventData.InputButton;
+            public set button(value: UnityEngine.EventSystems.PointerEventData.InputButton);
+            public get pressure(): number;
+            public set pressure(value: number);
+            public get tangentialPressure(): number;
+            public set tangentialPressure(value: number);
+            public get altitudeAngle(): number;
+            public set altitudeAngle(value: number);
+            public get azimuthAngle(): number;
+            public set azimuthAngle(value: number);
+            public get twist(): number;
+            public set twist(value: number);
+            public get radius(): UnityEngine.Vector2;
+            public set radius(value: UnityEngine.Vector2);
+            public get radiusVariance(): UnityEngine.Vector2;
+            public set radiusVariance(value: UnityEngine.Vector2);
+            public get fullyExited(): boolean;
+            public set fullyExited(value: boolean);
+            public get reentered(): boolean;
+            public set reentered(value: boolean);
+            public get enterEventCamera(): UnityEngine.Camera;
+            public get pressEventCamera(): UnityEngine.Camera;
+            public get pointerPress(): UnityEngine.GameObject;
+            public set pointerPress(value: UnityEngine.GameObject);
+            public IsPointerMoving () : boolean
+            public IsScrolling () : boolean
+            public constructor ($eventSystem: UnityEngine.EventSystems.EventSystem)
         }
         interface IInitializePotentialDragHandler extends UnityEngine.EventSystems.IEventSystemHandler
         {
@@ -3931,6 +3974,32 @@ declare namespace CS {
         class AxisEventData extends UnityEngine.EventSystems.BaseEventData
         {
             protected [__keep_incompatibility]: never;
+        }
+        class RaycastResult extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class EventSystem extends UnityEngine.EventSystems.UIBehaviour
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        interface IBeginDragHandler extends UnityEngine.EventSystems.IEventSystemHandler
+        {
+        }
+        interface IEndDragHandler extends UnityEngine.EventSystems.IEventSystemHandler
+        {
+        }
+        interface IScrollHandler extends UnityEngine.EventSystems.IEventSystemHandler
+        {
+        }
+        interface IUpdateSelectedHandler extends UnityEngine.EventSystems.IEventSystemHandler
+        {
+        }
+        interface ICancelHandler extends UnityEngine.EventSystems.IEventSystemHandler
+        {
+        }
+        interface IPointerMoveHandler extends UnityEngine.EventSystems.IEventSystemHandler
+        {
         }
     }
     namespace UnityEngine.UI {
@@ -4161,6 +4230,10 @@ declare namespace CS {
             public OnDrag ($eventData: UnityEngine.EventSystems.PointerEventData) : void
             public OnInitializePotentialDrag ($eventData: UnityEngine.EventSystems.PointerEventData) : void
             public SetDirection ($direction: UnityEngine.UI.Slider.Direction, $includeRectLayouts: boolean) : void
+        }
+        class Scrollbar extends UnityEngine.UI.Selectable implements UnityEngine.EventSystems.IBeginDragHandler, UnityEngine.EventSystems.IInitializePotentialDragHandler, UnityEngine.EventSystems.IDragHandler, UnityEngine.UI.ICanvasElement, UnityEngine.EventSystems.IEventSystemHandler, UnityEngine.EventSystems.IPointerEnterHandler, UnityEngine.EventSystems.ISelectHandler, UnityEngine.EventSystems.IPointerExitHandler, UnityEngine.EventSystems.IDeselectHandler, UnityEngine.EventSystems.IPointerDownHandler, UnityEngine.EventSystems.IPointerUpHandler, UnityEngine.EventSystems.IMoveHandler
+        {
+            protected [__keep_incompatibility]: never;
         }
     }
     namespace UnityEngine.UI.Image {
@@ -4763,6 +4836,10 @@ declare namespace CS {
         enum ObstacleAvoidanceType
         { NoObstacleAvoidance = 0, LowQualityObstacleAvoidance = 1, MedQualityObstacleAvoidance = 2, GoodQualityObstacleAvoidance = 3, HighQualityObstacleAvoidance = 4 }
     }
+    namespace UnityEngine.EventSystems.PointerEventData {
+        enum InputButton
+        { Left = 0, Right = 1, Middle = 2 }
+    }
     namespace TMPro {
         class TMP_Text extends UnityEngine.UI.MaskableGraphic implements UnityEngine.UI.IMaterialModifier, UnityEngine.UI.IMaskable, UnityEngine.UI.ICanvasElement, UnityEngine.UI.IClippable
         {
@@ -5014,5 +5091,305 @@ declare namespace CS {
         }
         enum TMP_VertexDataUpdateFlags
         { None = 0, Vertices = 1, Uv0 = 2, Uv2 = 4, Uv4 = 8, Colors32 = 16, All = 255 }
+        class TMP_InputField extends UnityEngine.UI.Selectable implements UnityEngine.EventSystems.IBeginDragHandler, UnityEngine.EventSystems.IDragHandler, UnityEngine.EventSystems.IEndDragHandler, UnityEngine.UI.ICanvasElement, UnityEngine.EventSystems.IEventSystemHandler, UnityEngine.EventSystems.IScrollHandler, UnityEngine.EventSystems.IPointerEnterHandler, UnityEngine.EventSystems.IUpdateSelectedHandler, UnityEngine.EventSystems.ISelectHandler, UnityEngine.EventSystems.IPointerExitHandler, UnityEngine.EventSystems.IDeselectHandler, UnityEngine.EventSystems.IPointerDownHandler, UnityEngine.EventSystems.IPointerUpHandler, UnityEngine.EventSystems.IMoveHandler, UnityEngine.UI.ILayoutElement, UnityEngine.EventSystems.ISubmitHandler, UnityEngine.EventSystems.IPointerClickHandler
+        {
+            protected [__keep_incompatibility]: never;
+            public get shouldHideMobileInput(): boolean;
+            public set shouldHideMobileInput(value: boolean);
+            public get shouldHideSoftKeyboard(): boolean;
+            public set shouldHideSoftKeyboard(value: boolean);
+            public get text(): string;
+            public set text(value: string);
+            public get isFocused(): boolean;
+            public get caretBlinkRate(): number;
+            public set caretBlinkRate(value: number);
+            public get caretWidth(): number;
+            public set caretWidth(value: number);
+            public get textViewport(): UnityEngine.RectTransform;
+            public set textViewport(value: UnityEngine.RectTransform);
+            public get textComponent(): TMPro.TMP_Text;
+            public set textComponent(value: TMPro.TMP_Text);
+            public get placeholder(): UnityEngine.UI.Graphic;
+            public set placeholder(value: UnityEngine.UI.Graphic);
+            public get verticalScrollbar(): UnityEngine.UI.Scrollbar;
+            public set verticalScrollbar(value: UnityEngine.UI.Scrollbar);
+            public get scrollSensitivity(): number;
+            public set scrollSensitivity(value: number);
+            public get caretColor(): UnityEngine.Color;
+            public set caretColor(value: UnityEngine.Color);
+            public get customCaretColor(): boolean;
+            public set customCaretColor(value: boolean);
+            public get selectionColor(): UnityEngine.Color;
+            public set selectionColor(value: UnityEngine.Color);
+            public get onEndEdit(): TMPro.TMP_InputField.SubmitEvent;
+            public set onEndEdit(value: TMPro.TMP_InputField.SubmitEvent);
+            public get onSubmit(): TMPro.TMP_InputField.SubmitEvent;
+            public set onSubmit(value: TMPro.TMP_InputField.SubmitEvent);
+            public get onSelect(): TMPro.TMP_InputField.SelectionEvent;
+            public set onSelect(value: TMPro.TMP_InputField.SelectionEvent);
+            public get onDeselect(): TMPro.TMP_InputField.SelectionEvent;
+            public set onDeselect(value: TMPro.TMP_InputField.SelectionEvent);
+            public get onTextSelection(): TMPro.TMP_InputField.TextSelectionEvent;
+            public set onTextSelection(value: TMPro.TMP_InputField.TextSelectionEvent);
+            public get onEndTextSelection(): TMPro.TMP_InputField.TextSelectionEvent;
+            public set onEndTextSelection(value: TMPro.TMP_InputField.TextSelectionEvent);
+            public get onValueChanged(): TMPro.TMP_InputField.OnChangeEvent;
+            public set onValueChanged(value: TMPro.TMP_InputField.OnChangeEvent);
+            public get onTouchScreenKeyboardStatusChanged(): TMPro.TMP_InputField.TouchScreenKeyboardEvent;
+            public set onTouchScreenKeyboardStatusChanged(value: TMPro.TMP_InputField.TouchScreenKeyboardEvent);
+            public get onValidateInput(): TMPro.TMP_InputField.OnValidateInput;
+            public set onValidateInput(value: TMPro.TMP_InputField.OnValidateInput);
+            public get characterLimit(): number;
+            public set characterLimit(value: number);
+            public get pointSize(): number;
+            public set pointSize(value: number);
+            public get fontAsset(): TMPro.TMP_FontAsset;
+            public set fontAsset(value: TMPro.TMP_FontAsset);
+            public get onFocusSelectAll(): boolean;
+            public set onFocusSelectAll(value: boolean);
+            public get resetOnDeActivation(): boolean;
+            public set resetOnDeActivation(value: boolean);
+            public get restoreOriginalTextOnEscape(): boolean;
+            public set restoreOriginalTextOnEscape(value: boolean);
+            public get isRichTextEditingAllowed(): boolean;
+            public set isRichTextEditingAllowed(value: boolean);
+            public get contentType(): TMPro.TMP_InputField.ContentType;
+            public set contentType(value: TMPro.TMP_InputField.ContentType);
+            public get lineType(): TMPro.TMP_InputField.LineType;
+            public set lineType(value: TMPro.TMP_InputField.LineType);
+            public get lineLimit(): number;
+            public set lineLimit(value: number);
+            public get inputType(): TMPro.TMP_InputField.InputType;
+            public set inputType(value: TMPro.TMP_InputField.InputType);
+            public get keyboardType(): UnityEngine.TouchScreenKeyboardType;
+            public set keyboardType(value: UnityEngine.TouchScreenKeyboardType);
+            public get characterValidation(): TMPro.TMP_InputField.CharacterValidation;
+            public set characterValidation(value: TMPro.TMP_InputField.CharacterValidation);
+            public get inputValidator(): TMPro.TMP_InputValidator;
+            public set inputValidator(value: TMPro.TMP_InputValidator);
+            public get readOnly(): boolean;
+            public set readOnly(value: boolean);
+            public get richText(): boolean;
+            public set richText(value: boolean);
+            public get multiLine(): boolean;
+            public get asteriskChar(): number;
+            public set asteriskChar(value: number);
+            public get wasCanceled(): boolean;
+            public get caretPosition(): number;
+            public set caretPosition(value: number);
+            public get selectionAnchorPosition(): number;
+            public set selectionAnchorPosition(value: number);
+            public get selectionFocusPosition(): number;
+            public set selectionFocusPosition(value: number);
+            public get stringPosition(): number;
+            public set stringPosition(value: number);
+            public get selectionStringAnchorPosition(): number;
+            public set selectionStringAnchorPosition(value: number);
+            public get selectionStringFocusPosition(): number;
+            public set selectionStringFocusPosition(value: number);
+            public get minWidth(): number;
+            public get preferredWidth(): number;
+            public get flexibleWidth(): number;
+            public get minHeight(): number;
+            public get preferredHeight(): number;
+            public get flexibleHeight(): number;
+            public get layoutPriority(): number;
+            public SetTextWithoutNotify ($input: string) : void
+            public MoveTextEnd ($shift: boolean) : void
+            public MoveTextStart ($shift: boolean) : void
+            public MoveToEndOfLine ($shift: boolean, $ctrl: boolean) : void
+            public MoveToStartOfLine ($shift: boolean, $ctrl: boolean) : void
+            public OnBeginDrag ($eventData: UnityEngine.EventSystems.PointerEventData) : void
+            public OnDrag ($eventData: UnityEngine.EventSystems.PointerEventData) : void
+            public OnEndDrag ($eventData: UnityEngine.EventSystems.PointerEventData) : void
+            public ProcessEvent ($e: UnityEngine.Event) : void
+            public OnUpdateSelected ($eventData: UnityEngine.EventSystems.BaseEventData) : void
+            public OnScroll ($eventData: UnityEngine.EventSystems.PointerEventData) : void
+            public ForceLabelUpdate () : void
+            public Rebuild ($update: UnityEngine.UI.CanvasUpdate) : void
+            public LayoutComplete () : void
+            public GraphicUpdateComplete () : void
+            public ActivateInputField () : void
+            public OnPointerClick ($eventData: UnityEngine.EventSystems.PointerEventData) : void
+            public OnControlClick () : void
+            public ReleaseSelection () : void
+            public DeactivateInputField ($clearSelection?: boolean) : void
+            public OnSubmit ($eventData: UnityEngine.EventSystems.BaseEventData) : void
+            public CalculateLayoutInputHorizontal () : void
+            public CalculateLayoutInputVertical () : void
+            public SetGlobalPointSize ($pointSize: number) : void
+            public SetGlobalFontAsset ($fontAsset: TMPro.TMP_FontAsset) : void
+        }
+        class TMP_InputValidator extends UnityEngine.ScriptableObject
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class TMP_Dropdown extends UnityEngine.UI.Selectable implements UnityEngine.EventSystems.ICancelHandler, UnityEngine.EventSystems.IEventSystemHandler, UnityEngine.EventSystems.IPointerEnterHandler, UnityEngine.EventSystems.ISelectHandler, UnityEngine.EventSystems.IPointerExitHandler, UnityEngine.EventSystems.IDeselectHandler, UnityEngine.EventSystems.IPointerDownHandler, UnityEngine.EventSystems.IPointerUpHandler, UnityEngine.EventSystems.IMoveHandler, UnityEngine.EventSystems.ISubmitHandler, UnityEngine.EventSystems.IPointerClickHandler
+        {
+            protected [__keep_incompatibility]: never;
+            public get template(): UnityEngine.RectTransform;
+            public set template(value: UnityEngine.RectTransform);
+            public get captionText(): TMPro.TMP_Text;
+            public set captionText(value: TMPro.TMP_Text);
+            public get captionImage(): UnityEngine.UI.Image;
+            public set captionImage(value: UnityEngine.UI.Image);
+            public get placeholder(): UnityEngine.UI.Graphic;
+            public set placeholder(value: UnityEngine.UI.Graphic);
+            public get itemText(): TMPro.TMP_Text;
+            public set itemText(value: TMPro.TMP_Text);
+            public get itemImage(): UnityEngine.UI.Image;
+            public set itemImage(value: UnityEngine.UI.Image);
+            public get options(): System.Collections.Generic.List$1<TMPro.TMP_Dropdown.OptionData>;
+            public set options(value: System.Collections.Generic.List$1<TMPro.TMP_Dropdown.OptionData>);
+            public get onValueChanged(): TMPro.TMP_Dropdown.DropdownEvent;
+            public set onValueChanged(value: TMPro.TMP_Dropdown.DropdownEvent);
+            public get alphaFadeSpeed(): number;
+            public set alphaFadeSpeed(value: number);
+            public get value(): number;
+            public set value(value: number);
+            public get IsExpanded(): boolean;
+            public SetValueWithoutNotify ($input: number) : void
+            public RefreshShownValue () : void
+            public AddOptions ($options: System.Collections.Generic.List$1<TMPro.TMP_Dropdown.OptionData>) : void
+            public AddOptions ($options: System.Collections.Generic.List$1<string>) : void
+            public AddOptions ($options: System.Collections.Generic.List$1<UnityEngine.Sprite>) : void
+            public ClearOptions () : void
+            public OnPointerClick ($eventData: UnityEngine.EventSystems.PointerEventData) : void
+            public OnSubmit ($eventData: UnityEngine.EventSystems.BaseEventData) : void
+            public OnCancel ($eventData: UnityEngine.EventSystems.BaseEventData) : void
+            public Show () : void
+            public Hide () : void
+        }
     }
+    namespace TMPro.TMP_InputField {
+        class SubmitEvent extends UnityEngine.Events.UnityEvent$1<string> implements UnityEngine.ISerializationCallbackReceiver
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class SelectionEvent extends UnityEngine.Events.UnityEvent$1<string> implements UnityEngine.ISerializationCallbackReceiver
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class TextSelectionEvent extends UnityEngine.Events.UnityEvent$3<string, number, number> implements UnityEngine.ISerializationCallbackReceiver
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class OnChangeEvent extends UnityEngine.Events.UnityEvent$1<string> implements UnityEngine.ISerializationCallbackReceiver
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class TouchScreenKeyboardEvent extends UnityEngine.Events.UnityEvent$1<UnityEngine.TouchScreenKeyboard.Status> implements UnityEngine.ISerializationCallbackReceiver
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        interface OnValidateInput
+        { 
+        (text: string, charIndex: number, addedChar: number) : number; 
+        Invoke?: (text: string, charIndex: number, addedChar: number) => number;
+        }
+        var OnValidateInput: { new (func: (text: string, charIndex: number, addedChar: number) => number): OnValidateInput; }
+        enum ContentType
+        { Standard = 0, Autocorrected = 1, IntegerNumber = 2, DecimalNumber = 3, Alphanumeric = 4, Name = 5, EmailAddress = 6, Password = 7, Pin = 8, Custom = 9 }
+        enum LineType
+        { SingleLine = 0, MultiLineSubmit = 1, MultiLineNewline = 2 }
+        enum InputType
+        { Standard = 0, AutoCorrect = 1, Password = 2 }
+        enum CharacterValidation
+        { None = 0, Digit = 1, Integer = 2, Decimal = 3, Alphanumeric = 4, Name = 5, Regex = 6, EmailAddress = 7, CustomValidator = 8 }
+    }
+    namespace UnityEngine.TouchScreenKeyboard {
+        enum Status
+        { Visible = 0, Done = 1, Canceled = 2, LostFocus = 3 }
+    }
+    namespace TMPro.TMP_Dropdown {
+        class OptionData extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class DropdownEvent extends UnityEngine.Events.UnityEvent$1<number> implements UnityEngine.ISerializationCallbackReceiver
+        {
+            protected [__keep_incompatibility]: never;
+        }
+    }
+    namespace Au.TS.Messages {
+        class MonoCollision extends UnityEngine.MonoBehaviour
+        {
+            protected [__keep_incompatibility]: never;
+            public enterAction : System.Action$1<UnityEngine.Collision>
+            public exitAction : System.Action$1<UnityEngine.Collision>
+            public stayAction : System.Action$1<UnityEngine.Collision>
+            public constructor ()
+        }
+        class MonoDestroy extends UnityEngine.MonoBehaviour
+        {
+            protected [__keep_incompatibility]: never;
+            public action : System.Action
+            public constructor ()
+        }
+        class MonoDrag extends UnityEngine.MonoBehaviour implements UnityEngine.EventSystems.IBeginDragHandler, UnityEngine.EventSystems.IDragHandler, UnityEngine.EventSystems.IEndDragHandler, UnityEngine.EventSystems.IEventSystemHandler
+        {
+            protected [__keep_incompatibility]: never;
+            public beginAction : System.Action$1<UnityEngine.EventSystems.PointerEventData>
+            public endAction : System.Action$1<UnityEngine.EventSystems.PointerEventData>
+            public dragAction : System.Action$1<UnityEngine.EventSystems.PointerEventData>
+            public OnBeginDrag ($eventData: UnityEngine.EventSystems.PointerEventData) : void
+            public OnDrag ($eventData: UnityEngine.EventSystems.PointerEventData) : void
+            public OnEndDrag ($eventData: UnityEngine.EventSystems.PointerEventData) : void
+            public constructor ()
+        }
+        class MonoEnable extends UnityEngine.MonoBehaviour
+        {
+            protected [__keep_incompatibility]: never;
+            public action : System.Action$1<boolean>
+            public constructor ()
+        }
+        class MonoFixedUpdate extends UnityEngine.MonoBehaviour
+        {
+            protected [__keep_incompatibility]: never;
+            public action : System.Action
+            public constructor ()
+        }
+        class MonoLateUpdate extends UnityEngine.MonoBehaviour
+        {
+            protected [__keep_incompatibility]: never;
+            public action : System.Action
+            public constructor ()
+        }
+        class MonoPointer extends UnityEngine.MonoBehaviour implements UnityEngine.EventSystems.IEventSystemHandler, UnityEngine.EventSystems.IPointerMoveHandler, UnityEngine.EventSystems.IPointerDownHandler, UnityEngine.EventSystems.IPointerUpHandler, UnityEngine.EventSystems.IPointerClickHandler
+        {
+            protected [__keep_incompatibility]: never;
+            public clickAction : System.Action$1<UnityEngine.EventSystems.PointerEventData>
+            public downAction : System.Action$1<UnityEngine.EventSystems.PointerEventData>
+            public upAction : System.Action$1<UnityEngine.EventSystems.PointerEventData>
+            public moveAction : System.Action$1<UnityEngine.EventSystems.PointerEventData>
+            public OnPointerClick ($eventData: UnityEngine.EventSystems.PointerEventData) : void
+            public OnPointerDown ($eventData: UnityEngine.EventSystems.PointerEventData) : void
+            public OnPointerMove ($eventData: UnityEngine.EventSystems.PointerEventData) : void
+            public OnPointerUp ($eventData: UnityEngine.EventSystems.PointerEventData) : void
+            public constructor ()
+        }
+        class MonoStart extends UnityEngine.MonoBehaviour
+        {
+            protected [__keep_incompatibility]: never;
+            public action : System.Action
+            public constructor ()
+        }
+        class MonoTrigger extends UnityEngine.MonoBehaviour
+        {
+            protected [__keep_incompatibility]: never;
+            public enterAction : System.Action$1<UnityEngine.Collider>
+            public exitAction : System.Action$1<UnityEngine.Collider>
+            public stayAction : System.Action$1<UnityEngine.Collider>
+            public constructor ()
+        }
+        class MonoUpdate extends UnityEngine.MonoBehaviour
+        {
+            protected [__keep_incompatibility]: never;
+            public action : System.Action
+            public constructor ()
+        }
+    }
+}
+declare module 'csharp' {
+export = CS;
 }

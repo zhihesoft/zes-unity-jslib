@@ -2,6 +2,7 @@ import { assert } from "console";
 import { isEmpty } from "lodash";
 import { singleton } from "tsyringe";
 
+
 @singleton()
 export class PrefsService {
     private users = new Map<string, Prefs>();

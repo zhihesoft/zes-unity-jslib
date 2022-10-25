@@ -1,24 +1,25 @@
 import { singleton } from "tsyringe";
 import { constructor } from "tsyringe/dist/typings/types";
-import { App } from "../app";
+import { rootContainer } from "../app";
 import { getLogger } from "../logger";
 import { ComponentMetaData, META_COMPONENT } from "../metadata/metadata_component";
 import { TransitionService } from "../transitions/transitions";
 import { Transit } from "../transitions/transit_type";
 import { assert } from "../utils";
 import { ViewRef } from "../views/view_ref";
+import Tags = CS.Au.Tags;
 
 @singleton()
 export class PageService {
 
     constructor() {
-        this.transition = App.container.resolve(TransitionService);
+        this.transition = rootContainer.resolve(TransitionService);
     }
 
     private host?: ViewRef;                 // host view
     private transition: TransitionService;
     private pages: ViewRef[] = [];
-    private tags?: CS.Au.Tags;
+    private tags?: Tags;
 
     createSubPages(host: ViewRef) {
         const ret = new PageService();

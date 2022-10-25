@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import { Observable, Subject, throttleTime } from "rxjs";
 import { constructor, DependencyContainer } from "tsyringe/dist/typings/types";
-import { App } from "../app";
+import { rootContainer } from "../app";
 import { getLogger } from "../logger";
 import { BindEventOption, BindMetaData, BindPropOption, BindViewMode, META_BINDOPTION } from "../metadata/metadata_bind";
 import { ComponentMetaData, META_COMPONENT } from "../metadata/metadata_component";
@@ -39,7 +39,7 @@ export class ViewRef<T = unknown> {
         if (parent) {
             this.container = parent.container.createChildContainer();
         } else {
-            this.container = App.container;
+            this.container = rootContainer;
         }
     }
 
@@ -119,7 +119,7 @@ export class ViewRef<T = unknown> {
 
         const isSceneView = template.endsWith(".unity");
         const node = option?.node;
-        const loader = App.container.resolve(ResourceService);
+        const loader = rootContainer.resolve(ResourceService);
         if (isSceneView) {
             logger.info(`load scene ${template}`);
             const scene = await loader.loadScene(template, true);

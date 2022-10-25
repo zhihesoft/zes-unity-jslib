@@ -1,8 +1,6 @@
 import { sum } from "lodash";
 import { singleton } from "tsyringe";
-import { App } from "../app";
 import { assert, emptyFunc } from "../utils";
-
 import Type = CS.System.Type;
 
 /**
@@ -10,6 +8,10 @@ import Type = CS.System.Type;
  */
 @singleton()
 export class ResourceService {
+
+    constructor(
+        private assetSet: CS.Au.AssetSet
+    ) { }
 
     private assets = new Map<string, CachedAsset>();
 
@@ -19,7 +21,7 @@ export class ResourceService {
      * @returns text data
      */
     async loadText(path: string): Promise<string> {
-        const ret: string = await puerts.$promise(App.loader.LoadText(path));
+        const ret: string = await puerts.$promise(CS.Au.Files.Read(path));
         return ret;
     }
 
@@ -44,7 +46,7 @@ export class ResourceService {
      */
     async loadBundle(name: string, progress?: (p: number) => void): Promise<void> {
 
-        await puer.$promise(App.loader.LoadBundle(name, p => progress?.call(this, p)));
+        await puer.$promise(this.assetSet.LoadBundle(name, p => progress?.call(this, p)));
     }
 
     /**
@@ -52,11 +54,11 @@ export class ResourceService {
      * @param name bundle name
      */
     unloadBundle(name: string) {
-        App.loader.UnloadBundle(name);
+        this.assetSet.UnloadBundle(name);
     }
 
     unloadAllBundles() {
-        App.loader.UnloadAllBundles();
+        this.assetSet.UnloadAllBundles();
     }
 
     /**
@@ -67,10 +69,6 @@ export class ResourceService {
      */
     async loadAsset(path: string, type: Type): Promise<CS.UnityEngine.Object> {
 
-        if (!path.startsWith("Assets")) {
-            path = `Assets/${CS.Au.App.config.bundleDataPath}/${path}`;
-        }
-
         path = path.toLowerCase();
 
         if (this.assets.has(path)) {
@@ -80,7 +78,7 @@ export class ResourceService {
             return exists.data;
         }
 
-        const ret: CS.UnityEngine.Object = await puer.$promise(App.loader.LoadAsset(path, type));
+        const ret: CS.UnityEngine.Object = await puer.$promise(this.assetSet.LoadObject(path, type));
         const item = new CachedItem<CS.UnityEngine.Object>();
         item.data = ret;
         this.assets.set(path, item);
@@ -96,7 +94,7 @@ export class ResourceService {
      */
     async loadScene(path: string, additive: boolean, progress?: (p: number) => void): Promise<CS.UnityEngine.SceneManagement.Scene> {
         progress = progress ?? emptyFunc;
-        const ret: CS.UnityEngine.SceneManagement.Scene = await puer.$promise(App.loader.LoadScene(path, additive, progress));
+        const ret: CS.UnityEngine.SceneManagement.Scene = await puer.$promise(CS.Au.AssetSet.LoadScene(path, additive, progress));
         return ret;
     }
 
@@ -106,7 +104,7 @@ export class ResourceService {
      * @returns 
      */
     async unloadScene(scene: CS.UnityEngine.SceneManagement.Scene): Promise<boolean> {
-        return puer.$promise(App.loader.UnloadScene(scene));
+        return puer.$promise(CS.Au.AssetSet.UnloadScene(scene));
     }
 }
 
