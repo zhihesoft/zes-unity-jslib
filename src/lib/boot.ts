@@ -16,7 +16,7 @@ export async function bootstrap<T = unknown>(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const view = new ViewRef(ApplicationRef, null as any); // trick, root view has no parent
     await view.attach(rootGO, {
-        appId: id,
+        id,
         assets,
         rootComponent,
         rootGO,
