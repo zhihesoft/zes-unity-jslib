@@ -26,6 +26,14 @@ export class Prefs {
         public user: string
     ) { }
 
+    getObject<T>(key: string): T {
+        const json = this.get(key, "");
+        if (json.length <= 0) {
+            return null as T;
+        }
+        return JSON.parse(json) as T;
+    }
+
     get(key: string, defaultValue: string): string;
     get(key: string, defaultValue: number): number;
     get(key: string, defaultValue: boolean): boolean;
