@@ -9,7 +9,6 @@ export class PrefsService {
 
     public readonly system = "__system";
 
-    public get(): Prefs
     public get(name?: string): Prefs {
         name = name ?? this.system;
         let prefs = this.users.get(name);
