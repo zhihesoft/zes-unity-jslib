@@ -21,15 +21,12 @@
         {
             protected [__keep_incompatibility]: never;
         }
-        interface IFormattable
-        {
-        }
-        interface IEquatable$1<T>
-        {
-        }
         class Single extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>
         {
             protected [__keep_incompatibility]: never;
+        }
+        interface IFormattable
+        {
         }
         interface ISpanFormattable
         {
@@ -43,20 +40,48 @@
         interface IConvertible
         {
         }
-        class Int32 extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>
+        interface IEquatable$1<T>
+        {
+        }
+        class Void extends System.ValueType
         {
             protected [__keep_incompatibility]: never;
         }
-        class Void extends System.ValueType
+        class Delegate extends System.Object implements System.Runtime.Serialization.ISerializable, System.ICloneable
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        interface ICloneable
+        {
+        }
+        interface MulticastDelegate
+        { 
+        (...args:any[]) : any; 
+        Invoke?: (...args:any[]) => any;
+        }
+        var MulticastDelegate: { new (func: (...args:any[]) => any): MulticastDelegate; }
+        interface Action$1<T>
+        { 
+        (obj: T) : void; 
+        Invoke?: (obj: T) => void;
+        }
+        interface Action
+        { 
+        () : void; 
+        Invoke?: () => void;
+        }
+        var Action: { new (func: () => void): Action; }
+        class Enum extends System.ValueType implements System.IFormattable, System.IComparable, System.IConvertible
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class Int32 extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>
         {
             protected [__keep_incompatibility]: never;
         }
         class String extends System.Object implements System.ICloneable, System.IComparable, System.IComparable$1<string>, System.IConvertible, System.Collections.Generic.IEnumerable$1<number>, System.Collections.IEnumerable, System.IEquatable$1<string>
         {
             protected [__keep_incompatibility]: never;
-        }
-        interface ICloneable
-        {
         }
         class Char extends System.ValueType implements System.IComparable, System.IComparable$1<number>, System.IConvertible, System.IEquatable$1<number>
         {
@@ -141,36 +166,11 @@
         {
             protected [__keep_incompatibility]: never;
         }
-        class Enum extends System.ValueType implements System.IFormattable, System.IComparable, System.IConvertible
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class Delegate extends System.Object implements System.Runtime.Serialization.ISerializable, System.ICloneable
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        interface MulticastDelegate
-        { 
-        (...args:any[]) : any; 
-        Invoke?: (...args:any[]) => any;
-        }
-        var MulticastDelegate: { new (func: (...args:any[]) => any): MulticastDelegate; }
-        interface Action$1<T>
-        { 
-        (obj: T) : void; 
-        Invoke?: (obj: T) => void;
-        }
         interface Func$1<TResult>
         { 
         () : TResult; 
         Invoke?: () => TResult;
         }
-        interface Action
-        { 
-        () : void; 
-        Invoke?: () => void;
-        }
-        var Action: { new (func: () => void): Action; }
         class Int64 extends System.ValueType implements System.IFormattable, System.ISpanFormattable, System.IComparable, System.IComparable$1<bigint>, System.IConvertible, System.IEquatable$1<bigint>
         {
             protected [__keep_incompatibility]: never;
@@ -220,6 +220,10 @@
         {
             protected [__keep_incompatibility]: never;
         }
+        class IntPtr extends System.ValueType implements System.Runtime.Serialization.ISerializable, System.IEquatable$1<System.IntPtr>
+        {
+            protected [__keep_incompatibility]: never;
+        }
         interface Func$3<T1, T2, TResult>
         { 
         (arg1: T1, arg2: T2) : TResult; 
@@ -230,6 +234,294 @@
         }
     }
     namespace UnityEngine {
+        /** Base class for all objects Unity can reference.
+        */
+        class Object extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            /** The name of the object.
+            */
+            public get name(): string;
+            public set name(value: string);
+            /** Should the object be hidden, saved with the Scene or modifiable by the user?
+            */
+            public get hideFlags(): UnityEngine.HideFlags;
+            public set hideFlags(value: UnityEngine.HideFlags);
+            public GetInstanceID () : number
+            public static op_Implicit ($exists: UnityEngine.Object) : boolean
+            /** Clones the object original and returns the clone.
+            * @param original An existing object that you want to make a copy of.
+            * @param position Position for the new object.
+            * @param rotation Orientation of the new object.
+            * @param parent Parent that will be assigned to the new object.
+            * @param instantiateInWorldSpace When you assign a parent Object, pass true to position the new object directly in world space. Pass false to set the Object’s position relative to its new parent.
+            * @returns The instantiated clone. 
+            */
+            public static Instantiate ($original: UnityEngine.Object, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion) : UnityEngine.Object
+            /** Clones the object original and returns the clone.
+            * @param original An existing object that you want to make a copy of.
+            * @param position Position for the new object.
+            * @param rotation Orientation of the new object.
+            * @param parent Parent that will be assigned to the new object.
+            * @param instantiateInWorldSpace When you assign a parent Object, pass true to position the new object directly in world space. Pass false to set the Object’s position relative to its new parent.
+            * @returns The instantiated clone. 
+            */
+            public static Instantiate ($original: UnityEngine.Object, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $parent: UnityEngine.Transform) : UnityEngine.Object
+            /** Clones the object original and returns the clone.
+            * @param original An existing object that you want to make a copy of.
+            * @param position Position for the new object.
+            * @param rotation Orientation of the new object.
+            * @param parent Parent that will be assigned to the new object.
+            * @param instantiateInWorldSpace When you assign a parent Object, pass true to position the new object directly in world space. Pass false to set the Object’s position relative to its new parent.
+            * @returns The instantiated clone. 
+            */
+            public static Instantiate ($original: UnityEngine.Object) : UnityEngine.Object
+            /** Clones the object original and returns the clone.
+            * @param original An existing object that you want to make a copy of.
+            * @param position Position for the new object.
+            * @param rotation Orientation of the new object.
+            * @param parent Parent that will be assigned to the new object.
+            * @param instantiateInWorldSpace When you assign a parent Object, pass true to position the new object directly in world space. Pass false to set the Object’s position relative to its new parent.
+            * @returns The instantiated clone. 
+            */
+            public static Instantiate ($original: UnityEngine.Object, $parent: UnityEngine.Transform) : UnityEngine.Object
+            /** Clones the object original and returns the clone.
+            * @param original An existing object that you want to make a copy of.
+            * @param position Position for the new object.
+            * @param rotation Orientation of the new object.
+            * @param parent Parent that will be assigned to the new object.
+            * @param instantiateInWorldSpace When you assign a parent Object, pass true to position the new object directly in world space. Pass false to set the Object’s position relative to its new parent.
+            * @returns The instantiated clone. 
+            */
+            public static Instantiate ($original: UnityEngine.Object, $parent: UnityEngine.Transform, $instantiateInWorldSpace: boolean) : UnityEngine.Object
+            public static Instantiate ($original: UnityEngine.Object, $parent: UnityEngine.Transform, $worldPositionStays: boolean) : UnityEngine.Object
+            /** Removes a GameObject, component or asset.
+            * @param obj The object to destroy.
+            * @param t The optional amount of time to delay before destroying the object.
+            */
+            public static Destroy ($obj: UnityEngine.Object, $t: number) : void
+            /** Removes a GameObject, component or asset.
+            * @param obj The object to destroy.
+            * @param t The optional amount of time to delay before destroying the object.
+            */
+            public static Destroy ($obj: UnityEngine.Object) : void
+            /** Destroys the object obj immediately. You are strongly recommended to use Destroy instead.
+            * @param obj Object to be destroyed.
+            * @param allowDestroyingAssets Set to true to allow assets to be destroyed.
+            */
+            public static DestroyImmediate ($obj: UnityEngine.Object, $allowDestroyingAssets: boolean) : void
+            /** Destroys the object obj immediately. You are strongly recommended to use Destroy instead.
+            * @param obj Object to be destroyed.
+            * @param allowDestroyingAssets Set to true to allow assets to be destroyed.
+            */
+            public static DestroyImmediate ($obj: UnityEngine.Object) : void
+            /** Gets a list of all loaded objects of Type type.
+            * @param type The type of object to find.
+            * @param includeInactive If true, components attached to inactive GameObjects are also included.
+            * @returns The array of objects found matching the type specified. 
+            */
+            public static FindObjectsOfType ($type: System.Type) : System.Array$1<UnityEngine.Object>
+            /** Gets a list of all loaded objects of Type type.
+            * @param type The type of object to find.
+            * @param includeInactive If true, components attached to inactive GameObjects are also included.
+            * @returns The array of objects found matching the type specified. 
+            */
+            public static FindObjectsOfType ($type: System.Type, $includeInactive: boolean) : System.Array$1<UnityEngine.Object>
+            /** Do not destroy the target Object when loading a new Scene.
+            * @param target An Object not destroyed on Scene change.
+            */
+            public static DontDestroyOnLoad ($target: UnityEngine.Object) : void
+            /** Returns the first active loaded object of Type type.
+            * @param type The type of object to find.
+            * @returns Object The first active loaded object that matches the specified type. It returns null if no Object matches the type. 
+            */
+            public static FindObjectOfType ($type: System.Type) : UnityEngine.Object
+            /** Returns the first active loaded object of Type type.
+            * @param type The type of object to find.
+            * @returns Object The first active loaded object that matches the specified type. It returns null if no Object matches the type. 
+            */
+            public static FindObjectOfType ($type: System.Type, $includeInactive: boolean) : UnityEngine.Object
+            public static op_Equality ($x: UnityEngine.Object, $y: UnityEngine.Object) : boolean
+            public static op_Inequality ($x: UnityEngine.Object, $y: UnityEngine.Object) : boolean
+            public constructor ()
+        }
+        /** Base class for everything attached to GameObjects.
+        */
+        class Component extends UnityEngine.Object
+        {
+            protected [__keep_incompatibility]: never;
+            /** The Transform attached to this GameObject.
+            */
+            public get transform(): UnityEngine.Transform;
+            /** The game object this component is attached to. A component is always attached to a game object.
+            */
+            public get gameObject(): UnityEngine.GameObject;
+            /** The tag of this game object.
+            */
+            public get tag(): string;
+            public set tag(value: string);
+            /** Returns the component of type if the GameObject has one attached.
+            * @param type The type of Component to retrieve.
+            * @returns A Component of the matching type, otherwise null if no Component is found. 
+            */
+            public GetComponent ($type: System.Type) : UnityEngine.Component
+            /** Gets the component of the specified type, if it exists.
+            * @param type The type of the component to retrieve.
+            * @param component The output argument that will contain the component or null.
+            * @returns Returns true if the component is found, false otherwise. 
+            */
+            public TryGetComponent ($type: System.Type, $component: $Ref<UnityEngine.Component>) : boolean
+            /** To improve the performance of your code, consider using GetComponent with a type instead of a string.
+            * @param type The name of the type of Component to get.
+            * @returns A Component of the matching type, otherwise null if no Component is found. 
+            */
+            public GetComponent ($type: string) : UnityEngine.Component
+            /** Returns the Component of type in the GameObject or any of its children using depth first search.
+            * @param t The type of Component to retrieve.
+            * @param includeInactive Should Components on inactive GameObjects be included in the found set?
+            * @returns A Component of the matching type, otherwise null if no Component is found. 
+            */
+            public GetComponentInChildren ($t: System.Type, $includeInactive: boolean) : UnityEngine.Component
+            /** Returns the Component of type in the GameObject or any of its children using depth first search.
+            * @param t The type of Component to retrieve.
+            * @param includeInactive Should Components on inactive GameObjects be included in the found set?
+            * @returns A Component of the matching type, otherwise null if no Component is found. 
+            */
+            public GetComponentInChildren ($t: System.Type) : UnityEngine.Component
+            /** Returns all components of Type type in the GameObject or any of its children using depth first search. Works recursively.
+            * @param t The type of Component to retrieve.
+            * @param includeInactive Should Components on inactive GameObjects be included in the found set. includeInactive decides which children of the GameObject will be searched.  The GameObject that you call GetComponentsInChildren on is always searched regardless. Default is false.
+            */
+            public GetComponentsInChildren ($t: System.Type, $includeInactive: boolean) : System.Array$1<UnityEngine.Component>
+            public GetComponentsInChildren ($t: System.Type) : System.Array$1<UnityEngine.Component>
+            /** Returns the Component of type in the GameObject or any of its parents.
+            * @param t The type of Component to retrieve.
+            * @param includeInactive Should Components on inactive GameObjects be included in the found set?
+            * @returns A Component of the matching type, otherwise null if no Component is found. 
+            */
+            public GetComponentInParent ($t: System.Type, $includeInactive: boolean) : UnityEngine.Component
+            /** Returns the Component of type in the GameObject or any of its parents.
+            * @param t The type of Component to retrieve.
+            * @param includeInactive Should Components on inactive GameObjects be included in the found set?
+            * @returns A Component of the matching type, otherwise null if no Component is found. 
+            */
+            public GetComponentInParent ($t: System.Type) : UnityEngine.Component
+            /** Returns all components of Type type in the GameObject or any of its parents.
+            * @param t The type of Component to retrieve.
+            * @param includeInactive Should inactive Components be included in the found set?
+            */
+            public GetComponentsInParent ($t: System.Type, $includeInactive: boolean) : System.Array$1<UnityEngine.Component>
+            public GetComponentsInParent ($t: System.Type) : System.Array$1<UnityEngine.Component>
+            /** Returns all components of Type type in the GameObject.
+            * @param type The type of Component to retrieve.
+            */
+            public GetComponents ($type: System.Type) : System.Array$1<UnityEngine.Component>
+            public GetComponents ($type: System.Type, $results: System.Collections.Generic.List$1<UnityEngine.Component>) : void
+            /** Checks the GameObject's tag against the defined tag.
+            * @param tag The tag to compare.
+            * @returns Returns true if GameObject has same tag. Returns false otherwise. 
+            */
+            public CompareTag ($tag: string) : boolean
+            /** Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.
+            * @param methodName Name of method to call.
+            * @param value Optional parameter value for the method.
+            * @param options Should an error be raised if the method does not exist on the target object?
+            */
+            public SendMessageUpwards ($methodName: string, $value: any, $options: UnityEngine.SendMessageOptions) : void
+            /** Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.
+            * @param methodName Name of method to call.
+            * @param value Optional parameter value for the method.
+            * @param options Should an error be raised if the method does not exist on the target object?
+            */
+            public SendMessageUpwards ($methodName: string, $value: any) : void
+            /** Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.
+            * @param methodName Name of method to call.
+            * @param value Optional parameter value for the method.
+            * @param options Should an error be raised if the method does not exist on the target object?
+            */
+            public SendMessageUpwards ($methodName: string) : void
+            /** Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.
+            * @param methodName Name of method to call.
+            * @param value Optional parameter value for the method.
+            * @param options Should an error be raised if the method does not exist on the target object?
+            */
+            public SendMessageUpwards ($methodName: string, $options: UnityEngine.SendMessageOptions) : void
+            /** Calls the method named methodName on every MonoBehaviour in this game object.
+            * @param methodName Name of the method to call.
+            * @param value Optional parameter for the method.
+            * @param options Should an error be raised if the target object doesn't implement the method for the message?
+            */
+            public SendMessage ($methodName: string, $value: any) : void
+            /** Calls the method named methodName on every MonoBehaviour in this game object.
+            * @param methodName Name of the method to call.
+            * @param value Optional parameter for the method.
+            * @param options Should an error be raised if the target object doesn't implement the method for the message?
+            */
+            public SendMessage ($methodName: string) : void
+            /** Calls the method named methodName on every MonoBehaviour in this game object.
+            * @param methodName Name of the method to call.
+            * @param value Optional parameter for the method.
+            * @param options Should an error be raised if the target object doesn't implement the method for the message?
+            */
+            public SendMessage ($methodName: string, $value: any, $options: UnityEngine.SendMessageOptions) : void
+            /** Calls the method named methodName on every MonoBehaviour in this game object.
+            * @param methodName Name of the method to call.
+            * @param value Optional parameter for the method.
+            * @param options Should an error be raised if the target object doesn't implement the method for the message?
+            */
+            public SendMessage ($methodName: string, $options: UnityEngine.SendMessageOptions) : void
+            /** Calls the method named methodName on every MonoBehaviour in this game object or any of its children.
+            * @param methodName Name of the method to call.
+            * @param parameter Optional parameter to pass to the method (can be any value).
+            * @param options Should an error be raised if the method does not exist for a given target object?
+            */
+            public BroadcastMessage ($methodName: string, $parameter: any, $options: UnityEngine.SendMessageOptions) : void
+            /** Calls the method named methodName on every MonoBehaviour in this game object or any of its children.
+            * @param methodName Name of the method to call.
+            * @param parameter Optional parameter to pass to the method (can be any value).
+            * @param options Should an error be raised if the method does not exist for a given target object?
+            */
+            public BroadcastMessage ($methodName: string, $parameter: any) : void
+            /** Calls the method named methodName on every MonoBehaviour in this game object or any of its children.
+            * @param methodName Name of the method to call.
+            * @param parameter Optional parameter to pass to the method (can be any value).
+            * @param options Should an error be raised if the method does not exist for a given target object?
+            */
+            public BroadcastMessage ($methodName: string) : void
+            /** Calls the method named methodName on every MonoBehaviour in this game object or any of its children.
+            * @param methodName Name of the method to call.
+            * @param parameter Optional parameter to pass to the method (can be any value).
+            * @param options Should an error be raised if the method does not exist for a given target object?
+            */
+            public BroadcastMessage ($methodName: string, $options: UnityEngine.SendMessageOptions) : void
+            public constructor ()
+        }
+        /** Behaviours are Components that can be enabled or disabled.
+        */
+        class Behaviour extends UnityEngine.Component
+        {
+            protected [__keep_incompatibility]: never;
+            /** Enabled Behaviours are Updated, disabled Behaviours are not.
+            */
+            public get enabled(): boolean;
+            public set enabled(value: boolean);
+            /** Reports whether a GameObject and its associated Behaviour is active and enabled.
+            */
+            public get isActiveAndEnabled(): boolean;
+            public constructor ()
+        }
+        /** MonoBehaviour is the base class from which every Unity script derives.
+        */
+        class MonoBehaviour extends UnityEngine.Behaviour
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        interface ICanvasRaycastFilter
+        {
+        }
+        interface ISerializationCallbackReceiver
+        {
+        }
         /** Representation of 2D vectors and points.
         */
         class Vector2 extends System.ValueType implements System.IFormattable, System.IEquatable$1<UnityEngine.Vector2>
@@ -390,6 +682,14 @@
             public static op_Implicit ($v: UnityEngine.Vector2) : UnityEngine.Vector3
             public constructor ($x: number, $y: number)
         }
+        /** Describes screen orientation.
+        */
+        enum ScreenOrientation
+        { Unknown = 0, Landscape = 3, Portrait = 1, PortraitUpsideDown = 2, LandscapeLeft = 3, LandscapeRight = 4, AutoRotation = 5 }
+        /** Scaling mode to draw textures with.
+        */
+        enum ScaleMode
+        { StretchToFill = 0, ScaleAndCrop = 1, ScaleToFit = 2 }
         /** Representation of 3D vectors and points.
         */
         class Vector3 extends System.ValueType implements System.IFormattable, System.IEquatable$1<UnityEngine.Vector3>
@@ -896,272 +1196,137 @@
             IsNull () : boolean;
             GetOrAddComponent ($type: System.Type) : UnityEngine.Component;
         }
-        /** Base class for all objects Unity can reference.
+        /** Representation of rays.
         */
-        class Object extends System.Object
+        class Ray extends System.ValueType implements System.IFormattable
         {
             protected [__keep_incompatibility]: never;
-            /** The name of the object.
+            /** The origin point of the ray.
             */
-            public get name(): string;
-            public set name(value: string);
-            /** Should the object be hidden, saved with the Scene or modifiable by the user?
+            public get origin(): UnityEngine.Vector3;
+            public set origin(value: UnityEngine.Vector3);
+            /** The direction of the ray.
             */
-            public get hideFlags(): UnityEngine.HideFlags;
-            public set hideFlags(value: UnityEngine.HideFlags);
-            public GetInstanceID () : number
-            public static op_Implicit ($exists: UnityEngine.Object) : boolean
-            /** Clones the object original and returns the clone.
-            * @param original An existing object that you want to make a copy of.
-            * @param position Position for the new object.
-            * @param rotation Orientation of the new object.
-            * @param parent Parent that will be assigned to the new object.
-            * @param instantiateInWorldSpace When you assign a parent Object, pass true to position the new object directly in world space. Pass false to set the Object’s position relative to its new parent.
-            * @returns The instantiated clone. 
+            public get direction(): UnityEngine.Vector3;
+            public set direction(value: UnityEngine.Vector3);
+            /** Returns a point at distance units along the ray.
             */
-            public static Instantiate ($original: UnityEngine.Object, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion) : UnityEngine.Object
-            /** Clones the object original and returns the clone.
-            * @param original An existing object that you want to make a copy of.
-            * @param position Position for the new object.
-            * @param rotation Orientation of the new object.
-            * @param parent Parent that will be assigned to the new object.
-            * @param instantiateInWorldSpace When you assign a parent Object, pass true to position the new object directly in world space. Pass false to set the Object’s position relative to its new parent.
-            * @returns The instantiated clone. 
+            public GetPoint ($distance: number) : UnityEngine.Vector3
+            public ToString () : string
+            /** Returns a formatted string for this ray.
+            * @param format A numeric format string.
+            * @param formatProvider An object that specifies culture-specific formatting.
             */
-            public static Instantiate ($original: UnityEngine.Object, $position: UnityEngine.Vector3, $rotation: UnityEngine.Quaternion, $parent: UnityEngine.Transform) : UnityEngine.Object
-            /** Clones the object original and returns the clone.
-            * @param original An existing object that you want to make a copy of.
-            * @param position Position for the new object.
-            * @param rotation Orientation of the new object.
-            * @param parent Parent that will be assigned to the new object.
-            * @param instantiateInWorldSpace When you assign a parent Object, pass true to position the new object directly in world space. Pass false to set the Object’s position relative to its new parent.
-            * @returns The instantiated clone. 
+            public ToString ($format: string) : string
+            /** Returns a formatted string for this ray.
+            * @param format A numeric format string.
+            * @param formatProvider An object that specifies culture-specific formatting.
             */
-            public static Instantiate ($original: UnityEngine.Object) : UnityEngine.Object
-            /** Clones the object original and returns the clone.
-            * @param original An existing object that you want to make a copy of.
-            * @param position Position for the new object.
-            * @param rotation Orientation of the new object.
-            * @param parent Parent that will be assigned to the new object.
-            * @param instantiateInWorldSpace When you assign a parent Object, pass true to position the new object directly in world space. Pass false to set the Object’s position relative to its new parent.
-            * @returns The instantiated clone. 
-            */
-            public static Instantiate ($original: UnityEngine.Object, $parent: UnityEngine.Transform) : UnityEngine.Object
-            /** Clones the object original and returns the clone.
-            * @param original An existing object that you want to make a copy of.
-            * @param position Position for the new object.
-            * @param rotation Orientation of the new object.
-            * @param parent Parent that will be assigned to the new object.
-            * @param instantiateInWorldSpace When you assign a parent Object, pass true to position the new object directly in world space. Pass false to set the Object’s position relative to its new parent.
-            * @returns The instantiated clone. 
-            */
-            public static Instantiate ($original: UnityEngine.Object, $parent: UnityEngine.Transform, $instantiateInWorldSpace: boolean) : UnityEngine.Object
-            public static Instantiate ($original: UnityEngine.Object, $parent: UnityEngine.Transform, $worldPositionStays: boolean) : UnityEngine.Object
-            /** Removes a GameObject, component or asset.
-            * @param obj The object to destroy.
-            * @param t The optional amount of time to delay before destroying the object.
-            */
-            public static Destroy ($obj: UnityEngine.Object, $t: number) : void
-            /** Removes a GameObject, component or asset.
-            * @param obj The object to destroy.
-            * @param t The optional amount of time to delay before destroying the object.
-            */
-            public static Destroy ($obj: UnityEngine.Object) : void
-            /** Destroys the object obj immediately. You are strongly recommended to use Destroy instead.
-            * @param obj Object to be destroyed.
-            * @param allowDestroyingAssets Set to true to allow assets to be destroyed.
-            */
-            public static DestroyImmediate ($obj: UnityEngine.Object, $allowDestroyingAssets: boolean) : void
-            /** Destroys the object obj immediately. You are strongly recommended to use Destroy instead.
-            * @param obj Object to be destroyed.
-            * @param allowDestroyingAssets Set to true to allow assets to be destroyed.
-            */
-            public static DestroyImmediate ($obj: UnityEngine.Object) : void
-            /** Gets a list of all loaded objects of Type type.
-            * @param type The type of object to find.
-            * @param includeInactive If true, components attached to inactive GameObjects are also included.
-            * @returns The array of objects found matching the type specified. 
-            */
-            public static FindObjectsOfType ($type: System.Type) : System.Array$1<UnityEngine.Object>
-            /** Gets a list of all loaded objects of Type type.
-            * @param type The type of object to find.
-            * @param includeInactive If true, components attached to inactive GameObjects are also included.
-            * @returns The array of objects found matching the type specified. 
-            */
-            public static FindObjectsOfType ($type: System.Type, $includeInactive: boolean) : System.Array$1<UnityEngine.Object>
-            /** Do not destroy the target Object when loading a new Scene.
-            * @param target An Object not destroyed on Scene change.
-            */
-            public static DontDestroyOnLoad ($target: UnityEngine.Object) : void
-            /** Returns the first active loaded object of Type type.
-            * @param type The type of object to find.
-            * @returns Object The first active loaded object that matches the specified type. It returns null if no Object matches the type. 
-            */
-            public static FindObjectOfType ($type: System.Type) : UnityEngine.Object
-            /** Returns the first active loaded object of Type type.
-            * @param type The type of object to find.
-            * @returns Object The first active loaded object that matches the specified type. It returns null if no Object matches the type. 
-            */
-            public static FindObjectOfType ($type: System.Type, $includeInactive: boolean) : UnityEngine.Object
-            public static op_Equality ($x: UnityEngine.Object, $y: UnityEngine.Object) : boolean
-            public static op_Inequality ($x: UnityEngine.Object, $y: UnityEngine.Object) : boolean
-            public constructor ()
+            public ToString ($format: string, $formatProvider: System.IFormatProvider) : string
+            public constructor ($origin: UnityEngine.Vector3, $direction: UnityEngine.Vector3)
         }
-        /** Quaternions are used to represent rotations.
+        /** Structure used to get information back from a raycast.
         */
-        class Quaternion extends System.ValueType implements System.IFormattable, System.IEquatable$1<UnityEngine.Quaternion>
+        class RaycastHit extends System.ValueType
         {
             protected [__keep_incompatibility]: never;
-        }
-        /** Base class for everything attached to GameObjects.
-        */
-        class Component extends UnityEngine.Object
-        {
-            protected [__keep_incompatibility]: never;
-            /** The Transform attached to this GameObject.
+            /** The Collider that was hit.
+            */
+            public get collider(): UnityEngine.Collider;
+            /** Instance ID of the Collider that was hit.
+            */
+            public get colliderInstanceID(): number;
+            /** The impact point in world space where the ray hit the collider.
+            */
+            public get point(): UnityEngine.Vector3;
+            public set point(value: UnityEngine.Vector3);
+            /** The normal of the surface the ray hit.
+            */
+            public get normal(): UnityEngine.Vector3;
+            public set normal(value: UnityEngine.Vector3);
+            /** The barycentric coordinate of the triangle we hit.
+            */
+            public get barycentricCoordinate(): UnityEngine.Vector3;
+            public set barycentricCoordinate(value: UnityEngine.Vector3);
+            /** The distance from the ray's origin to the impact point.
+            */
+            public get distance(): number;
+            public set distance(value: number);
+            /** The index of the triangle that was hit.
+            */
+            public get triangleIndex(): number;
+            /** The uv texture coordinate at the collision location.
+            */
+            public get textureCoord(): UnityEngine.Vector2;
+            /** The secondary uv texture coordinate at the impact point.
+            */
+            public get textureCoord2(): UnityEngine.Vector2;
+            /** The Transform of the rigidbody or collider that was hit.
             */
             public get transform(): UnityEngine.Transform;
-            /** The game object this component is attached to. A component is always attached to a game object.
+            /** The Rigidbody of the collider that was hit. If the collider is not attached to a rigidbody then it is null.
             */
-            public get gameObject(): UnityEngine.GameObject;
-            /** The tag of this game object.
+            public get rigidbody(): UnityEngine.Rigidbody;
+            /** The ArticulationBody of the collider that was hit. If the collider is not attached to an articulation body then it is null.
             */
-            public get tag(): string;
-            public set tag(value: string);
-            /** Returns the component of type if the GameObject has one attached.
-            * @param type The type of Component to retrieve.
-            * @returns A Component of the matching type, otherwise null if no Component is found. 
+            public get articulationBody(): UnityEngine.ArticulationBody;
+            /** The uv lightmap coordinate at the impact point.
             */
-            public GetComponent ($type: System.Type) : UnityEngine.Component
-            /** Gets the component of the specified type, if it exists.
-            * @param type The type of the component to retrieve.
-            * @param component The output argument that will contain the component or null.
-            * @returns Returns true if the component is found, false otherwise. 
+            public get lightmapCoord(): UnityEngine.Vector2;
+        }
+        /** A base class of all colliders.
+        */
+        class Collider extends UnityEngine.Component
+        {
+            protected [__keep_incompatibility]: never;
+            /** Enabled Colliders will collide with other Colliders, disabled Colliders won't.
             */
-            public TryGetComponent ($type: System.Type, $component: $Ref<UnityEngine.Component>) : boolean
-            /** To improve the performance of your code, consider using GetComponent with a type instead of a string.
-            * @param type The name of the type of Component to get.
-            * @returns A Component of the matching type, otherwise null if no Component is found. 
+            public get enabled(): boolean;
+            public set enabled(value: boolean);
+            /** The rigidbody the collider is attached to.
             */
-            public GetComponent ($type: string) : UnityEngine.Component
-            /** Returns the Component of type in the GameObject or any of its children using depth first search.
-            * @param t The type of Component to retrieve.
-            * @param includeInactive Should Components on inactive GameObjects be included in the found set?
-            * @returns A Component of the matching type, otherwise null if no Component is found. 
+            public get attachedRigidbody(): UnityEngine.Rigidbody;
+            /** The articulation body the collider is attached to.
             */
-            public GetComponentInChildren ($t: System.Type, $includeInactive: boolean) : UnityEngine.Component
-            /** Returns the Component of type in the GameObject or any of its children using depth first search.
-            * @param t The type of Component to retrieve.
-            * @param includeInactive Should Components on inactive GameObjects be included in the found set?
-            * @returns A Component of the matching type, otherwise null if no Component is found. 
+            public get attachedArticulationBody(): UnityEngine.ArticulationBody;
+            /** Is the collider a trigger?
             */
-            public GetComponentInChildren ($t: System.Type) : UnityEngine.Component
-            /** Returns all components of Type type in the GameObject or any of its children using depth first search. Works recursively.
-            * @param t The type of Component to retrieve.
-            * @param includeInactive Should Components on inactive GameObjects be included in the found set. includeInactive decides which children of the GameObject will be searched.  The GameObject that you call GetComponentsInChildren on is always searched regardless. Default is false.
+            public get isTrigger(): boolean;
+            public set isTrigger(value: boolean);
+            /** Contact offset value of this collider.
             */
-            public GetComponentsInChildren ($t: System.Type, $includeInactive: boolean) : System.Array$1<UnityEngine.Component>
-            public GetComponentsInChildren ($t: System.Type) : System.Array$1<UnityEngine.Component>
-            /** Returns the Component of type in the GameObject or any of its parents.
-            * @param t The type of Component to retrieve.
-            * @param includeInactive Should Components on inactive GameObjects be included in the found set?
-            * @returns A Component of the matching type, otherwise null if no Component is found. 
+            public get contactOffset(): number;
+            public set contactOffset(value: number);
+            /** The world space bounding volume of the collider (Read Only).
             */
-            public GetComponentInParent ($t: System.Type, $includeInactive: boolean) : UnityEngine.Component
-            /** Returns the Component of type in the GameObject or any of its parents.
-            * @param t The type of Component to retrieve.
-            * @param includeInactive Should Components on inactive GameObjects be included in the found set?
-            * @returns A Component of the matching type, otherwise null if no Component is found. 
+            public get bounds(): UnityEngine.Bounds;
+            /** Specify whether this Collider's contacts are modifiable or not.
             */
-            public GetComponentInParent ($t: System.Type) : UnityEngine.Component
-            /** Returns all components of Type type in the GameObject or any of its parents.
-            * @param t The type of Component to retrieve.
-            * @param includeInactive Should inactive Components be included in the found set?
+            public get hasModifiableContacts(): boolean;
+            public set hasModifiableContacts(value: boolean);
+            /** The shared physic material of this collider.
             */
-            public GetComponentsInParent ($t: System.Type, $includeInactive: boolean) : System.Array$1<UnityEngine.Component>
-            public GetComponentsInParent ($t: System.Type) : System.Array$1<UnityEngine.Component>
-            /** Returns all components of Type type in the GameObject.
-            * @param type The type of Component to retrieve.
+            public get sharedMaterial(): UnityEngine.PhysicMaterial;
+            public set sharedMaterial(value: UnityEngine.PhysicMaterial);
+            /** The material used by the collider.
             */
-            public GetComponents ($type: System.Type) : System.Array$1<UnityEngine.Component>
-            public GetComponents ($type: System.Type, $results: System.Collections.Generic.List$1<UnityEngine.Component>) : void
-            /** Checks the GameObject's tag against the defined tag.
-            * @param tag The tag to compare.
-            * @returns Returns true if GameObject has same tag. Returns false otherwise. 
+            public get material(): UnityEngine.PhysicMaterial;
+            public set material(value: UnityEngine.PhysicMaterial);
+            /** Returns a point on the collider that is closest to a given location.
+            * @param position Location you want to find the closest point to.
+            * @returns The point on the collider that is closest to the specified location. 
             */
-            public CompareTag ($tag: string) : boolean
-            /** Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.
-            * @param methodName Name of method to call.
-            * @param value Optional parameter value for the method.
-            * @param options Should an error be raised if the method does not exist on the target object?
+            public ClosestPoint ($position: UnityEngine.Vector3) : UnityEngine.Vector3
+            /** Casts a Ray that ignores all Colliders except this one.
+            * @param ray The starting point and direction of the ray.
+            * @param hitInfo If true is returned, hitInfo will contain more information about where the collider was hit.
+            * @param maxDistance The max length of the ray.
+            * @returns True when the ray intersects the collider, otherwise false. 
             */
-            public SendMessageUpwards ($methodName: string, $value: any, $options: UnityEngine.SendMessageOptions) : void
-            /** Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.
-            * @param methodName Name of method to call.
-            * @param value Optional parameter value for the method.
-            * @param options Should an error be raised if the method does not exist on the target object?
+            public Raycast ($ray: UnityEngine.Ray, $hitInfo: $Ref<UnityEngine.RaycastHit>, $maxDistance: number) : boolean
+            /** The closest point to the bounding box of the attached collider.
             */
-            public SendMessageUpwards ($methodName: string, $value: any) : void
-            /** Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.
-            * @param methodName Name of method to call.
-            * @param value Optional parameter value for the method.
-            * @param options Should an error be raised if the method does not exist on the target object?
-            */
-            public SendMessageUpwards ($methodName: string) : void
-            /** Calls the method named methodName on every MonoBehaviour in this game object and on every ancestor of the behaviour.
-            * @param methodName Name of method to call.
-            * @param value Optional parameter value for the method.
-            * @param options Should an error be raised if the method does not exist on the target object?
-            */
-            public SendMessageUpwards ($methodName: string, $options: UnityEngine.SendMessageOptions) : void
-            /** Calls the method named methodName on every MonoBehaviour in this game object.
-            * @param methodName Name of the method to call.
-            * @param value Optional parameter for the method.
-            * @param options Should an error be raised if the target object doesn't implement the method for the message?
-            */
-            public SendMessage ($methodName: string, $value: any) : void
-            /** Calls the method named methodName on every MonoBehaviour in this game object.
-            * @param methodName Name of the method to call.
-            * @param value Optional parameter for the method.
-            * @param options Should an error be raised if the target object doesn't implement the method for the message?
-            */
-            public SendMessage ($methodName: string) : void
-            /** Calls the method named methodName on every MonoBehaviour in this game object.
-            * @param methodName Name of the method to call.
-            * @param value Optional parameter for the method.
-            * @param options Should an error be raised if the target object doesn't implement the method for the message?
-            */
-            public SendMessage ($methodName: string, $value: any, $options: UnityEngine.SendMessageOptions) : void
-            /** Calls the method named methodName on every MonoBehaviour in this game object.
-            * @param methodName Name of the method to call.
-            * @param value Optional parameter for the method.
-            * @param options Should an error be raised if the target object doesn't implement the method for the message?
-            */
-            public SendMessage ($methodName: string, $options: UnityEngine.SendMessageOptions) : void
-            /** Calls the method named methodName on every MonoBehaviour in this game object or any of its children.
-            * @param methodName Name of the method to call.
-            * @param parameter Optional parameter to pass to the method (can be any value).
-            * @param options Should an error be raised if the method does not exist for a given target object?
-            */
-            public BroadcastMessage ($methodName: string, $parameter: any, $options: UnityEngine.SendMessageOptions) : void
-            /** Calls the method named methodName on every MonoBehaviour in this game object or any of its children.
-            * @param methodName Name of the method to call.
-            * @param parameter Optional parameter to pass to the method (can be any value).
-            * @param options Should an error be raised if the method does not exist for a given target object?
-            */
-            public BroadcastMessage ($methodName: string, $parameter: any) : void
-            /** Calls the method named methodName on every MonoBehaviour in this game object or any of its children.
-            * @param methodName Name of the method to call.
-            * @param parameter Optional parameter to pass to the method (can be any value).
-            * @param options Should an error be raised if the method does not exist for a given target object?
-            */
-            public BroadcastMessage ($methodName: string) : void
-            /** Calls the method named methodName on every MonoBehaviour in this game object or any of its children.
-            * @param methodName Name of the method to call.
-            * @param parameter Optional parameter to pass to the method (can be any value).
-            * @param options Should an error be raised if the method does not exist for a given target object?
-            */
-            public BroadcastMessage ($methodName: string, $options: UnityEngine.SendMessageOptions) : void
+            public ClosestPointOnBounds ($position: UnityEngine.Vector3) : UnityEngine.Vector3
             public constructor ()
         }
         /** Position, rotation and scale of an object.
@@ -1384,6 +1549,47 @@
             * @returns Transform child by index. 
             */
             public GetChild ($index: number) : UnityEngine.Transform
+        }
+        /** Control of an object's position through physics simulation.
+        */
+        class Rigidbody extends UnityEngine.Component
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        /** A body that forms part of a Physics articulation.
+        */
+        class ArticulationBody extends UnityEngine.Behaviour
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        /** Specifies Layers to use in a Physics.Raycast.
+        */
+        class LayerMask extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+            /** Converts a layer mask value to an integer value.
+            */
+            public get value(): number;
+            public set value(value: number);
+            public static op_Implicit ($mask: UnityEngine.LayerMask) : number
+            public static op_Implicit ($intVal: number) : UnityEngine.LayerMask
+            /** Given a layer number, returns the name of the layer as defined in either a Builtin or a User Layer in the.
+            */
+            public static LayerToName ($layer: number) : string
+            /** Given a layer name, returns the layer index as defined by either a Builtin or a User Layer in the.
+            */
+            public static NameToLayer ($layerName: string) : number
+            /** Given a set of layer names as defined by either a Builtin or a User Layer in the, returns the equivalent layer mask for all of them.
+            * @param layerNames List of layer names to convert to a layer mask.
+            * @returns The layer mask created from the layerNames. 
+            */
+            public static GetMask (...layerNames: string[]) : number
+        }
+        /** Quaternions are used to represent rotations.
+        */
+        class Quaternion extends System.ValueType implements System.IFormattable, System.IEquatable$1<UnityEngine.Quaternion>
+        {
+            protected [__keep_incompatibility]: never;
         }
         /** Bit mask that controls object destruction, saving and visibility in inspectors.
         */
@@ -2097,20 +2303,6 @@
         {
             protected [__keep_incompatibility]: never;
         }
-        /** Behaviours are Components that can be enabled or disabled.
-        */
-        class Behaviour extends UnityEngine.Component
-        {
-            protected [__keep_incompatibility]: never;
-            /** Enabled Behaviours are Updated, disabled Behaviours are not.
-            */
-            public get enabled(): boolean;
-            public set enabled(value: boolean);
-            /** Reports whether a GameObject and its associated Behaviour is active and enabled.
-            */
-            public get isActiveAndEnabled(): boolean;
-            public constructor ()
-        }
         /** A Canvas placable element that can be used to modify children Alpha, Raycasting, Enabled state.
         */
         class CanvasGroup extends UnityEngine.Behaviour implements UnityEngine.ICanvasRaycastFilter
@@ -2136,9 +2328,6 @@
             */
             public IsRaycastLocationValid ($sp: UnityEngine.Vector2, $eventCamera: UnityEngine.Camera) : boolean
             public constructor ()
-        }
-        interface ICanvasRaycastFilter
-        {
         }
         /** A Camera is a device through which the player views the world.
         */
@@ -2440,6 +2629,126 @@
         class Texture extends UnityEngine.Object
         {
             protected [__keep_incompatibility]: never;
+            /** Can be used with Texture constructors that take a mip count to indicate that all mips should be generated.  The value of this field is -1.
+            */
+            public static GenerateAllMips : number
+            public static get masterTextureLimit(): number;
+            public static set masterTextureLimit(value: number);
+            /** How many mipmap levels are in this Texture (Read Only).
+            */
+            public get mipmapCount(): number;
+            public static get anisotropicFiltering(): UnityEngine.AnisotropicFiltering;
+            public static set anisotropicFiltering(value: UnityEngine.AnisotropicFiltering);
+            /** Returns the GraphicsFormat format or color format of a Texture object.
+            */
+            public get graphicsFormat(): UnityEngine.Experimental.Rendering.GraphicsFormat;
+            /** Width of the Texture in pixels (Read Only).
+            */
+            public get width(): number;
+            public set width(value: number);
+            /** Height of the Texture in pixels (Read Only).
+            */
+            public get height(): number;
+            public set height(value: number);
+            /** Dimensionality (type) of the Texture (Read Only).
+            */
+            public get dimension(): UnityEngine.Rendering.TextureDimension;
+            public set dimension(value: UnityEngine.Rendering.TextureDimension);
+            /** Whether Unity stores an additional copy of this texture's pixel data in CPU-addressable memory.
+            */
+            public get isReadable(): boolean;
+            /** Texture coordinate wrapping mode.
+            */
+            public get wrapMode(): UnityEngine.TextureWrapMode;
+            public set wrapMode(value: UnityEngine.TextureWrapMode);
+            /** Texture U coordinate wrapping mode.
+            */
+            public get wrapModeU(): UnityEngine.TextureWrapMode;
+            public set wrapModeU(value: UnityEngine.TextureWrapMode);
+            /** Texture V coordinate wrapping mode.
+            */
+            public get wrapModeV(): UnityEngine.TextureWrapMode;
+            public set wrapModeV(value: UnityEngine.TextureWrapMode);
+            /** Texture W coordinate wrapping mode for Texture3D.
+            */
+            public get wrapModeW(): UnityEngine.TextureWrapMode;
+            public set wrapModeW(value: UnityEngine.TextureWrapMode);
+            /** Filtering mode of the Texture.
+            */
+            public get filterMode(): UnityEngine.FilterMode;
+            public set filterMode(value: UnityEngine.FilterMode);
+            /** Defines the anisotropic filtering level of the Texture.
+            */
+            public get anisoLevel(): number;
+            public set anisoLevel(value: number);
+            /** The mipmap bias of the Texture.
+            */
+            public get mipMapBias(): number;
+            public set mipMapBias(value: number);
+            public get texelSize(): UnityEngine.Vector2;
+            /** This counter is incremented when the Texture is updated.
+            */
+            public get updateCount(): number;
+            /** The hash value of the Texture.
+            */
+            public get imageContentsHash(): UnityEngine.Hash128;
+            public set imageContentsHash(value: UnityEngine.Hash128);
+            /** The total amount of Texture memory that Unity would use if it loads all Textures at mipmap level 0. 
+            This is a theoretical value that does not take into account any input from the streaming system or any other input, for example when you set the`Texture2D.requestedMipmapLevel` manually. 
+            To see a Texture memory value that takes inputs into account, use `desiredTextureMemory`. 
+            `totalTextureMemory` only includes instances of Texture2D and CubeMap Textures. This value does not include any other Texture types, or 2D and CubeMap Textures that Unity creates internally.
+            */
+            public static get totalTextureMemory(): bigint;
+            /** The total size of the Textures, in bytes, that Unity loads if there were no other constraints. Before Unity loads any Textures, it applies the which reduces the loaded Texture resolution if the Texture sizes exceed its value. The `desiredTextureMemory` value takes into account the mipmap levels that Unity has requested or that you have set manually. 
+            For example, if Unity does not load a Texture at full resolution because it is far away or its requested mipmap level is greater than 0,  Unity reduces the `desiredTextureMemory` value to match the total memory needed. 
+            The `desiredTextureMemory` value can be greater than the `targetTextureMemory` value.
+            */
+            public static get desiredTextureMemory(): bigint;
+            /** The total amount of Texture memory that Unity allocates to the Textures in the scene after it applies the and finishes loading Textures. `targetTextureMemory`also takes mipmap streaming settings into account. This value only includes instances of Texture2D and CubeMap Textures. This value does not include any other Texture types, or 2D and CubeMap Textures that Unity creates internally.
+            */
+            public static get targetTextureMemory(): bigint;
+            /** The amount of memory that all Textures in the scene use.
+            */
+            public static get currentTextureMemory(): bigint;
+            /** The amount of memory Unity allocates for non-streaming Textures in the scene. This only includes instances of Texture2D and CubeMap Textures. This does not include any other Texture types, or 2D and CubeMap Textures that Unity creates internally.
+            */
+            public static get nonStreamingTextureMemory(): bigint;
+            /** How many times has a Texture been uploaded due to Texture mipmap streaming.
+            */
+            public static get streamingMipmapUploadCount(): bigint;
+            /** Number of renderers registered with the Texture streaming system.
+            */
+            public static get streamingRendererCount(): bigint;
+            /** Number of streaming Textures.
+            */
+            public static get streamingTextureCount(): bigint;
+            /** The number of non-streaming Textures in the scene. This includes instances of Texture2D and CubeMap Textures. This does not include any other Texture types, or 2D and CubeMap Textures that Unity creates internally.
+            */
+            public static get nonStreamingTextureCount(): bigint;
+            /** Number of streaming Textures with outstanding mipmaps to be loaded.
+            */
+            public static get streamingTexturePendingLoadCount(): bigint;
+            /** Number of streaming Textures with mipmaps currently loading.
+            */
+            public static get streamingTextureLoadingCount(): bigint;
+            /** Force streaming Textures to load all mipmap levels.
+            */
+            public static get streamingTextureForceLoadAll(): boolean;
+            public static set streamingTextureForceLoadAll(value: boolean);
+            /** This property forces the streaming Texture system to discard all unused mipmaps instead of caching them until the Texture is exceeded. This is useful when you profile or write tests to keep a predictable set of Textures in memory.
+            */
+            public static get streamingTextureDiscardUnusedMips(): boolean;
+            public static set streamingTextureDiscardUnusedMips(value: boolean);
+            /** Allow Unity internals to perform Texture creation on any thread (rather than the dedicated render thread).
+            */
+            public static get allowThreadedTextureCreation(): boolean;
+            public static set allowThreadedTextureCreation(value: boolean);
+            /** Sets Anisotropic limits.
+            */
+            public static SetGlobalAnisotropicFilteringLimits ($forcedMin: number, $globalMax: number) : void
+            public GetNativeTexturePtr () : System.IntPtr
+            public IncrementUpdateCount () : void
+            public static SetStreamingTextureMaterialDebugProperties () : void
         }
         /** Class that represents textures in C# code.
         */
@@ -2459,12 +2768,6 @@
         */
         enum SpriteMeshType
         { FullRect = 0, Tight = 1 }
-        /** MonoBehaviour is the base class from which every Unity script derives.
-        */
-        class MonoBehaviour extends UnityEngine.Behaviour
-        {
-            protected [__keep_incompatibility]: never;
-        }
         /** The material class.
         */
         class Material extends UnityEngine.Object
@@ -2482,9 +2785,6 @@
         class CanvasRenderer extends UnityEngine.Component
         {
             protected [__keep_incompatibility]: never;
-        }
-        interface ISerializationCallbackReceiver
-        {
         }
         /** Class that can be used to generate text for rendering.
         */
@@ -2567,6 +2867,168 @@
         class RenderTexture extends UnityEngine.Texture
         {
             protected [__keep_incompatibility]: never;
+            /** The width of the render texture in pixels.
+            */
+            public get width(): number;
+            public set width(value: number);
+            /** The height of the render texture in pixels.
+            */
+            public get height(): number;
+            public set height(value: number);
+            /** Dimensionality (type) of the render texture.
+            */
+            public get dimension(): UnityEngine.Rendering.TextureDimension;
+            public set dimension(value: UnityEngine.Rendering.TextureDimension);
+            /** The color format of the render texture. You can set the color format to None to achieve depth-only rendering.
+            */
+            public get graphicsFormat(): UnityEngine.Experimental.Rendering.GraphicsFormat;
+            public set graphicsFormat(value: UnityEngine.Experimental.Rendering.GraphicsFormat);
+            /** Render texture has mipmaps when this flag is set.
+            */
+            public get useMipMap(): boolean;
+            public set useMipMap(value: boolean);
+            /** Does this render texture use sRGB read/write conversions? (Read Only).
+            */
+            public get sRGB(): boolean;
+            /** If this RenderTexture is a VR eye texture used in stereoscopic rendering, this property decides what special rendering occurs, if any.
+            */
+            public get vrUsage(): UnityEngine.VRTextureUsage;
+            public set vrUsage(value: UnityEngine.VRTextureUsage);
+            /** The render texture memoryless mode property.
+            */
+            public get memorylessMode(): UnityEngine.RenderTextureMemoryless;
+            public set memorylessMode(value: UnityEngine.RenderTextureMemoryless);
+            public get format(): UnityEngine.RenderTextureFormat;
+            public set format(value: UnityEngine.RenderTextureFormat);
+            /** The format of the stencil data that you can encapsulate within a RenderTexture.
+            Specifying this property creates a stencil element for the RenderTexture and sets its format.
+            This allows for stencil data to be bound as a Texture to all shader types for the platforms that support it.
+            This property does not specify the format of the stencil buffer, which is constrained by the depth buffer format specified in RenderTexture.depth.
+            Currently, most platforms only support R8_UInt (DirectX11, DirectX12), while PS4 also supports R8_UNorm.
+            */
+            public get stencilFormat(): UnityEngine.Experimental.Rendering.GraphicsFormat;
+            public set stencilFormat(value: UnityEngine.Experimental.Rendering.GraphicsFormat);
+            /** The format of the depth/stencil buffer.
+            */
+            public get depthStencilFormat(): UnityEngine.Experimental.Rendering.GraphicsFormat;
+            public set depthStencilFormat(value: UnityEngine.Experimental.Rendering.GraphicsFormat);
+            /** Mipmap levels are generated automatically when this flag is set.
+            */
+            public get autoGenerateMips(): boolean;
+            public set autoGenerateMips(value: boolean);
+            /** Volume extent of a 3D render texture or number of slices of array texture.
+            */
+            public get volumeDepth(): number;
+            public set volumeDepth(value: number);
+            /** The antialiasing level for the RenderTexture.
+            */
+            public get antiAliasing(): number;
+            public set antiAliasing(value: number);
+            /** If true and antiAliasing is greater than 1, the render texture will not be resolved by default.  Use this if the render texture needs to be bound as a multisampled texture in a shader.
+            */
+            public get bindTextureMS(): boolean;
+            public set bindTextureMS(value: boolean);
+            /** Enable random access write into this render texture on Shader Model 5.0 level shaders.
+            */
+            public get enableRandomWrite(): boolean;
+            public set enableRandomWrite(value: boolean);
+            /** Is the render texture marked to be scaled by the.
+            */
+            public get useDynamicScale(): boolean;
+            public set useDynamicScale(value: boolean);
+            public get isPowerOfTwo(): boolean;
+            public set isPowerOfTwo(value: boolean);
+            /** Currently active render texture.
+            */
+            public static get active(): UnityEngine.RenderTexture;
+            public static set active(value: UnityEngine.RenderTexture);
+            /** Color buffer of the render texture (Read Only).
+            */
+            public get colorBuffer(): UnityEngine.RenderBuffer;
+            /** Depth/stencil buffer of the render texture (Read Only).
+            */
+            public get depthBuffer(): UnityEngine.RenderBuffer;
+            /** The precision of the render texture's depth buffer in bits (0, 16, 24 and 32 are supported).
+            */
+            public get depth(): number;
+            public set depth(value: number);
+            /** This struct contains all the information required to create a RenderTexture. It can be copied, cached, and reused to easily create RenderTextures that all share the same properties.
+            */
+            public get descriptor(): UnityEngine.RenderTextureDescriptor;
+            public set descriptor(value: UnityEngine.RenderTextureDescriptor);
+            public GetNativeDepthBufferPtr () : System.IntPtr
+            /** Hint the GPU driver that the contents of the RenderTexture will not be used.
+            * @param discardColor Should the colour buffer be discarded?
+            * @param discardDepth Should the depth buffer be discarded?
+            */
+            public DiscardContents ($discardColor: boolean, $discardDepth: boolean) : void
+            public DiscardContents () : void
+            public ResolveAntiAliasedSurface () : void
+            /** Force an antialiased render texture to be resolved.
+            * @param target The render texture to resolve into.  If set, the target render texture must have the same dimensions and format as the source.
+            */
+            public ResolveAntiAliasedSurface ($target: UnityEngine.RenderTexture) : void
+            /** Assigns this RenderTexture as a global shader property named propertyName.
+            */
+            public SetGlobalShaderProperty ($propertyName: string) : void
+            public Create () : boolean
+            public Release () : void
+            public IsCreated () : boolean
+            public GenerateMips () : void
+            public ConvertToEquirect ($equirect: UnityEngine.RenderTexture, $eye?: UnityEngine.Camera.MonoOrStereoscopicEye) : void
+            /** Does a RenderTexture have stencil buffer?
+            * @param rt Render texture, or null for main screen.
+            */
+            public static SupportsStencil ($rt: UnityEngine.RenderTexture) : boolean
+            /** Release a temporary texture allocated with GetTemporary.
+            */
+            public static ReleaseTemporary ($temp: UnityEngine.RenderTexture) : void
+            /** Allocate a temporary render texture.
+            * @param width Width in pixels.
+            * @param height Height in pixels.
+            * @param depthBuffer Depth buffer bits (0, 16 or 24). Note that only 24 bit depth has stencil buffer.
+            * @param format Render texture format.
+            * @param readWrite Color space conversion mode.
+            * @param antiAliasing Number of antialiasing samples to store in the texture. Valid values are 1, 2, 4, and 8. Throws an exception if any other value is passed.
+            * @param memorylessMode Render texture memoryless mode.
+            * @param desc Use this RenderTextureDesc for the settings when creating the temporary RenderTexture.
+            */
+            public static GetTemporary ($desc: UnityEngine.RenderTextureDescriptor) : UnityEngine.RenderTexture
+            public static GetTemporary ($width: number, $height: number, $depthBuffer: number, $format: UnityEngine.Experimental.Rendering.GraphicsFormat, $antiAliasing: number, $memorylessMode: UnityEngine.RenderTextureMemoryless, $vrUsage: UnityEngine.VRTextureUsage, $useDynamicScale: boolean) : UnityEngine.RenderTexture
+            public static GetTemporary ($width: number, $height: number, $depthBuffer: number, $format: UnityEngine.Experimental.Rendering.GraphicsFormat, $antiAliasing: number, $memorylessMode: UnityEngine.RenderTextureMemoryless, $vrUsage: UnityEngine.VRTextureUsage) : UnityEngine.RenderTexture
+            public static GetTemporary ($width: number, $height: number, $depthBuffer: number, $format: UnityEngine.Experimental.Rendering.GraphicsFormat, $antiAliasing: number, $memorylessMode: UnityEngine.RenderTextureMemoryless) : UnityEngine.RenderTexture
+            public static GetTemporary ($width: number, $height: number, $depthBuffer: number, $format: UnityEngine.Experimental.Rendering.GraphicsFormat, $antiAliasing: number) : UnityEngine.RenderTexture
+            public static GetTemporary ($width: number, $height: number, $depthBuffer: number, $format: UnityEngine.Experimental.Rendering.GraphicsFormat) : UnityEngine.RenderTexture
+            /** Allocate a temporary render texture.
+            * @param width Width in pixels.
+            * @param height Height in pixels.
+            * @param depthBuffer Depth buffer bits (0, 16 or 24). Note that only 24 bit depth has stencil buffer.
+            * @param format Render texture format.
+            * @param readWrite Color space conversion mode.
+            * @param antiAliasing Number of antialiasing samples to store in the texture. Valid values are 1, 2, 4, and 8. Throws an exception if any other value is passed.
+            * @param memorylessMode Render texture memoryless mode.
+            * @param desc Use this RenderTextureDesc for the settings when creating the temporary RenderTexture.
+            */
+            public static GetTemporary ($width: number, $height: number, $depthBuffer: number, $format: UnityEngine.RenderTextureFormat, $readWrite: UnityEngine.RenderTextureReadWrite, $antiAliasing: number, $memorylessMode: UnityEngine.RenderTextureMemoryless, $vrUsage: UnityEngine.VRTextureUsage, $useDynamicScale: boolean) : UnityEngine.RenderTexture
+            public static GetTemporary ($width: number, $height: number, $depthBuffer: number, $format: UnityEngine.RenderTextureFormat, $readWrite: UnityEngine.RenderTextureReadWrite, $antiAliasing: number, $memorylessMode: UnityEngine.RenderTextureMemoryless, $vrUsage: UnityEngine.VRTextureUsage) : UnityEngine.RenderTexture
+            public static GetTemporary ($width: number, $height: number, $depthBuffer: number, $format: UnityEngine.RenderTextureFormat, $readWrite: UnityEngine.RenderTextureReadWrite, $antiAliasing: number, $memorylessMode: UnityEngine.RenderTextureMemoryless) : UnityEngine.RenderTexture
+            public static GetTemporary ($width: number, $height: number, $depthBuffer: number, $format: UnityEngine.RenderTextureFormat, $readWrite: UnityEngine.RenderTextureReadWrite, $antiAliasing: number) : UnityEngine.RenderTexture
+            public static GetTemporary ($width: number, $height: number, $depthBuffer: number, $format: UnityEngine.RenderTextureFormat, $readWrite: UnityEngine.RenderTextureReadWrite) : UnityEngine.RenderTexture
+            public static GetTemporary ($width: number, $height: number, $depthBuffer: number, $format: UnityEngine.RenderTextureFormat) : UnityEngine.RenderTexture
+            public static GetTemporary ($width: number, $height: number, $depthBuffer: number) : UnityEngine.RenderTexture
+            public static GetTemporary ($width: number, $height: number) : UnityEngine.RenderTexture
+            public constructor ($desc: UnityEngine.RenderTextureDescriptor)
+            public constructor ($textureToCopy: UnityEngine.RenderTexture)
+            public constructor ($width: number, $height: number, $depth: number, $format: UnityEngine.Experimental.Rendering.DefaultFormat)
+            public constructor ($width: number, $height: number, $depth: number, $format: UnityEngine.Experimental.Rendering.GraphicsFormat)
+            public constructor ($width: number, $height: number, $depth: number, $format: UnityEngine.Experimental.Rendering.GraphicsFormat, $mipCount: number)
+            public constructor ($width: number, $height: number, $colorFormat: UnityEngine.Experimental.Rendering.GraphicsFormat, $depthStencilFormat: UnityEngine.Experimental.Rendering.GraphicsFormat, $mipCount: number)
+            public constructor ($width: number, $height: number, $colorFormat: UnityEngine.Experimental.Rendering.GraphicsFormat, $depthStencilFormat: UnityEngine.Experimental.Rendering.GraphicsFormat)
+            public constructor ($width: number, $height: number, $depth: number, $format: UnityEngine.RenderTextureFormat, $readWrite: UnityEngine.RenderTextureReadWrite)
+            public constructor ($width: number, $height: number, $depth: number, $format: UnityEngine.RenderTextureFormat)
+            public constructor ($width: number, $height: number, $depth: number)
+            public constructor ($width: number, $height: number, $depth: number, $format: UnityEngine.RenderTextureFormat, $mipCount: number)
+            public constructor ()
         }
         /** General functionality for all renderers.
         */
@@ -2583,6 +3045,229 @@
         class AudioSource extends UnityEngine.AudioBehaviour
         {
             protected [__keep_incompatibility]: never;
+            /** The volume of the audio source (0.0 to 1.0).
+            */
+            public get volume(): number;
+            public set volume(value: number);
+            /** The pitch of the audio source.
+            */
+            public get pitch(): number;
+            public set pitch(value: number);
+            /** Playback position in seconds.
+            */
+            public get time(): number;
+            public set time(value: number);
+            /** Playback position in PCM samples.
+            */
+            public get timeSamples(): number;
+            public set timeSamples(value: number);
+            /** The default AudioClip to play.
+            */
+            public get clip(): UnityEngine.AudioClip;
+            public set clip(value: UnityEngine.AudioClip);
+            /** The target group to which the AudioSource should route its signal.
+            */
+            public get outputAudioMixerGroup(): UnityEngine.Audio.AudioMixerGroup;
+            public set outputAudioMixerGroup(value: UnityEngine.Audio.AudioMixerGroup);
+            /** Gets or sets the gamepad audio output type for this audio source.
+            */
+            public get gamepadSpeakerOutputType(): UnityEngine.GamepadSpeakerOutputType;
+            public set gamepadSpeakerOutputType(value: UnityEngine.GamepadSpeakerOutputType);
+            /** Is the clip playing right now (Read Only)?
+            */
+            public get isPlaying(): boolean;
+            /** True if all sounds played by the AudioSource (main sound started by Play() or playOnAwake as well as one-shots) are culled by the audio system.
+            */
+            public get isVirtual(): boolean;
+            /** Is the audio clip looping?
+            */
+            public get loop(): boolean;
+            public set loop(value: boolean);
+            /** This makes the audio source not take into account the volume of the audio listener.
+            */
+            public get ignoreListenerVolume(): boolean;
+            public set ignoreListenerVolume(value: boolean);
+            /** If set to true, the audio source will automatically start playing on awake.
+            */
+            public get playOnAwake(): boolean;
+            public set playOnAwake(value: boolean);
+            /** Allows AudioSource to play even though AudioListener.pause is set to true. This is useful for the menu element sounds or background music in pause menus.
+            */
+            public get ignoreListenerPause(): boolean;
+            public set ignoreListenerPause(value: boolean);
+            /** Whether the Audio Source should be updated in the fixed or dynamic update.
+            */
+            public get velocityUpdateMode(): UnityEngine.AudioVelocityUpdateMode;
+            public set velocityUpdateMode(value: UnityEngine.AudioVelocityUpdateMode);
+            /** Pans a playing sound in a stereo way (left or right). This only applies to sounds that are Mono or Stereo.
+            */
+            public get panStereo(): number;
+            public set panStereo(value: number);
+            /** Sets how much this AudioSource is affected by 3D spatialisation calculations (attenuation, doppler etc). 0.0 makes the sound full 2D, 1.0 makes it full 3D.
+            */
+            public get spatialBlend(): number;
+            public set spatialBlend(value: number);
+            /** Enables or disables spatialization.
+            */
+            public get spatialize(): boolean;
+            public set spatialize(value: boolean);
+            /** Determines if the spatializer effect is inserted before or after the effect filters.
+            */
+            public get spatializePostEffects(): boolean;
+            public set spatializePostEffects(value: boolean);
+            /** The amount by which the signal from the AudioSource will be mixed into the global reverb associated with the Reverb Zones.
+            */
+            public get reverbZoneMix(): number;
+            public set reverbZoneMix(value: number);
+            /** Bypass effects (Applied from filter components or global listener filters).
+            */
+            public get bypassEffects(): boolean;
+            public set bypassEffects(value: boolean);
+            /** When set global effects on the AudioListener will not be applied to the audio signal generated by the AudioSource. Does not apply if the AudioSource is playing into a mixer group.
+            */
+            public get bypassListenerEffects(): boolean;
+            public set bypassListenerEffects(value: boolean);
+            /** When set doesn't route the signal from an AudioSource into the global reverb associated with reverb zones.
+            */
+            public get bypassReverbZones(): boolean;
+            public set bypassReverbZones(value: boolean);
+            /** Sets the Doppler scale for this AudioSource.
+            */
+            public get dopplerLevel(): number;
+            public set dopplerLevel(value: number);
+            /** Sets the spread angle (in degrees) of a 3d stereo or multichannel sound in speaker space.
+            */
+            public get spread(): number;
+            public set spread(value: number);
+            /** Sets the priority of the AudioSource.
+            */
+            public get priority(): number;
+            public set priority(value: number);
+            /** Un- / Mutes the AudioSource. Mute sets the volume=0, Un-Mute restore the original volume.
+            */
+            public get mute(): boolean;
+            public set mute(value: boolean);
+            /** Within the Min distance the AudioSource will cease to grow louder in volume.
+            */
+            public get minDistance(): number;
+            public set minDistance(value: number);
+            /** (Logarithmic rolloff) MaxDistance is the distance a sound stops attenuating at.
+            */
+            public get maxDistance(): number;
+            public set maxDistance(value: number);
+            /** Sets/Gets how the AudioSource attenuates over distance.
+            */
+            public get rolloffMode(): UnityEngine.AudioRolloffMode;
+            public set rolloffMode(value: UnityEngine.AudioRolloffMode);
+            /** Enable playing of audio source though a specfic gamepad.
+            * @param slot Slot number of the gamepad (0-3).
+            * @returns Returns TRUE if enabling audio output through this users controller was successful. 
+            */
+            public PlayOnGamepad ($slot: number) : boolean
+            public DisableGamepadOutput () : boolean
+            public SetGamepadSpeakerMixLevel ($slot: number, $mixLevel: number) : boolean
+            public SetGamepadSpeakerMixLevelDefault ($slot: number) : boolean
+            public SetGamepadSpeakerRestrictedAudio ($slot: number, $restricted: boolean) : boolean
+            /** Check if the platform supports an audio output type  on gamepads.
+            * @param outputType The desired output type.
+            * @returns Returns true if the gamepad supports the specified audio output type. 
+            */
+            public static GamepadSpeakerSupportsOutputType ($outputType: UnityEngine.GamepadSpeakerOutputType) : boolean
+            /** Plays the clip.
+            * @param delay Deprecated. Delay in number of samples, assuming a 44100Hz sample rate (meaning that Play(44100) will delay the playing by exactly 1 sec).
+            */
+            public Play () : void
+            /** Plays the clip.
+            * @param delay Deprecated. Delay in number of samples, assuming a 44100Hz sample rate (meaning that Play(44100) will delay the playing by exactly 1 sec).
+            */
+            public Play ($delay: bigint) : void
+            /** Plays the clip with a delay specified in seconds. Users are advised to use this function instead of the old Play(delay) function that took a delay specified in samples relative to a reference rate of 44.1 kHz as an argument.
+            * @param delay Delay time specified in seconds.
+            */
+            public PlayDelayed ($delay: number) : void
+            /** Plays the clip at a specific time on the absolute time-line that AudioSettings.dspTime reads from.
+            * @param time Time in seconds on the absolute time-line that AudioSettings.dspTime refers to for when the sound should start playing.
+            */
+            public PlayScheduled ($time: number) : void
+            /** Plays an AudioClip, and scales the AudioSource volume by volumeScale.
+            * @param clip The clip being played.
+            * @param volumeScale The scale of the volume (0-1).
+            */
+            public PlayOneShot ($clip: UnityEngine.AudioClip) : void
+            /** Plays an AudioClip, and scales the AudioSource volume by volumeScale.
+            * @param clip The clip being played.
+            * @param volumeScale The scale of the volume (0-1).
+            */
+            public PlayOneShot ($clip: UnityEngine.AudioClip, $volumeScale: number) : void
+            /** Changes the time at which a sound that has already been scheduled to play will start.
+            * @param time Time in seconds.
+            */
+            public SetScheduledStartTime ($time: number) : void
+            /** Changes the time at which a sound that has already been scheduled to play will end. Notice that depending on the timing not all rescheduling requests can be fulfilled.
+            * @param time Time in seconds.
+            */
+            public SetScheduledEndTime ($time: number) : void
+            public Stop () : void
+            public Pause () : void
+            public UnPause () : void
+            /** Plays an AudioClip at a given position in world space.
+            * @param clip Audio data to play.
+            * @param position Position in world space from which sound originates.
+            * @param volume Playback volume.
+            */
+            public static PlayClipAtPoint ($clip: UnityEngine.AudioClip, $position: UnityEngine.Vector3) : void
+            /** Plays an AudioClip at a given position in world space.
+            * @param clip Audio data to play.
+            * @param position Position in world space from which sound originates.
+            * @param volume Playback volume.
+            */
+            public static PlayClipAtPoint ($clip: UnityEngine.AudioClip, $position: UnityEngine.Vector3, $volume: number) : void
+            /** Set the custom curve for the given AudioSourceCurveType.
+            * @param type The curve type that should be set.
+            * @param curve The curve that should be applied to the given curve type.
+            */
+            public SetCustomCurve ($type: UnityEngine.AudioSourceCurveType, $curve: UnityEngine.AnimationCurve) : void
+            /** Get the current custom curve for the given AudioSourceCurveType.
+            * @param type The curve type to get.
+            * @returns The custom AnimationCurve corresponding to the given curve type. 
+            */
+            public GetCustomCurve ($type: UnityEngine.AudioSourceCurveType) : UnityEngine.AnimationCurve
+            /** Provides a block of the currently playing source's output data.
+            * @param samples The array to populate with audio samples. Its length must be a power of 2.
+            * @param channel The channel to sample from.
+            */
+            public GetOutputData ($samples: System.Array$1<number>, $channel: number) : void
+            /** Provides a block of the currently playing audio source's spectrum data.
+            * @param samples The array to populate with audio samples. Its length must be a power of 2.
+            * @param channel The channel to sample from.
+            * @param window The FFTWindow type to use when sampling.
+            */
+            public GetSpectrumData ($samples: System.Array$1<number>, $channel: number, $window: UnityEngine.FFTWindow) : void
+            /** Sets a user-defined parameter of a custom spatializer effect that is attached to an AudioSource.
+            * @param index Zero-based index of user-defined parameter to be set.
+            * @param value New value of the user-defined parameter.
+            * @returns True, if the parameter could be set. 
+            */
+            public SetSpatializerFloat ($index: number, $value: number) : boolean
+            /** Reads a user-defined parameter of a custom spatializer effect that is attached to an AudioSource.
+            * @param index Zero-based index of user-defined parameter to be read.
+            * @param value Return value of the user-defined parameter that is read.
+            * @returns True, if the parameter could be read. 
+            */
+            public GetSpatializerFloat ($index: number, $value: $Ref<number>) : boolean
+            /** Reads a user-defined parameter of a custom ambisonic decoder effect that is attached to an AudioSource.
+            * @param index Zero-based index of user-defined parameter to be read.
+            * @param value Return value of the user-defined parameter that is read.
+            * @returns True, if the parameter could be read. 
+            */
+            public GetAmbisonicDecoderFloat ($index: number, $value: $Ref<number>) : boolean
+            /** Sets a user-defined parameter of a custom ambisonic decoder effect that is attached to an AudioSource.
+            * @param index Zero-based index of user-defined parameter to be set.
+            * @param value New value of the user-defined parameter.
+            * @returns True, if the parameter could be set. 
+            */
+            public SetAmbisonicDecoderFloat ($index: number, $value: number) : boolean
+            public constructor ()
         }
         /** Interface to control the Mecanim animation system.
         */
@@ -3384,6 +4069,68 @@
         class AnimationClip extends UnityEngine.Motion
         {
             protected [__keep_incompatibility]: never;
+            /** Animation length in seconds. (Read Only)
+            */
+            public get length(): number;
+            /** Frame rate at which keyframes are sampled. (Read Only)
+            */
+            public get frameRate(): number;
+            public set frameRate(value: number);
+            /** Sets the default wrap mode used in the animation state.
+            */
+            public get wrapMode(): UnityEngine.WrapMode;
+            public set wrapMode(value: UnityEngine.WrapMode);
+            /** AABB of this Animation Clip in local space of Animation component that it is attached too.
+            */
+            public get localBounds(): UnityEngine.Bounds;
+            public set localBounds(value: UnityEngine.Bounds);
+            /** Set to true if the AnimationClip will be used with the Legacy Animation component ( instead of the Animator ).
+            */
+            public get legacy(): boolean;
+            public set legacy(value: boolean);
+            /** Returns true if the animation contains curve that drives a humanoid rig.
+            */
+            public get humanMotion(): boolean;
+            /** Returns true if the animation clip has no curves and no events.
+            */
+            public get empty(): boolean;
+            /** Returns true if the Animation has animation on the root transform.
+            */
+            public get hasGenericRootTransform(): boolean;
+            /** Returns true if the AnimationClip has editor curves for its root motion.
+            */
+            public get hasMotionFloatCurves(): boolean;
+            /** Returns true if the AnimationClip has root motion curves.
+            */
+            public get hasMotionCurves(): boolean;
+            /** Returns true if the AnimationClip has root Curves.
+            */
+            public get hasRootCurves(): boolean;
+            /** Animation Events for this animation clip.
+            */
+            public get events(): System.Array$1<UnityEngine.AnimationEvent>;
+            public set events(value: System.Array$1<UnityEngine.AnimationEvent>);
+            /** Samples an animation at a given time for any animated properties.
+            * @param go The animated game object.
+            * @param time The time to sample an animation.
+            */
+            public SampleAnimation ($go: UnityEngine.GameObject, $time: number) : void
+            /** Assigns the curve to animate a specific property.
+            * @param relativePath Path to the game object this curve applies to. The relativePath
+            is formatted similar to a pathname, e.g. "rootspineleftArm".  If relativePath
+            is empty it refers to the game object the animation clip is attached to.
+            * @param type The class type of the component that is animated.
+            * @param propertyName The name or path to the property being animated.
+            * @param curve The animation curve.
+            */
+            public SetCurve ($relativePath: string, $type: System.Type, $propertyName: string, $curve: UnityEngine.AnimationCurve) : void
+            public EnsureQuaternionContinuity () : void
+            public ClearCurves () : void
+            /** Adds an animation event to the clip.
+            * @param evt AnimationEvent to add.
+            */
+            public AddEvent ($evt: UnityEngine.AnimationEvent) : void
+            public constructor ()
         }
         /** Determines how time is treated outside of the keyframed range of an AnimationClip or AnimationCurve.
         */
@@ -3413,6 +4160,418 @@
         */
         enum AnimationCullingType
         { AlwaysAnimate = 0, BasedOnRenderers = 1, BasedOnClipBounds = 2, BasedOnUserBounds = 3 }
+        /** Store a collection of Keyframes that can be evaluated over time.
+        */
+        class AnimationCurve extends System.Object implements System.IEquatable$1<UnityEngine.AnimationCurve>
+        {
+            protected [__keep_incompatibility]: never;
+            /** All keys defined in the animation curve.
+            */
+            public get keys(): System.Array$1<UnityEngine.Keyframe>;
+            public set keys(value: System.Array$1<UnityEngine.Keyframe>);
+            /** The number of keys in the curve. (Read Only)
+            */
+            public get length(): number;
+            /** The behaviour of the animation before the first keyframe.
+            */
+            public get preWrapMode(): UnityEngine.WrapMode;
+            public set preWrapMode(value: UnityEngine.WrapMode);
+            /** The behaviour of the animation after the last keyframe.
+            */
+            public get postWrapMode(): UnityEngine.WrapMode;
+            public set postWrapMode(value: UnityEngine.WrapMode);
+            /** Evaluate the curve at time.
+            * @param time The time within the curve you want to evaluate (the horizontal axis in the curve graph).
+            * @returns The value of the curve, at the point in time specified. 
+            */
+            public Evaluate ($time: number) : number
+            /** Add a new key to the curve.
+            * @param time The time at which to add the key (horizontal axis in the curve graph).
+            * @param value The value for the key (vertical axis in the curve graph).
+            * @returns The index of the added key, or -1 if the key could not be added. 
+            */
+            public AddKey ($time: number, $value: number) : number
+            /** Add a new key to the curve.
+            * @param key The key to add to the curve.
+            * @returns The index of the added key, or -1 if the key could not be added. 
+            */
+            public AddKey ($key: UnityEngine.Keyframe) : number
+            /** Removes the keyframe at index and inserts key.
+            * @param index The index of the key to move.
+            * @param key The key (with its new time) to insert.
+            * @returns The index of the keyframe after moving it. 
+            */
+            public MoveKey ($index: number, $key: UnityEngine.Keyframe) : number
+            /** Removes a key.
+            * @param index The index of the key to remove.
+            */
+            public RemoveKey ($index: number) : void
+            public get_Item ($index: number) : UnityEngine.Keyframe
+            /** Smooth the in and out tangents of the keyframe at index.
+            * @param index The index of the keyframe to be smoothed.
+            * @param weight The smoothing weight to apply to the keyframe's tangents.
+            */
+            public SmoothTangents ($index: number, $weight: number) : void
+            /** Creates a constant "curve" starting at timeStart, ending at timeEnd and with the value value.
+            * @param timeStart The start time for the constant curve.
+            * @param timeEnd The start time for the constant curve.
+            * @param value The value for the constant curve.
+            * @returns The constant curve created from the specified values. 
+            */
+            public static Constant ($timeStart: number, $timeEnd: number, $value: number) : UnityEngine.AnimationCurve
+            /** A straight Line starting at timeStart, valueStart and ending at timeEnd, valueEnd.
+            * @param timeStart The start time for the linear curve.
+            * @param valueStart The start value for the linear curve.
+            * @param timeEnd The end time for the linear curve.
+            * @param valueEnd The end value for the linear curve.
+            * @returns The linear curve created from the specified values. 
+            */
+            public static Linear ($timeStart: number, $valueStart: number, $timeEnd: number, $valueEnd: number) : UnityEngine.AnimationCurve
+            /** Creates an ease-in and out curve starting at timeStart, valueStart and ending at timeEnd, valueEnd.
+            * @param timeStart The start time for the ease curve.
+            * @param valueStart The start value for the ease curve.
+            * @param timeEnd The end time for the ease curve.
+            * @param valueEnd The end value for the ease curve.
+            * @returns The ease-in and out curve generated from the specified values. 
+            */
+            public static EaseInOut ($timeStart: number, $valueStart: number, $timeEnd: number, $valueEnd: number) : UnityEngine.AnimationCurve
+            public Equals ($o: any) : boolean
+            public Equals ($other: UnityEngine.AnimationCurve) : boolean
+            public constructor (...keys: UnityEngine.Keyframe[])
+            public constructor ()
+        }
+        /** AnimationEvent lets you call a script function similar to SendMessage as part of playing back an animation.
+        */
+        class AnimationEvent extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        /** A single keyframe that can be injected into an animation curve.
+        */
+        class Keyframe extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        /** Provides access to display information.
+        */
+        class Screen extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            /** The current width of the screen window in pixels (Read Only).
+            */
+            public static get width(): number;
+            /** The current height of the screen window in pixels (Read Only).
+            */
+            public static get height(): number;
+            /** The current DPI of the screen / device (Read Only).
+            */
+            public static get dpi(): number;
+            /** The current screen resolution (Read Only).
+            */
+            public static get currentResolution(): UnityEngine.Resolution;
+            /** Returns all full-screen resolutions that the monitor supports (Read Only).
+            */
+            public static get resolutions(): System.Array$1<UnityEngine.Resolution>;
+            /** Enables full-screen mode for the application.
+            */
+            public static get fullScreen(): boolean;
+            public static set fullScreen(value: boolean);
+            /** Set this property to one of the values in FullScreenMode to change the display mode of your application.
+            */
+            public static get fullScreenMode(): UnityEngine.FullScreenMode;
+            public static set fullScreenMode(value: UnityEngine.FullScreenMode);
+            /** Returns the safe area of the screen in pixels (Read Only).
+            */
+            public static get safeArea(): UnityEngine.Rect;
+            /** Returns a list of screen areas that are not functional for displaying content (Read Only).
+            */
+            public static get cutouts(): System.Array$1<UnityEngine.Rect>;
+            /** Enables auto-rotation to portrait.
+            */
+            public static get autorotateToPortrait(): boolean;
+            public static set autorotateToPortrait(value: boolean);
+            /** Enables auto-rotation to portrait, upside down.
+            */
+            public static get autorotateToPortraitUpsideDown(): boolean;
+            public static set autorotateToPortraitUpsideDown(value: boolean);
+            /** Enables auto-rotation to landscape left
+            */
+            public static get autorotateToLandscapeLeft(): boolean;
+            public static set autorotateToLandscapeLeft(value: boolean);
+            /** Enables auto-rotation to landscape right.
+            */
+            public static get autorotateToLandscapeRight(): boolean;
+            public static set autorotateToLandscapeRight(value: boolean);
+            /** Specifies logical orientation of the screen.
+            */
+            public static get orientation(): UnityEngine.ScreenOrientation;
+            public static set orientation(value: UnityEngine.ScreenOrientation);
+            /** A power saving setting, allowing the screen to dim some time after the last active user interaction.
+            */
+            public static get sleepTimeout(): number;
+            public static set sleepTimeout(value: number);
+            /** The current brightness of the screen.
+            */
+            public static get brightness(): number;
+            public static set brightness(value: number);
+            /** The position of the top left corner of the main window relative to the top left corner of the display.
+            */
+            public static get mainWindowPosition(): UnityEngine.Vector2Int;
+            /** The display information associated with the display that the main application window is on.
+            */
+            public static get mainWindowDisplayInfo(): UnityEngine.DisplayInfo;
+            /** Switches the screen resolution.
+            */
+            public static SetResolution ($width: number, $height: number, $fullscreenMode: UnityEngine.FullScreenMode, $preferredRefreshRate: number) : void
+            /** Switches the screen resolution.
+            */
+            public static SetResolution ($width: number, $height: number, $fullscreenMode: UnityEngine.FullScreenMode) : void
+            /** Switches the screen resolution.
+            */
+            public static SetResolution ($width: number, $height: number, $fullscreen: boolean, $preferredRefreshRate: number) : void
+            /** Switches the screen resolution.
+            */
+            public static SetResolution ($width: number, $height: number, $fullscreen: boolean) : void
+            public static GetDisplayLayout ($displayLayout: System.Collections.Generic.List$1<UnityEngine.DisplayInfo>) : void
+            /** Moves the main window to the specified position relative to the top left corner of the specified display. Position value is represented in pixels. Moving the window is an asynchronous operation, which can take multiple frames.
+            * @param display The target display where the window should move to.
+            * @param position The position the window moves to. Relative to the top left corner of the specified display in pixels.
+            * @returns Returns AsyncOperation that represents moving the window. 
+            */
+            public static MoveMainWindowTo ($display: $Ref<UnityEngine.DisplayInfo>, $position: UnityEngine.Vector2Int) : UnityEngine.AsyncOperation
+            public constructor ()
+        }
+        /** Represents a display resolution.
+        */
+        class Resolution extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        /** Platform agnostic full-screen mode. Not all platforms support all modes.
+        */
+        enum FullScreenMode
+        { ExclusiveFullScreen = 0, FullScreenWindow = 1, MaximizedWindow = 2, Windowed = 3 }
+        /** Representation of 2D vectors and points using integers.
+        */
+        class Vector2Int extends System.ValueType implements System.IFormattable, System.IEquatable$1<UnityEngine.Vector2Int>
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        /** Represents a connected display.
+        */
+        class DisplayInfo extends System.ValueType implements System.IEquatable$1<UnityEngine.DisplayInfo>
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        /** Physics material describes how to handle colliding objects (friction, bounciness).
+        */
+        class PhysicMaterial extends UnityEngine.Object
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        /** Describes a collision.
+        */
+        class Collision extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            /** The relative linear velocity of the two colliding objects (Read Only).
+            */
+            public get relativeVelocity(): UnityEngine.Vector3;
+            /** The Rigidbody we hit (Read Only). This is null if the object we hit is a collider with no rigidbody attached.
+            */
+            public get rigidbody(): UnityEngine.Rigidbody;
+            /** The ArticulationBody of the collider that your GameObject collides with (Read Only).
+            */
+            public get articulationBody(): UnityEngine.ArticulationBody;
+            /** The Rigidbody or ArticulationBody of the collider that your Component collides with (Read Only).
+            */
+            public get body(): UnityEngine.Component;
+            /** The Collider we hit (Read Only).
+            */
+            public get collider(): UnityEngine.Collider;
+            /** The Transform of the object we hit (Read Only).
+            */
+            public get transform(): UnityEngine.Transform;
+            /** The GameObject whose collider you are colliding with. (Read Only).
+            */
+            public get gameObject(): UnityEngine.GameObject;
+            /** Gets the number of contacts for this collision.
+            */
+            public get contactCount(): number;
+            /** The contact points generated by the physics engine. You should avoid using this as it produces memory garbage. Use GetContact or GetContacts instead.
+            */
+            public get contacts(): System.Array$1<UnityEngine.ContactPoint>;
+            /** The total impulse applied to this contact pair to resolve the collision.
+            */
+            public get impulse(): UnityEngine.Vector3;
+            /** Gets the contact point at the specified index.
+            * @param index The index of the contact to retrieve.
+            * @returns The contact at the specified index. 
+            */
+            public GetContact ($index: number) : UnityEngine.ContactPoint
+            /** Retrieves all contact points for this collision.
+            * @param contacts An array of ContactPoint used to receive the results.
+            * @returns Returns the number of contacts placed in the contacts array. 
+            */
+            public GetContacts ($contacts: System.Array$1<UnityEngine.ContactPoint>) : number
+            public GetContacts ($contacts: System.Collections.Generic.List$1<UnityEngine.ContactPoint>) : number
+            public constructor ()
+        }
+        /** Describes a contact point where the collision occurs.
+        */
+        class ContactPoint extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        /** This enum describes how the RenderTexture is used as a VR eye texture. Instead of using the values of this enum manually, use the value returned by XR.XRSettings.eyeTextureDesc|eyeTextureDesc or other VR functions returning a RenderTextureDescriptor.
+        */
+        enum VRTextureUsage
+        { None = 0, OneEye = 1, TwoEyes = 2, DeviceSpecific = 3 }
+        /** Flags enumeration of the render texture memoryless modes.
+        */
+        enum RenderTextureMemoryless
+        { None = 0, Color = 1, Depth = 2, MSAA = 4 }
+        /** Color or depth buffer part of a RenderTexture.
+        */
+        class RenderBuffer extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        /** Color space conversion mode of a RenderTexture.
+        */
+        enum RenderTextureReadWrite
+        { Default = 0, Linear = 1, sRGB = 2 }
+        /** Anisotropic filtering mode.
+        */
+        enum AnisotropicFiltering
+        { Disable = 0, Enable = 1, ForceEnable = 2 }
+        /** Wrap mode for textures.
+        */
+        enum TextureWrapMode
+        { Repeat = 0, Clamp = 1, Mirror = 2, MirrorOnce = 3 }
+        /** Filtering mode for textures. Corresponds to the settings in a.
+        */
+        enum FilterMode
+        { Point = 0, Bilinear = 1, Trilinear = 2 }
+        /** Represents  a 128-bit hash value.
+        */
+        class Hash128 extends System.ValueType implements System.IComparable, System.IComparable$1<UnityEngine.Hash128>, System.IEquatable$1<UnityEngine.Hash128>
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        /** Representation of a listener in 3D space.
+        */
+        class AudioListener extends UnityEngine.AudioBehaviour
+        {
+            protected [__keep_incompatibility]: never;
+            /** Controls the game sound volume (0.0 to 1.0).
+            */
+            public static get volume(): number;
+            public static set volume(value: number);
+            /** The paused state of the audio system.
+            */
+            public static get pause(): boolean;
+            public static set pause(value: boolean);
+            /** This lets you set whether the Audio Listener should be updated in the fixed or dynamic update.
+            */
+            public get velocityUpdateMode(): UnityEngine.AudioVelocityUpdateMode;
+            public set velocityUpdateMode(value: UnityEngine.AudioVelocityUpdateMode);
+            /** Provides a block of the listener (master)'s output data.
+            * @param samples The array to populate with audio samples. Its length must be a power of 2.
+            * @param channel The channel to sample from.
+            */
+            public static GetOutputData ($samples: System.Array$1<number>, $channel: number) : void
+            /** Provides a block of the listener (master)'s spectrum data.
+            * @param samples The array to populate with audio samples. Its length must be a power of 2.
+            * @param channel The channel to sample from.
+            * @param window The FFTWindow type to use when sampling.
+            */
+            public static GetSpectrumData ($samples: System.Array$1<number>, $channel: number, $window: UnityEngine.FFTWindow) : void
+            public constructor ()
+        }
+        /** Describes when an AudioSource or AudioListener is updated.
+        */
+        enum AudioVelocityUpdateMode
+        { Auto = 0, Fixed = 1, Dynamic = 2 }
+        /** Spectrum analysis windowing types.
+        */
+        enum FFTWindow
+        { Rectangular = 0, Triangle = 1, Hamming = 2, Hanning = 3, Blackman = 4, BlackmanHarris = 5 }
+        /** A container for audio data.
+        */
+        class AudioClip extends UnityEngine.Object
+        {
+            protected [__keep_incompatibility]: never;
+            /** The length of the audio clip in seconds. (Read Only)
+            */
+            public get length(): number;
+            /** The length of the audio clip in samples. (Read Only)
+            */
+            public get samples(): number;
+            /** The number of channels in the audio clip. (Read Only)
+            */
+            public get channels(): number;
+            /** The sample frequency of the clip in Hertz. (Read Only)
+            */
+            public get frequency(): number;
+            /** The load type of the clip (read-only).
+            */
+            public get loadType(): UnityEngine.AudioClipLoadType;
+            /** Preloads audio data of the clip when the clip asset is loaded. When this flag is off, scripts have to call AudioClip.LoadAudioData() to load the data before the clip can be played. Properties like length, channels and format are available before the audio data has been loaded.
+            */
+            public get preloadAudioData(): boolean;
+            /** Returns true if this audio clip is ambisonic (read-only).
+            */
+            public get ambisonic(): boolean;
+            /** Corresponding to the "Load In Background" flag in the inspector, when this flag is set, the loading will happen delayed without blocking the main thread.
+            */
+            public get loadInBackground(): boolean;
+            /** Returns the current load state of the audio data associated with an AudioClip.
+            */
+            public get loadState(): UnityEngine.AudioDataLoadState;
+            public LoadAudioData () : boolean
+            public UnloadAudioData () : boolean
+            /** Fills an array with sample data from the clip.
+            */
+            public GetData ($data: System.Array$1<number>, $offsetSamples: number) : boolean
+            /** Set sample data in a clip.
+            */
+            public SetData ($data: System.Array$1<number>, $offsetSamples: number) : boolean
+            /** Creates a user AudioClip with a name and with the given length in samples, channels and frequency.
+            * @param name Name of clip.
+            * @param lengthSamples Number of sample frames.
+            * @param channels Number of channels per frame.
+            * @param frequency Sample frequency of clip.
+            * @param _3D Audio clip is played back in 3D.
+            * @param stream True if clip is streamed, that is if the pcmreadercallback generates data on the fly.
+            * @param pcmreadercallback This callback is invoked to generate a block of sample data. Non-streamed clips call this only once at creation time while streamed clips call this continuously.
+            * @param pcmsetpositioncallback This callback is invoked whenever the clip loops or changes playback position.
+            * @returns A reference to the created AudioClip. 
+            */
+            public static Create ($name: string, $lengthSamples: number, $channels: number, $frequency: number, $stream: boolean) : UnityEngine.AudioClip
+            public static Create ($name: string, $lengthSamples: number, $channels: number, $frequency: number, $stream: boolean, $pcmreadercallback: UnityEngine.AudioClip.PCMReaderCallback) : UnityEngine.AudioClip
+            public static Create ($name: string, $lengthSamples: number, $channels: number, $frequency: number, $stream: boolean, $pcmreadercallback: UnityEngine.AudioClip.PCMReaderCallback, $pcmsetpositioncallback: UnityEngine.AudioClip.PCMSetPositionCallback) : UnityEngine.AudioClip
+        }
+        /** Gamepad audio output types.
+        */
+        enum GamepadSpeakerOutputType
+        { Speaker = 0, Vibration = 1, SecondaryVibration = 2 }
+        /** This defines the curve type of the different custom curves that can be queried and set within the AudioSource.
+        */
+        enum AudioSourceCurveType
+        { CustomRolloff = 0, SpatialBlend = 1, ReverbZoneMix = 2, Spread = 3 }
+        /** Rolloff modes that a 3D sound can have in an audio source.
+        */
+        enum AudioRolloffMode
+        { Logarithmic = 0, Linear = 1, Custom = 2 }
+        /** Determines how the audio clip is loaded in.
+        */
+        enum AudioClipLoadType
+        { DecompressOnLoad = 0, CompressedInMemory = 1, Streaming = 2 }
+        /** Value describing the current load state of the audio data associated with an AudioClip.
+        */
+        enum AudioDataLoadState
+        { Unloaded = 0, Loading = 1, Loaded = 2, Failed = 3 }
         /** Representation of RGBA colors in 32 bit format.
         */
         class Color32 extends System.ValueType implements System.IFormattable
@@ -3435,15 +4594,469 @@
         {
             protected [__keep_incompatibility]: never;
         }
-        /** Describes a collision.
-        */
-        class Collision extends System.Object
+    }
+    namespace Heroes {
+        class Joystick extends UnityEngine.MonoBehaviour implements UnityEngine.EventSystems.IDragHandler, UnityEngine.EventSystems.IEventSystemHandler, UnityEngine.EventSystems.IPointerDownHandler, UnityEngine.EventSystems.IPointerUpHandler
+        {
+            protected [__keep_incompatibility]: never;
+            public inputs : Heroes.InputHandler
+            public background : UnityEngine.UI.Image
+            public handler : UnityEngine.UI.Image
+            public range : number
+            public OnPointerDown ($eventData: UnityEngine.EventSystems.PointerEventData) : void
+            public OnPointerUp ($eventData: UnityEngine.EventSystems.PointerEventData) : void
+            public OnDrag ($eventData: UnityEngine.EventSystems.PointerEventData) : void
+            public constructor ()
+        }
+        class InputHandler extends UnityEngine.MonoBehaviour
+        {
+            protected [__keep_incompatibility]: never;
+            public moving : System.Action$1<UnityEngine.Vector2>
+            public fire : System.Action
+            public MoveHandler ($context: UnityEngine.InputSystem.InputAction.CallbackContext) : void
+            public InvokeMove ($v: UnityEngine.Vector2) : void
+            public constructor ()
+        }
+        class App extends UnityEngine.MonoBehaviour
+        {
+            protected [__keep_incompatibility]: never;
+            public config : Heroes.AppConfig
+            public world : Au.Worlds.World
+            public initiatorRoot : UnityEngine.GameObject
+            public initiatorSlider : UnityEngine.UI.Slider
+            public static get instance(): Heroes.App;
+            public constructor ()
+        }
+        class AppConfig extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public name : string
+            public loginServer : string
+            public resourceServer : string
+            public allowGuest : boolean
+            public localization : string
+            public constructor ()
+        }
+    }
+    namespace UnityEngine.EventSystems {
+        interface IDragHandler extends UnityEngine.EventSystems.IEventSystemHandler
+        {
+        }
+        interface IEventSystemHandler
+        {
+        }
+        interface IPointerDownHandler extends UnityEngine.EventSystems.IEventSystemHandler
+        {
+        }
+        interface IPointerUpHandler extends UnityEngine.EventSystems.IEventSystemHandler
+        {
+        }
+        class UIBehaviour extends UnityEngine.MonoBehaviour
         {
             protected [__keep_incompatibility]: never;
         }
-        /** A base class of all colliders.
-        */
-        class Collider extends UnityEngine.Component
+        class AbstractEventData extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class BaseEventData extends UnityEngine.EventSystems.AbstractEventData
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class PointerEventData extends UnityEngine.EventSystems.BaseEventData
+        {
+            protected [__keep_incompatibility]: never;
+            public hovered : System.Collections.Generic.List$1<UnityEngine.GameObject>
+            public get pointerEnter(): UnityEngine.GameObject;
+            public set pointerEnter(value: UnityEngine.GameObject);
+            public get lastPress(): UnityEngine.GameObject;
+            public get rawPointerPress(): UnityEngine.GameObject;
+            public set rawPointerPress(value: UnityEngine.GameObject);
+            public get pointerDrag(): UnityEngine.GameObject;
+            public set pointerDrag(value: UnityEngine.GameObject);
+            public get pointerClick(): UnityEngine.GameObject;
+            public set pointerClick(value: UnityEngine.GameObject);
+            public get pointerCurrentRaycast(): UnityEngine.EventSystems.RaycastResult;
+            public set pointerCurrentRaycast(value: UnityEngine.EventSystems.RaycastResult);
+            public get pointerPressRaycast(): UnityEngine.EventSystems.RaycastResult;
+            public set pointerPressRaycast(value: UnityEngine.EventSystems.RaycastResult);
+            public get eligibleForClick(): boolean;
+            public set eligibleForClick(value: boolean);
+            public get pointerId(): number;
+            public set pointerId(value: number);
+            public get position(): UnityEngine.Vector2;
+            public set position(value: UnityEngine.Vector2);
+            public get delta(): UnityEngine.Vector2;
+            public set delta(value: UnityEngine.Vector2);
+            public get pressPosition(): UnityEngine.Vector2;
+            public set pressPosition(value: UnityEngine.Vector2);
+            public get clickTime(): number;
+            public set clickTime(value: number);
+            public get clickCount(): number;
+            public set clickCount(value: number);
+            public get scrollDelta(): UnityEngine.Vector2;
+            public set scrollDelta(value: UnityEngine.Vector2);
+            public get useDragThreshold(): boolean;
+            public set useDragThreshold(value: boolean);
+            public get dragging(): boolean;
+            public set dragging(value: boolean);
+            public get button(): UnityEngine.EventSystems.PointerEventData.InputButton;
+            public set button(value: UnityEngine.EventSystems.PointerEventData.InputButton);
+            public get pressure(): number;
+            public set pressure(value: number);
+            public get tangentialPressure(): number;
+            public set tangentialPressure(value: number);
+            public get altitudeAngle(): number;
+            public set altitudeAngle(value: number);
+            public get azimuthAngle(): number;
+            public set azimuthAngle(value: number);
+            public get twist(): number;
+            public set twist(value: number);
+            public get radius(): UnityEngine.Vector2;
+            public set radius(value: UnityEngine.Vector2);
+            public get radiusVariance(): UnityEngine.Vector2;
+            public set radiusVariance(value: UnityEngine.Vector2);
+            public get fullyExited(): boolean;
+            public set fullyExited(value: boolean);
+            public get reentered(): boolean;
+            public set reentered(value: boolean);
+            public get enterEventCamera(): UnityEngine.Camera;
+            public get pressEventCamera(): UnityEngine.Camera;
+            public get pointerPress(): UnityEngine.GameObject;
+            public set pointerPress(value: UnityEngine.GameObject);
+            public IsPointerMoving () : boolean
+            public IsScrolling () : boolean
+            public constructor ($eventSystem: UnityEngine.EventSystems.EventSystem)
+        }
+        interface IPointerEnterHandler extends UnityEngine.EventSystems.IEventSystemHandler
+        {
+        }
+        interface ISelectHandler extends UnityEngine.EventSystems.IEventSystemHandler
+        {
+        }
+        interface IPointerExitHandler extends UnityEngine.EventSystems.IEventSystemHandler
+        {
+        }
+        interface IDeselectHandler extends UnityEngine.EventSystems.IEventSystemHandler
+        {
+        }
+        interface IMoveHandler extends UnityEngine.EventSystems.IEventSystemHandler
+        {
+        }
+        interface ISubmitHandler extends UnityEngine.EventSystems.IEventSystemHandler
+        {
+        }
+        interface IPointerClickHandler extends UnityEngine.EventSystems.IEventSystemHandler
+        {
+        }
+        interface IInitializePotentialDragHandler extends UnityEngine.EventSystems.IEventSystemHandler
+        {
+        }
+        class AxisEventData extends UnityEngine.EventSystems.BaseEventData
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class RaycastResult extends System.ValueType
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class EventSystem extends UnityEngine.EventSystems.UIBehaviour
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        interface IBeginDragHandler extends UnityEngine.EventSystems.IEventSystemHandler
+        {
+        }
+        interface IEndDragHandler extends UnityEngine.EventSystems.IEventSystemHandler
+        {
+        }
+        interface IScrollHandler extends UnityEngine.EventSystems.IEventSystemHandler
+        {
+        }
+        interface IUpdateSelectedHandler extends UnityEngine.EventSystems.IEventSystemHandler
+        {
+        }
+        interface ICancelHandler extends UnityEngine.EventSystems.IEventSystemHandler
+        {
+        }
+        interface IPointerMoveHandler extends UnityEngine.EventSystems.IEventSystemHandler
+        {
+        }
+    }
+    namespace UnityEngine.UI {
+        class Graphic extends UnityEngine.EventSystems.UIBehaviour implements UnityEngine.UI.ICanvasElement
+        {
+            protected [__keep_incompatibility]: never;
+            public static get defaultGraphicMaterial(): UnityEngine.Material;
+            public get color(): UnityEngine.Color;
+            public set color(value: UnityEngine.Color);
+            public get raycastTarget(): boolean;
+            public set raycastTarget(value: boolean);
+            public get raycastPadding(): UnityEngine.Vector4;
+            public set raycastPadding(value: UnityEngine.Vector4);
+            public get depth(): number;
+            public get rectTransform(): UnityEngine.RectTransform;
+            public get canvas(): UnityEngine.Canvas;
+            public get canvasRenderer(): UnityEngine.CanvasRenderer;
+            public get defaultMaterial(): UnityEngine.Material;
+            public get material(): UnityEngine.Material;
+            public set material(value: UnityEngine.Material);
+            public get materialForRendering(): UnityEngine.Material;
+            public get mainTexture(): UnityEngine.Texture;
+            public SetAllDirty () : void
+            public SetLayoutDirty () : void
+            public SetVerticesDirty () : void
+            public SetMaterialDirty () : void
+            public OnCullingChanged () : void
+            public Rebuild ($update: UnityEngine.UI.CanvasUpdate) : void
+            public LayoutComplete () : void
+            public GraphicUpdateComplete () : void
+            public OnRebuildRequested () : void
+            public SetNativeSize () : void
+            public Raycast ($sp: UnityEngine.Vector2, $eventCamera: UnityEngine.Camera) : boolean
+            public PixelAdjustPoint ($point: UnityEngine.Vector2) : UnityEngine.Vector2
+            public GetPixelAdjustedRect () : UnityEngine.Rect
+            public CrossFadeColor ($targetColor: UnityEngine.Color, $duration: number, $ignoreTimeScale: boolean, $useAlpha: boolean) : void
+            public CrossFadeColor ($targetColor: UnityEngine.Color, $duration: number, $ignoreTimeScale: boolean, $useAlpha: boolean, $useRGB: boolean) : void
+            public CrossFadeAlpha ($alpha: number, $duration: number, $ignoreTimeScale: boolean) : void
+            public RegisterDirtyLayoutCallback ($action: UnityEngine.Events.UnityAction) : void
+            public UnregisterDirtyLayoutCallback ($action: UnityEngine.Events.UnityAction) : void
+            public RegisterDirtyVerticesCallback ($action: UnityEngine.Events.UnityAction) : void
+            public UnregisterDirtyVerticesCallback ($action: UnityEngine.Events.UnityAction) : void
+            public RegisterDirtyMaterialCallback ($action: UnityEngine.Events.UnityAction) : void
+            public UnregisterDirtyMaterialCallback ($action: UnityEngine.Events.UnityAction) : void
+        }
+        interface ICanvasElement
+        {
+        }
+        class MaskableGraphic extends UnityEngine.UI.Graphic implements UnityEngine.UI.IMaterialModifier, UnityEngine.UI.IMaskable, UnityEngine.UI.ICanvasElement, UnityEngine.UI.IClippable
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        interface IMaterialModifier
+        {
+        }
+        interface IMaskable
+        {
+        }
+        interface IClippable
+        {
+        }
+        class Image extends UnityEngine.UI.MaskableGraphic implements UnityEngine.UI.IMaterialModifier, UnityEngine.UI.IMaskable, UnityEngine.ICanvasRaycastFilter, UnityEngine.UI.ICanvasElement, UnityEngine.UI.ILayoutElement, UnityEngine.ISerializationCallbackReceiver, UnityEngine.UI.IClippable
+        {
+            protected [__keep_incompatibility]: never;
+            public get sprite(): UnityEngine.Sprite;
+            public set sprite(value: UnityEngine.Sprite);
+            public get overrideSprite(): UnityEngine.Sprite;
+            public set overrideSprite(value: UnityEngine.Sprite);
+            public get type(): UnityEngine.UI.Image.Type;
+            public set type(value: UnityEngine.UI.Image.Type);
+            public get preserveAspect(): boolean;
+            public set preserveAspect(value: boolean);
+            public get fillCenter(): boolean;
+            public set fillCenter(value: boolean);
+            public get fillMethod(): UnityEngine.UI.Image.FillMethod;
+            public set fillMethod(value: UnityEngine.UI.Image.FillMethod);
+            public get fillAmount(): number;
+            public set fillAmount(value: number);
+            public get fillClockwise(): boolean;
+            public set fillClockwise(value: boolean);
+            public get fillOrigin(): number;
+            public set fillOrigin(value: number);
+            public get alphaHitTestMinimumThreshold(): number;
+            public set alphaHitTestMinimumThreshold(value: number);
+            public get useSpriteMesh(): boolean;
+            public set useSpriteMesh(value: boolean);
+            public static get defaultETC1GraphicMaterial(): UnityEngine.Material;
+            public get mainTexture(): UnityEngine.Texture;
+            public get hasBorder(): boolean;
+            public get pixelsPerUnitMultiplier(): number;
+            public set pixelsPerUnitMultiplier(value: number);
+            public get pixelsPerUnit(): number;
+            public get material(): UnityEngine.Material;
+            public set material(value: UnityEngine.Material);
+            public get minWidth(): number;
+            public get preferredWidth(): number;
+            public get flexibleWidth(): number;
+            public get minHeight(): number;
+            public get preferredHeight(): number;
+            public get flexibleHeight(): number;
+            public get layoutPriority(): number;
+            public DisableSpriteOptimizations () : void
+            public OnBeforeSerialize () : void
+            public OnAfterDeserialize () : void
+            public CalculateLayoutInputHorizontal () : void
+            public CalculateLayoutInputVertical () : void
+            public IsRaycastLocationValid ($screenPoint: UnityEngine.Vector2, $eventCamera: UnityEngine.Camera) : boolean
+        }
+        interface ILayoutElement
+        {
+        }
+        enum CanvasUpdate
+        { Prelayout = 0, Layout = 1, PostLayout = 2, PreRender = 3, LatePreRender = 4, MaxUpdateValue = 5 }
+        class Text extends UnityEngine.UI.MaskableGraphic implements UnityEngine.UI.IMaterialModifier, UnityEngine.UI.IMaskable, UnityEngine.UI.ICanvasElement, UnityEngine.UI.ILayoutElement, UnityEngine.UI.IClippable
+        {
+            protected [__keep_incompatibility]: never;
+            public get cachedTextGenerator(): UnityEngine.TextGenerator;
+            public get cachedTextGeneratorForLayout(): UnityEngine.TextGenerator;
+            public get mainTexture(): UnityEngine.Texture;
+            public get font(): UnityEngine.Font;
+            public set font(value: UnityEngine.Font);
+            public get text(): string;
+            public set text(value: string);
+            public get supportRichText(): boolean;
+            public set supportRichText(value: boolean);
+            public get resizeTextForBestFit(): boolean;
+            public set resizeTextForBestFit(value: boolean);
+            public get resizeTextMinSize(): number;
+            public set resizeTextMinSize(value: number);
+            public get resizeTextMaxSize(): number;
+            public set resizeTextMaxSize(value: number);
+            public get alignment(): UnityEngine.TextAnchor;
+            public set alignment(value: UnityEngine.TextAnchor);
+            public get alignByGeometry(): boolean;
+            public set alignByGeometry(value: boolean);
+            public get fontSize(): number;
+            public set fontSize(value: number);
+            public get horizontalOverflow(): UnityEngine.HorizontalWrapMode;
+            public set horizontalOverflow(value: UnityEngine.HorizontalWrapMode);
+            public get verticalOverflow(): UnityEngine.VerticalWrapMode;
+            public set verticalOverflow(value: UnityEngine.VerticalWrapMode);
+            public get lineSpacing(): number;
+            public set lineSpacing(value: number);
+            public get fontStyle(): UnityEngine.FontStyle;
+            public set fontStyle(value: UnityEngine.FontStyle);
+            public get pixelsPerUnit(): number;
+            public get minWidth(): number;
+            public get preferredWidth(): number;
+            public get flexibleWidth(): number;
+            public get minHeight(): number;
+            public get preferredHeight(): number;
+            public get flexibleHeight(): number;
+            public get layoutPriority(): number;
+            public FontTextureChanged () : void
+            public GetGenerationSettings ($extents: UnityEngine.Vector2) : UnityEngine.TextGenerationSettings
+            public static GetTextAnchorPivot ($anchor: UnityEngine.TextAnchor) : UnityEngine.Vector2
+            public CalculateLayoutInputHorizontal () : void
+            public CalculateLayoutInputVertical () : void
+        }
+        class Selectable extends UnityEngine.EventSystems.UIBehaviour implements UnityEngine.EventSystems.IEventSystemHandler, UnityEngine.EventSystems.IPointerEnterHandler, UnityEngine.EventSystems.ISelectHandler, UnityEngine.EventSystems.IPointerExitHandler, UnityEngine.EventSystems.IDeselectHandler, UnityEngine.EventSystems.IPointerDownHandler, UnityEngine.EventSystems.IPointerUpHandler, UnityEngine.EventSystems.IMoveHandler
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class Button extends UnityEngine.UI.Selectable implements UnityEngine.EventSystems.IEventSystemHandler, UnityEngine.EventSystems.IPointerEnterHandler, UnityEngine.EventSystems.ISelectHandler, UnityEngine.EventSystems.IPointerExitHandler, UnityEngine.EventSystems.IDeselectHandler, UnityEngine.EventSystems.IPointerDownHandler, UnityEngine.EventSystems.IPointerUpHandler, UnityEngine.EventSystems.IMoveHandler, UnityEngine.EventSystems.ISubmitHandler, UnityEngine.EventSystems.IPointerClickHandler
+        {
+            protected [__keep_incompatibility]: never;
+            public get onClick(): UnityEngine.UI.Button.ButtonClickedEvent;
+            public set onClick(value: UnityEngine.UI.Button.ButtonClickedEvent);
+            public OnPointerClick ($eventData: UnityEngine.EventSystems.PointerEventData) : void
+            public OnSubmit ($eventData: UnityEngine.EventSystems.BaseEventData) : void
+        }
+        class Toggle extends UnityEngine.UI.Selectable implements UnityEngine.UI.ICanvasElement, UnityEngine.EventSystems.IEventSystemHandler, UnityEngine.EventSystems.IPointerEnterHandler, UnityEngine.EventSystems.ISelectHandler, UnityEngine.EventSystems.IPointerExitHandler, UnityEngine.EventSystems.IDeselectHandler, UnityEngine.EventSystems.IPointerDownHandler, UnityEngine.EventSystems.IPointerUpHandler, UnityEngine.EventSystems.IMoveHandler, UnityEngine.EventSystems.ISubmitHandler, UnityEngine.EventSystems.IPointerClickHandler
+        {
+            protected [__keep_incompatibility]: never;
+            public toggleTransition : UnityEngine.UI.Toggle.ToggleTransition
+            public graphic : UnityEngine.UI.Graphic
+            public onValueChanged : UnityEngine.UI.Toggle.ToggleEvent
+            public get group(): UnityEngine.UI.ToggleGroup;
+            public set group(value: UnityEngine.UI.ToggleGroup);
+            public get isOn(): boolean;
+            public set isOn(value: boolean);
+            public Rebuild ($executing: UnityEngine.UI.CanvasUpdate) : void
+            public LayoutComplete () : void
+            public GraphicUpdateComplete () : void
+            public SetIsOnWithoutNotify ($value: boolean) : void
+            public OnPointerClick ($eventData: UnityEngine.EventSystems.PointerEventData) : void
+            public OnSubmit ($eventData: UnityEngine.EventSystems.BaseEventData) : void
+        }
+        class ToggleGroup extends UnityEngine.EventSystems.UIBehaviour
+        {
+            protected [__keep_incompatibility]: never;
+            public get allowSwitchOff(): boolean;
+            public set allowSwitchOff(value: boolean);
+            public NotifyToggleOn ($toggle: UnityEngine.UI.Toggle, $sendCallback?: boolean) : void
+            public UnregisterToggle ($toggle: UnityEngine.UI.Toggle) : void
+            public RegisterToggle ($toggle: UnityEngine.UI.Toggle) : void
+            public EnsureValidState () : void
+            public AnyTogglesOn () : boolean
+            public ActiveToggles () : System.Collections.Generic.IEnumerable$1<UnityEngine.UI.Toggle>
+            public GetFirstActiveToggle () : UnityEngine.UI.Toggle
+            public SetAllTogglesOff ($sendCallback?: boolean) : void
+        }
+        class Slider extends UnityEngine.UI.Selectable implements UnityEngine.EventSystems.IInitializePotentialDragHandler, UnityEngine.EventSystems.IDragHandler, UnityEngine.UI.ICanvasElement, UnityEngine.EventSystems.IEventSystemHandler, UnityEngine.EventSystems.IPointerEnterHandler, UnityEngine.EventSystems.ISelectHandler, UnityEngine.EventSystems.IPointerExitHandler, UnityEngine.EventSystems.IDeselectHandler, UnityEngine.EventSystems.IPointerDownHandler, UnityEngine.EventSystems.IPointerUpHandler, UnityEngine.EventSystems.IMoveHandler
+        {
+            protected [__keep_incompatibility]: never;
+            public get fillRect(): UnityEngine.RectTransform;
+            public set fillRect(value: UnityEngine.RectTransform);
+            public get handleRect(): UnityEngine.RectTransform;
+            public set handleRect(value: UnityEngine.RectTransform);
+            public get direction(): UnityEngine.UI.Slider.Direction;
+            public set direction(value: UnityEngine.UI.Slider.Direction);
+            public get minValue(): number;
+            public set minValue(value: number);
+            public get maxValue(): number;
+            public set maxValue(value: number);
+            public get wholeNumbers(): boolean;
+            public set wholeNumbers(value: boolean);
+            public get value(): number;
+            public set value(value: number);
+            public get normalizedValue(): number;
+            public set normalizedValue(value: number);
+            public get onValueChanged(): UnityEngine.UI.Slider.SliderEvent;
+            public set onValueChanged(value: UnityEngine.UI.Slider.SliderEvent);
+            public SetValueWithoutNotify ($input: number) : void
+            public Rebuild ($executing: UnityEngine.UI.CanvasUpdate) : void
+            public LayoutComplete () : void
+            public GraphicUpdateComplete () : void
+            public OnDrag ($eventData: UnityEngine.EventSystems.PointerEventData) : void
+            public OnInitializePotentialDrag ($eventData: UnityEngine.EventSystems.PointerEventData) : void
+            public SetDirection ($direction: UnityEngine.UI.Slider.Direction, $includeRectLayouts: boolean) : void
+        }
+        class CanvasScaler extends UnityEngine.EventSystems.UIBehaviour
+        {
+            protected [__keep_incompatibility]: never;
+            public get uiScaleMode(): UnityEngine.UI.CanvasScaler.ScaleMode;
+            public set uiScaleMode(value: UnityEngine.UI.CanvasScaler.ScaleMode);
+            public get referencePixelsPerUnit(): number;
+            public set referencePixelsPerUnit(value: number);
+            public get scaleFactor(): number;
+            public set scaleFactor(value: number);
+            public get referenceResolution(): UnityEngine.Vector2;
+            public set referenceResolution(value: UnityEngine.Vector2);
+            public get screenMatchMode(): UnityEngine.UI.CanvasScaler.ScreenMatchMode;
+            public set screenMatchMode(value: UnityEngine.UI.CanvasScaler.ScreenMatchMode);
+            public get matchWidthOrHeight(): number;
+            public set matchWidthOrHeight(value: number);
+            public get physicalUnit(): UnityEngine.UI.CanvasScaler.Unit;
+            public set physicalUnit(value: UnityEngine.UI.CanvasScaler.Unit);
+            public get fallbackScreenDPI(): number;
+            public set fallbackScreenDPI(value: number);
+            public get defaultSpriteDPI(): number;
+            public set defaultSpriteDPI(value: number);
+            public get dynamicPixelsPerUnit(): number;
+            public set dynamicPixelsPerUnit(value: number);
+        }
+        class RawImage extends UnityEngine.UI.MaskableGraphic implements UnityEngine.UI.IMaterialModifier, UnityEngine.UI.IMaskable, UnityEngine.UI.ICanvasElement, UnityEngine.UI.IClippable
+        {
+            protected [__keep_incompatibility]: never;
+            public get mainTexture(): UnityEngine.Texture;
+            public get texture(): UnityEngine.Texture;
+            public set texture(value: UnityEngine.Texture);
+            public get uvRect(): UnityEngine.Rect;
+            public set uvRect(value: UnityEngine.Rect);
+        }
+        class Scrollbar extends UnityEngine.UI.Selectable implements UnityEngine.EventSystems.IBeginDragHandler, UnityEngine.EventSystems.IInitializePotentialDragHandler, UnityEngine.EventSystems.IDragHandler, UnityEngine.UI.ICanvasElement, UnityEngine.EventSystems.IEventSystemHandler, UnityEngine.EventSystems.IPointerEnterHandler, UnityEngine.EventSystems.ISelectHandler, UnityEngine.EventSystems.IPointerExitHandler, UnityEngine.EventSystems.IDeselectHandler, UnityEngine.EventSystems.IPointerDownHandler, UnityEngine.EventSystems.IPointerUpHandler, UnityEngine.EventSystems.IMoveHandler
+        {
+            protected [__keep_incompatibility]: never;
+        }
+    }
+    namespace System.Runtime.Serialization {
+        interface ISerializable
+        {
+        }
+    }
+    namespace UnityEngine.InputSystem.InputAction {
+        class CallbackContext extends System.ValueType
         {
             protected [__keep_incompatibility]: never;
         }
@@ -3564,11 +5177,6 @@
         {
         }
     }
-    namespace System.Runtime.Serialization {
-        interface ISerializable
-        {
-        }
-    }
     namespace UnityEngine.Application {
         interface AdvertisingIdentifierCallback
         { 
@@ -3682,6 +5290,10 @@
         */
         enum VertexAttributeFormat
         { Float32 = 0, Float16 = 1, UNorm8 = 2, SNorm8 = 3, UNorm16 = 4, SNorm16 = 5, UInt8 = 6, SInt8 = 7, UInt16 = 8, SInt16 = 9, UInt32 = 10, SInt32 = 11 }
+        /** Texture "dimension" (type).
+        */
+        enum TextureDimension
+        { Unknown = -1, None = 0, Any = 1, Tex2D = 2, Tex3D = 3, Cube = 4, Tex2DArray = 5, CubeArray = 6 }
     }
     namespace UnityEngine.Experimental.Rendering {
         /** Use this format to create either Textures or RenderTextures from scripts.
@@ -3732,385 +5344,6 @@
             protected [__keep_incompatibility]: never;
         }
         class DirectoryInfo extends System.IO.FileSystemInfo implements System.Runtime.Serialization.ISerializable
-        {
-            protected [__keep_incompatibility]: never;
-        }
-    }
-    namespace UnityEngine.EventSystems {
-        class UIBehaviour extends UnityEngine.MonoBehaviour
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        interface IEventSystemHandler
-        {
-        }
-        interface IPointerEnterHandler extends UnityEngine.EventSystems.IEventSystemHandler
-        {
-        }
-        interface ISelectHandler extends UnityEngine.EventSystems.IEventSystemHandler
-        {
-        }
-        interface IPointerExitHandler extends UnityEngine.EventSystems.IEventSystemHandler
-        {
-        }
-        interface IDeselectHandler extends UnityEngine.EventSystems.IEventSystemHandler
-        {
-        }
-        interface IPointerDownHandler extends UnityEngine.EventSystems.IEventSystemHandler
-        {
-        }
-        interface IPointerUpHandler extends UnityEngine.EventSystems.IEventSystemHandler
-        {
-        }
-        interface IMoveHandler extends UnityEngine.EventSystems.IEventSystemHandler
-        {
-        }
-        interface ISubmitHandler extends UnityEngine.EventSystems.IEventSystemHandler
-        {
-        }
-        interface IPointerClickHandler extends UnityEngine.EventSystems.IEventSystemHandler
-        {
-        }
-        class AbstractEventData extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class BaseEventData extends UnityEngine.EventSystems.AbstractEventData
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class PointerEventData extends UnityEngine.EventSystems.BaseEventData
-        {
-            protected [__keep_incompatibility]: never;
-            public hovered : System.Collections.Generic.List$1<UnityEngine.GameObject>
-            public get pointerEnter(): UnityEngine.GameObject;
-            public set pointerEnter(value: UnityEngine.GameObject);
-            public get lastPress(): UnityEngine.GameObject;
-            public get rawPointerPress(): UnityEngine.GameObject;
-            public set rawPointerPress(value: UnityEngine.GameObject);
-            public get pointerDrag(): UnityEngine.GameObject;
-            public set pointerDrag(value: UnityEngine.GameObject);
-            public get pointerClick(): UnityEngine.GameObject;
-            public set pointerClick(value: UnityEngine.GameObject);
-            public get pointerCurrentRaycast(): UnityEngine.EventSystems.RaycastResult;
-            public set pointerCurrentRaycast(value: UnityEngine.EventSystems.RaycastResult);
-            public get pointerPressRaycast(): UnityEngine.EventSystems.RaycastResult;
-            public set pointerPressRaycast(value: UnityEngine.EventSystems.RaycastResult);
-            public get eligibleForClick(): boolean;
-            public set eligibleForClick(value: boolean);
-            public get pointerId(): number;
-            public set pointerId(value: number);
-            public get position(): UnityEngine.Vector2;
-            public set position(value: UnityEngine.Vector2);
-            public get delta(): UnityEngine.Vector2;
-            public set delta(value: UnityEngine.Vector2);
-            public get pressPosition(): UnityEngine.Vector2;
-            public set pressPosition(value: UnityEngine.Vector2);
-            public get clickTime(): number;
-            public set clickTime(value: number);
-            public get clickCount(): number;
-            public set clickCount(value: number);
-            public get scrollDelta(): UnityEngine.Vector2;
-            public set scrollDelta(value: UnityEngine.Vector2);
-            public get useDragThreshold(): boolean;
-            public set useDragThreshold(value: boolean);
-            public get dragging(): boolean;
-            public set dragging(value: boolean);
-            public get button(): UnityEngine.EventSystems.PointerEventData.InputButton;
-            public set button(value: UnityEngine.EventSystems.PointerEventData.InputButton);
-            public get pressure(): number;
-            public set pressure(value: number);
-            public get tangentialPressure(): number;
-            public set tangentialPressure(value: number);
-            public get altitudeAngle(): number;
-            public set altitudeAngle(value: number);
-            public get azimuthAngle(): number;
-            public set azimuthAngle(value: number);
-            public get twist(): number;
-            public set twist(value: number);
-            public get radius(): UnityEngine.Vector2;
-            public set radius(value: UnityEngine.Vector2);
-            public get radiusVariance(): UnityEngine.Vector2;
-            public set radiusVariance(value: UnityEngine.Vector2);
-            public get fullyExited(): boolean;
-            public set fullyExited(value: boolean);
-            public get reentered(): boolean;
-            public set reentered(value: boolean);
-            public get enterEventCamera(): UnityEngine.Camera;
-            public get pressEventCamera(): UnityEngine.Camera;
-            public get pointerPress(): UnityEngine.GameObject;
-            public set pointerPress(value: UnityEngine.GameObject);
-            public IsPointerMoving () : boolean
-            public IsScrolling () : boolean
-            public constructor ($eventSystem: UnityEngine.EventSystems.EventSystem)
-        }
-        interface IInitializePotentialDragHandler extends UnityEngine.EventSystems.IEventSystemHandler
-        {
-        }
-        interface IDragHandler extends UnityEngine.EventSystems.IEventSystemHandler
-        {
-        }
-        class AxisEventData extends UnityEngine.EventSystems.BaseEventData
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class RaycastResult extends System.ValueType
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class EventSystem extends UnityEngine.EventSystems.UIBehaviour
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        interface IBeginDragHandler extends UnityEngine.EventSystems.IEventSystemHandler
-        {
-        }
-        interface IEndDragHandler extends UnityEngine.EventSystems.IEventSystemHandler
-        {
-        }
-        interface IScrollHandler extends UnityEngine.EventSystems.IEventSystemHandler
-        {
-        }
-        interface IUpdateSelectedHandler extends UnityEngine.EventSystems.IEventSystemHandler
-        {
-        }
-        interface ICancelHandler extends UnityEngine.EventSystems.IEventSystemHandler
-        {
-        }
-        interface IPointerMoveHandler extends UnityEngine.EventSystems.IEventSystemHandler
-        {
-        }
-    }
-    namespace UnityEngine.UI {
-        class Graphic extends UnityEngine.EventSystems.UIBehaviour implements UnityEngine.UI.ICanvasElement
-        {
-            protected [__keep_incompatibility]: never;
-            public static get defaultGraphicMaterial(): UnityEngine.Material;
-            public get color(): UnityEngine.Color;
-            public set color(value: UnityEngine.Color);
-            public get raycastTarget(): boolean;
-            public set raycastTarget(value: boolean);
-            public get raycastPadding(): UnityEngine.Vector4;
-            public set raycastPadding(value: UnityEngine.Vector4);
-            public get depth(): number;
-            public get rectTransform(): UnityEngine.RectTransform;
-            public get canvas(): UnityEngine.Canvas;
-            public get canvasRenderer(): UnityEngine.CanvasRenderer;
-            public get defaultMaterial(): UnityEngine.Material;
-            public get material(): UnityEngine.Material;
-            public set material(value: UnityEngine.Material);
-            public get materialForRendering(): UnityEngine.Material;
-            public get mainTexture(): UnityEngine.Texture;
-            public SetAllDirty () : void
-            public SetLayoutDirty () : void
-            public SetVerticesDirty () : void
-            public SetMaterialDirty () : void
-            public OnCullingChanged () : void
-            public Rebuild ($update: UnityEngine.UI.CanvasUpdate) : void
-            public LayoutComplete () : void
-            public GraphicUpdateComplete () : void
-            public OnRebuildRequested () : void
-            public SetNativeSize () : void
-            public Raycast ($sp: UnityEngine.Vector2, $eventCamera: UnityEngine.Camera) : boolean
-            public PixelAdjustPoint ($point: UnityEngine.Vector2) : UnityEngine.Vector2
-            public GetPixelAdjustedRect () : UnityEngine.Rect
-            public CrossFadeColor ($targetColor: UnityEngine.Color, $duration: number, $ignoreTimeScale: boolean, $useAlpha: boolean) : void
-            public CrossFadeColor ($targetColor: UnityEngine.Color, $duration: number, $ignoreTimeScale: boolean, $useAlpha: boolean, $useRGB: boolean) : void
-            public CrossFadeAlpha ($alpha: number, $duration: number, $ignoreTimeScale: boolean) : void
-            public RegisterDirtyLayoutCallback ($action: UnityEngine.Events.UnityAction) : void
-            public UnregisterDirtyLayoutCallback ($action: UnityEngine.Events.UnityAction) : void
-            public RegisterDirtyVerticesCallback ($action: UnityEngine.Events.UnityAction) : void
-            public UnregisterDirtyVerticesCallback ($action: UnityEngine.Events.UnityAction) : void
-            public RegisterDirtyMaterialCallback ($action: UnityEngine.Events.UnityAction) : void
-            public UnregisterDirtyMaterialCallback ($action: UnityEngine.Events.UnityAction) : void
-        }
-        interface ICanvasElement
-        {
-        }
-        enum CanvasUpdate
-        { Prelayout = 0, Layout = 1, PostLayout = 2, PreRender = 3, LatePreRender = 4, MaxUpdateValue = 5 }
-        class MaskableGraphic extends UnityEngine.UI.Graphic implements UnityEngine.UI.IMaterialModifier, UnityEngine.UI.IMaskable, UnityEngine.UI.ICanvasElement, UnityEngine.UI.IClippable
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        interface IMaterialModifier
-        {
-        }
-        interface IMaskable
-        {
-        }
-        interface IClippable
-        {
-        }
-        class Image extends UnityEngine.UI.MaskableGraphic implements UnityEngine.UI.IMaterialModifier, UnityEngine.UI.IMaskable, UnityEngine.ICanvasRaycastFilter, UnityEngine.UI.ICanvasElement, UnityEngine.UI.ILayoutElement, UnityEngine.ISerializationCallbackReceiver, UnityEngine.UI.IClippable
-        {
-            protected [__keep_incompatibility]: never;
-            public get sprite(): UnityEngine.Sprite;
-            public set sprite(value: UnityEngine.Sprite);
-            public get overrideSprite(): UnityEngine.Sprite;
-            public set overrideSprite(value: UnityEngine.Sprite);
-            public get type(): UnityEngine.UI.Image.Type;
-            public set type(value: UnityEngine.UI.Image.Type);
-            public get preserveAspect(): boolean;
-            public set preserveAspect(value: boolean);
-            public get fillCenter(): boolean;
-            public set fillCenter(value: boolean);
-            public get fillMethod(): UnityEngine.UI.Image.FillMethod;
-            public set fillMethod(value: UnityEngine.UI.Image.FillMethod);
-            public get fillAmount(): number;
-            public set fillAmount(value: number);
-            public get fillClockwise(): boolean;
-            public set fillClockwise(value: boolean);
-            public get fillOrigin(): number;
-            public set fillOrigin(value: number);
-            public get alphaHitTestMinimumThreshold(): number;
-            public set alphaHitTestMinimumThreshold(value: number);
-            public get useSpriteMesh(): boolean;
-            public set useSpriteMesh(value: boolean);
-            public static get defaultETC1GraphicMaterial(): UnityEngine.Material;
-            public get mainTexture(): UnityEngine.Texture;
-            public get hasBorder(): boolean;
-            public get pixelsPerUnitMultiplier(): number;
-            public set pixelsPerUnitMultiplier(value: number);
-            public get pixelsPerUnit(): number;
-            public get material(): UnityEngine.Material;
-            public set material(value: UnityEngine.Material);
-            public get minWidth(): number;
-            public get preferredWidth(): number;
-            public get flexibleWidth(): number;
-            public get minHeight(): number;
-            public get preferredHeight(): number;
-            public get flexibleHeight(): number;
-            public get layoutPriority(): number;
-            public DisableSpriteOptimizations () : void
-            public OnBeforeSerialize () : void
-            public OnAfterDeserialize () : void
-            public CalculateLayoutInputHorizontal () : void
-            public CalculateLayoutInputVertical () : void
-            public IsRaycastLocationValid ($screenPoint: UnityEngine.Vector2, $eventCamera: UnityEngine.Camera) : boolean
-        }
-        interface ILayoutElement
-        {
-        }
-        class Text extends UnityEngine.UI.MaskableGraphic implements UnityEngine.UI.IMaterialModifier, UnityEngine.UI.IMaskable, UnityEngine.UI.ICanvasElement, UnityEngine.UI.ILayoutElement, UnityEngine.UI.IClippable
-        {
-            protected [__keep_incompatibility]: never;
-            public get cachedTextGenerator(): UnityEngine.TextGenerator;
-            public get cachedTextGeneratorForLayout(): UnityEngine.TextGenerator;
-            public get mainTexture(): UnityEngine.Texture;
-            public get font(): UnityEngine.Font;
-            public set font(value: UnityEngine.Font);
-            public get text(): string;
-            public set text(value: string);
-            public get supportRichText(): boolean;
-            public set supportRichText(value: boolean);
-            public get resizeTextForBestFit(): boolean;
-            public set resizeTextForBestFit(value: boolean);
-            public get resizeTextMinSize(): number;
-            public set resizeTextMinSize(value: number);
-            public get resizeTextMaxSize(): number;
-            public set resizeTextMaxSize(value: number);
-            public get alignment(): UnityEngine.TextAnchor;
-            public set alignment(value: UnityEngine.TextAnchor);
-            public get alignByGeometry(): boolean;
-            public set alignByGeometry(value: boolean);
-            public get fontSize(): number;
-            public set fontSize(value: number);
-            public get horizontalOverflow(): UnityEngine.HorizontalWrapMode;
-            public set horizontalOverflow(value: UnityEngine.HorizontalWrapMode);
-            public get verticalOverflow(): UnityEngine.VerticalWrapMode;
-            public set verticalOverflow(value: UnityEngine.VerticalWrapMode);
-            public get lineSpacing(): number;
-            public set lineSpacing(value: number);
-            public get fontStyle(): UnityEngine.FontStyle;
-            public set fontStyle(value: UnityEngine.FontStyle);
-            public get pixelsPerUnit(): number;
-            public get minWidth(): number;
-            public get preferredWidth(): number;
-            public get flexibleWidth(): number;
-            public get minHeight(): number;
-            public get preferredHeight(): number;
-            public get flexibleHeight(): number;
-            public get layoutPriority(): number;
-            public FontTextureChanged () : void
-            public GetGenerationSettings ($extents: UnityEngine.Vector2) : UnityEngine.TextGenerationSettings
-            public static GetTextAnchorPivot ($anchor: UnityEngine.TextAnchor) : UnityEngine.Vector2
-            public CalculateLayoutInputHorizontal () : void
-            public CalculateLayoutInputVertical () : void
-        }
-        class Selectable extends UnityEngine.EventSystems.UIBehaviour implements UnityEngine.EventSystems.IEventSystemHandler, UnityEngine.EventSystems.IPointerEnterHandler, UnityEngine.EventSystems.ISelectHandler, UnityEngine.EventSystems.IPointerExitHandler, UnityEngine.EventSystems.IDeselectHandler, UnityEngine.EventSystems.IPointerDownHandler, UnityEngine.EventSystems.IPointerUpHandler, UnityEngine.EventSystems.IMoveHandler
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class Button extends UnityEngine.UI.Selectable implements UnityEngine.EventSystems.IEventSystemHandler, UnityEngine.EventSystems.IPointerEnterHandler, UnityEngine.EventSystems.ISelectHandler, UnityEngine.EventSystems.IPointerExitHandler, UnityEngine.EventSystems.IDeselectHandler, UnityEngine.EventSystems.IPointerDownHandler, UnityEngine.EventSystems.IPointerUpHandler, UnityEngine.EventSystems.IMoveHandler, UnityEngine.EventSystems.ISubmitHandler, UnityEngine.EventSystems.IPointerClickHandler
-        {
-            protected [__keep_incompatibility]: never;
-            public get onClick(): UnityEngine.UI.Button.ButtonClickedEvent;
-            public set onClick(value: UnityEngine.UI.Button.ButtonClickedEvent);
-            public OnPointerClick ($eventData: UnityEngine.EventSystems.PointerEventData) : void
-            public OnSubmit ($eventData: UnityEngine.EventSystems.BaseEventData) : void
-        }
-        class Toggle extends UnityEngine.UI.Selectable implements UnityEngine.UI.ICanvasElement, UnityEngine.EventSystems.IEventSystemHandler, UnityEngine.EventSystems.IPointerEnterHandler, UnityEngine.EventSystems.ISelectHandler, UnityEngine.EventSystems.IPointerExitHandler, UnityEngine.EventSystems.IDeselectHandler, UnityEngine.EventSystems.IPointerDownHandler, UnityEngine.EventSystems.IPointerUpHandler, UnityEngine.EventSystems.IMoveHandler, UnityEngine.EventSystems.ISubmitHandler, UnityEngine.EventSystems.IPointerClickHandler
-        {
-            protected [__keep_incompatibility]: never;
-            public toggleTransition : UnityEngine.UI.Toggle.ToggleTransition
-            public graphic : UnityEngine.UI.Graphic
-            public onValueChanged : UnityEngine.UI.Toggle.ToggleEvent
-            public get group(): UnityEngine.UI.ToggleGroup;
-            public set group(value: UnityEngine.UI.ToggleGroup);
-            public get isOn(): boolean;
-            public set isOn(value: boolean);
-            public Rebuild ($executing: UnityEngine.UI.CanvasUpdate) : void
-            public LayoutComplete () : void
-            public GraphicUpdateComplete () : void
-            public SetIsOnWithoutNotify ($value: boolean) : void
-            public OnPointerClick ($eventData: UnityEngine.EventSystems.PointerEventData) : void
-            public OnSubmit ($eventData: UnityEngine.EventSystems.BaseEventData) : void
-        }
-        class ToggleGroup extends UnityEngine.EventSystems.UIBehaviour
-        {
-            protected [__keep_incompatibility]: never;
-            public get allowSwitchOff(): boolean;
-            public set allowSwitchOff(value: boolean);
-            public NotifyToggleOn ($toggle: UnityEngine.UI.Toggle, $sendCallback?: boolean) : void
-            public UnregisterToggle ($toggle: UnityEngine.UI.Toggle) : void
-            public RegisterToggle ($toggle: UnityEngine.UI.Toggle) : void
-            public EnsureValidState () : void
-            public AnyTogglesOn () : boolean
-            public ActiveToggles () : System.Collections.Generic.IEnumerable$1<UnityEngine.UI.Toggle>
-            public GetFirstActiveToggle () : UnityEngine.UI.Toggle
-            public SetAllTogglesOff ($sendCallback?: boolean) : void
-        }
-        class Slider extends UnityEngine.UI.Selectable implements UnityEngine.EventSystems.IInitializePotentialDragHandler, UnityEngine.EventSystems.IDragHandler, UnityEngine.UI.ICanvasElement, UnityEngine.EventSystems.IEventSystemHandler, UnityEngine.EventSystems.IPointerEnterHandler, UnityEngine.EventSystems.ISelectHandler, UnityEngine.EventSystems.IPointerExitHandler, UnityEngine.EventSystems.IDeselectHandler, UnityEngine.EventSystems.IPointerDownHandler, UnityEngine.EventSystems.IPointerUpHandler, UnityEngine.EventSystems.IMoveHandler
-        {
-            protected [__keep_incompatibility]: never;
-            public get fillRect(): UnityEngine.RectTransform;
-            public set fillRect(value: UnityEngine.RectTransform);
-            public get handleRect(): UnityEngine.RectTransform;
-            public set handleRect(value: UnityEngine.RectTransform);
-            public get direction(): UnityEngine.UI.Slider.Direction;
-            public set direction(value: UnityEngine.UI.Slider.Direction);
-            public get minValue(): number;
-            public set minValue(value: number);
-            public get maxValue(): number;
-            public set maxValue(value: number);
-            public get wholeNumbers(): boolean;
-            public set wholeNumbers(value: boolean);
-            public get value(): number;
-            public set value(value: number);
-            public get normalizedValue(): number;
-            public set normalizedValue(value: number);
-            public get onValueChanged(): UnityEngine.UI.Slider.SliderEvent;
-            public set onValueChanged(value: UnityEngine.UI.Slider.SliderEvent);
-            public SetValueWithoutNotify ($input: number) : void
-            public Rebuild ($executing: UnityEngine.UI.CanvasUpdate) : void
-            public LayoutComplete () : void
-            public GraphicUpdateComplete () : void
-            public OnDrag ($eventData: UnityEngine.EventSystems.PointerEventData) : void
-            public OnInitializePotentialDrag ($eventData: UnityEngine.EventSystems.PointerEventData) : void
-            public SetDirection ($direction: UnityEngine.UI.Slider.Direction, $includeRectLayouts: boolean) : void
-        }
-        class Scrollbar extends UnityEngine.UI.Selectable implements UnityEngine.EventSystems.IBeginDragHandler, UnityEngine.EventSystems.IInitializePotentialDragHandler, UnityEngine.EventSystems.IDragHandler, UnityEngine.UI.ICanvasElement, UnityEngine.EventSystems.IEventSystemHandler, UnityEngine.EventSystems.IPointerEnterHandler, UnityEngine.EventSystems.ISelectHandler, UnityEngine.EventSystems.IPointerExitHandler, UnityEngine.EventSystems.IDeselectHandler, UnityEngine.EventSystems.IPointerDownHandler, UnityEngine.EventSystems.IPointerUpHandler, UnityEngine.EventSystems.IMoveHandler
         {
             protected [__keep_incompatibility]: never;
         }
@@ -4719,6 +5952,45 @@
         enum InputButton
         { Left = 0, Right = 1, Middle = 2 }
     }
+    namespace UnityEngine.UI.CanvasScaler {
+        enum ScaleMode
+        { ConstantPixelSize = 0, ScaleWithScreenSize = 1, ConstantPhysicalSize = 2 }
+        enum ScreenMatchMode
+        { MatchWidthOrHeight = 0, Expand = 1, Shrink = 2 }
+        enum Unit
+        { Centimeters = 0, Millimeters = 1, Inches = 2, Points = 3, Picas = 4 }
+    }
+    namespace UnityEngine.Camera {
+        enum MonoOrStereoscopicEye
+        { Left = 0, Right = 1, Mono = 2 }
+    }
+    namespace UnityEngine.Audio {
+        /** Object representing a group in the mixer.
+        */
+        class AudioMixerGroup extends UnityEngine.Object implements UnityEngine.Internal.ISubAssetNotDuplicatable
+        {
+            protected [__keep_incompatibility]: never;
+        }
+    }
+    namespace UnityEngine.Internal {
+        interface ISubAssetNotDuplicatable
+        {
+        }
+    }
+    namespace UnityEngine.AudioClip {
+        interface PCMReaderCallback
+        { 
+        (data: System.Array$1<number>) : void; 
+        Invoke?: (data: System.Array$1<number>) => void;
+        }
+        var PCMReaderCallback: { new (func: (data: System.Array$1<number>) => void): PCMReaderCallback; }
+        interface PCMSetPositionCallback
+        { 
+        (position: number) : void; 
+        Invoke?: (position: number) => void;
+        }
+        var PCMSetPositionCallback: { new (func: (position: number) => void): PCMSetPositionCallback; }
+    }
     namespace TMPro {
         class TMP_Text extends UnityEngine.UI.MaskableGraphic implements UnityEngine.UI.IMaterialModifier, UnityEngine.UI.IMaskable, UnityEngine.UI.ICanvasElement, UnityEngine.UI.IClippable
         {
@@ -5200,13 +6472,117 @@
             protected [__keep_incompatibility]: never;
         }
     }
-    namespace Au.TS {
-        class GameObjectExtension extends System.Object
+    namespace Au {
+        class AssetSet extends System.Object
         {
             protected [__keep_incompatibility]: never;
-            public static IsNull ($go: UnityEngine.GameObject) : boolean
-            public static GetOrAddComponent ($go: UnityEngine.GameObject, $type: System.Type) : UnityEngine.Component
+            public get parent(): Au.AssetSet;
+            public Close () : System.Threading.Tasks.Task$1<boolean>
+            public CreateChild ($basePath: string) : Au.AssetSet
+            public LoadBundle ($name: string, $progress: System.Action$1<number>) : System.Threading.Tasks.Task$1<boolean>
+            public UnloadBundle ($name: string) : void
+            public UnloadAllBundles () : void
+            public LoadScene ($name: string, $additive: boolean, $progress: System.Action$1<number>) : System.Threading.Tasks.Task$1<UnityEngine.SceneManagement.Scene>
+            public UnloadScene ($scene: UnityEngine.SceneManagement.Scene) : System.Threading.Tasks.Task$1<boolean>
+            public ObjectExists ($path: string) : boolean
+            public LoadObject ($path: string, $type: System.Type) : System.Threading.Tasks.Task$1<UnityEngine.Object>
+            public constructor ($basePath: string)
         }
+        class Async extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static WaitUntil ($condition: System.Func$1<boolean>) : System.Threading.Tasks.Task
+            public static WaitAsyncOperation ($op: UnityEngine.AsyncOperation, $progress?: System.Action$1<number>) : System.Threading.Tasks.Task
+        }
+        class Files extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static utf8WithoutBOM : System.Text.Encoding
+            public static IsWebFile ($path: string) : boolean
+            public static Copy ($source: string, $dest: string) : System.Threading.Tasks.Task$1<boolean>
+            public static Read ($file: string) : System.Threading.Tasks.Task$1<string>
+            public static Save ($dest: string, $text: string) : void
+            public static SaveBin ($dest: string, $bytes: System.Array$1<number>) : void
+            public static Exists ($path: string) : boolean
+            public static EnsureDir ($dir: string) : System.IO.DirectoryInfo
+            public static EnsureDir ($dir: System.IO.DirectoryInfo) : System.IO.DirectoryInfo
+            public static ClearDir ($dir: string) : System.IO.DirectoryInfo
+            public static ClearDir ($dir: System.IO.DirectoryInfo) : System.IO.DirectoryInfo
+            public static CopyDir ($from: string, $to: string) : void
+            public static CopyDir ($from: System.IO.DirectoryInfo, $to: System.IO.DirectoryInfo) : void
+        }
+        class I18n extends UnityEngine.MonoBehaviour
+        {
+            protected [__keep_incompatibility]: never;
+            public static LanguageCN : string
+            public static LanguageHK : string
+            public static LanguageJP : string
+            public static LanguageUS : string
+            public static LanguageKR : string
+            public static CurrentLanguage : string
+            public languageId : string
+            public static AddData ($name: string, $json: string) : void
+            public static RemoveData ($name: string) : void
+            public static AddAdditive ($name: string, $additive: string, $json: string) : void
+            public static RemoveAdditive ($name: string, $additive: string) : void
+            public Refresh () : void
+            public constructor ()
+        }
+        class Tags extends UnityEngine.MonoBehaviour
+        {
+            protected [__keep_incompatibility]: never;
+            public items : System.Array$1<Au.Tag>
+            public Get ($name: string) : UnityEngine.GameObject
+            public constructor ()
+        }
+        class Tag extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class Fader extends UnityEngine.MonoBehaviour
+        {
+            protected [__keep_incompatibility]: never;
+            public canvasGroup : UnityEngine.CanvasGroup
+            public static FadeIn ($seconds?: number) : System.Threading.Tasks.Task$1<boolean>
+            public static FadeOut ($seconds?: number) : System.Threading.Tasks.Task$1<boolean>
+            public constructor ()
+        }
+    }
+    namespace System.Threading.Tasks {
+        class Task extends System.Object implements System.IAsyncResult, System.Threading.IThreadPoolWorkItem, System.IDisposable
+        {
+            protected [__keep_incompatibility]: never;
+        }
+        class Task$1<TResult> extends System.Threading.Tasks.Task implements System.IAsyncResult, System.Threading.IThreadPoolWorkItem, System.IDisposable
+        {
+            protected [__keep_incompatibility]: never;
+        }
+    }
+    namespace System.Threading {
+        interface IThreadPoolWorkItem
+        {
+        }
+    }
+    namespace Au.Worlds {
+        class World extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public get id(): string;
+            public get config(): Au.Worlds.WorldConfig;
+            public get app(): Au.TS.TSApp;
+            public get assets(): Au.AssetSet;
+            public Init ($progress: System.Action$1<number>) : System.Threading.Tasks.Task$1<boolean>
+            public Run ($root: UnityEngine.GameObject) : boolean
+            public Tick () : void
+            public Close () : void
+            public constructor ($id: string, $assets: Au.AssetSet)
+        }
+        class WorldConfig extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+        }
+    }
+    namespace Au.TS {
         class TSApp extends System.Object implements System.IDisposable
         {
             protected [__keep_incompatibility]: never;
@@ -5216,6 +6592,12 @@
             public Tick () : void
             public constructor ($script: string)
             public constructor ($startupInfo: Au.TS.StartupInfo)
+        }
+        class GameObjectExtension extends System.Object
+        {
+            protected [__keep_incompatibility]: never;
+            public static IsNull ($go: UnityEngine.GameObject) : boolean
+            public static GetOrAddComponent ($go: UnityEngine.GameObject, $type: System.Type) : UnityEngine.Component
         }
         class StartupInfo extends System.Object
         {
@@ -5300,95 +6682,24 @@
             public constructor ()
         }
     }
-    namespace Au {
-        class AssetSet extends System.Object
+    namespace Au.Patcher {
+        class HashInfo extends System.Object
         {
             protected [__keep_incompatibility]: never;
-            public get parent(): Au.AssetSet;
-            public Close () : System.Threading.Tasks.Task$1<boolean>
-            public CreateChild ($basePath: string) : Au.AssetSet
-            public LoadBundle ($name: string, $progress: System.Action$1<number>) : System.Threading.Tasks.Task$1<boolean>
-            public UnloadBundle ($name: string) : void
-            public UnloadAllBundles () : void
-            public LoadScene ($name: string, $additive: boolean, $progress: System.Action$1<number>) : System.Threading.Tasks.Task$1<UnityEngine.SceneManagement.Scene>
-            public UnloadScene ($scene: UnityEngine.SceneManagement.Scene) : System.Threading.Tasks.Task$1<boolean>
-            public ObjectExists ($path: string) : boolean
-            public LoadObject ($path: string, $type: System.Type) : System.Threading.Tasks.Task$1<UnityEngine.Object>
-            public constructor ($basePath: string)
-        }
-        class Async extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static WaitUntil ($condition: System.Func$1<boolean>) : System.Threading.Tasks.Task
-            public static WaitAsyncOperation ($op: UnityEngine.AsyncOperation, $progress?: System.Action$1<number>) : System.Threading.Tasks.Task
-        }
-        class Files extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-            public static utf8WithoutBOM : System.Text.Encoding
-            public static IsWebFile ($path: string) : boolean
-            public static Copy ($source: string, $dest: string) : System.Threading.Tasks.Task$1<boolean>
-            public static Read ($file: string) : System.Threading.Tasks.Task$1<string>
-            public static Save ($dest: string, $text: string) : void
-            public static Exists ($path: string) : boolean
-            public static EnsureDir ($dir: string) : System.IO.DirectoryInfo
-            public static EnsureDir ($dir: System.IO.DirectoryInfo) : System.IO.DirectoryInfo
-            public static ClearDir ($dir: string) : System.IO.DirectoryInfo
-            public static ClearDir ($dir: System.IO.DirectoryInfo) : System.IO.DirectoryInfo
-            public static CopyDir ($from: string, $to: string) : void
-            public static CopyDir ($from: System.IO.DirectoryInfo, $to: System.IO.DirectoryInfo) : void
-        }
-        class I18n extends UnityEngine.MonoBehaviour
-        {
-            protected [__keep_incompatibility]: never;
-            public static LanguageCN : string
-            public static LanguageHK : string
-            public static LanguageJP : string
-            public static LanguageUS : string
-            public static LanguageKR : string
-            public static CurrentLanguage : string
-            public languageId : string
-            public static AddData ($name: string, $json: string) : void
-            public static RemoveData ($name: string) : void
-            public static AddAdditive ($name: string, $additive: string, $json: string) : void
-            public static RemoveAdditive ($name: string, $additive: string) : void
-            public Refresh () : void
+            public size : number
+            public hash : string
             public constructor ()
         }
-        class Tags extends UnityEngine.MonoBehaviour
+        class Patch extends System.Object
         {
             protected [__keep_incompatibility]: never;
-            public items : System.Array$1<Au.Tag>
-            public Get ($name: string) : UnityEngine.GameObject
-            public constructor ()
+            public Check () : System.Threading.Tasks.Task$1<Au.Patcher.PatchStatus>
+            public GetSize () : System.Threading.Tasks.Task$1<number>
+            public Do ($progress: System.Action$1<number>) : System.Threading.Tasks.Task$1<boolean>
+            public constructor ($id: string)
         }
-        class Tag extends System.Object
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class Fader extends UnityEngine.MonoBehaviour
-        {
-            protected [__keep_incompatibility]: never;
-            public canvasGroup : UnityEngine.CanvasGroup
-            public static FadeIn ($seconds: number) : System.Threading.Tasks.Task$1<boolean>
-            public static FadeOut ($seconds: number) : System.Threading.Tasks.Task$1<boolean>
-            public constructor ()
-        }
-    }
-    namespace System.Threading.Tasks {
-        class Task extends System.Object implements System.IAsyncResult, System.Threading.IThreadPoolWorkItem, System.IDisposable
-        {
-            protected [__keep_incompatibility]: never;
-        }
-        class Task$1<TResult> extends System.Threading.Tasks.Task implements System.IAsyncResult, System.Threading.IThreadPoolWorkItem, System.IDisposable
-        {
-            protected [__keep_incompatibility]: never;
-        }
-    }
-    namespace System.Threading {
-        interface IThreadPoolWorkItem
-        {
-        }
+        enum PatchStatus
+        { None = 0, Found = 1, Reinstall = 2, Error = 3 }
     }
 }
 declare module 'csharp' {
