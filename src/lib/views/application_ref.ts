@@ -4,7 +4,6 @@ import { getLogger } from "../logger";
 import { component } from "../metadata/decorator_view";
 import { OnInit } from "./view_interfaces";
 import { ViewRef, ZES_VIEW_DATA } from "./view_ref";
-import GameObject = CS.UnityEngine.GameObject;
 
 /**
  * Application Ref
